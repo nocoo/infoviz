@@ -1,0 +1,4 @@
+.p-demo { background: #EEE; font-family: 'Lucida Grande', Helvetica, Arial, sans-serif; }
+
+.p-demo .infoviz { width: 800px; height: 600px; position: absolute; left: 50%; top: 50%; margin: -300px 0 0 -400px; }
+.p-demo .logo { width: 100px; height: 46px; background: url('../images/infoviz_logo_small.png') right top no-repeat; position: absolute; bottom: 1em; right: 1em; }
