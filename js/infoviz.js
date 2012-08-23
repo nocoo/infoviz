@@ -42,12 +42,12 @@
 			'vertical-name-size': 12,
 			'vertical-name-color': '#000',
 
-			'horizental-label-margin': 5,
-			'horizental-label-spacing': 50,
-			'horizental-label-size': 1,
-			'horizental-label-color': '#000',
-			'horizental-name-size': 12,
-			'horizental-name-color': '#000'
+			'horizontal-label-margin': 5,
+			'horizontal-label-spacing': 50,
+			'horizontal-label-size': 1,
+			'horizontal-label-color': '#000',
+			'horizontal-name-size': 12,
+			'horizontal-name-color': '#000'
 		},
 		'chart': {
 			'padding-top': 10,
@@ -117,36 +117,33 @@
 		var target_id = $(element).attr('id') ? $(element).attr('id') : 'infoviz_' + $.InfoViz.guid();
 		$(element).attr('id', target_id);
 
-
 		var paper = Raphael(target_id, $(element).width(), $(element).height());
-		//var paper = Raphael(10, 50, 320, 200);
-
 		var area = $.InfoViz.draw_grid(paper, data);
 
+		$.InfoViz.draw_chart_background(paper, area);
 		$.InfoViz.draw_linechart(paper, area, data);
+	};
 
-		//var test = paper.rect(area['top-left'][0], area['top-left'][1], area['width'], area['height']);
-		//test.attr({ 'fill': '#F0F' });
+	$.InfoViz.draw_chart_background = function(paper, chart_area, overwrite_options) {
+		if(!paper || !chart_area) return idb('Paper or chart area is empty.');
 
-		// Creates circle at x = 50, y = 40, with radius 10
-		/*var circle = paper.circle(50, 40, 10);
-		// Sets the fill attribute of the circle to red (#f00)
-		circle.attr("fill", "#f00");
+		var options = merge_options(overwrite_options), p_background, p_horizontal_guideline, p_vertical_guideline;
 
-		// Sets the stroke attribute of the circle to white
-		circle.attr("stroke", "#fff");
+		p_background = paper.rect(chart_area['top-left'][0], chart_area['top-left'][1], chart_area['width'], chart_area['height']);
+		p_background.attr({ 'stroke': 'none', 'fill': 'red', 'fill-opacity': 0 }).translate(0.5, 0.5);
 
-		circle.animate(
-			{ 
-				'stroke': '#000',
-				'fill': '#000',
-				'cx': '400', 'cy': '400'
-			},
-			10000, 'bounce',
-			function() {
-				console.log('done');
-			}
-		);*/
+		p_horizontal_guideline = paper.path('M' + chart_area['top-left'][0] + ',-1000' + 'L' + chart_area['top-right'][0] + ',-1000').translate(0.5, 0.5);
+		p_vertical_guideline = paper.path('M-1000,' + chart_area['top-right'][1] + 'L-1000,' + chart_area['bottom-right'][1]).translate(0.5, 0.5);
+
+		p_background.mousemove(function(evt) {
+			var h_clone = paper.path('M' + chart_area['top-left'][0] + ',' + evt.offsetY + 'L' + chart_area['top-right'][0] + ',' + evt.offsetY).translate(0.5, 0.5);
+			p_horizontal_guideline.attr({ 'path': h_clone.attr('path') });
+			h_clone.remove();
+
+			var v_clone = paper.path('M' + evt.offsetX + ',' + chart_area['top-right'][1] + 'L' + evt.offsetX + ',' + chart_area['bottom-right'][1]).translate(0.5, 0.5);
+			p_vertical_guideline.attr({ 'path': v_clone.attr('path') });
+			v_clone.remove();
+		});
 	};
 
 	$.InfoViz.draw_grid = function(paper, data, overwrite_options) {
@@ -185,9 +182,9 @@
 		x = options['layout']['padding-left'] + 
 			options['grid']['border-width'] + 
 			options['grid']['padding-left'] + 
-			options['grid']['horizental-label-margin'] + 
-			options['grid']['horizental-label-spacing'] + 
-			options['grid']['horizental-label-margin'];
+			options['grid']['horizontal-label-margin'] + 
+			options['grid']['horizontal-label-spacing'] + 
+			options['grid']['horizontal-label-margin'];
 
 		y = paper_height - 
 			options['layout']['padding-bottom'] - 
@@ -237,18 +234,18 @@
 		});
 		p_vertical_axis.translate(0.5, 0.5);
 
-		// Draw horizental axis.
+		// Draw horizontal axis.
 				cache = [];
 		cache.push('M' + chart_area['bottom-left'][0] + ',' + chart_area['bottom-left'][1]);
 		cache.push('L' + chart_area['bottom-right'][0] + ',' + chart_area['bottom-right'][1]);
 
-		var p_horizental_axis = paper.path(cache.join(''));
-		p_horizental_axis.attr({
+		var p_horizontal_axis = paper.path(cache.join(''));
+		p_horizontal_axis.attr({
 			'stroke': options['grid']['axis-color'],
 			'stroke-width': options['grid']['axis-width'],
 			'stroke-opacity': options['grid']['axis-alpha']
 		});
-		p_horizental_axis.translate(0.5, 0.5);
+		p_horizontal_axis.translate(0.5, 0.5);
 
 		var p_dot_bottom_left = paper.circle(chart_area['bottom-left'][0], chart_area['bottom-left'][1], options['grid']['axis-dot-size']);
 		p_dot_bottom_left.attr({
@@ -290,18 +287,18 @@
 			});
 		}
 
-		if(data['horizental_axis_name']) {
+		if(data['horizontal_axis_name']) {
 			x = chart_area['bottom-right'][0];
-			y = chart_area['bottom-right'][1] + options['grid']['horizental-name-size'] / 2 + options['grid']['horizental-label-margin'] * 2;
+			y = chart_area['bottom-right'][1] + options['grid']['horizontal-name-size'] / 2 + options['grid']['horizontal-label-margin'] * 2;
 
 			//idb([x, y]);
 
-			var horizental_axis_name = paper.text(x, y, data['horizental_axis_name']);
-			horizental_axis_name.attr({
+			var horizontal_axis_name = paper.text(x, y, data['horizontal_axis_name']);
+			horizontal_axis_name.attr({
 				'text-anchor': 'end',
 				'font-weight': 'bold',
-				'font-size': options['grid']['horizental-name-size'],
-				'fill': options['grid']['horizental-name-color']
+				'font-size': options['grid']['horizontal-name-size'],
+				'fill': options['grid']['horizontal-name-color']
 			});
 		}
 
@@ -317,15 +314,15 @@
 			// Discrete LineChart.
 
 			var lines = data['data'], h_fields = [], v_fields = [], i, j, k, item;
-			var h_field_name = data['horizental_field'], v_field_name = data['vertical_field'];
+			var h_field_name = data['horizontal_field'], v_field_name = data['vertical_field'];
 			var this_h, this_v, h_min = Infinity, h_max = -Infinity, v_min = Infinity, v_max = -Infinity;
 
-			// Scan horizental and vertical fields.
+			// Scan horizontal and vertical fields.
 			for(var line in lines) {
 				for(i = 0; i < lines[line]['data'].length; ++i) {
 					item = lines[line]['data'][i];
 
-					// horizental field.
+					// horizontal field.
 					if(item[h_field_name]) {
 						this_h = item[h_field_name];
 					} else {
@@ -364,36 +361,49 @@
 			}
 
 			// Mapping position.
-			// horizental field.
+			// horizontal field.
 			var h_start = Math.round(chart_area['top-left'][0] + options['chart']['padding-left']);
 			var h_unit = Math.round((chart_area['top-right'][0] - options['chart']['padding-right'] - h_start) / (h_fields.length - 1));
 			
 			var v_start = Math.round(chart_area['bottom-left'][1] - options['chart']['padding-bottom']);
 			var v_unit = Math.round((v_start - chart_area['top-left'][1] - options['chart']['padding-top']) / (v_max - v_min + 1));
 
+			var h_map = {};
+
 			//console.log(v_unit);
 
 			// grids.
-			var grid_line;
+			var p_vertical_grids, p_label;
 			cache = [];
 			x = h_start;
+			y = chart_area['bottom-right'][1] + options['grid']['horizontal-name-size'] / 2 + options['grid']['horizontal-label-margin'] * 2;
 
 			for(i = 0; i < h_fields.length; ++i) {
 				cache.push('M' + x + ',' + chart_area['bottom-left'][1]);
 				cache.push('L' + x + ',' + chart_area['top-left'][1]);
 				
+				h_map[h_fields[i]] = x;
+
+				// Draw horizontal labels.
+				p_label = paper.text(x, y, h_fields[i]);
+				p_label.attr({
+					'text-anchor': 'middle',
+					'font-size': options['grid']['horizontal-name-size'],
+					'fill': options['grid']['horizontal-name-color']
+				});
+
 				x += h_unit;
 			}
 
-			//console.log(cache.join(''));
-
-			grid_line = paper.path(cache.join(''));
-			grid_line.attr({
+			p_vertical_grids = paper.path(cache.join(''));
+			p_vertical_grids.attr({
 				'stroke': options['grid']['grid-color'],
+				'stroke-dasharray': '--..',
+				'stroke-linecap': 'butt',
 				'stroke-width': options['grid']['grid-width'],
 				'stroke-opacity': options['grid']['grid-alpha']
 			});
-			grid_line.translate(0.5, 0.5);
+			p_vertical_grids.translate(0.5, 0.5);
 
 			// Lines.
 			var index = 0, color;
@@ -402,11 +412,12 @@
 				var p_line, p_node, p_label;
 
 				cache = [];
-				x = h_start;
 				color = options['color'][(index % options['color'].length)];
 				
 				for(i = 0; i < lines[line]['data'].length; ++i) {
 					item = lines[line]['data'][i];
+
+					x = h_map[item[h_field_name]];
 					y = Math.round(v_start - item[v_field_name] * v_unit);
 
 					if(i === 0) {
@@ -422,8 +433,6 @@
 						'stroke-width': options['chart']['line-width'],
 						'fill': color['color']
 					}).translate(0.5, 0.5);
-
-					x += h_unit;
 				}
 
 				p_line = paper.path(cache.join(''));
@@ -433,7 +442,7 @@
 					'stroke-width': options['chart']['line-width']
 				}).translate(0.5, 0.5);
 
-				p_label = paper.text(x - h_unit + options['chart']['circle-radius'] * 2, y, lines[line]['name']);
+				p_label = paper.text(x + options['chart']['circle-radius'] * 2, y, lines[line]['name']);
 				p_label.attr({
 					'fill': color['color'],
 					'text-anchor': 'start',
