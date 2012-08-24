@@ -11,6 +11,7 @@
 			'padding-left': 10,
 			'background-color': '#000',
 			'background-alpha': 0.1,
+			'logo-enabled': false,
 			'logo-width': 50,
 			'logo-height': 23
 		},
@@ -117,7 +118,11 @@
 		}
 	};
 
-	$.InfoViz.chart = function(element, type, data, disable_logo) {
+	$.InfoViz.enable_logo = function() {
+		$.InfoViz.options['layout']['logo-enabled'] = true;
+	};
+
+	$.InfoViz.chart = function(element, type, data) {
 		var target_id = $(element).attr('id') ? $(element).attr('id') : 'infoviz_' + $.InfoViz.guid();
 		$(element).attr('id', target_id);
 
@@ -128,7 +133,7 @@
 		//$.InfoViz.draw_chart_background(paper, area);
 		$.InfoViz.draw_linechart(paper, area, data);
 
-		if(!disable_logo) {
+		if(options['layout']['logo-enabled']) {
 			// Draw InfoViz logo.
 			var logo = paper.image(
 				'./images/infoviz_logo_tiny.png', 

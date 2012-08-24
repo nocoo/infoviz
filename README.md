@@ -6,24 +6,29 @@ InfoViz, an information visualization library based on [Raphaël](http://raphael
 
 ## LineChart
 
-	infoviz.chart(
+### Discrete BarChart
+
+![Discrete BarChart](http://infoviz.org/examples/discrete_barchart.png "Discrete BarChart")
+
+Here is how to create a discrete BarChart.
+
+	$.InfoViz.chart(
 		$('.infoviz'), 
 		'linechart', 
 		{
 			'vertical_axis_name': 'Vertical',
-			'horizental_axis_name': 'Horizental',
+			'horizontal_axis_name': 'Horizental',
 			'type': 'discrete',
-			'horizental_field': 'F2',
+			'horizontal_field': 'F2',
 			'vertical_field': 'F1',
 			'data': {
 				'line1': {
 					'name': 'China',
 					'data': [
-						{ 'F1': 1, 'F2': 'A', 'F3': 3 },
-						{ 'F1': 42, 'F2': 'B', 'F3': 6 },
-						{ 'F1': 7, 'F2': 'C', 'F3': 9 },
-						{ 'F1': 110, 'F2': 'D', 'F3': 12 },
-						{ 'F1': 123, 'F2': 'E', 'F3': 15 }
+						{ 'F1': 1,   'F2': 'A', 'F3': 3 },
+						{ 'F1': 42,  'F2': 'B', 'F3': 6 },
+						{ 'F1': 7,   'F2': 'C', 'F3': 9 },
+						{ 'F1': 110, 'F2': 'D', 'F3': 12 }
 					]
 				},
 				'line2': {
@@ -32,8 +37,8 @@ InfoViz, an information visualization library based on [Raphaël](http://raphael
 						{ 'F1': 13, 'F2': 'A', 'F3': 15 },
 						{ 'F1': 10, 'F2': 'B', 'F3': 12 },
 						{ 'F1': 72, 'F2': 'C', 'F3': 9 },
-						{ 'F1': 1, 'F2': 'D', 'F3': 3 },
-						{ 'F1': 4, 'F2': 'E', 'F3': 6 }
+						{ 'F1': 1,  'F2': 'D', 'F3': 3 },
+						{ 'F1': 4,  'F2': 'E', 'F3': 6 }
 					]
 				},
 				'line3': {
@@ -41,7 +46,6 @@ InfoViz, an information visualization library based on [Raphaël](http://raphael
 					'data': [
 						{ 'F1': 19, 'F2': 'A', 'F3': 15 },
 						{ 'F1': 20, 'F2': 'B', 'F3': 12 },
-						{ 'F1': 22, 'F2': 'C', 'F3': 9 },
 						{ 'F1': 11, 'F2': 'D', 'F3': 3 },
 						{ 'F1': 42, 'F2': 'E', 'F3': 6 }
 					]
@@ -59,10 +63,9 @@ InfoViz, an information visualization library based on [Raphaël](http://raphael
 				'line5': {
 					'name': 'Russia',
 					'data': [
-						{ 'F1': 9, 'F2': 'A', 'F3': 15 },
+						{ 'F1': 9,  'F2': 'A', 'F3': 15 },
 						{ 'F1': 90, 'F2': 'B', 'F3': 12 },
 						{ 'F1': 92, 'F2': 'C', 'F3': 9 },
-						{ 'F1': 91, 'F2': 'D', 'F3': 3 },
 						{ 'F1': 52, 'F2': 'E', 'F3': 6 }
 					]
 				}
