@@ -1,7 +1,7 @@
 InfoViz
 =======
 
-![InfoViz](infoviz.org/images/infoviz_logo_small.png)
+![InfoViz](http://infoviz.org/images/infoviz_logo_small.png)
 
 An information visualization library based on [Raphaël](http://raphaeljs.com/).
 
