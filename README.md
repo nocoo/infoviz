@@ -1,11 +1,10 @@
-InfoViz
-=======
-
 ![InfoViz](http://infoviz.org/images/infoviz_logo_small.png)
 
-An information visualization library based on [Raphaël](http://raphaeljs.com/).
+InfoViz, an information visualization library based on [Raphaël](http://raphaeljs.com/).
 
-# LineChart
+#AxisCharts
+
+## LineChart
 
 	infoviz.chart(
 		$('.infoviz'), 
