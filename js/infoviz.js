@@ -10,7 +10,9 @@
 			'padding-bottom': 10,
 			'padding-left': 10,
 			'background-color': '#000',
-			'background-alpha': 0.1
+			'background-alpha': 0.1,
+			'logo-width': 50,
+			'logo-height': 23
 		},
 		'grid': {
 			'padding-top': 10,
@@ -37,26 +39,28 @@
 			
 			'vertical-label-margin': 5,
 			'vertical-label-spacing': 50,
-			'vertical-label-size': 1,
-			'vertical-label-color': '#000',
+			'vertical-label-size': 12,
+			'vertical-label-color': '#555',
 			'vertical-name-size': 12,
 			'vertical-name-color': '#000',
 
 			'horizontal-label-margin': 5,
-			'horizontal-label-spacing': 50,
-			'horizontal-label-size': 1,
-			'horizontal-label-color': '#000',
+			'horizontal-label-spacing': 20,
+			'horizontal-label-size': 12,
+			'horizontal-label-color': '#555',
 			'horizontal-name-size': 12,
 			'horizontal-name-color': '#000'
 		},
 		'chart': {
-			'padding-top': 10,
+			'padding-top': 30,
 			'padding-right': 90,
-			'padding-bottom': 10,
+			'padding-bottom': 20,
 			'padding-left': 30,
-			'line-width': 1,
-			'circle-radius': 3,
-			'label-size': 12
+			'line-width': 2,
+			'circle-radius': 5,
+			'label-size': 12,
+			'vertical_label_count': 10,
+			'vertical_bar_width': 5
 		},
 		'color': [
 			{ 'color': '#66B3DD', 'dark-alpha': 1, 'light-alpha': 0.5 },
@@ -113,15 +117,28 @@
 		}
 	};
 
-	$.InfoViz.chart = function(element, type, data) {
+	$.InfoViz.chart = function(element, type, data, disable_logo) {
 		var target_id = $(element).attr('id') ? $(element).attr('id') : 'infoviz_' + $.InfoViz.guid();
 		$(element).attr('id', target_id);
 
 		var paper = Raphael(target_id, $(element).width(), $(element).height());
 		var area = $.InfoViz.draw_grid(paper, data);
+		var options = $.InfoViz.options;
 
-		$.InfoViz.draw_chart_background(paper, area);
+		//$.InfoViz.draw_chart_background(paper, area);
 		$.InfoViz.draw_linechart(paper, area, data);
+
+		if(!disable_logo) {
+			// Draw InfoViz logo.
+			var logo = paper.image(
+				'./images/infoviz_logo_tiny.png', 
+				area['top-right'][0] - options['layout']['logo-width'],
+				area['top-right'][1],
+				options['layout']['logo-width'],
+				options['layout']['logo-height']).attr({ 'cursor': 'pointer' }).translate(0.5, 0.5);
+
+			logo.click(function() { window.location.href = 'https://github.com/nocoo/InfoViz'; });
+		}
 	};
 
 	$.InfoViz.draw_chart_background = function(paper, chart_area, overwrite_options) {
@@ -182,17 +199,17 @@
 		x = options['layout']['padding-left'] + 
 			options['grid']['border-width'] + 
 			options['grid']['padding-left'] + 
-			options['grid']['horizontal-label-margin'] + 
-			options['grid']['horizontal-label-spacing'] + 
-			options['grid']['horizontal-label-margin'];
+			options['grid']['vertical-label-margin'] + 
+			options['grid']['vertical-label-spacing'] + 
+			options['grid']['vertical-label-margin'];
 
 		y = paper_height - 
 			options['layout']['padding-bottom'] - 
 			options['grid']['border-width'] - 
 			options['grid']['padding-bottom'] -
-			options['grid']['vertical-label-margin'] - 
-			options['grid']['vertical-label-spacing'] - 
-			options['grid']['vertical-label-margin'];
+			options['grid']['horizontal-label-margin'] - 
+			options['grid']['horizontal-label-spacing'] - 
+			options['grid']['horizontal-label-margin'];
 
 		chart_area['bottom-left'] = [ x, y ];
 		
@@ -360,20 +377,49 @@
 				}
 			}
 
-			// Mapping position.
-			// horizontal field.
-			var h_start = Math.round(chart_area['top-left'][0] + options['chart']['padding-left']);
-			var h_unit = Math.round((chart_area['top-right'][0] - options['chart']['padding-right'] - h_start) / (h_fields.length - 1));
-			
-			var v_start = Math.round(chart_area['bottom-left'][1] - options['chart']['padding-bottom']);
-			var v_unit = Math.round((v_start - chart_area['top-left'][1] - options['chart']['padding-top']) / (v_max - v_min + 1));
+			v_min = Math.floor(v_min / 10) * 10;
+			v_max = Math.ceil(v_max / 10) * 10;
 
+			// Mapping position.
+			var h_start = chart_area['top-left'][0] + options['chart']['padding-left'];
+			var h_unit = (chart_area['top-right'][0] - options['chart']['padding-right'] - h_start) / (h_fields.length - 1);
+			
+			var v_start = chart_area['bottom-left'][1] - options['chart']['padding-bottom'];
+			var v_unit = (v_start - chart_area['top-left'][1] - options['chart']['padding-top']) / (v_max - v_min);
+			
 			var h_map = {};
 
-			//console.log(v_unit);
+			var v_label_unit = (v_start - chart_area['top-left'][1] - options['chart']['padding-top']) / (options['chart']['vertical_label_count'] - 1);
+			var v_label_value_unit = Math.floor((v_max - v_min) / (options['chart']['vertical_label_count'] - 1)); // May not be accurate.
+			
+			cache = [];
+
+			x = chart_area['top-left'][0] - options['chart']['vertical_bar_width'];
+			y = v_start;
+			var v_value = v_min;
+
+			for(i = 0; i < options['chart']['vertical_label_count']; ++i) {
+				cache.push('M' + x + ',' + y + 'L' + chart_area['top-left'][0] + ',' + y);
+
+				paper.path(cache.join('')).attr({
+					'stroke': options['grid']['axis-color'],
+					'stroke-opacity': options['grid']['axis-alpha'],
+					'stroke-width': options['grid']['axis-width']
+				}).translate(0.5, 0.5);
+
+
+				paper.text(x - options['chart']['vertical_bar_width'], y, v_value).attr({
+					'text-anchor': 'end',
+					'fill': options['grid']['vertical-label-color'],
+					'font-size': options['grid']['vertical-label-size']
+				}).translate(0.5, 0.5);
+
+				y -= v_label_unit;
+				v_value += v_label_value_unit;
+			}
 
 			// grids.
-			var p_vertical_grids, p_label;
+			var p_vertical_grids;
 			cache = [];
 			x = h_start;
 			y = chart_area['bottom-right'][1] + options['grid']['horizontal-name-size'] / 2 + options['grid']['horizontal-label-margin'] * 2;
@@ -385,12 +431,11 @@
 				h_map[h_fields[i]] = x;
 
 				// Draw horizontal labels.
-				p_label = paper.text(x, y, h_fields[i]);
-				p_label.attr({
+				paper.text(x, y, h_fields[i]).attr({
 					'text-anchor': 'middle',
-					'font-size': options['grid']['horizontal-name-size'],
-					'fill': options['grid']['horizontal-name-color']
-				});
+					'font-size': options['grid']['horizontal-label-size'],
+					'fill': options['grid']['horizontal-label-color']
+				}).translate(0.5, 0.5);
 
 				x += h_unit;
 			}
@@ -418,7 +463,7 @@
 					item = lines[line]['data'][i];
 
 					x = h_map[item[h_field_name]];
-					y = Math.round(v_start - item[v_field_name] * v_unit);
+					y = v_start - item[v_field_name] * v_unit + options['chart']['circle-radius'];
 
 					if(i === 0) {
 						cache.push('M' + x + ',' + y);
