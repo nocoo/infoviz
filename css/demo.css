@@ -1,2 +1,10 @@
+/*
+	InfoViz
+	@author  Zheng Li <lizheng@lizheng.me>
+	@github https://github.com/nocoo/InfoViz
+	@license MIT
+	@version 0.1.0
+*/
+
 .p-demo { background: #EEE; font-family: 'Lucida Grande', Helvetica, Arial, sans-serif; }
-.p-demo .infoviz { width: 800px; height: 600px; position: absolute; left: 50%; top: 50%; margin: -300px 0 0 -400px; }
+.p-demo .infoviz { width: 850px; height: 600px; position: absolute; left: 50%; top: 50%; margin: -300px 0 0 -425px; }
