@@ -2,9 +2,9 @@
 
 InfoViz, an information visualization library based on [Raphaël](http://raphaeljs.com/).
 
-#AxisCharts
+#1 AxisCharts
 
-## LineChart
+## 1.1 LineChart
 
 ![LineChart](http://infoviz.org/examples/linechart.png "LineChart")
 
@@ -75,7 +75,7 @@ Demo: [Click Here](http://infoviz.org/linechart.html)
 		}
 	);
 
-## BubbleChart
+## 1.2 BubbleChart
 
 A LineChart has a value as horizontal field, and a value field as vertical field, also with a value field indicates its size.
 
@@ -107,7 +107,7 @@ Demo: [Click Here](http://infoviz.org/bubblechart.html)
 		}
 	);
 
-# Configuration
+# 2 Configuration
 
 	$.InfoViz.options = {
 		'layout': {
