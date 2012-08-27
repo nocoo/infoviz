@@ -208,7 +208,7 @@ Demo: [Click Here](http://infoviz.org/index.html#piechart)
 
 # 3 Configuration
 
-## 3.1 How to override a style
+## 3.1 How to overwrite a style
 
 ### Global
 
