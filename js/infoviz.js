@@ -22,6 +22,7 @@
 			'logo-enabled': false,
 			'logo-width': 50,
 			'logo-height': 23,
+			'speed': 300,
 
 			'box-border-width': 1,
 			'box-border-color': '#AAA',
@@ -32,8 +33,8 @@
 		'grid': {
 			'padding-top': 10,
 			'padding-right': 10,
-			'padding-bottom': 0,
-			'padding-left': 0,
+			'padding-bottom': 10,
+			'padding-left': 10,
 
 			'grid-width': 1,
 			'grid-color': '#CCC',
@@ -53,14 +54,14 @@
 			'background-alpha': 1.0,
 			
 			'vertical-label-margin': 5,
-			'vertical-label-spacing': 50,
+			'vertical-label-spacing': 40,
 			'vertical-label-size': 12,
 			'vertical-label-color': '#555',
 			'vertical-name-size': 12,
 			'vertical-name-color': '#000',
 
 			'horizontal-label-margin': 5,
-			'horizontal-label-spacing': 20,
+			'horizontal-label-spacing': 10,
 			'horizontal-label-size': 12,
 			'horizontal-label-color': '#555',
 			'horizontal-name-size': 12,
@@ -101,15 +102,19 @@
 			'vertical-label-count': 10,
 			'vertical-bar-width': 5
 		},
+		'piechart': {
+			'sector-size-factor': 0.9,
+			'sector-border-width': 1
+		},
 		'color': [
-			{ 'color': '#66B3DD', 'dark-alpha': 1, 'light-alpha': 0.3 },
-			{ 'color': '#EF7D31', 'dark-alpha': 1, 'light-alpha': 0.3 },
-			{ 'color': '#ABC93C', 'dark-alpha': 1, 'light-alpha': 0.3 },
-			{ 'color': '#E05170', 'dark-alpha': 1, 'light-alpha': 0.3 },
-			{ 'color': '#297FB5', 'dark-alpha': 1, 'light-alpha': 0.3 },
-			{ 'color': '#F5BE21', 'dark-alpha': 1, 'light-alpha': 0.3 },
-			{ 'color': '#5ABABB', 'dark-alpha': 1, 'light-alpha': 0.3 },
-			{ 'color': '#9D66A4', 'dark-alpha': 1, 'light-alpha': 0.3 }
+			{ 'color': '#66B3DD', 'dark-alpha': 1, 'light-alpha': 0.45 },
+			{ 'color': '#EF7D31', 'dark-alpha': 1, 'light-alpha': 0.45 },
+			{ 'color': '#ABC93C', 'dark-alpha': 1, 'light-alpha': 0.45 },
+			{ 'color': '#E05170', 'dark-alpha': 1, 'light-alpha': 0.45 },
+			{ 'color': '#297FB5', 'dark-alpha': 1, 'light-alpha': 0.45 },
+			{ 'color': '#F5BE21', 'dark-alpha': 1, 'light-alpha': 0.45 },
+			{ 'color': '#5ABABB', 'dark-alpha': 1, 'light-alpha': 0.45 },
+			{ 'color': '#9D66A4', 'dark-alpha': 1, 'light-alpha': 0.45 }
 		]
 	};
 
@@ -141,21 +146,30 @@
 
 		switch(type) {
 			case 'linechart': {
-				area = $.InfoViz.draw_axis(paper, data);
-				$.InfoViz.draw_linechart(paper, area, data);
+				area = $.InfoViz.draw_axis(paper, data, options);
+				$.InfoViz.draw_linechart(paper, area, data, options);
 
 				break;
 			}
 			case 'bubblechart': {
-				area = $.InfoViz.draw_axis(paper, data);
-				$.InfoViz.draw_bubblechart(paper, area, data);
+				area = $.InfoViz.draw_axis(paper, data, options);
+				$.InfoViz.draw_bubblechart(paper, area, data, options);
 
 				break;
 			}
 			case 'barchart': {
-				area = $.InfoViz.draw_axis(paper, data);
-				$.InfoViz.draw_barchart(paper, area, data);
+				area = $.InfoViz.draw_axis(paper, data, options);
+				$.InfoViz.draw_barchart(paper, area, data, options);
 
+				break;
+			}
+			case 'piechart': {
+				area = $.InfoViz.draw_simple_background(paper, data, options);
+				//console.log(area);
+				$.InfoViz.draw_piechart(paper, area, data, options);
+				/*paper.rect(area['top-left'][0], area['top-left'][1], area['width'], area['height']).attr({
+					'fill': 'red', 'fill-opacity': 0.5
+				});*/
 				break;
 			}
 			default: {
@@ -213,6 +227,78 @@
 				}, 200);
 			});
 		}
+	};
+
+	$.InfoViz.draw_simple_background = function(paper, data, overwrite_options) {
+		if(!paper) return idb('Paper is empty.');
+
+		var options = merge_options(overwrite_options), chart_area = {},
+			paper_width = paper.width, paper_height = paper.height, cache = [], x, y;
+
+		// Draw background.
+		var p_background = paper.rect(0, 0, paper_width, paper_height);
+		p_background.attr({
+			'stroke': 'none',
+			'fill': options['layout']['background-color'],
+			'fill-opacity': options['layout']['background-alpha']
+		});
+
+		// Draw border.
+		var p_border = paper.rect(
+			options['layout']['padding-left'],
+			options['layout']['padding-top'], 
+			paper_width - options['layout']['padding-left'] - options['layout']['padding-right'],
+			paper_height - options['layout']['padding-top'] - options['layout']['padding-bottom'],
+			options['grid']['border-radius']
+		);
+
+		p_border.attr({
+			'stroke': options['grid']['border-color'],
+			'stroke-width': options['grid']['border-width'],
+			'stroke-opacity': options['grid']['border-alpha'],
+			'fill': options['grid']['background-color'],
+			'fill-opacity': options['grid']['background-alpha']
+		});
+		p_border.translate(0.5, 0.5);
+
+		// bottom, left
+		x = options['layout']['padding-left'] + 
+			options['grid']['border-width'] + 
+			options['grid']['padding-left'];
+
+		y = paper_height - 
+			options['layout']['padding-bottom'] - 
+			options['grid']['border-width'] - 
+			options['grid']['padding-bottom'];
+
+		chart_area['bottom-left'] = [ x, y ];
+
+		// top, left
+		y = options['layout']['padding-top'] +
+			options['grid']['border-width'] + 
+			options['grid']['padding-top'];
+
+		chart_area['top-left'] = [ x, y ];
+
+		// top, right
+		x = paper_width - 
+			options['layout']['padding-right'] - 
+			options['grid']['border-width'] - 
+			options['grid']['padding-right'];
+
+		y = chart_area['top-left'][1];
+
+		chart_area['top-right'] = [ x, y ];
+
+		// bottom, right
+		y = chart_area['bottom-left'][1];
+
+		chart_area['bottom-right'] = [ x, y ];
+
+		chart_area['width'] = chart_area['top-right'][0] - chart_area['top-left'][0];
+		chart_area['height'] = chart_area['bottom-right'][1] - chart_area['top-right'][1];
+
+		return chart_area;
 	};
 
 	$.InfoViz.draw_axis = function(paper, data, overwrite_options) {
@@ -457,6 +543,21 @@
 			this_text.data('data', item);
 			global['bubblechart']['bubbles'].push(this_bubble);
 			global['bubblechart']['texts'].push(this_text);
+		}
+
+		for(i = 0; i < global['bubblechart']['bubbles'].length; ++i) {
+			(function(bubble, text, index) {
+				bubble.mouseover(function () {
+					bubble.stop().animate({ 'fill-opacity': options['color'][0]['dark-alpha'] }, options['layout']['speed'], ">");
+					text.stop().animate({ 'fill': '#FFF' }, options['layout']['speed'], ">");
+				});
+				bubble.mouseout(function () {
+					bubble.stop().animate({ 'fill-opacity': options['color'][0]['light-alpha'] }, options['layout']['speed'], "<");
+					text.stop().animate({ 'fill': text.data('color') }, options['layout']['speed'], "<");
+				});
+			})(global['bubblechart']['bubbles'][i], global['bubblechart']['texts'][i], i);
+
+			global['bubblechart']['texts'][i].data('color', global['bubblechart']['texts'][i].attr('fill'));
 		}
 
 		// Vertical labels.
@@ -792,7 +893,7 @@
 		x = h_start + group_width / 2;
 		y = chart_area['bottom-right'][1] + options['grid']['horizontal-name-size'] / 2 + options['grid']['horizontal-label-margin'] * 2;
 
-		idb(bar_width);
+		//idb(bar_width);
 
 		for(i = 0; i < h_fields.length; ++i) {
 			cache.push('M' + x + ',' + chart_area['bottom-left'][1]);
@@ -820,9 +921,8 @@
 		});
 		p_vertical_grids.translate(0.5, 0.5);
 
-		// Lines.
-		var index = 0, color;
-		
+		// Bars.
+		var index = 0, color, p_nodes = [], this_node;
 		for(var line in lines) {
 			var p_node;
 
@@ -834,24 +934,111 @@
 				x = h_map[item[h_field_name]] + (index) * (bar_width + options['barchart']['bar-margin']);
 				y = v_start - item[v_field_name] * v_unit;
 
-				p_node = paper.rect(x, y, bar_width, chart_area['bottom-left'][1] - y - 1);
-				p_node.attr({
+				this_node = paper.rect(x, y, bar_width, chart_area['bottom-left'][1] - y - 1);
+				this_node.attr({
 					'stroke': color['color'],
 					'stroke-opacity': color['dark-alpha'],
 					'stroke-width': options['barchart']['line-width'],
-					'fill': color['color']
+					'fill': color['color'],
+					'fill-opacity': color['light-alpha']
 				}).translate(0.5, 0.5);
+
+				p_nodes.push(this_node);
 			}
 
 			index++;
+		}
+
+		for(i = 0; i < p_nodes.length; ++i) {
+			(function(target) {
+				target.mouseover(function () {
+					target.stop().animate({ 'fill-opacity': options['color'][0]['dark-alpha'] }, options['layout']['speed'], ">");
+				});
+				target.mouseout(function () {
+					target.stop().animate({ 'fill-opacity': options['color'][0]['light-alpha'] }, options['layout']['speed'], "<");
+				});
+			})(p_nodes[i]);
+		}
+	};
+
+	$.InfoViz.draw_piechart = function(paper, chart_area, data, overwrite_options) {
+		if(!paper || !data) return idb('Paper or Data is empty.');
+		
+		var options = merge_options(overwrite_options), cache = [], x, y, i, item, radius;
+		var cx = chart_area['top-left'][0] + chart_area['width'] / 2;
+		var cy = chart_area['top-left'][1] + chart_area['height'] / 2;
+		
+		if(chart_area['width'] > chart_area['height']) {
+			radius = Math.floor(chart_area['height'] / 2) * options['piechart']['sector-size-factor'];
+		} else {
+			radius = Math.floor(chart_area['width'] / 2) * options['piechart']['sector-size-factor'];
+		}
+
+		// Scan value fields.
+		var v_max = -Infinity, v_min = Infinity, v_sum = 0;
+		for(i = 0; i < data['data'].length; ++i) {
+			item = data['data'][i];
+
+			if(item[data['value_field']] > v_max) {
+				v_max = item[data['value_field']];
+			}
+
+			if(item[data['value_field']] < v_min) {
+				v_min = item[data['value_field']];
+			}
+
+			v_sum += item[data['value_field']];
+		}
+
+		var sector = function(cx, cy, r, startAngle, endAngle, params) {
+			var rad = Math.PI / 180,
+				x1 = cx + r * Math.cos(-startAngle * rad),
+				x2 = cx + r * Math.cos(-endAngle * rad),
+				y1 = cy + r * Math.sin(-startAngle * rad),
+				y2 = cy + r * Math.sin(-endAngle * rad);
+			
+			return paper.path(["M", cx, cy, "L", x1, y1, "A", r, r, 0, +(endAngle - startAngle > 180), 0, x2, y2, "z"]).attr(params);
+		}
+
+		var angle_unit = 360 / v_sum;
+		var this_angle, current_angle = 0, this_color, p_sectors = [], p;
+
+		for(i = 0; i < data['data'].length; ++i) {
+			item = data['data'][i][data['value_field']];
+			this_angle = angle_unit * item;
+			this_color = options['color'][(i % options['color'].length)];
+
+			p = sector(cx, cy, radius, current_angle, current_angle + this_angle, { 
+				'fill': this_color['color'],
+				'fill-opacity': this_color['light-alpha'],
+				'stroke': this_color['color'],
+				'stroke-opacity': this_color['dark-alpha'],
+				'stroke-width': options['piechart']['sector-border-width']
+			}).translate(0.5, 0.5);
+
+			p_sectors.push(p);
+			current_angle += this_angle;
+		}
+
+		for(i = 0; i < p_sectors.length; ++i) {
+			(function(target) {
+				target.mouseover(function () {
+					target.stop().animate({transform: "s1.1 1.1 " + cx + " " + cy}, options['layout']['speed'], "elastic");
+				});
+				target.mouseout(function () {
+					target.stop().animate({transform: ""}, options['layout']['speed'], "elastic");
+				});
+			})(p_sectors[i]);
 		}
 	};
 
 	var merge_options = function(overwrite) {
 		if(!overwrite) return $.InfoViz.options;
 
-		var result = $.InfoViz.options, p;
-		var sections = [ 'layout', 'grid' ];
+		var result = {}, p;
+		var sections = [ 'layout', 'grid', 'linechart', 'bubblechart', 'barchart', 'color' ];
+
+		$.extend(true, result, $.InfoViz.options);
 
 		for(var i = 0; i < sections.length; ++i) {
 			if(overwrite[sections[i]] && typeof(overwrite[sections[i]]) === 'object') {
@@ -880,6 +1067,10 @@
 		} else {
 			alert(message);
 		}
+	};
+
+	$.InfoViz.global_option = function(overwrite) {
+		$.InfoViz.options = merge_options(overwrite);
 	};
 
 	$.InfoViz.version = function() { return '0.1.0' };

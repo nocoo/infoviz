@@ -51,6 +51,8 @@ table {
 }
 
 /* Styles */
+.clear { clear: both; width: 0; height: 0; }
+
 .p-demo { background: #EEE; font-family: 'Lucida Grande', Helvetica, Arial, sans-serif; }
 .p-demo .infoviz { width: 850px; height: 600px; position: absolute; left: 50%; top: 50%; margin: -300px 0 0 -425px; }
 
@@ -65,3 +67,6 @@ table {
 .p-index .container .infoviz { margin: 0px 10px; width: 850px; height: 350px; }
 .p-index footer { height: 28px; margin: 0 auto 10px auto; width: 870px; background: #FDFDFD; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top: 1px solid #EEE; }
 .p-index footer p { color: #999; text-align: center; font-size: 0.6em; line-height: 30px; }
+
+.p-index .container .infoviz.i-piechart1 { width: 415px; height: 350px; float: left; }
+.p-index .container .infoviz.i-piechart2 { width: 415px; height: 350px; float: left; }

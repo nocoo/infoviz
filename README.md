@@ -2,7 +2,7 @@
 
 InfoViz, an information visualization library based on [Raphaël](http://raphaeljs.com/).
 
-#1 AxisCharts
+# 1 AxisCharts
 
 ## 1.1 LineChart
 
@@ -10,7 +10,7 @@ InfoViz, an information visualization library based on [Raphaël](http://raphael
 
 A LineChart has a enumerable as horizontal field, and a value field as vertical field.
 
-Here is how to create a discrete LineChart.
+Here is how to create a LineChart.
 
 Demo: [Click Here](http://infoviz.org/index.html#linechart)
 
@@ -112,7 +112,7 @@ Demo: [Click Here](http://infoviz.org/index.html#bubblechart)
 
 A BarChart has a enumerable as horizontal field, and a value field as vertical field.
 
-Here is how to create a discrete BarChart.
+Here is how to create a BarChart.
 
 Demo: [Click Here](http://infoviz.org/index.html#barchart)
 
@@ -176,7 +176,74 @@ Demo: [Click Here](http://infoviz.org/index.html#barchart)
 		}
 	);
 
-# 2 Configuration
+# 2 Round Stuff
+
+## 2.1 PieChart
+
+![PieChart](http://infoviz.org/examples/barchart.png "PieChart")
+
+A PieChart has a value as horizontal field.
+
+Here is how to create a PieChart.
+
+Demo: [Click Here](http://infoviz.org/index.html#piechart)
+
+	$.InfoViz.chart(
+		$('.i-piechart1'), 
+		'piechart', 
+		{
+			'value_field': 'F2',
+			'label_field': 'F4',
+			'data': [
+				{ 'F1': 1,   'F2': 18, 'F3': 9, 'F4': 'CHN' },
+				{ 'F1': 42,  'F2': 30, 'F3': 6, 'F4': 'USA' },
+				{ 'F1': 7,   'F2': 35, 'F3': 9, 'F4': 'RUS' },
+				{ 'F1': 110, 'F2': 12, 'F3': 9, 'F4': 'CAN' },
+				{ 'F1': 50,  'F2': 19, 'F3': 2, 'F4': 'FRA' },
+				{ 'F1': 29,  'F2': 22, 'F3': 4, 'F4': 'VET' },
+				{ 'F1': 2,   'F2': 3,  'F3': 1, 'F4': 'JPN' }
+			]
+		}
+	);
+
+# 3 Configuration
+
+## 3.1 How to override a style
+
+### Global
+
+Call $.InfoViz.global_option, and pass in your option object to change options globally.
+
+	$.InfoViz.global_option({
+		'layout': { 'background-color': '#CDCDCD' }
+	});
+
+### Single
+
+When you using $.InfoViz.chart to create a chart, you may pass in your option object as the last parametor. This option will effect this chart only.
+
+	$.InfoViz.chart(
+		$('.i-piechart1'), 
+		'piechart', 
+		{
+			'value_field': 'F2',
+			'label_field': 'F4',
+			'data': [
+				{ 'F1': 1,   'F2': 18, 'F3': 9, 'F4': 'CHN' },
+				{ 'F1': 42,  'F2': 30, 'F3': 6, 'F4': 'USA' },
+				{ 'F1': 7,   'F2': 35, 'F3': 9, 'F4': 'RUS' },
+				{ 'F1': 110, 'F2': 12, 'F3': 9, 'F4': 'CAN' },
+				{ 'F1': 50,  'F2': 19, 'F3': 2, 'F4': 'FRA' },
+				{ 'F1': 29,  'F2': 22, 'F3': 4, 'F4': 'VET' },
+				{ 'F1': 2,   'F2': 3,  'F3': 1, 'F4': 'JPN' }
+			]
+		},
+		{
+			'layout': { 'background-color': '#CDCDCD' }
+		}
+	);
+
+## 3.2 Options
 
 	$.InfoViz.options = {
 		'layout': {
@@ -189,6 +256,7 @@ Demo: [Click Here](http://infoviz.org/index.html#barchart)
 			'logo-enabled': false,
 			'logo-width': 50,
 			'logo-height': 23,
+			'speed': 300,
 
 			'box-border-width': 1,
 			'box-border-color': '#AAA',
@@ -199,8 +267,8 @@ Demo: [Click Here](http://infoviz.org/index.html#barchart)
 		'grid': {
 			'padding-top': 10,
 			'padding-right': 10,
-			'padding-bottom': 0,
-			'padding-left': 0,
+			'padding-bottom': 10,
+			'padding-left': 10,
 
 			'grid-width': 1,
 			'grid-color': '#CCC',
@@ -220,14 +288,14 @@ Demo: [Click Here](http://infoviz.org/index.html#barchart)
 			'background-alpha': 1.0,
 			
 			'vertical-label-margin': 5,
-			'vertical-label-spacing': 50,
+			'vertical-label-spacing': 40,
 			'vertical-label-size': 12,
 			'vertical-label-color': '#555',
 			'vertical-name-size': 12,
 			'vertical-name-color': '#000',
 
 			'horizontal-label-margin': 5,
-			'horizontal-label-spacing': 20,
+			'horizontal-label-spacing': 10,
 			'horizontal-label-size': 12,
 			'horizontal-label-color': '#555',
 			'horizontal-name-size': 12,
@@ -268,15 +336,19 @@ Demo: [Click Here](http://infoviz.org/index.html#barchart)
 			'vertical-label-count': 10,
 			'vertical-bar-width': 5
 		},
+		'piechart': {
+			'sector-size-factor': 0.9,
+			'sector-border-width': 1
+		},
 		'color': [
-			{ 'color': '#66B3DD', 'dark-alpha': 1, 'light-alpha': 0.3 },
-			{ 'color': '#EF7D31', 'dark-alpha': 1, 'light-alpha': 0.3 },
-			{ 'color': '#ABC93C', 'dark-alpha': 1, 'light-alpha': 0.3 },
-			{ 'color': '#E05170', 'dark-alpha': 1, 'light-alpha': 0.3 },
-			{ 'color': '#297FB5', 'dark-alpha': 1, 'light-alpha': 0.3 },
-			{ 'color': '#F5BE21', 'dark-alpha': 1, 'light-alpha': 0.3 },
-			{ 'color': '#5ABABB', 'dark-alpha': 1, 'light-alpha': 0.3 },
-			{ 'color': '#9D66A4', 'dark-alpha': 1, 'light-alpha': 0.3 }
+			{ 'color': '#66B3DD', 'dark-alpha': 1, 'light-alpha': 0.45 },
+			{ 'color': '#EF7D31', 'dark-alpha': 1, 'light-alpha': 0.45 },
+			{ 'color': '#ABC93C', 'dark-alpha': 1, 'light-alpha': 0.45 },
+			{ 'color': '#E05170', 'dark-alpha': 1, 'light-alpha': 0.45 },
+			{ 'color': '#297FB5', 'dark-alpha': 1, 'light-alpha': 0.45 },
+			{ 'color': '#F5BE21', 'dark-alpha': 1, 'light-alpha': 0.45 },
+			{ 'color': '#5ABABB', 'dark-alpha': 1, 'light-alpha': 0.45 },
+			{ 'color': '#9D66A4', 'dark-alpha': 1, 'light-alpha': 0.45 }
 		]
 	};
 
