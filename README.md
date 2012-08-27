@@ -180,7 +180,7 @@ Demo: [Click Here](http://infoviz.org/index.html#barchart)
 
 ## 2.1 PieChart
 
-![PieChart](http://infoviz.org/examples/barchart.png "PieChart")
+![PieChart](http://infoviz.org/examples/piechart.png "PieChart")
 
 A PieChart has a value as horizontal field.
 
