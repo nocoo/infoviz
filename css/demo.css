@@ -54,7 +54,7 @@ table {
 .p-demo { background: #EEE; font-family: 'Lucida Grande', Helvetica, Arial, sans-serif; }
 .p-demo .infoviz { width: 850px; height: 600px; position: absolute; left: 50%; top: 50%; margin: -300px 0 0 -425px; }
 
-.p-index { background: #CCC; font-family: 'Lucida Grande', Helvetica, Arial, sans-serif; }
+.p-index { background: #F0F0F0; font-family: 'Lucida Grande', Helvetica, Arial, sans-serif; }
 .p-index a { color: #999; }
 .p-index header { height: 70px; margin: 0 auto; width: 870px; background: #FDFDFD; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom: 1px solid #EEE; }
 .p-index header h1 { margin: 10px; padding-top: 10px; }

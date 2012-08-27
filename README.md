@@ -188,7 +188,13 @@ Demo: [Click Here](http://infoviz.org/index.html#barchart)
 			'background-alpha': 0.1,
 			'logo-enabled': false,
 			'logo-width': 50,
-			'logo-height': 23
+			'logo-height': 23,
+
+			'box-border-width': 1,
+			'box-border-color': '#AAA',
+			'box-border-alpha': 1,
+			'box-background-color': '#F9F9F9',
+			'box-background-alpha': 0.9
 		},
 		'grid': {
 			'padding-top': 10,
@@ -235,18 +241,42 @@ Demo: [Click Here](http://infoviz.org/index.html#barchart)
 			'line-width': 2,
 			'circle-radius': 5,
 			'label-size': 12,
-			'vertical_label_count': 10,
-			'vertical_bar_width': 5
+			'vertical-label-count': 10,
+			'vertical-bar-width': 5
+		},
+		'bubblechart': {
+			'padding-top': 40,
+			'padding-right': 100,
+			'padding-bottom': 40,
+			'padding-left': 60,
+			'circle-border-width': 2,
+			'circle-min-radius': 15,
+			'circle-max-radius': 40,
+			'label-size': 12,
+			'horizontal-label-count': 10,
+			'horizontal-bar-width': 5,
+			'vertical-label-count': 5,
+			'vertical-bar-width': 5
+		},
+		'barchart': {
+			'padding-top': 30,
+			'padding-right': 30,
+			'padding-bottom': 20,
+			'padding-left': 30,
+			'group-margin': 40,
+			'bar-margin': 4,
+			'vertical-label-count': 10,
+			'vertical-bar-width': 5
 		},
 		'color': [
-			{ 'color': '#66B3DD', 'dark-alpha': 1, 'light-alpha': 0.5 },
-			{ 'color': '#EF7D31', 'dark-alpha': 1, 'light-alpha': 0.5 },
-			{ 'color': '#ABC93C', 'dark-alpha': 1, 'light-alpha': 0.5 },
-			{ 'color': '#E05170', 'dark-alpha': 1, 'light-alpha': 0.5 },
-			{ 'color': '#297FB5', 'dark-alpha': 1, 'light-alpha': 0.5 },
-			{ 'color': '#F5BE21', 'dark-alpha': 1, 'light-alpha': 0.5 },
-			{ 'color': '#5ABABB', 'dark-alpha': 1, 'light-alpha': 0.5 },
-			{ 'color': '#9D66A4', 'dark-alpha': 1, 'light-alpha': 0.5 }
+			{ 'color': '#66B3DD', 'dark-alpha': 1, 'light-alpha': 0.3 },
+			{ 'color': '#EF7D31', 'dark-alpha': 1, 'light-alpha': 0.3 },
+			{ 'color': '#ABC93C', 'dark-alpha': 1, 'light-alpha': 0.3 },
+			{ 'color': '#E05170', 'dark-alpha': 1, 'light-alpha': 0.3 },
+			{ 'color': '#297FB5', 'dark-alpha': 1, 'light-alpha': 0.3 },
+			{ 'color': '#F5BE21', 'dark-alpha': 1, 'light-alpha': 0.3 },
+			{ 'color': '#5ABABB', 'dark-alpha': 1, 'light-alpha': 0.3 },
+			{ 'color': '#9D66A4', 'dark-alpha': 1, 'light-alpha': 0.3 }
 		]
 	};
 
