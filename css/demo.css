@@ -6,5 +6,62 @@
 	@version 0.1.0
 */
 
+/* CSS Reset by Eric Meyer. */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* Styles */
 .p-demo { background: #EEE; font-family: 'Lucida Grande', Helvetica, Arial, sans-serif; }
 .p-demo .infoviz { width: 850px; height: 600px; position: absolute; left: 50%; top: 50%; margin: -300px 0 0 -425px; }
+
+.p-index { background: #CCC; font-family: 'Lucida Grande', Helvetica, Arial, sans-serif; }
+.p-index a { color: #999; }
+.p-index header { height: 70px; margin: 0 auto; width: 870px; background: #FDFDFD; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom: 1px solid #EEE; }
+.p-index header h1 { margin: 10px; padding-top: 10px; }
+.p-index header a { background: url('../images/infoviz_logo_small.png'); width: 100px; height: 46px; display: block; }
+.p-index .container { background: #FDFDFD; width: 870px; margin: 0 auto; padding-bottom: 40px; }
+.p-index .container h1 { margin-left: 10px; line-height: 50px; -webkit-margin-before: 0; -webkit-margin-after: 0; padding-top: 10px; color: #555; }
+.p-index .container h1 a { float: right; margin-right: 10px; font-size: 1em; text-decoration: none; }
+.p-index .container .infoviz { margin: 0px 10px; width: 850px; height: 350px; }
+.p-index footer { height: 28px; margin: 0 auto 10px auto; width: 870px; background: #FDFDFD; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top: 1px solid #EEE; }
+.p-index footer p { color: #999; text-align: center; font-size: 0.6em; line-height: 30px; }

@@ -12,15 +12,14 @@ A LineChart has a enumerable as horizontal field, and a value field as vertical 
 
 Here is how to create a discrete LineChart.
 
-Demo: [Click Here](http://infoviz.org/linechart.html)
+Demo: [Click Here](http://infoviz.org/index.html#linechart)
 
 	$.InfoViz.chart(
-		$('.infoviz'), 
+		$('.i-linechart'), 
 		'linechart', 
 		{
 			'vertical_axis_name': 'Vertical',
-			'horizontal_axis_name': 'Horizental',
-			'type': 'discrete',
+			'horizontal_axis_name': 'Horizontal',
 			'horizontal_field': 'F2',
 			'vertical_field': 'F1',
 			'data': {
@@ -83,10 +82,10 @@ A LineChart has a value as horizontal field, and a value field as vertical field
 
 Here is how to create a BubbleChart.
 
-Demo: [Click Here](http://infoviz.org/bubblechart.html)
+Demo: [Click Here](http://infoviz.org/index.html#bubblechart)
 
 	$.InfoViz.chart(
-		$('.infoviz'), 
+		$('.i-bubblechart'), 
 		'bubblechart', 
 		{
 			'vertical_axis_name': 'Vertical',
@@ -97,13 +96,83 @@ Demo: [Click Here](http://infoviz.org/bubblechart.html)
 			'label_field': 'F4',
 			'data': [
 				{ 'F1': 1,   'F2': 18, 'F3': 9, 'F4': 'CHN' },
-				{ 'F1': 42,  'F2': 22, 'F3': 6, 'F4': 'USA' },
-				{ 'F1': 7,   'F2': 33, 'F3': 9, 'F4': 'RUS' },
+				{ 'F1': 42,  'F2': 30, 'F3': 6, 'F4': 'USA' },
+				{ 'F1': 7,   'F2': 35, 'F3': 9, 'F4': 'RUS' },
 				{ 'F1': 110, 'F2': 12, 'F3': 9, 'F4': 'CAN' },
 				{ 'F1': 50,  'F2': 19, 'F3': 2, 'F4': 'FRA' },
 				{ 'F1': 29,  'F2': 22, 'F3': 4, 'F4': 'VET' },
 				{ 'F1': 2,   'F2': 3,  'F3': 1, 'F4': 'JPN' }
 			]
+		}
+	);
+
+## 1.3 BarChart
+
+![BarChart](http://infoviz.org/examples/barchart.png "BarChart")
+
+A BarChart has a enumerable as horizontal field, and a value field as vertical field.
+
+Here is how to create a discrete BarChart.
+
+Demo: [Click Here](http://infoviz.org/index.html#barchart)
+
+	$.InfoViz.chart(
+		$('.i-barchart'), 
+		'barchart', 
+		{
+			'vertical_axis_name': 'Vertical',
+			'horizontal_axis_name': 'Horizontal',
+			'horizontal_field': 'F2',
+			'vertical_field': 'F1',
+			'data': {
+				'line1': {
+					'name': 'China',
+					'data': [
+						{ 'F1': 1,   'F2': 'A', 'F3': 3 },
+						{ 'F1': 42,  'F2': 'B', 'F3': 6 },
+						{ 'F1': 7,   'F2': 'C', 'F3': 9 },
+						{ 'F1': 110, 'F2': 'D', 'F3': 12 }
+					]
+				},
+				'line2': {
+					'name': 'Unite States',
+					'data': [
+						{ 'F1': 13, 'F2': 'A', 'F3': 15 },
+						{ 'F1': 10, 'F2': 'B', 'F3': 12 },
+						{ 'F1': 72, 'F2': 'C', 'F3': 9 },
+						{ 'F1': 1,  'F2': 'D', 'F3': 3 },
+						{ 'F1': 4,  'F2': 'E', 'F3': 6 }
+					]
+				},
+				'line3': {
+					'name': 'Unite Kingdom',
+					'data': [
+						{ 'F1': 19, 'F2': 'A', 'F3': 15 },
+						{ 'F1': 20, 'F2': 'B', 'F3': 12 },
+						{ 'F1': 11, 'F2': 'D', 'F3': 3 },
+						{ 'F1': 42, 'F2': 'E', 'F3': 6 }
+					]
+				},
+				'line4': {
+					'name': 'Italy',
+					'data': [
+						{ 'F1': 29, 'F2': 'A', 'F3': 15 },
+						{ 'F1': 70, 'F2': 'B', 'F3': 12 },
+						{ 'F1': 42, 'F2': 'C', 'F3': 9 },
+						{ 'F1': 51, 'F2': 'D', 'F3': 3 },
+						{ 'F1': 22, 'F2': 'E', 'F3': 6 }
+					]
+				},
+				'line5': {
+					'name': 'Russia',
+					'data': [
+						{ 'F1': 9,  'F2': 'A', 'F3': 15 },
+						{ 'F1': 90, 'F2': 'B', 'F3': 12 },
+						{ 'F1': 92, 'F2': 'C', 'F3': 9 },
+						{ 'F1': 52, 'F2': 'E', 'F3': 6 }
+					]
+				}
+			}
 		}
 	);
 
