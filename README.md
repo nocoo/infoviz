@@ -338,7 +338,14 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 		},
 		'piechart': {
 			'sector-size-factor': 0.9,
-			'sector-border-width': 1
+			'sector-border-width': 1,
+			'label-distance': 5,
+			'label-line-width': 1,
+			'label-line-color': '#555',
+			'label-line-alpha': 1,
+			'label-size': 11,
+			'label-bar-length1': 5,
+			'label-bar-length2': 10
 		},
 		'color': [
 			{ 'color': '#66B3DD', 'dark-alpha': 1, 'light-alpha': 0.45 },

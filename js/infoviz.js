@@ -104,7 +104,14 @@
 		},
 		'piechart': {
 			'sector-size-factor': 0.9,
-			'sector-border-width': 1
+			'sector-border-width': 1,
+			'label-distance': 5,
+			'label-line-width': 1,
+			'label-line-color': '#555',
+			'label-line-alpha': 1,
+			'label-size': 11,
+			'label-bar-length1': 5,
+			'label-bar-length2': 10
 		},
 		'color': [
 			{ 'color': '#66B3DD', 'dark-alpha': 1, 'light-alpha': 0.45 },
@@ -774,7 +781,7 @@
 			p_line = paper.path(cache.join(''));
 			p_line.attr({
 				'stroke': color['color'],
-				'stroke-opacity': color['dark-alpha'],
+				'stroke-opacity': color['light-alpha'],
 				'stroke-width': options['linechart']['line-width']
 			}).translate(0.5, 0.5);
 
@@ -1001,19 +1008,67 @@
 		}
 
 		var angle_unit = 360 / v_sum;
-		var this_angle, current_angle = 0, this_color, p_sectors = [], p;
+		var this_angle, current_angle = 0, this_color, p_sectors = [], p, half_angle;
+		var x2, y2, x3, y3, x4, y4, align;
 
 		for(i = 0; i < data['data'].length; ++i) {
 			item = data['data'][i][data['value_field']];
 			this_angle = angle_unit * item;
 			this_color = options['color'][(i % options['color'].length)];
 
+			// Sector
 			p = sector(cx, cy, radius, current_angle, current_angle + this_angle, { 
 				'fill': this_color['color'],
 				'fill-opacity': this_color['light-alpha'],
 				'stroke': this_color['color'],
 				'stroke-opacity': this_color['dark-alpha'],
 				'stroke-width': options['piechart']['sector-border-width']
+			}).translate(0.5, 0.5);
+
+			p.data('color-alpha', this_color['light-alpha']);
+
+			// Label bar
+			half_angle = -(current_angle + this_angle / 2)  * Math.PI / 180;
+			x = cx + (radius + options['piechart']['label-distance']) * Math.cos(half_angle);
+			y = cy + (radius + options['piechart']['label-distance']) * Math.sin(half_angle);
+			
+			x2 = cx + (radius + options['piechart']['label-distance'] + options['piechart']['label-bar-length1']) * Math.cos(half_angle);
+			y2 = cy + (radius + options['piechart']['label-distance'] + options['piechart']['label-bar-length1']) * Math.sin(half_angle);
+
+			if(x > cx) {
+				x3 = x2 + options['piechart']['label-bar-length2'];
+			} else {
+				x3 = x2 - options['piechart']['label-bar-length2'];
+			}
+
+			y3 = y2;
+
+			cache = [];
+			cache.push('M' + x + ',' + y);
+			cache.push('L' + x2 + ',' + y2);
+			cache.push('L' + x3 + ',' + y3);
+
+			paper.path(cache.join('')).attr({
+				'stroke': options['piechart']['label-line-color'],
+				'stroke-opacity': options['piechart']['label-line-color'],
+				'stroke-width': options['piechart']['label-line-width']
+			}).translate(0.5, 0.5);
+
+			// Label text
+			if(x > cx) {
+				x4 = x3 + options['piechart']['label-distance'];
+				align = 'start';
+			} else {
+				x4 = x3 - options['piechart']['label-distance'];
+				align = 'end';
+			}
+
+			y4 = y3;
+
+			paper.text(x4, y4, data['data'][i][data['label_field']]).attr({
+				'text-anchor': align,
+				'fill': this_color['color'],
+				'font-size': options['piechart']['label-size']
 			}).translate(0.5, 0.5);
 
 			p_sectors.push(p);
@@ -1023,10 +1078,16 @@
 		for(i = 0; i < p_sectors.length; ++i) {
 			(function(target) {
 				target.mouseover(function () {
-					target.stop().animate({transform: "s1.1 1.1 " + cx + " " + cy}, options['layout']['speed'], "elastic");
+					target.stop().animate({
+						'transform': "s1.1 1.1 " + cx + " " + cy,
+						'fill-opacity': 1
+					}, options['layout']['speed'], ">");
 				});
 				target.mouseout(function () {
-					target.stop().animate({transform: ""}, options['layout']['speed'], "elastic");
+					target.stop().animate({
+						'transform': "",
+						'fill-opacity': target.data('color-alpha')
+					}, options['layout']['speed'], "<");
 				});
 			})(p_sectors[i]);
 		}
