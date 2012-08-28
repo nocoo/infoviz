@@ -22,6 +22,7 @@
 			'logo-enabled': false,
 			'logo-width': 50,
 			'logo-height': 23,
+			'logo-position': 'top-right',
 			'speed': 300,
 
 			'box-border-width': 1,
@@ -113,6 +114,26 @@
 			'label-bar-length1': 5,
 			'label-bar-length2': 10
 		},
+		'heatmap': {
+			'horizontal_margin': 4,
+			'vertical_margin': 4,
+			'box-border-width': 1,
+			'label-size': 12,
+			'label-color': '#FFF',
+			'label-alpha': 1,
+			'horizontal_count': undefined,
+			'vertical_count': undefined,
+			'color': [
+				{ 'color': '#339999', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#99CC99', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#99CC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#CCCC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FFCC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FF6633', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FF3333', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#CC0066', 'dark-alpha': 1, 'light-alpha': 0.45 }
+			]
+		},
 		'color': [
 			{ 'color': '#66B3DD', 'dark-alpha': 1, 'light-alpha': 0.45 },
 			{ 'color': '#EF7D31', 'dark-alpha': 1, 'light-alpha': 0.45 },
@@ -172,11 +193,12 @@
 			}
 			case 'piechart': {
 				area = $.InfoViz.draw_simple_background(paper, data, options);
-				//console.log(area);
 				$.InfoViz.draw_piechart(paper, area, data, options);
-				/*paper.rect(area['top-left'][0], area['top-left'][1], area['width'], area['height']).attr({
-					'fill': 'red', 'fill-opacity': 0.5
-				});*/
+				break;
+			}
+			case 'heatmap': {
+				area = $.InfoViz.draw_simple_background(paper, data, options);
+				$.InfoViz.draw_heatmap(paper, area, data, options);
 				break;
 			}
 			default: {
@@ -190,13 +212,40 @@
 
 		// Draw InfoViz logo.
 		if(options['layout']['logo-enabled']) {
+			var x, y;
+
+			switch(options['layout']['logo-position']) {
+				default:
+				case 'top-right': {
+					x = area['top-right'][0] - options['layout']['logo-width'];
+					y = area['top-right'][1];
+					break;
+				}
+				case 'top-left': {
+					x = area['top-left'][0];
+					y = area['top-right'][1];
+					break;
+				}
+				case 'bottom-left': {
+					x = area['bottom-left'][0];
+					y = area['bottom-left'][1] - options['layout']['logo-height'];
+					break;
+				}
+				case 'bottom-right': {
+					x = area['bottom-right'][0] - options['layout']['logo-width'];
+					y = area['bottom-right'][1] - options['layout']['logo-height'];
+					break;
+				}
+			}
+
 			var logo = paper.image(
 				'./images/infoviz_logo_tiny.png', 
-				area['top-right'][0] - options['layout']['logo-width'],
-				area['top-right'][1],
+				x, y,
 				options['layout']['logo-width'],
 				options['layout']['logo-height']).attr({ 'cursor': 'pointer' }).translate(0.5, 0.5);
 			logo.click(function() { window.location.href = 'https://github.com/nocoo/InfoViz'; });
+
+			global['logo'] = logo;
 		}
 
 		// Draw box.
@@ -1093,18 +1142,110 @@
 		}
 	};
 
+	$.InfoViz.draw_heatmap = function(paper, chart_area, data, overwrite_options) {
+		if(!paper || !data) return idb('Paper or Data is empty.');
+		
+		var options = merge_options(overwrite_options), cache = [], x, y, i, j, item;
+		
+		// Find out max and min value.
+		var v_max = -Infinity, v_min = Infinity;
+		for(i = 0; i < data['data'].length; ++i) {
+			item = data['data'][i];
+
+			if(item[data['value_field']] > v_max) {
+				v_max = item[data['value_field']];
+			}
+
+			if(item[data['value_field']] < v_min) {
+				v_min = item[data['value_field']];
+			}
+		}
+
+		// Find out row and column count.
+		var count_x = 1, count_y = 1;
+		if(options['heatmap']['horizontal_count'] > 0) {
+			count_x = options['heatmap']['horizontal_count'];
+			count_y = Math.ceil(data['data'].length / count_x);
+		} else if(options['heatmap']['vertical_count'] > 0) {
+			count_y = options['heatmap']['vertical_count'];
+			count_x = Math.ceil(data['data'].length / count_y);
+		} else {
+			count_x = Math.floor(Math.sqrt(data['data'].length));
+			count_y = count_x;
+		}
+
+		// Calculate box unit size.
+		var unit_x = 1, unit_y = 1;
+		unit_x = (chart_area['width'] - ((count_x - 1) * options['heatmap']['horizontal_margin'])) / count_x;
+		unit_y = (chart_area['height'] - ((count_y - 1) * options['heatmap']['vertical_margin'])) / count_y;
+
+		// Color.
+		var this_color, color_array, this_value, this_box, this_label;
+		if(options['heatmap']['color'] && options['heatmap']['color'].length > 0) {
+			color_array = options['heatmap']['color'];
+		} else {
+			color_array = options['color'];
+		}
+
+		// Draw boxes.
+		global['heatmap'] = { 'boxes': [], 'labels': [] }
+		y = chart_area['top-left'][1];
+		index = 0;
+
+		var done = false;
+		for(j = 0; j < count_y; ++j) {
+			x = chart_area['top-left'][0];
+			for(i = 0; i < count_x; ++i) {
+				if(!data['data'][index]) {
+					done = true;
+					break;
+				}
+
+				this_value = data['data'][index][data['value_field']];
+				this_color = color_array[Math.floor((this_value - v_min) * ((color_array.length - 1) / (v_max - v_min)))];
+
+				// Box
+				this_box = paper.rect(x, y, unit_x, unit_y).attr({
+					'fill': this_color['color'],
+					'fill-opacity': this_color['dark-alpha'],
+					'stroke': this_color['color'],
+					'stroke-opacity': this_color['dark-alpha'],
+					'stroke-width': options['heatmap']['box-border-width']
+				}).translate(0.5, 0.5);
+				global['heatmap']['boxes'].push(this_box);
+
+				// Label
+				if(unit_x > options['heatmap']['label-size'] && unit_y > options['heatmap']['label-size']) {
+					this_label = paper.text(x + unit_x / 2, y + unit_y / 2, data['data'][index][data['label_field']]).attr({
+						'fill': options['heatmap']['label-color'],
+						'fill-opacity': options['heatmap']['label-alpha'],
+						'font-size': options['heatmap']['label-size']
+					}).translate(0.5, 0.5);
+					global['heatmap']['boxes'].push(this_label);
+				}
+				
+				x += unit_x + options['heatmap']['horizontal_margin'];
+				++index;
+			}
+
+			if(done) break;
+
+			y += unit_y + options['heatmap']['vertical_margin'];
+		}
+	};
+
 	var merge_options = function(overwrite) {
 		if(!overwrite) return $.InfoViz.options;
 
-		var result = {}, p;
-		var sections = [ 'layout', 'grid', 'linechart', 'bubblechart', 'barchart', 'color' ];
-
+		var result = {}, p, q;
+		
+		// Make a deep clone.
 		$.extend(true, result, $.InfoViz.options);
 
-		for(var i = 0; i < sections.length; ++i) {
-			if(overwrite[sections[i]] && typeof(overwrite[sections[i]]) === 'object') {
-				for(p in overwrite[sections[i]]) {
-					result[sections[i]][p] = overwrite[sections[i]][p];
+		for(q in result) {
+			if(overwrite[q] && typeof(overwrite[q]) === 'object') {
+				for(p in overwrite[q]) {
+					result[q][p] = overwrite[q][p];
 				}
 			}
 		}
