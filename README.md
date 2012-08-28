@@ -117,8 +117,8 @@ Here is how to create a BarChart.
 Demo: [Click Here](http://infoviz.org/index.html#barchart)
 
 	$.InfoViz.chart(
-		$('.i-barchart'), 
-		'barchart', 
+		$('.i-linechart'), 
+		'linechart', 
 		{
 			'vertical_axis_name': 'Vertical',
 			'horizontal_axis_name': 'Horizontal',
@@ -128,9 +128,9 @@ Demo: [Click Here](http://infoviz.org/index.html#barchart)
 				'line1': {
 					'name': 'China',
 					'data': [
-						{ 'F1': 1,   'F2': 'A', 'F3': 3 },
-						{ 'F1': 42,  'F2': 'B', 'F3': 6 },
-						{ 'F1': 7,   'F2': 'C', 'F3': 9 },
+						{ 'F1': 1,   'F2': 'A', 'F3': 3  },
+						{ 'F1': 42,  'F2': 'B', 'F3': 6  },
+						{ 'F1': 7,   'F2': 'C', 'F3': 9  },
 						{ 'F1': 110, 'F2': 'D', 'F3': 12 }
 					]
 				},
@@ -139,9 +139,9 @@ Demo: [Click Here](http://infoviz.org/index.html#barchart)
 					'data': [
 						{ 'F1': 13, 'F2': 'A', 'F3': 15 },
 						{ 'F1': 10, 'F2': 'B', 'F3': 12 },
-						{ 'F1': 72, 'F2': 'C', 'F3': 9 },
-						{ 'F1': 1,  'F2': 'D', 'F3': 3 },
-						{ 'F1': 4,  'F2': 'E', 'F3': 6 }
+						{ 'F1': 72, 'F2': 'C', 'F3': 9  },
+						{ 'F1': 1,  'F2': 'D', 'F3': 3  },
+						{ 'F1': 4,  'F2': 'E', 'F3': 6  }
 					]
 				},
 				'line3': {
@@ -149,8 +149,8 @@ Demo: [Click Here](http://infoviz.org/index.html#barchart)
 					'data': [
 						{ 'F1': 19, 'F2': 'A', 'F3': 15 },
 						{ 'F1': 20, 'F2': 'B', 'F3': 12 },
-						{ 'F1': 11, 'F2': 'D', 'F3': 3 },
-						{ 'F1': 42, 'F2': 'E', 'F3': 6 }
+						{ 'F1': 11, 'F2': 'D', 'F3': 3  },
+						{ 'F1': 42, 'F2': 'E', 'F3': 6  }
 					]
 				},
 				'line4': {
@@ -158,9 +158,9 @@ Demo: [Click Here](http://infoviz.org/index.html#barchart)
 					'data': [
 						{ 'F1': 29, 'F2': 'A', 'F3': 15 },
 						{ 'F1': 70, 'F2': 'B', 'F3': 12 },
-						{ 'F1': 42, 'F2': 'C', 'F3': 9 },
-						{ 'F1': 51, 'F2': 'D', 'F3': 3 },
-						{ 'F1': 22, 'F2': 'E', 'F3': 6 }
+						{ 'F1': 42, 'F2': 'C', 'F3': 9  },
+						{ 'F1': 51, 'F2': 'D', 'F3': 3  },
+						{ 'F1': 22, 'F2': 'E', 'F3': 6  }
 					]
 				},
 				'line5': {
@@ -168,8 +168,8 @@ Demo: [Click Here](http://infoviz.org/index.html#barchart)
 					'data': [
 						{ 'F1': 9,  'F2': 'A', 'F3': 15 },
 						{ 'F1': 90, 'F2': 'B', 'F3': 12 },
-						{ 'F1': 92, 'F2': 'C', 'F3': 9 },
-						{ 'F1': 52, 'F2': 'E', 'F3': 6 }
+						{ 'F1': 92, 'F2': 'C', 'F3': 9  },
+						{ 'F1': 52, 'F2': 'E', 'F3': 6  }
 					]
 				}
 			}
@@ -206,9 +206,56 @@ Demo: [Click Here](http://infoviz.org/index.html#piechart)
 		}
 	);
 
-# 3 Configuration
+# 3 Map
 
-## 3.1 How to overwrite a style
+## 3.1 HeatMap
+
+![HeatMap](http://infoviz.org/examples/heatmap.png "HeatMap")
+
+A HeatMap has a value field.
+
+Here is how to create a HeatMap.
+
+Demo: [Click Here](http://infoviz.org/index.html#heatmap)
+
+	$.InfoViz.chart(
+		$('.i-heatmap2'), 
+		'heatmap', 
+		{
+			'value_field': 'F1',
+			'label_field': 'F4',
+			'data': [
+				{ 'F1': 14, 'F2': 1,  'F3': 9, 'F4': 'M1'  },
+				{ 'F1': 42, 'F2': 1,  'F3': 6, 'F4': 'USA' },
+				{ 'F1': 7,  'F2': 1,  'F3': 9, 'F4': 'RUS' },
+				{ 'F1': 11, 'F2': 12, 'F3': 9, 'F4': 'CAN' },
+				{ 'F1': 50, 'F2': 19, 'F3': 2, 'F4': 'FRA' },
+				{ 'F1': 29, 'F2': 22, 'F3': 4, 'F4': 'VET' },
+				{ 'F1': 2,  'F2': 3,  'F3': 1, 'F4': 'JPN' },
+				{ 'F1': 1,  'F2': 1,  'F3': 9, 'F4': 'M1'  },
+				{ 'F1': 42, 'F2': 1,  'F3': 6, 'F4': 'USA' },
+				{ 'F1': 7,  'F2': 1,  'F3': 9, 'F4': 'RUS' },
+				{ 'F1': 11, 'F2': 12, 'F3': 9, 'F4': 'CAN' },
+				{ 'F1': 50, 'F2': 19, 'F3': 2, 'F4': 'FRA' },
+				{ 'F1': 29, 'F2': 22, 'F3': 4, 'F4': 'VET' },
+				{ 'F1': 2,  'F2': 3,  'F3': 1, 'F4': 'JPN' },
+				{ 'F1': 1,  'F2': 1,  'F3': 9, 'F4': 'M1'  },
+				{ 'F1': 42, 'F2': 1,  'F3': 6, 'F4': 'USA' },
+				{ 'F1': 7,  'F2': 1,  'F3': 9, 'F4': 'RUS' },
+				{ 'F1': 11, 'F2': 12, 'F3': 9, 'F4': 'CAN' },
+				{ 'F1': 50, 'F2': 19, 'F3': 2, 'F4': 'FRA' },
+				{ 'F1': 29, 'F2': 22, 'F3': 4, 'F4': 'VET' }
+			]
+		},
+		{
+			'layout': { 'logo-position': 'bottom-right' },
+			'heatmap': { 'label-size': 20 }
+		}
+	);
+
+# 4 Configuration
+
+## 4.1 How to overwrite a style
 
 ### Global
 
@@ -243,7 +290,7 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 		}
 	);
 
-## 3.2 Options
+## 4.2 Options
 
 	$.InfoViz.options = {
 		'layout': {
@@ -256,6 +303,7 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'logo-enabled': false,
 			'logo-width': 50,
 			'logo-height': 23,
+			'logo-position': 'top-right',
 			'speed': 300,
 
 			'box-border-width': 1,
@@ -346,6 +394,26 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'label-size': 11,
 			'label-bar-length1': 5,
 			'label-bar-length2': 10
+		},
+		'heatmap': {
+			'horizontal_margin': 4,
+			'vertical_margin': 4,
+			'box-border-width': 1,
+			'label-size': 12,
+			'label-color': '#FFF',
+			'label-alpha': 1,
+			'horizontal_count': undefined,
+			'vertical_count': undefined,
+			'color': [
+				{ 'color': '#339999', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#99CC99', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#99CC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#CCCC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FFCC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FF6633', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FF3333', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#CC0066', 'dark-alpha': 1, 'light-alpha': 0.45 }
+			]
 		},
 		'color': [
 			{ 'color': '#66B3DD', 'dark-alpha': 1, 'light-alpha': 0.45 },
