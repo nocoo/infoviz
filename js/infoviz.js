@@ -13,12 +13,12 @@
 
 	$.InfoViz.options = {
 		'layout': {
-			'padding-top': 10,
-			'padding-right': 10,
-			'padding-bottom': 10,
-			'padding-left': 10,
-			'background-color': '#000',
-			'background-alpha': 0.1,
+			'padding-top': 1,
+			'padding-right': 1,
+			'padding-bottom': 1,
+			'padding-left': 1,
+			'background-color': '#FFF',
+			'background-alpha': 1,
 			'logo-enabled': false,
 			'logo-width': 50,
 			'logo-height': 23,
