@@ -206,6 +206,31 @@ Demo: [Click Here](http://infoviz.org/index.html#piechart)
 		}
 	);
 
+## 2.2 RadarChart
+
+![RadarChart](http://infoviz.org/examples/radarchart.png "RadarChart")
+
+A RadarChart has a group of value fields.
+
+Here is how to create a RadarChart.
+
+Demo: [Click Here](http://infoviz.org/index.html#radarchart)
+
+	$.InfoViz.chart(
+		$('.i-radarchart2'), 
+		'radarchart', 
+		{
+			'value_fields': [ 'F1', 'F2', 'F3', 'F4', 'F5', 'F6' ],
+			'data': [
+				{ 'F1': 1, 'F2': 2, 'F3': 3, 'F4': 4, 'F5': 5, 'F6': 1 },
+				{ 'F1': 2, 'F2': 3, 'F3': 4, 'F4': 5, 'F5': 1, 'F6': 2 },
+				{ 'F1': 3, 'F2': 4, 'F3': 5, 'F4': 1, 'F5': 2, 'F6': 3 },
+				{ 'F1': 4, 'F2': 5, 'F3': 1, 'F4': 2, 'F5': 3, 'F6': 4 },
+				{ 'F1': 5, 'F2': 1, 'F3': 2, 'F4': 3, 'F5': 4, 'F6': 5 }
+			]
+		}
+	);
+
 # 3 Map
 
 ## 3.1 HeatMap
@@ -294,12 +319,12 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 
 	$.InfoViz.options = {
 		'layout': {
-			'padding-top': 10,
-			'padding-right': 10,
-			'padding-bottom': 10,
-			'padding-left': 10,
-			'background-color': '#000',
-			'background-alpha': 0.1,
+			'padding-top': 1,
+			'padding-right': 1,
+			'padding-bottom': 1,
+			'padding-left': 1,
+			'background-color': '#FFF',
+			'background-alpha': 1,
 			'logo-enabled': false,
 			'logo-width': 50,
 			'logo-height': 23,
@@ -395,6 +420,27 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'label-bar-length1': 5,
 			'label-bar-length2': 10,
 			'hole-radius': 0
+		},
+		'radarchart': {
+			'outer-border-width': 1,
+			'outer-border-color': '#999',
+			'outer-border-alpha': 1,
+			'outer-background-color': '#FFF',
+			'outer-background-alpha': 1,
+			'inner-border-width': 1,
+			'inner-border-color': '#CCC',
+			'inner-border-alpha': 1,
+			'inner-background-color': '#F9F9F9',
+			'inner-background-alpha': 1,
+			'axis-width': 2,
+			'axis-color': '#999',
+			'axis-alpha': 1,
+			'circle-border-width': 2,
+			'circle-background-alpha': 0.1,
+			'circle-min-radius': 30,
+			'label-distance': 15,
+			'label-color': '#555',
+			'label-size': 12
 		},
 		'heatmap': {
 			'horizontal_margin': 4,

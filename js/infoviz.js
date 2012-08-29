@@ -115,6 +115,27 @@
 			'label-bar-length2': 10,
 			'hole-radius': 0
 		},
+		'radarchart': {
+			'outer-border-width': 1,
+			'outer-border-color': '#999',
+			'outer-border-alpha': 1,
+			'outer-background-color': '#FFF',
+			'outer-background-alpha': 1,
+			'inner-border-width': 1,
+			'inner-border-color': '#CCC',
+			'inner-border-alpha': 1,
+			'inner-background-color': '#F9F9F9',
+			'inner-background-alpha': 1,
+			'axis-width': 2,
+			'axis-color': '#999',
+			'axis-alpha': 1,
+			'circle-border-width': 2,
+			'circle-background-alpha': 0.1,
+			'circle-min-radius': 30,
+			'label-distance': 15,
+			'label-color': '#555',
+			'label-size': 12
+		},
 		'heatmap': {
 			'horizontal_margin': 4,
 			'vertical_margin': 4,
@@ -195,6 +216,11 @@
 			case 'piechart': {
 				area = $.InfoViz.draw_simple_background(paper, data, options);
 				$.InfoViz.draw_piechart(paper, area, data, options);
+				break;
+			}
+			case 'radarchart': {
+				area = $.InfoViz.draw_simple_background(paper, data, options);
+				$.InfoViz.draw_radarchart(paper, area, data, options);
 				break;
 			}
 			case 'heatmap': {
@@ -1174,6 +1200,159 @@
 					delete this_animation.anim['100']['fill-opacity'];
 				});
 			})(p_sectors[i]);
+		}
+	};
+
+	$.InfoViz.draw_radarchart = function(paper, chart_area, data, overwrite_options) {
+		if(!paper || !data) return idb('Paper or Data is empty.');
+		
+		var options = merge_options(overwrite_options), cache = [], cache2 = [], x, y, i, j, item, radius, rad = Math.PI / 180;
+		var cx = chart_area['top-left'][0] + chart_area['width'] / 2;
+		var cy = chart_area['top-left'][1] + chart_area['height'] / 2;
+		
+		if(chart_area['width'] > chart_area['height']) {
+			radius = Math.floor(chart_area['height'] / 2) * options['piechart']['sector-size-factor'];
+		} else {
+			radius = Math.floor(chart_area['width'] / 2) * options['piechart']['sector-size-factor'];
+		}
+
+		// Scan value fields.
+		var angle_start = 0;
+		var angle_unit = 360 / data['value_fields'].length;
+		var v_map = {}, a_map = {};
+		for(i = 0; i < data['value_fields'].length; ++i) {
+			v_map[data['value_fields'][i]] = {
+				'v_max': -Infinity, 'v_min': Infinity
+			};
+
+			a_map[data['value_fields'][i]] = { 'angle': angle_start };
+
+			angle_start += angle_unit;
+		}
+
+		for(i = 0; i < data['data'].length; ++i) {
+			for(j = 0; j < data['value_fields'].length; ++j) {
+				item = data['data'][i][data['value_fields'][j]];
+
+				if(item > v_map[data['value_fields'][j]]['v_max']) {
+					v_map[data['value_fields'][j]]['v_max'] = item;
+				}
+
+				if(item < v_map[data['value_fields'][j]]['v_min']) {
+					v_map[data['value_fields'][j]]['v_min'] = item;
+				}
+			}
+		}
+
+		// Draw outer border.
+		paper.circle(cx, cy, radius).attr({
+			'stroke': options['radarchart']['outer-border-color'],
+			'stroke-width': options['radarchart']['outer-border-width'],
+			'stroke-opacity': options['radarchart']['outer-border-alpha'],
+			'fill': options['radarchart']['outer-background-color'],
+			'fill-opacity': options['radarchart']['outer-background-alpha']
+		}).translate(0.5, 0.5);
+
+		// Draw innter border and axises.
+		cache = [];
+		cache2 = [];
+		for(i = 0; i < data['value_fields'].length; ++i) {
+			if(i === 0) {
+				cache.push('M');
+			} else {
+				cache.push('L');
+			}
+
+			x = cx + radius * Math.sin(a_map[data['value_fields'][i]]['angle'] * rad);
+			y = cy - radius * Math.cos(a_map[data['value_fields'][i]]['angle'] * rad);
+			a_map[data['value_fields'][i]]['end-x'] = x;
+			a_map[data['value_fields'][i]]['end-y'] = y;
+
+			cache.push(x + ',' + y);
+			cache2.push('M' + cx + ',' + cy + 'L' + x + ',' + y);
+
+			// Calculate label position.
+			x = cx + (radius + options['radarchart']['label-distance']) * Math.sin(a_map[data['value_fields'][i]]['angle'] * rad);
+			y = cy - (radius + options['radarchart']['label-distance']) * Math.cos(a_map[data['value_fields'][i]]['angle'] * rad);
+			a_map[data['value_fields'][i]]['label-x'] = x;
+			a_map[data['value_fields'][i]]['label-y'] = y;
+
+			// Draw labels.
+			paper.text(x, y, data['value_fields'][i]).attr({
+				'font-size': options['radarchart']['label-size'],
+				'fill': options['radarchart']['label-color']
+			}).translate(0.5, 0.5);
+
+			// Calculate v_unit.
+			v_map[data['value_fields'][i]]['v_unit'] = (radius - options['radarchart']['circle-min-radius']) / (v_map[data['value_fields'][i]]['v_max'] - v_map[data['value_fields'][i]]['v_min']);
+		}
+
+		cache.push('z');
+		paper.path(cache.join('')).attr({
+			'stroke': options['radarchart']['inner-border-color'],
+			'stroke-width': options['radarchart']['inner-border-width'],
+			'stroke-opacity': options['radarchart']['inner-border-alpha'],
+			'fill': options['radarchart']['inner-background-color'],
+			'fill-opacity': options['radarchart']['inner-background-alpha']
+		}).translate(0.5, 0.5);
+
+		// Axis.
+		paper.path(cache2.join('')).attr({
+			'stroke': options['radarchart']['axis-color'],
+			'stroke-width': options['radarchart']['axis-width'],
+			'stroke-opacity': options['radarchart']['axis-alpha']
+		}).translate(0.5, 0.5);
+
+		// Draw circles.
+		var this_r = 0, this_color, this_value, p_circles = [], p;
+		for(i = 0; i < data['data'].length; ++i) {
+			this_color = options['color'][(i % options['color'].length)];
+			cache = [];
+
+			for(j = 0; j < data['value_fields'].length; ++j) {
+				this_value = data['data'][i][data['value_fields'][j]];
+				this_r = options['radarchart']['circle-min-radius'] + v_map[data['value_fields'][j]]['v_unit'] * (this_value - v_map[data['value_fields'][j]]['v_min']);
+
+				if(!this_r) continue;
+
+				if(j === 0) {
+					cache.push('M');
+				} else {
+					cache.push('L');
+				}
+
+				x = cx + this_r * Math.sin(a_map[data['value_fields'][j]]['angle'] * rad);
+				y = cy - this_r * Math.cos(a_map[data['value_fields'][j]]['angle'] * rad);
+				cache.push(x + ',' + y);
+			}
+
+			cache.push('z');
+			p = paper.path(cache.join('')).attr({
+				'stroke': this_color['color'],
+				'stroke-width': options['radarchart']['circle-border-width'],
+				'stroke-opacity': this_color['dark-alpha'],
+				'fill': this_color['color'],
+				'fill-opacity': options['radarchart']['circle-background-alpha']
+			}).translate(0.5, 0.5);
+
+			p.data('color-alpha', options['radarchart']['circle-background-alpha']);
+			p_circles.push(p);
+		}
+
+		// Animations.
+		for(i = 0; i < p_circles.length; ++i) {
+			(function(target) {
+				target.mouseover(function () {
+					target.animate({
+						'fill-opacity': 1
+					}, options['layout']['speed'], '<');
+				});
+				target.mouseout(function () {
+					target.animate({
+						'fill-opacity': target.data('color-alpha')
+					}, options['layout']['speed'], '>');
+				});
+			})(p_circles[i]);
 		}
 	};
 
