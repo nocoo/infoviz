@@ -393,7 +393,8 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'label-line-alpha': 1,
 			'label-size': 11,
 			'label-bar-length1': 5,
-			'label-bar-length2': 10
+			'label-bar-length2': 10,
+			'hole-radius': 0
 		},
 		'heatmap': {
 			'horizontal_margin': 4,

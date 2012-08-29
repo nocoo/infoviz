@@ -112,7 +112,8 @@
 			'label-line-alpha': 1,
 			'label-size': 11,
 			'label-bar-length1': 5,
-			'label-bar-length2': 10
+			'label-bar-length2': 10,
+			'hole-radius': 0
 		},
 		'heatmap': {
 			'horizontal_margin': 4,
@@ -207,7 +208,7 @@
 			}
 		}
 
-		//global['type'] = type;
+		global['type'] = type;
 		//$.InfoViz.add_actions(paper, area);
 
 		// Draw InfoViz logo.
@@ -1021,6 +1022,7 @@
 		if(!paper || !data) return idb('Paper or Data is empty.');
 		
 		var options = merge_options(overwrite_options), cache = [], x, y, i, item, radius;
+		var hole_radius = options['piechart']['hole-radius'];
 		var cx = chart_area['top-left'][0] + chart_area['width'] / 2;
 		var cy = chart_area['top-left'][1] + chart_area['height'] / 2;
 		
@@ -1046,19 +1048,29 @@
 			v_sum += item[data['value_field']];
 		}
 
-		var sector = function(cx, cy, r, startAngle, endAngle, params) {
+		var sector = function(cx, cy, r, hole_r, startAngle, endAngle, params) {
 			var rad = Math.PI / 180,
 				x1 = cx + r * Math.cos(-startAngle * rad),
 				x2 = cx + r * Math.cos(-endAngle * rad),
 				y1 = cy + r * Math.sin(-startAngle * rad),
 				y2 = cy + r * Math.sin(-endAngle * rad);
 			
-			return paper.path(["M", cx, cy, "L", x1, y1, "A", r, r, 0, +(endAngle - startAngle > 180), 0, x2, y2, "z"]).attr(params);
+				x3 = cx + hole_r * Math.cos(-startAngle * rad),
+				x4 = cx + hole_r * Math.cos(-endAngle * rad),
+				y3 = cy + hole_r * Math.sin(-startAngle * rad),
+				y4 = cy + hole_r * Math.sin(-endAngle * rad);
+
+			if(hole_r > 0) {
+				return paper.path(["M", x3, y3, "L", x1, y1, "A", r, r, 0, +(endAngle - startAngle > 180), 0, x2, y2, "L", x4, y4, "A", hole_r, hole_r, 0, -(endAngle - startAngle > 180), 1, x3, y3]).attr(params);	
+			} else {
+				return paper.path(["M", cx, cy, "L", x1, y1, "A", r, r, 0, +(endAngle - startAngle > 180), 0, x2, y2, "z"]).attr(params);
+			}
 		}
 
 		var angle_unit = 360 / v_sum;
-		var this_angle, current_angle = 0, this_color, p_sectors = [], p, half_angle;
+		var this_angle, current_angle = 0, this_color, p_sectors = [], p_bars = [], p_labels = [], half_angle;
 		var x2, y2, x3, y3, x4, y4, align;
+		var this_sector, this_bar, this_label;
 
 		for(i = 0; i < data['data'].length; ++i) {
 			item = data['data'][i][data['value_field']];
@@ -1066,7 +1078,7 @@
 			this_color = options['color'][(i % options['color'].length)];
 
 			// Sector
-			p = sector(cx, cy, radius, current_angle, current_angle + this_angle, { 
+			this_sector = sector(cx, cy, radius, hole_radius, current_angle, current_angle + this_angle, { 
 				'fill': this_color['color'],
 				'fill-opacity': this_color['light-alpha'],
 				'stroke': this_color['color'],
@@ -1074,7 +1086,9 @@
 				'stroke-width': options['piechart']['sector-border-width']
 			}).translate(0.5, 0.5);
 
-			p.data('color-alpha', this_color['light-alpha']);
+			this_sector.data('color-alpha', this_color['light-alpha']);
+			this_sector.data('index', i);
+			p_sectors.push(this_sector);
 
 			// Label bar
 			half_angle = -(current_angle + this_angle / 2)  * Math.PI / 180;
@@ -1097,11 +1111,12 @@
 			cache.push('L' + x2 + ',' + y2);
 			cache.push('L' + x3 + ',' + y3);
 
-			paper.path(cache.join('')).attr({
+			this_bar = paper.path(cache.join('')).attr({
 				'stroke': options['piechart']['label-line-color'],
 				'stroke-opacity': options['piechart']['label-line-color'],
 				'stroke-width': options['piechart']['label-line-width']
 			}).translate(0.5, 0.5);
+			p_bars.push(this_bar);
 
 			// Label text
 			if(x > cx) {
@@ -1114,29 +1129,49 @@
 
 			y4 = y3;
 
-			paper.text(x4, y4, data['data'][i][data['label_field']]).attr({
+			this_label = paper.text(x4, y4, data['data'][i][data['label_field']]).attr({
 				'text-anchor': align,
 				'fill': this_color['color'],
 				'font-size': options['piechart']['label-size']
 			}).translate(0.5, 0.5);
-
-			p_sectors.push(p);
+			p_labels.push(this_label);
+			
 			current_angle += this_angle;
 		}
 
+		var animate_on = Raphael.animation({
+			'transform': 's1.1 1.1 ' + cx + ' ' + cy
+		}, options['layout']['speed'], '>');
+		var animate_off = Raphael.animation({
+			'transform': ''
+		}, options['layout']['speed'], '<');
+
+		var this_animation;
 		for(i = 0; i < p_sectors.length; ++i) {
 			(function(target) {
 				target.mouseover(function () {
-					target.stop().animate({
-						'transform': "s1.1 1.1 " + cx + " " + cy,
-						'fill-opacity': 1
-					}, options['layout']['speed'], ">");
+					this_bar = p_bars[target.data('index')];
+					if(this_bar) this_bar.stop().animate(animate_on);
+
+					this_label = p_labels[target.data('index')];
+					if(this_label) this_label.stop().animate(animate_on);
+
+					this_animation = animate_on;
+					this_animation.anim['100']['fill-opacity'] = 1;
+					target.stop().animate(this_animation);
+					delete this_animation.anim['100']['fill-opacity'];
 				});
 				target.mouseout(function () {
-					target.stop().animate({
-						'transform': "",
-						'fill-opacity': target.data('color-alpha')
-					}, options['layout']['speed'], "<");
+					this_bar = p_bars[target.data('index')];
+					if(this_bar) this_bar.stop().animate(animate_off);
+
+					this_label = p_labels[target.data('index')];
+					if(this_label) this_label.stop().animate(animate_off);
+
+					this_animation = animate_off;
+					this_animation.anim['100']['fill-opacity'] = target.data('color-alpha');
+					target.stop().animate(this_animation);
+					delete this_animation.anim['100']['fill-opacity'];
 				});
 			})(p_sectors[i]);
 		}
@@ -1237,18 +1272,9 @@
 	var merge_options = function(overwrite) {
 		if(!overwrite) return $.InfoViz.options;
 
-		var result = {}, p, q;
-		
-		// Make a deep clone.
+		var result = {};		
 		$.extend(true, result, $.InfoViz.options);
-
-		for(q in result) {
-			if(overwrite[q] && typeof(overwrite[q]) === 'object') {
-				for(p in overwrite[q]) {
-					result[q][p] = overwrite[q][p];
-				}
-			}
-		}
+		$.extend(true, result, overwrite);
 
 		return result;
 	};
