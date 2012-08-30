@@ -10,33 +10,45 @@
 	<body class="p-index">
 		<header><h1><a href="http://infoviz.org"></a></h1></header>
 		<section class="container">
+			<h1>Axis Chart</h1>
 			<section>
-				<h1>LineChart <a href="#linechart" name="linechart">#</a></h1>
+				<h2>LineChart <a href="#linechart" name="linechart">#</a></h2>
 				<div class="infoviz i-linechart"></div>
 			</section>
 			<section>
-				<h1>PieChart <a href="#piechart" name="piechart">#</a></h1>
+				<h2>BarChart <a href="#barchart" name="linechart">#</a></h2>
+				<div class="infoviz i-barchart"></div>
+			</section>
+			<section>
+				<h2>BubbleChart <a href="#bubblechart" name="linechart">#</a></h2>
+				<div class="infoviz i-bubblechart"></div>
+			</section>
+
+			<h1>Round Stuff</h1>
+			<section>
+				<h2>PieChart <a href="#piechart" name="piechart">#</a></h2>
 				<div class="infoviz i-piechart1"></div>
 				<div class="infoviz i-piechart2"></div>
 				<div class="clear"></div>
 			</section>
 			<section>
-				<h1>BarChart <a href="#barchart" name="linechart">#</a></h1>
-				<div class="infoviz i-barchart"></div>
-			</section>
-			<section>
-				<h1>BubbleChart <a href="#bubblechart" name="linechart">#</a></h1>
-				<div class="infoviz i-bubblechart"></div>
-			</section>
-			<section>
-				<h1>RadarChart <a href="#radarchart" name="radarchart">#</a></h1>
+				<h2>RadarChart <a href="#radarchart" name="radarchart">#</a></h2>
 				<div class="infoviz i-radarchart1"></div>
 				<div class="infoviz i-radarchart2"></div>
 				<div class="clear"></div>
 			</section>
+
+			<h1>Map</h1>
 			<section>
-				<h1>HeatMap <a href="#heatmap" name="heatmap">#</a></h1>
+				<h2>HeatMap <a href="#heatmap" name="heatmap">#</a></h2>
 				<div class="infoviz i-heatmap"></div>
+			</section>
+
+			<h1>Cloud</h1>
+			<section>
+				<h2>TagCloud <a href="#tagcloud" name="tagcloud">#</a></h2>
+				<div class="infoviz i-tagcloud1"></div>
+				<div class="infoviz i-tagcloud2"></div>
 			</section>
 		</section>
 		<footer><p>InfoViz 0.1.0, MIT License, <a href="about.me/nocoo">@zhengli</a>, <a href="https://github.com/nocoo/InfoViz">Github</a></p></footer>
@@ -246,15 +258,15 @@
 					$('.i-radarchart1'), 
 					'radarchart', 
 					{
-						'value_fields': [ 'F1', 'F2', 'F3', 'F4', 'F5' ],
+						'value_fields': [ 'F1', 'F2', 'F3', 'F4', 'F5', 'F6' ],
 						'data': [
-							{ 'F1': 7, 'F2': 7, 'F3': 7, 'F4': 7, 'F5': 7 },
-							{ 'F1': 6, 'F2': 6, 'F3': 6, 'F4': 6, 'F5': 6 },
-							{ 'F1': 5, 'F2': 5, 'F3': 5, 'F4': 5, 'F5': 5 },
-							{ 'F1': 4, 'F2': 4, 'F3': 4, 'F4': 4, 'F5': 4 },
-							{ 'F1': 3, 'F2': 3, 'F3': 3, 'F4': 3, 'F5': 3 },
-							{ 'F1': 2, 'F2': 2, 'F3': 2, 'F4': 2, 'F5': 2 },
-							{ 'F1': 1, 'F2': 1, 'F3': 1, 'F4': 1, 'F5': 1 }
+							{ 'F1': 7, 'F2': 7, 'F3': 7, 'F4': 7, 'F5': 7, 'F6': 7 },
+							{ 'F1': 6, 'F2': 6, 'F3': 6, 'F4': 6, 'F5': 6, 'F6': 6 },
+							{ 'F1': 5, 'F2': 5, 'F3': 5, 'F4': 5, 'F5': 5, 'F6': 5 },
+							{ 'F1': 4, 'F2': 4, 'F3': 4, 'F4': 4, 'F5': 4, 'F6': 4 },
+							{ 'F1': 3, 'F2': 3, 'F3': 3, 'F4': 3, 'F5': 3, 'F6': 3 },
+							{ 'F1': 2, 'F2': 2, 'F3': 2, 'F4': 2, 'F5': 2, 'F6': 2 },
+							{ 'F1': 1, 'F2': 1, 'F3': 1, 'F4': 1, 'F5': 1, 'F6': 1 }
 						]
 					}
 				);
@@ -263,15 +275,16 @@
 					$('.i-radarchart2'), 
 					'radarchart', 
 					{
-						'value_fields': [ 'F1', 'F2', 'F3', 'F4', 'F5', 'F6' ],
+						'value_fields': [ 'Repulsion Power', 'Durability', 'Hitting Sound', 'Shock Absorption', 'Control' ],
 						'data': [
-							{ 'F1': 1, 'F2': 2, 'F3': 3, 'F4': 4, 'F5': 5, 'F6': 1 },
-							{ 'F1': 2, 'F2': 3, 'F3': 4, 'F4': 5, 'F5': 1, 'F6': 2 },
-							{ 'F1': 3, 'F2': 4, 'F3': 5, 'F4': 1, 'F5': 2, 'F6': 3 },
-							{ 'F1': 4, 'F2': 5, 'F3': 1, 'F4': 2, 'F5': 3, 'F6': 4 },
-							{ 'F1': 5, 'F2': 1, 'F3': 2, 'F4': 3, 'F5': 4, 'F6': 5 }
+							{ 'Repulsion Power': 1, 'Durability': 2, 'Hitting Sound': 3, 'Shock Absorption': 4, 'Control': 5 },
+							{ 'Repulsion Power': 2, 'Durability': 3, 'Hitting Sound': 4, 'Shock Absorption': 5, 'Control': 1 },
+							{ 'Repulsion Power': 3, 'Durability': 4, 'Hitting Sound': 5, 'Shock Absorption': 1, 'Control': 2 },
+							{ 'Repulsion Power': 4, 'Durability': 5, 'Hitting Sound': 1, 'Shock Absorption': 2, 'Control': 3 },
+							{ 'Repulsion Power': 5, 'Durability': 1, 'Hitting Sound': 2, 'Shock Absorption': 3, 'Control': 4 }
 						]
-					}
+					},
+					{ 'radarchart': { 'label-distance': 8, 'label-rotation': true } }
 				);
 
 				// HeatMap
@@ -290,6 +303,87 @@
 						'data': data
 					},
 					{ 'layout': { 'logo-enabled': false } }
+				);
+
+				// TagCloud.
+				$.InfoViz.chart(
+					$('.i-tagcloud1'), 
+					'tagcloud',
+					{
+						'value_field': 'F1',
+						'text_field': 'F2',
+						'data': [
+							{ 'F1': 24, 'F2': 'China' },
+							{ 'F1': 23, 'F2': 'Unite States' },
+							{ 'F1': 22, 'F2': 'Russia' },
+							{ 'F1': 21, 'F2': 'Japan' },
+							{ 'F1': 20, 'F2': 'Botswana' },
+							{ 'F1': 19, 'F2': 'Finland' },
+							{ 'F1': 18, 'F2': 'France' },
+							{ 'F1': 17, 'F2': 'Cape Verde' },
+							{ 'F1': 16, 'F2': 'Belize' },
+							{ 'F1': 15, 'F2': 'Georgia' },
+							{ 'F1': 14, 'F2': 'Haiti' },
+							{ 'F1': 13, 'F2': 'Hungary' },
+							{ 'F1': 12, 'F2': 'India' },
+							{ 'F1': 11, 'F2': 'Laos' },
+							{ 'F1': 10, 'F2': 'Kuwait' },
+							{ 'F1': 9,  'F2': 'Namibia' },
+							{ 'F1': 8,  'F2': 'Peru' },
+							{ 'F1': 7,  'F2': 'Qatar' },
+							{ 'F1': 6,  'F2': 'Spain' },
+							{ 'F1': 5,  'F2': 'Thailand' },
+							{ 'F1': 4,  'F2': 'Ukraine' },
+							{ 'F1': 3,  'F2': 'Vanuatu' },
+							{ 'F1': 2,  'F2': 'Zambia' },
+							{ 'F1': 1,  'F2': 'Palestine' }
+						]
+					}
+				);
+
+				$.InfoViz.chart(
+					$('.i-tagcloud2'), 
+					'tagcloud',
+					{
+						'value_field': 'F1',
+						'text_field': 'F2',
+						'data': [
+							{ 'F1': 24, 'F2': '中华人民共和国' },
+							{ 'F1': 23, 'F2': '美利坚合众国' },
+							{ 'F1': 22, 'F2': '俄罗斯联邦' },
+							{ 'F1': 21, 'F2': '日本' },
+							{ 'F1': 20, 'F2': '博茨瓦纳' },
+							{ 'F1': 19, 'F2': '芬兰' },
+							{ 'F1': 18, 'F2': '法兰西共和国' },
+							{ 'F1': 17, 'F2': '佛得角' },
+							{ 'F1': 16, 'F2': '伯利兹城' },
+							{ 'F1': 15, 'F2': '格鲁吉亚' },
+							{ 'F1': 14, 'F2': '海地' },
+							{ 'F1': 13, 'F2': '匈牙利' },
+							{ 'F1': 12, 'F2': '印度' },
+							{ 'F1': 11, 'F2': '老挝人民民主共和国' },
+							{ 'F1': 10, 'F2': '科威特' },
+							{ 'F1': 9,  'F2': '纳米比亚' },
+							{ 'F1': 8,  'F2': '秘鲁' },
+							{ 'F1': 7,  'F2': '卡塔尔' },
+							{ 'F1': 6,  'F2': '西班牙' },
+							{ 'F1': 5,  'F2': '泰国' },
+							{ 'F1': 4,  'F2': '乌克兰' },
+							{ 'F1': 3,  'F2': '瓦努阿图' },
+							{ 'F1': 2,  'F2': '赞比亚' },
+							{ 'F1': 1,  'F2': '巴勒斯坦' }
+						]
+					},
+					{ 'tagcloud': { 'color': [
+						{ 'color': '#000', 'dark-alpha': 0.20, 'light-alpha': 0.45 },
+						{ 'color': '#000', 'dark-alpha': 0.30, 'light-alpha': 0.45 },
+						{ 'color': '#000', 'dark-alpha': 0.40, 'light-alpha': 0.45 },
+						{ 'color': '#000', 'dark-alpha': 0.50, 'light-alpha': 0.45 },
+						{ 'color': '#000', 'dark-alpha': 0.60, 'light-alpha': 0.45 },
+						{ 'color': '#000', 'dark-alpha': 0.70, 'light-alpha': 0.45 },
+						{ 'color': '#000', 'dark-alpha': 0.80, 'light-alpha': 0.45 },
+						{ 'color': '#000', 'dark-alpha': 0.85, 'light-alpha': 0.45 }
+					] } }
 				);
 			})(jQuery);
 		</script>

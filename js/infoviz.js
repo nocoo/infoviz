@@ -134,7 +134,8 @@
 			'circle-min-radius': 30,
 			'label-distance': 15,
 			'label-color': '#555',
-			'label-size': 12
+			'label-size': 12,
+			'label-rotation': false
 		},
 		'heatmap': {
 			'horizontal_margin': 4,
@@ -145,6 +146,24 @@
 			'label-alpha': 1,
 			'horizontal_count': undefined,
 			'vertical_count': undefined,
+			'color': [
+				{ 'color': '#339999', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#99CC99', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#99CC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#CCCC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FFCC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FF6633', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FF3333', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#CC0066', 'dark-alpha': 1, 'light-alpha': 0.45 }
+			]
+		},
+		'tagcloud': {
+			'levels': 10,
+			'text-min-size': 10,
+			'text-max-size': 55,
+			'row-count': 5,
+			'horizontal_margin': 5,
+			'vertical_margin': -10,
 			'color': [
 				{ 'color': '#339999', 'dark-alpha': 1, 'light-alpha': 0.45 },
 				{ 'color': '#99CC99', 'dark-alpha': 1, 'light-alpha': 0.45 },
@@ -167,8 +186,6 @@
 			{ 'color': '#9D66A4', 'dark-alpha': 1, 'light-alpha': 0.45 }
 		]
 	};
-
-	var global = {};
 
 	$.InfoViz.chart = function(element, type, data, overwrite_options) {
 		var target_id = $(element).attr('id') ? $(element).attr('id') : 'infoviz_' + guid();
@@ -228,14 +245,16 @@
 				$.InfoViz.draw_heatmap(paper, area, data, options);
 				break;
 			}
+			case 'tagcloud': {
+				area = $.InfoViz.draw_simple_background(paper, data, options);
+				$.InfoViz.draw_tagcloud(paper, area, data, options);
+				break;
+			}
 			default: {
 				paper.text(area['width'] / 2, area['height'] / 2, 'Type "' + type +'" not supported.').attr({ 'font-size': 12, 'fill': '#000' }).translate(0.5, 0.5);
 				break;
 			}
 		}
-
-		global['type'] = type;
-		//$.InfoViz.add_actions(paper, area);
 
 		// Draw InfoViz logo.
 		if(options['layout']['logo-enabled']) {
@@ -271,44 +290,6 @@
 				options['layout']['logo-width'],
 				options['layout']['logo-height']).attr({ 'cursor': 'pointer' }).translate(0.5, 0.5);
 			logo.click(function() { window.location.href = 'https://github.com/nocoo/InfoViz'; });
-
-			global['logo'] = logo;
-		}
-
-		// Draw box.
-		/*global['box'] = {};
-		global['box']['bg'] = paper.rect(-1000, -1000, 80, 120, 4).attr({
-			'stroke-width': options['layout']['box-border-width'],
-			'stroke': options['layout']['box-border-color'],
-			'stroke-opacity': options['layout']['box-border-alpha'],
-			'fill': options['layout']['box-background-color'],
-			'fill-opacity': options['layout']['box-background-alpha']
-		}).translate(0.5, 0.5);*/
-	};
-
-	// TODO: make this more efficient.
-	$.InfoViz.add_actions = function(paper, chart_area, overwrite_options) {
-		if(!paper || !chart_area) return idb('Paper or chart area is empty.');
-
-		//console.log(global);
-
-		var item;
-		for(var i = 0; i < global['bubblechart']['bubbles'].length; ++i) {
-			item = global['bubblechart']['bubbles'][i];
-			item.click(function(evt) {
-				var x = this.attr('cx') + this.attr('r') + 5;
-				var y = this.attr('cy') - this.attr('r');
-
-				global['box'].attr({
-					'opacity': 0,
-				});
-
-				global['box'].animate({
-					'opacity': 1,
-					'x': x,
-					'y': y
-				}, 200);
-			});
 		}
 	};
 
@@ -548,8 +529,6 @@
 
 		var options = merge_options(overwrite_options), cache = [], i, x, y, size, item;
 		var h_min = Infinity, h_max = -Infinity, v_min = Infinity, v_max = -Infinity, size_max = -Infinity, size_min = Infinity;
-
-		global['bubblechart'] = {};
 		
 		// Scan data.
 		for(i = 0; i < data['data'].length; ++i) {
@@ -592,10 +571,7 @@
 		var size_unit = (options['bubblechart']['circle-max-radius'] - size_start) / (size_max - size_min);
 
 		// Draw bubbles.
-		var this_h, this_v, this_size, this_label, this_color, this_bubble, this_text;
-		global['bubblechart']['bubbles'] = [];
-		global['bubblechart']['texts'] = [];
-
+		var this_h, this_v, this_size, this_label, this_color, this_bubble, this_text, p_bubbles = [], p_texts = [];
 		for(i = 0; i < data['data'].length; ++i) {
 			item = data['data'][i];
 			this_h = item[data['horizontal_field']];
@@ -624,11 +600,11 @@
 
 			this_bubble.data('data', item);
 			this_text.data('data', item);
-			global['bubblechart']['bubbles'].push(this_bubble);
-			global['bubblechart']['texts'].push(this_text);
+			p_bubbles.push(this_bubble);
+			p_texts.push(this_text);
 		}
 
-		for(i = 0; i < global['bubblechart']['bubbles'].length; ++i) {
+		for(i = 0; i < p_bubbles.length; ++i) {
 			(function(bubble, text, index) {
 				bubble.mouseover(function () {
 					bubble.stop().animate({ 'fill-opacity': options['color'][0]['dark-alpha'] }, options['layout']['speed'], ">");
@@ -638,9 +614,9 @@
 					bubble.stop().animate({ 'fill-opacity': options['color'][0]['light-alpha'] }, options['layout']['speed'], "<");
 					text.stop().animate({ 'fill': text.data('color') }, options['layout']['speed'], "<");
 				});
-			})(global['bubblechart']['bubbles'][i], global['bubblechart']['texts'][i], i);
+			})(p_bubbles[i], p_texts[i], i);
 
-			global['bubblechart']['texts'][i].data('color', global['bubblechart']['texts'][i].attr('fill'));
+			p_bubbles[i].data('color', p_texts[i].attr('fill'));
 		}
 
 		// Vertical labels.
@@ -1256,6 +1232,7 @@
 		// Draw innter border and axises.
 		cache = [];
 		cache2 = [];
+		var this_rotation = 0;
 		for(i = 0; i < data['value_fields'].length; ++i) {
 			if(i === 0) {
 				cache.push('M');
@@ -1277,10 +1254,20 @@
 			a_map[data['value_fields'][i]]['label-x'] = x;
 			a_map[data['value_fields'][i]]['label-y'] = y;
 
+			// Label rotation.
+			if(options['radarchart']['label-rotation']) {
+				this_rotation = a_map[data['value_fields'][i]]['angle'];
+
+				if(a_map[data['value_fields'][i]]['angle'] > 90 && a_map[data['value_fields'][i]]['angle'] < 270) {
+					this_rotation += 180;
+				}
+			}
+
 			// Draw labels.
 			paper.text(x, y, data['value_fields'][i]).attr({
 				'font-size': options['radarchart']['label-size'],
-				'fill': options['radarchart']['label-color']
+				'fill': options['radarchart']['label-color'],
+				'transform': 'r' + this_rotation
 			}).translate(0.5, 0.5);
 
 			// Calculate v_unit.
@@ -1344,7 +1331,7 @@
 			(function(target) {
 				target.mouseover(function () {
 					target.animate({
-						'fill-opacity': 1
+						'fill-opacity': 0.618
 					}, options['layout']['speed'], '<');
 				});
 				target.mouseout(function () {
@@ -1402,11 +1389,10 @@
 		}
 
 		// Draw boxes.
-		global['heatmap'] = { 'boxes': [], 'labels': [] }
 		y = chart_area['top-left'][1];
 		index = 0;
 
-		var done = false;
+		var done = false, p_boxes = [], p_labels = [];
 		for(j = 0; j < count_y; ++j) {
 			x = chart_area['top-left'][0];
 			for(i = 0; i < count_x; ++i) {
@@ -1426,7 +1412,7 @@
 					'stroke-opacity': this_color['dark-alpha'],
 					'stroke-width': options['heatmap']['box-border-width']
 				}).translate(0.5, 0.5);
-				global['heatmap']['boxes'].push(this_box);
+				p_boxes.push(this_box);
 
 				// Label
 				if(unit_x > options['heatmap']['label-size'] && unit_y > options['heatmap']['label-size']) {
@@ -1435,7 +1421,7 @@
 						'fill-opacity': options['heatmap']['label-alpha'],
 						'font-size': options['heatmap']['label-size']
 					}).translate(0.5, 0.5);
-					global['heatmap']['boxes'].push(this_label);
+					p_labels.push(this_label);
 				}
 				
 				x += unit_x + options['heatmap']['horizontal_margin'];
@@ -1445,6 +1431,157 @@
 			if(done) break;
 
 			y += unit_y + options['heatmap']['vertical_margin'];
+		}
+	};
+
+	$.InfoViz.draw_tagcloud = function(paper, chart_area, data, overwrite_options) {
+		if(!paper || !data) return idb('Paper or Data is empty.');
+		
+		var options = merge_options(overwrite_options), cache = [], x, y, i, j, item;
+		var levels = options['tagcloud']['levels'] ? options['tagcloud']['levels'] : 8;
+
+		// Find out max and min value.
+		var v_max = -Infinity, v_min = Infinity, total_text_length = 0;
+		for(i = 0; i < data['data'].length; ++i) {
+			item = data['data'][i];
+
+			if(item[data['value_field']] > v_max) {
+				v_max = item[data['value_field']];
+			}
+
+			if(item[data['value_field']] < v_min) {
+				v_min = item[data['value_field']];
+			}
+
+			total_text_length += item[data['text_field']].length;
+		}
+
+		// Map value to level.
+		var text_map = [], this_level, test_text, this_box;
+		for(i = 0; i < data['data'].length; ++i) {
+			item = data['data'][i];
+
+			this_level = Math.floor((levels - 1) * (item[data['value_field']] - v_min) / (v_max - v_min));
+			this_size = options['tagcloud']['text-min-size'] + Math.floor(this_level * (options['tagcloud']['text-max-size'] - options['tagcloud']['text-min-size']) / levels);
+
+			test_text = paper.text(-1000, -1000, item[data['text_field']]).attr({
+				'font-size': this_size
+			}).translate(0.5, 0.5);
+			this_box = test_text.getBBox();
+
+			text_map.push({
+				'value': item[data['value_field']],
+				'text': item[data['text_field']],
+				'size': this_size,
+				'length': item[data['text_field']].length,
+				'level': this_level,
+				'width': this_box.width,
+				'height': this_box.height
+			});
+		}
+
+		var cx = chart_area['top-left'][0] + chart_area['width'] / 2;
+		var cy = chart_area['top-left'][1] + chart_area['height'] / 2;
+		var rows = options['tagcloud']['row-count'], rows_map = [];
+
+		// Initialize rows array.
+		for(i = 0; i < rows; ++i) { 
+			rows_map.push({ 'node': [] }); 
+		}
+
+		// Make sure cy is in the middle.
+		if(rows % 2 === 0) { 
+			cy -= options['tagcloud']['text-max-size'] / 2; 
+		}
+
+		// Sort by size.
+		text_map.sort(function(a, b) { return b['size'] - a['size']; });
+		
+		// Put text node into rows.
+		for(i = 0; i < text_map.length; ++i) {
+			rows_map[i % rows_map.length]['node'].push(text_map[i]);
+		}
+
+		var p_texts = [], this_text, todo = [];
+		var last_max_height = 0, last_y1, last_y2, offset_x1, offset_x2, last_width1, last_width2;
+		var dx, dy, index = 0;
+		for(i = 0; i < rows_map.length; ++i) {
+			if(i === 0) {
+				x = cx
+				y = cy;
+				last_y1 = y;
+				last_y2 = y;
+			} else {
+				x = cx;
+				if(i % 2 === 0) {
+					y = last_y1 - last_max_height;
+					last_y1 = y;
+				} else {
+					y = last_y2 + last_max_height;
+					last_y2 = y;
+				}
+			}
+
+			offset_x1 = 0;
+			offset_x2 = 0;
+			last_width1 = 0;
+			last_width2 = 0;
+			last_max_height = -Infinity;
+			for(j = 0; j < rows_map[i]['node'].length; ++j) {
+				item = rows_map[i]['node'][j];
+				this_color = options['tagcloud']['color'][Math.floor((options['tagcloud']['color'].length - 1) * (item['level'] / (levels - 1)))];
+
+				if(j === 0) {
+					dx = x;
+					dy = y;
+					last_width1 = item['width'] + options['tagcloud']['horizontal_margin'];
+					last_width2 = item['width'] + options['tagcloud']['horizontal_margin'];
+				} else {
+					if(j % 2 === 0) {
+						offset_x1 -= last_width1 / 2 + item['width'] / 2;
+						dx = x + offset_x1;
+						last_width1 = item['width'] + options['tagcloud']['horizontal_margin'];
+					} else {
+						offset_x2 += last_width2 / 2 + item['width'] / 2;
+						dx = x + offset_x2;
+						last_width2 = item['width'] + options['tagcloud']['horizontal_margin'];
+					}
+				}
+
+				if(item['height'] > last_max_height) {
+					last_max_height = item['height'] + options['tagcloud']['vertical_margin'];;
+				}
+
+				todo.push({ 'x': dx, 'y': dy, 'item': item, 'color': this_color });
+				index++;
+			}
+		}
+
+		// Draw text.
+		for(i = todo.length - 1; i >= 0; --i) {
+			this_text = paper.text(todo[i]['x'], todo[i]['y'], todo[i]['item']['text']).attr({
+				'font-size': todo[i]['item']['size'],
+				'fill': todo[i]['color']['color'],
+				'fill-opacity': todo[i]['color']['dark-alpha'],
+				'text-anchor': 'middle'
+			}).translate(0.5, 0.5);
+			p_texts.push(this_text);
+		}
+
+		// Animation.
+		for(i = 0; i < p_texts.length; ++i) {
+			(function(target) {
+				target.mouseover(function () {
+					target.animate({
+						'transform': 's1.5'
+					}, options['layout']['speed'], '>');
+				});
+				target.mouseout(function () {
+					target.animate({
+						'transform': ''
+					}, options['layout']['speed'], '<');
+				});
+			})(p_texts[i]);
 		}
 	};
 

@@ -10,8 +10,6 @@ InfoViz, an information visualization library based on [Raphaël](http://raphael
 
 A LineChart has a enumerable as horizontal field, and a value field as vertical field.
 
-Here is how to create a LineChart.
-
 Demo: [Click Here](http://infoviz.org/index.html#linechart)
 
 	$.InfoViz.chart(
@@ -80,8 +78,6 @@ A LineChart has a value as horizontal field, and a value field as vertical field
 
 ![BubbleChart](http://infoviz.org/examples/bubblechart.png "BubbleChart")
 
-Here is how to create a BubbleChart.
-
 Demo: [Click Here](http://infoviz.org/index.html#bubblechart)
 
 	$.InfoViz.chart(
@@ -111,8 +107,6 @@ Demo: [Click Here](http://infoviz.org/index.html#bubblechart)
 ![BarChart](http://infoviz.org/examples/barchart.png "BarChart")
 
 A BarChart has a enumerable as horizontal field, and a value field as vertical field.
-
-Here is how to create a BarChart.
 
 Demo: [Click Here](http://infoviz.org/index.html#barchart)
 
@@ -184,8 +178,6 @@ Demo: [Click Here](http://infoviz.org/index.html#barchart)
 
 A PieChart has a value as horizontal field.
 
-Here is how to create a PieChart.
-
 Demo: [Click Here](http://infoviz.org/index.html#piechart)
 
 	$.InfoViz.chart(
@@ -212,21 +204,21 @@ Demo: [Click Here](http://infoviz.org/index.html#piechart)
 
 A RadarChart has a group of value fields.
 
-Here is how to create a RadarChart.
-
 Demo: [Click Here](http://infoviz.org/index.html#radarchart)
 
 	$.InfoViz.chart(
-		$('.i-radarchart2'), 
+		$('.i-radarchart1'), 
 		'radarchart', 
 		{
 			'value_fields': [ 'F1', 'F2', 'F3', 'F4', 'F5', 'F6' ],
 			'data': [
-				{ 'F1': 1, 'F2': 2, 'F3': 3, 'F4': 4, 'F5': 5, 'F6': 1 },
-				{ 'F1': 2, 'F2': 3, 'F3': 4, 'F4': 5, 'F5': 1, 'F6': 2 },
-				{ 'F1': 3, 'F2': 4, 'F3': 5, 'F4': 1, 'F5': 2, 'F6': 3 },
-				{ 'F1': 4, 'F2': 5, 'F3': 1, 'F4': 2, 'F5': 3, 'F6': 4 },
-				{ 'F1': 5, 'F2': 1, 'F3': 2, 'F4': 3, 'F5': 4, 'F6': 5 }
+				{ 'F1': 7, 'F2': 7, 'F3': 7, 'F4': 7, 'F5': 7, 'F6': 7 },
+				{ 'F1': 6, 'F2': 6, 'F3': 6, 'F4': 6, 'F5': 6, 'F6': 6 },
+				{ 'F1': 5, 'F2': 5, 'F3': 5, 'F4': 5, 'F5': 5, 'F6': 5 },
+				{ 'F1': 4, 'F2': 4, 'F3': 4, 'F4': 4, 'F5': 4, 'F6': 4 },
+				{ 'F1': 3, 'F2': 3, 'F3': 3, 'F4': 3, 'F5': 3, 'F6': 3 },
+				{ 'F1': 2, 'F2': 2, 'F3': 2, 'F4': 2, 'F5': 2, 'F6': 2 },
+				{ 'F1': 1, 'F2': 1, 'F3': 1, 'F4': 1, 'F5': 1, 'F6': 1 }
 			]
 		}
 	);
@@ -237,9 +229,7 @@ Demo: [Click Here](http://infoviz.org/index.html#radarchart)
 
 ![HeatMap](http://infoviz.org/examples/heatmap.png "HeatMap")
 
-A HeatMap has a value field.
-
-Here is how to create a HeatMap.
+A HeatMap has a value field which indicator its load etc.
 
 Demo: [Click Here](http://infoviz.org/index.html#heatmap)
 
@@ -278,9 +268,58 @@ Demo: [Click Here](http://infoviz.org/index.html#heatmap)
 		}
 	);
 
-# 4 Configuration
+# 4 Tree
 
-## 4.1 How to overwrite a style
+# 5 Cloud
+
+## 5.1 TagCloud
+
+![TagCloud](http://infoviz.org/examples/tagcloud.png "TagCloud")
+
+A TagCloud has a text string, and a value field to indicator its frequency.
+
+Demo: [Click Here](http://infoviz.org/index.html#tagcloud)
+
+	$.InfoViz.chart(
+		$('.i-tagcloud1'), 
+		'tagcloud',
+		{
+			'value_field': 'F1',
+			'text_field': 'F2',
+			'data': [
+				{ 'F1': 24, 'F2': 'China' },
+				{ 'F1': 23, 'F2': 'Unite States' },
+				{ 'F1': 22, 'F2': 'Russia' },
+				{ 'F1': 21, 'F2': 'Japan' },
+				{ 'F1': 20, 'F2': 'Botswana' },
+				{ 'F1': 19, 'F2': 'Finland' },
+				{ 'F1': 18, 'F2': 'France' },
+				{ 'F1': 17, 'F2': 'Cape Verde' },
+				{ 'F1': 16, 'F2': 'Belize' },
+				{ 'F1': 15, 'F2': 'Georgia' },
+				{ 'F1': 14, 'F2': 'Haiti' },
+				{ 'F1': 13, 'F2': 'Hungary' },
+				{ 'F1': 12, 'F2': 'India' },
+				{ 'F1': 11, 'F2': 'Laos' },
+				{ 'F1': 10, 'F2': 'Kuwait' },
+				{ 'F1': 9,  'F2': 'Namibia' },
+				{ 'F1': 8,  'F2': 'Peru' },
+				{ 'F1': 7,  'F2': 'Qatar' },
+				{ 'F1': 6,  'F2': 'Spain' },
+				{ 'F1': 5,  'F2': 'Thailand' },
+				{ 'F1': 4,  'F2': 'Ukraine' },
+				{ 'F1': 3,  'F2': 'Vanuatu' },
+				{ 'F1': 2,  'F2': 'Zambia' },
+				{ 'F1': 1,  'F2': 'Palestine' }
+			]
+		}
+	);
+
+# 6 Flow
+
+# 7 Configuration
+
+## 7.1 How to overwrite a style
 
 ### Global
 
@@ -315,7 +354,7 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 		}
 	);
 
-## 4.2 Options
+## 7.2 Options
 
 	$.InfoViz.options = {
 		'layout': {
@@ -440,7 +479,8 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'circle-min-radius': 30,
 			'label-distance': 15,
 			'label-color': '#555',
-			'label-size': 12
+			'label-size': 12,
+			'label-rotation': false
 		},
 		'heatmap': {
 			'horizontal_margin': 4,
@@ -451,6 +491,24 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'label-alpha': 1,
 			'horizontal_count': undefined,
 			'vertical_count': undefined,
+			'color': [
+				{ 'color': '#339999', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#99CC99', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#99CC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#CCCC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FFCC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FF6633', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FF3333', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#CC0066', 'dark-alpha': 1, 'light-alpha': 0.45 }
+			]
+		},
+		'tagcloud': {
+			'levels': 10,
+			'text-min-size': 10,
+			'text-max-size': 55,
+			'row-count': 5,
+			'horizontal_margin': 5,
+			'vertical_margin': -10,
 			'color': [
 				{ 'color': '#339999', 'dark-alpha': 1, 'light-alpha': 0.45 },
 				{ 'color': '#99CC99', 'dark-alpha': 1, 'light-alpha': 0.45 },
