@@ -72,37 +72,7 @@ Demo: [Click Here](http://infoviz.org/index.html#linechart)
 		}
 	);
 
-## 1.2 BubbleChart
-
-A LineChart has a value as horizontal field, and a value field as vertical field, also with a value field indicates its size.
-
-![BubbleChart](http://infoviz.org/examples/bubblechart.png "BubbleChart")
-
-Demo: [Click Here](http://infoviz.org/index.html#bubblechart)
-
-	$.InfoViz.chart(
-		$('.i-bubblechart'), 
-		'bubblechart', 
-		{
-			'vertical_axis_name': 'Vertical',
-			'horizontal_axis_name': 'Horizontal',
-			'horizontal_field': 'F1',
-			'vertical_field': 'F2',
-			'size_field': 'F3',
-			'label_field': 'F4',
-			'data': [
-				{ 'F1': 1,   'F2': 18, 'F3': 9, 'F4': 'CHN' },
-				{ 'F1': 42,  'F2': 30, 'F3': 6, 'F4': 'USA' },
-				{ 'F1': 7,   'F2': 35, 'F3': 9, 'F4': 'RUS' },
-				{ 'F1': 110, 'F2': 12, 'F3': 9, 'F4': 'CAN' },
-				{ 'F1': 50,  'F2': 19, 'F3': 2, 'F4': 'FRA' },
-				{ 'F1': 29,  'F2': 22, 'F3': 4, 'F4': 'VET' },
-				{ 'F1': 2,   'F2': 3,  'F3': 1, 'F4': 'JPN' }
-			]
-		}
-	);
-
-## 1.3 BarChart
+## 1.2 BarChart
 
 ![BarChart](http://infoviz.org/examples/barchart.png "BarChart")
 
@@ -167,6 +137,36 @@ Demo: [Click Here](http://infoviz.org/index.html#barchart)
 					]
 				}
 			}
+		}
+	);
+
+## 1.3 BubbleChart
+
+A BubbleChart has a value as horizontal field, and a value field as vertical field, also with a value field indicates its size.
+
+![BubbleChart](http://infoviz.org/examples/bubblechart.png "BubbleChart")
+
+Demo: [Click Here](http://infoviz.org/index.html#bubblechart)
+
+	$.InfoViz.chart(
+		$('.i-bubblechart'), 
+		'bubblechart', 
+		{
+			'vertical_axis_name': 'Vertical',
+			'horizontal_axis_name': 'Horizontal',
+			'horizontal_field': 'F1',
+			'vertical_field': 'F2',
+			'size_field': 'F3',
+			'label_field': 'F4',
+			'data': [
+				{ 'F1': 1,   'F2': 18, 'F3': 9, 'F4': 'CHN' },
+				{ 'F1': 42,  'F2': 30, 'F3': 6, 'F4': 'USA' },
+				{ 'F1': 7,   'F2': 35, 'F3': 9, 'F4': 'RUS' },
+				{ 'F1': 110, 'F2': 12, 'F3': 9, 'F4': 'CAN' },
+				{ 'F1': 50,  'F2': 19, 'F3': 2, 'F4': 'FRA' },
+				{ 'F1': 29,  'F2': 22, 'F3': 4, 'F4': 'VET' },
+				{ 'F1': 2,   'F2': 3,  'F3': 1, 'F4': 'JPN' }
+			]
 		}
 	);
 

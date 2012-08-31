@@ -3,7 +3,7 @@
 	@author  Zheng Li <lizheng@lizheng.me>
 	@github https://github.com/nocoo/InfoViz
 	@license MIT
-	@version 0.1.0
+	@version 0.2.0
 */
 
 ;(function($) {
@@ -68,6 +68,42 @@
 			'horizontal-name-size': 12,
 			'horizontal-name-color': '#000'
 		},
+		'legend': {
+			'width': undefined,
+			'height': undefined,
+			'legend-enabled': true,
+			'legend-position': 'top-left',
+			
+			'margin-top': 10,
+			'margin-right': 10,
+			'margin-bottom': 10,
+			'margin-left': 10,
+
+			'padding-top': 5,
+			'padding-right': 8,
+			'padding-bottom': 5,
+			'padding-left': 8,
+
+			'indicator-size': 14,
+			'indicator-border-width': 1,
+			'indicator-margin-left': 0,
+			'indicator-margin-right': 10,
+			'indicator-margin-top': 2,
+			'indicator-margin-bottom': 2,
+			'indicator-sector-angle': 60,
+
+			'label-color': undefined,
+			'label-alpha': 1,
+			'label-size': 12,
+			
+			'border-width': 1,
+			'border-color': '#CCC',
+			'border-alpha': 1,
+			'border-radius': 4,
+
+			'background-color': '#FDFDFD',
+			'background-alpha': 1,
+		},
 		'linechart': {
 			'padding-top': 30,
 			'padding-right': 90,
@@ -113,9 +149,12 @@
 			'label-size': 11,
 			'label-bar-length1': 5,
 			'label-bar-length2': 10,
-			'hole-radius': 0
+			'hole-radius': 0,
+			'horizontal-offset': 0,
+			'vertical-offset': 0
 		},
 		'radarchart': {
+			'sector-size-factor': 0.9,
 			'outer-border-width': 1,
 			'outer-border-color': '#999',
 			'outer-border-alpha': 1,
@@ -135,7 +174,9 @@
 			'label-distance': 15,
 			'label-color': '#555',
 			'label-size': 12,
-			'label-rotation': false
+			'label-rotation': false,
+			'horizontal-offset': 0,
+			'vertical-offset': 0
 		},
 		'heatmap': {
 			'horizontal_margin': 4,
@@ -187,6 +228,7 @@
 		]
 	};
 
+	/* 0. Basic and Accessories */
 	$.InfoViz.chart = function(element, type, data, overwrite_options) {
 		var target_id = $(element).attr('id') ? $(element).attr('id') : 'infoviz_' + guid();
 		$(element).attr('id', target_id);
@@ -213,40 +255,40 @@
 
 		switch(type) {
 			case 'linechart': {
-				area = $.InfoViz.draw_axis(paper, data, options);
+				area = $.InfoViz.draw_axis_background(paper, data, options);
 				$.InfoViz.draw_linechart(paper, area, data, options);
 
 				break;
 			}
 			case 'bubblechart': {
-				area = $.InfoViz.draw_axis(paper, data, options);
+				area = $.InfoViz.draw_axis_background(paper, data, options);
 				$.InfoViz.draw_bubblechart(paper, area, data, options);
 
 				break;
 			}
 			case 'barchart': {
-				area = $.InfoViz.draw_axis(paper, data, options);
+				area = $.InfoViz.draw_axis_background(paper, data, options);
 				$.InfoViz.draw_barchart(paper, area, data, options);
 
 				break;
 			}
 			case 'piechart': {
-				area = $.InfoViz.draw_simple_background(paper, data, options);
+				area = $.InfoViz.draw_empty_background(paper, data, options);
 				$.InfoViz.draw_piechart(paper, area, data, options);
 				break;
 			}
 			case 'radarchart': {
-				area = $.InfoViz.draw_simple_background(paper, data, options);
+				area = $.InfoViz.draw_empty_background(paper, data, options);
 				$.InfoViz.draw_radarchart(paper, area, data, options);
 				break;
 			}
 			case 'heatmap': {
-				area = $.InfoViz.draw_simple_background(paper, data, options);
+				area = $.InfoViz.draw_empty_background(paper, data, options);
 				$.InfoViz.draw_heatmap(paper, area, data, options);
 				break;
 			}
 			case 'tagcloud': {
-				area = $.InfoViz.draw_simple_background(paper, data, options);
+				area = $.InfoViz.draw_empty_background(paper, data, options);
 				$.InfoViz.draw_tagcloud(paper, area, data, options);
 				break;
 			}
@@ -293,7 +335,7 @@
 		}
 	};
 
-	$.InfoViz.draw_simple_background = function(paper, data, overwrite_options) {
+	$.InfoViz.draw_empty_background = function(paper, data, overwrite_options) {
 		if(!paper) return idb('Paper is empty.');
 
 		var options = merge_options(overwrite_options), chart_area = {},
@@ -365,7 +407,7 @@
 		return chart_area;
 	};
 
-	$.InfoViz.draw_axis = function(paper, data, overwrite_options) {
+	$.InfoViz.draw_axis_background = function(paper, data, overwrite_options) {
 		if(!paper) return idb('Paper is empty.');
 
 		var options = merge_options(overwrite_options), chart_area = {},
@@ -524,157 +566,193 @@
 		return chart_area;
 	};
 
-	$.InfoViz.draw_bubblechart = function(paper, chart_area, data, overwrite_options) {
-		if(!paper || !data) return idb('Paper or Data is empty.');
-
-		var options = merge_options(overwrite_options), cache = [], i, x, y, size, item;
-		var h_min = Infinity, h_max = -Infinity, v_min = Infinity, v_max = -Infinity, size_max = -Infinity, size_min = Infinity;
+	$.InfoViz.draw_legend= function(paper, chart_area, legend_data, overwrite_options) {
+		if(!paper || !legend_data) return idb('Paper or Data is empty.');
 		
-		// Scan data.
-		for(i = 0; i < data['data'].length; ++i) {
-			item = data['data'][i];
+		var options = merge_options(overwrite_options), cache = [], x, y, i, j, item;
 
-			if(item[data['horizontal_field']] > h_max) {
-				h_max = item[data['horizontal_field']];
-			}
-			if(item[data['horizontal_field']] < h_min) {
-				h_min = item[data['horizontal_field']];
+		if(!options['legend']['legend-enabled']) return;
+
+		var width = options['legend']['width'], height = options['legend']['height'];
+
+		if(!width) {
+			// Calculate width.
+			var test_text, this_box, max_width = -Infinity;
+
+			for(i = 0; i < legend_data.length; ++i) {
+				item = legend_data[i];
+				test_text = paper.text(-1000, -1000, item['label']).attr({
+					'font-size': options['legend']['label-size']
+				}).translate(0.5, 0.5);
+				this_box = test_text.getBBox();
+
+				if(this_box.width > max_width) {
+					max_width = this_box.width;
+				}
 			}
 
-			if(item[data['vertical_field']] > v_max) {
-				v_max = item[data['vertical_field']];
-			}
-			if(item[data['vertical_field']] < v_min) {
-				v_min = item[data['vertical_field']];
-			}
+			width = 
+				max_width + 
+				options['legend']['padding-left'] + 
+				options['legend']['padding-right'] + 
+				options['legend']['indicator-margin-left'] +
+				options['legend']['indicator-margin-right'] +
+				options['legend']['indicator-size'];
+		};
 
-			if(item[data['size_field']] > size_max) {
-				size_max = item[data['size_field']];
-			}
-			if(item[data['size_field']] < size_min) {
-				size_min = item[data['size_field']];
+		if(!height) {
+			// Calculate height.
+			height = options['legend']['padding-top'] + options['legend']['padding-bottom'];
+			for(i = 0; i < legend_data.length; ++i) {
+				height += options['legend']['indicator-margin-top'] + options['legend']['indicator-margin-bottom'] + options['legend']['indicator-size'];
 			}
 		}
 
-		// Round.
-		h_min = Math.floor(h_min / 10) * 10;
-		h_max = Math.ceil(h_max / 10) * 10;
-		v_min = Math.floor(v_min / 10) * 10;
-		v_max = Math.ceil(v_max / 10) * 10;
+		switch(options['legend']['legend-position']) {
+			default:
+			case 'top-right': {
+				x = chart_area['top-right'][0] - width - options['legend']['margin-right'];
+				y = chart_area['top-right'][1] + options['legend']['margin-top'];
+				break;
+			}
+			case 'top-left': {
+				x = chart_area['top-left'][0] + options['legend']['margin-left'];
+				y = chart_area['top-right'][1] + options['legend']['margin-top'];
+				break;
+			}
+			case 'bottom-left': {
+				x = chart_area['bottom-left'][0] + options['legend']['margin-left'];
+				y = chart_area['bottom-left'][1] - height - options['legend']['margin-bottom'];
+				break;
+			}
+			case 'bottom-right': {
+				x = chart_area['bottom-right'][0] - width - options['legend']['margin-right'];
+				y = chart_area['bottom-left'][1] - height - options['legend']['margin-bottom'];
+				break;
+			}
+		}
 
-		// Setup units.
-		var h_start = chart_area['top-left'][0] + options['bubblechart']['padding-left'];
-		var h_unit = (chart_area['top-right'][0] - options['bubblechart']['padding-right'] - h_start) / (h_max - h_min);
-		var v_start = chart_area['bottom-left'][1] - options['bubblechart']['padding-bottom'];
-		var v_unit = (v_start - chart_area['top-left'][1] - options['bubblechart']['padding-top']) / (v_max - v_min);
-		var size_start = options['bubblechart']['circle-min-radius'];
-		var size_unit = (options['bubblechart']['circle-max-radius'] - size_start) / (size_max - size_min);
+		var p_border = paper.rect(x, y, width, height, options['legend']['border-radius']).attr({
+			'stroke': options['legend']['border-color'],
+			'stroke-opacity': options['legend']['border-alpha'],
+			'stroke-width': options['legend']['border-width'],
+			'fill': options['legend']['background-color'],
+			'fill-opacity': options['legend']['background-alpha']
+		}).translate(0.5, 0.5);
 
-		// Draw bubbles.
-		var this_h, this_v, this_size, this_label, this_color, this_bubble, this_text, p_bubbles = [], p_texts = [];
-		for(i = 0; i < data['data'].length; ++i) {
-			item = data['data'][i];
-			this_h = item[data['horizontal_field']];
-			this_v = item[data['vertical_field']];
-			this_size = item[data['size_field']];
-			this_label = item[data['label_field']];
-			this_color = options['color'][(i % options['color'].length)];
+		var p_indicators = [], p_labels = [];
+		var this_indicator, this_label;
+
+		x += options['legend']['padding-left'];
+		y += options['legend']['padding-top'];
+
+		for(i = 0; i < legend_data.length; ++i) {
+			item = legend_data[i];
+
+			// Indicator.
+			switch(item['type']) {
+				default:
+				case 'box': {
+					this_indicator = paper.rect(
+						x + options['legend']['indicator-margin-left'], 
+						y + options['legend']['indicator-margin-top'], 
+						options['legend']['indicator-size'],
+						options['legend']['indicator-size']
+					).attr({
+						'fill': item['color']['color'],
+						'fill-opacity': item['color']['light-alpha'],
+						'stroke': item['color']['color'],
+						'stroke-opacity': item['color']['dark-alpha'],
+						'stroke-width': options['legend']['indicator-border-width']
+					}).translate(0.5, 0.5);
+
+					break;
+				}
+				case 'line': {
+					cache = [];
+					cache.push('M' + (x + options['legend']['indicator-margin-left']) + ',' + (y + options['legend']['indicator-margin-top'] + options['legend']['indicator-size']));
+					cache.push('L' + (x + options['legend']['indicator-margin-left'] + 2 * options['legend']['indicator-size'] / 5) + ',' + (y + options['legend']['indicator-margin-top'] + 2 * options['legend']['indicator-size'] / 5));
+					cache.push('L' + (x + options['legend']['indicator-margin-left'] + 3 * options['legend']['indicator-size'] / 4) + ',' + (y + options['legend']['indicator-margin-top'] + 5 * options['legend']['indicator-size'] / 7));
+					cache.push('L' + (x + options['legend']['indicator-margin-left'] + options['legend']['indicator-size']) + ',' + (y + options['legend']['indicator-margin-top']));
+
+					this_indicator = paper.path(cache.join('')).attr({
+						'stroke': item['color']['color'],
+						'stroke-opacity': item['color']['dark-alpha'],
+						'stroke-width': options['legend']['indicator-border-width']
+					}).translate(0.5, 0.5);
+
+					break;
+				}
+				case 'node': {
+					this_indicator = paper.circle(
+						x + options['legend']['indicator-margin-left'] + options['legend']['indicator-size'] / 2,
+						y + options['legend']['indicator-margin-top'] + options['legend']['indicator-size'] / 2, 
+						options['legend']['indicator-size'] / 2
+					).attr({
+						'fill': item['color']['color'],
+						'fill-opacity': item['color']['dark-alpha'],
+						'stroke': item['color']['color'],
+						'stroke-opacity': item['color']['dark-alpha'],
+						'stroke-width': options['legend']['indicator-border-width']
+					}).translate(0.5, 0.5);
+
+					break;
+				}
+				case 'sector': {
+					var angle = options['legend']['indicator-sector-angle'] * Math.PI / 180;
+					cache = [];
+					cache.push('M' + (x + options['legend']['indicator-margin-left']) + ',' + (y + options['legend']['indicator-margin-top'] + options['legend']['indicator-size']));
+					cache.push('L' + (x + options['legend']['indicator-margin-left'] + Math.cos(angle) * options['legend']['indicator-size']) + ',' + (y + options['legend']['indicator-margin-top']));
+					cache.push('A' + options['legend']['indicator-size'] + ',' + options['legend']['indicator-size'] + ', 0, 0, 1,' + (x + options['legend']['indicator-margin-left'] + options['legend']['indicator-size']) + ',' + (y + options['legend']['indicator-margin-top'] + options['legend']['indicator-size']));
+					cache.push('L' + (x + options['legend']['indicator-margin-left']) + ',' + (y + options['legend']['indicator-margin-top'] + options['legend']['indicator-size']));
+					cache.push('Z');
+
+					this_indicator = paper.path(cache.join('')).attr({
+						'fill': item['color']['color'],
+						'fill-opacity': item['color']['light-alpha'],
+						'stroke': item['color']['color'],
+						'stroke-opacity': item['color']['dark-alpha'],
+						'stroke-width': options['legend']['indicator-border-width']
+					}).translate(0.5, 0.5);
+
+					break;
+				}
+				case 'circle': {
+					this_indicator = paper.circle(
+						x + options['legend']['indicator-margin-left'] + options['legend']['indicator-size'] / 2,
+						y + options['legend']['indicator-margin-top'] + options['legend']['indicator-size'] / 2, 
+						options['legend']['indicator-size'] / 2
+					).attr({
+						'fill': item['color']['color'],
+						'fill-opacity': item['color']['light-alpha'],
+						'stroke': item['color']['color'],
+						'stroke-opacity': item['color']['dark-alpha'],
+						'stroke-width': options['legend']['indicator-border-width']
+					}).translate(0.5, 0.5);
+
+					break;
+				}
+			}
 			
-			size = size_start + this_size * size_unit;
-			x = h_start + this_h * h_unit;
-			y = v_start - (this_v - v_min) * v_unit;
-			
-			this_bubble = paper.circle(x, y, size).attr({
-				'fill': this_color['color'],
-				'fill-opacity': this_color['light-alpha'],
-				'stroke': this_color['color'],
-				'stroke-opacity': this_color['dark-alpha'],
-				'stroke-width': options['bubblechart']['circle-border-width']
+			p_indicators.push(this_indicator);
+
+			// Label.
+			this_label = paper.text(
+				x + options['legend']['indicator-margin-left'] + options['legend']['indicator-margin-right'] + options['legend']['indicator-size'], 
+				y + options['legend']['indicator-margin-top'] + options['legend']['indicator-size'] / 2,
+				item['label']
+			).attr({
+				'text-anchor': 'start',
+				'fill': options['legend']['label-color'] ? options['legend']['label-color'] : item['color']['color'],
+				'fill-opacity': options['legend']['label-alpha'],
+				'font-size': options['legend']['label-size']
 			}).translate(0.5, 0.5);
 
-			this_text = paper.text(x, y, this_label).attr({
-				'fill': this_color['color'],
-				'font-size': options['bubblechart']['label-size'],
-				'text-anchor': 'middle'
-			}).translate(0.5, 0.5);
-
-			this_bubble.data('data', item);
-			this_text.data('data', item);
-			p_bubbles.push(this_bubble);
-			p_texts.push(this_text);
-		}
-
-		for(i = 0; i < p_bubbles.length; ++i) {
-			(function(bubble, text, index) {
-				bubble.mouseover(function () {
-					bubble.stop().animate({ 'fill-opacity': options['color'][0]['dark-alpha'] }, options['layout']['speed'], ">");
-					text.stop().animate({ 'fill': '#FFF' }, options['layout']['speed'], ">");
-				});
-				bubble.mouseout(function () {
-					bubble.stop().animate({ 'fill-opacity': options['color'][0]['light-alpha'] }, options['layout']['speed'], "<");
-					text.stop().animate({ 'fill': text.data('color') }, options['layout']['speed'], "<");
-				});
-			})(p_bubbles[i], p_texts[i], i);
-
-			p_bubbles[i].data('color', p_texts[i].attr('fill'));
-		}
-
-		// Vertical labels.
-		var v_label_unit = (v_start - chart_area['top-left'][1] - options['bubblechart']['padding-top']) / (options['bubblechart']['vertical-label-count'] - 1);
-		var v_label_value_unit = (v_max - v_min) / (options['bubblechart']['vertical-label-count'] - 1);
-		
-		cache = [];
-		x = chart_area['top-left'][0] - options['bubblechart']['vertical-bar-width'];
-		y = v_start;
-		var v_value = v_min;
-
-		for(i = 0; i < options['bubblechart']['vertical-label-count']; ++i) {
-			cache.push('M' + x + ',' + y + 'L' + chart_area['top-left'][0] + ',' + y);
-
-			paper.path(cache.join('')).attr({
-				'stroke': options['grid']['axis-color'],
-				'stroke-opacity': options['grid']['axis-alpha'],
-				'stroke-width': options['grid']['axis-width']
-			}).translate(0.5, 0.5);
-
-			paper.text(x - options['bubblechart']['vertical-bar-width'], y, v_value.toFixed(2)).attr({
-				'text-anchor': 'end',
-				'fill': options['grid']['vertical-label-color'],
-				'font-size': options['grid']['vertical-label-size']
-			}).translate(0.5, 0.5);
-
-			y -= v_label_unit;
-			v_value += v_label_value_unit;
-		}
-
-		// Horizontal labels.
-		var h_label_unit = (chart_area['top-right'][0] - options['bubblechart']['padding-right'] - h_start) / (options['bubblechart']['vertical-label-count'] - 1);
-		var h_label_value_unit = (h_max - h_min) / (options['bubblechart']['vertical-label-count'] - 1);
-
-		cache = [];
-		x = h_start;
-		y = chart_area['bottom-left'][1] + options['bubblechart']['horizontal-bar-width'];
-		var h_value = h_min;
-
-		for(i = 0; i < options['bubblechart']['horizontal-label-count']; ++i) {
-			cache.push('M' + x + ',' + y + 'L' + x + ',' + chart_area['bottom-left'][1]);
-
-			paper.path(cache.join('')).attr({
-				'stroke': options['grid']['axis-color'],
-				'stroke-opacity': options['grid']['axis-alpha'],
-				'stroke-width': options['grid']['axis-width']
-			}).translate(0.5, 0.5);
-
-			paper.text(x, y + options['bubblechart']['horizontal-bar-width'] * 2, h_value.toFixed(2)).attr({
-				'fill': options['grid']['horizontal-label-color'],
-				'font-size': options['grid']['horizontal-label-size']
-			}).translate(0.5, 0.5);
-
-			x += h_label_unit;
-			h_value += h_label_value_unit;
+			y += options['legend']['indicator-size'] + options['legend']['indicator-margin-top'] + options['legend']['indicator-margin-bottom'];
 		}
 	};
 
+	/* 1. AxisCharts */
 	$.InfoViz.draw_linechart = function(paper, chart_area, data, overwrite_options) {
 		if(!paper || !data) return idb('Paper or Data is empty.');
 		
@@ -802,7 +880,7 @@
 
 		// Lines.
 		var index = 0, color;
-		
+		var legend_data = [];
 		for(var line in lines) {
 			var p_line, p_node, p_label;
 
@@ -845,7 +923,16 @@
 			}).translate(0.5, 0.5);
 
 			index++;
+
+			// Add legend data.
+			legend_data.push({
+				'label': lines[line]['name'],
+				'color': color,
+				'type': 'line'
+			});
 		}
+
+		$.InfoViz.draw_legend(paper, chart_area, legend_data, options);
 	};
 
 	$.InfoViz.draw_barchart = function(paper, chart_area, data, overwrite_options) {
@@ -982,6 +1069,7 @@
 
 		// Bars.
 		var index = 0, color, p_nodes = [], this_node;
+		var legend_data = [];
 		for(var line in lines) {
 			var p_node;
 
@@ -1005,9 +1093,19 @@
 				p_nodes.push(this_node);
 			}
 
+			// Add legend data.
+			legend_data.push({
+				'label': lines[line]['name'],
+				'color': color,
+				'type': 'box'
+			});
+
 			index++;
 		}
 
+		$.InfoViz.draw_legend(paper, chart_area, legend_data, options);
+
+		// Animation.
 		for(i = 0; i < p_nodes.length; ++i) {
 			(function(target) {
 				target.mouseover(function () {
@@ -1020,13 +1118,175 @@
 		}
 	};
 
+	$.InfoViz.draw_bubblechart = function(paper, chart_area, data, overwrite_options) {
+		if(!paper || !data) return idb('Paper or Data is empty.');
+
+		var options = merge_options(overwrite_options), cache = [], i, x, y, size, item;
+		var h_min = Infinity, h_max = -Infinity, v_min = Infinity, v_max = -Infinity, size_max = -Infinity, size_min = Infinity;
+		
+		// Scan data.
+		for(i = 0; i < data['data'].length; ++i) {
+			item = data['data'][i];
+
+			if(item[data['horizontal_field']] > h_max) {
+				h_max = item[data['horizontal_field']];
+			}
+			if(item[data['horizontal_field']] < h_min) {
+				h_min = item[data['horizontal_field']];
+			}
+
+			if(item[data['vertical_field']] > v_max) {
+				v_max = item[data['vertical_field']];
+			}
+			if(item[data['vertical_field']] < v_min) {
+				v_min = item[data['vertical_field']];
+			}
+
+			if(item[data['size_field']] > size_max) {
+				size_max = item[data['size_field']];
+			}
+			if(item[data['size_field']] < size_min) {
+				size_min = item[data['size_field']];
+			}
+		}
+
+		// Round.
+		h_min = Math.floor(h_min / 10) * 10;
+		h_max = Math.ceil(h_max / 10) * 10;
+		v_min = Math.floor(v_min / 10) * 10;
+		v_max = Math.ceil(v_max / 10) * 10;
+
+		// Setup units.
+		var h_start = chart_area['top-left'][0] + options['bubblechart']['padding-left'];
+		var h_unit = (chart_area['top-right'][0] - options['bubblechart']['padding-right'] - h_start) / (h_max - h_min);
+		var v_start = chart_area['bottom-left'][1] - options['bubblechart']['padding-bottom'];
+		var v_unit = (v_start - chart_area['top-left'][1] - options['bubblechart']['padding-top']) / (v_max - v_min);
+		var size_start = options['bubblechart']['circle-min-radius'];
+		var size_unit = (options['bubblechart']['circle-max-radius'] - size_start) / (size_max - size_min);
+
+		// Draw bubbles.
+		var this_h, this_v, this_size, this_label, this_color, this_bubble, this_text;
+		var legend_data = [], p_bubbles = [], p_texts = [];
+		for(i = 0; i < data['data'].length; ++i) {
+			item = data['data'][i];
+			this_h = item[data['horizontal_field']];
+			this_v = item[data['vertical_field']];
+			this_size = item[data['size_field']];
+			this_label = item[data['label_field']];
+			this_color = options['color'][(i % options['color'].length)];
+			
+			size = size_start + this_size * size_unit;
+			x = h_start + this_h * h_unit;
+			y = v_start - (this_v - v_min) * v_unit;
+			
+			this_bubble = paper.circle(x, y, size).attr({
+				'fill': this_color['color'],
+				'fill-opacity': this_color['light-alpha'],
+				'stroke': this_color['color'],
+				'stroke-opacity': this_color['dark-alpha'],
+				'stroke-width': options['bubblechart']['circle-border-width']
+			}).translate(0.5, 0.5);
+
+			this_text = paper.text(x, y, this_label).attr({
+				'fill': this_color['color'],
+				'font-size': options['bubblechart']['label-size'],
+				'text-anchor': 'middle'
+			}).translate(0.5, 0.5);
+
+			this_bubble.data('data', item);
+			this_text.data('data', item);
+			p_bubbles.push(this_bubble);
+			p_texts.push(this_text);
+
+			// Add legend data.
+			legend_data.push({
+				'label': this_label,
+				'color': this_color,
+				'type': 'circle'
+			});
+		}
+
+		/*for(i = 0; i < p_bubbles.length; ++i) {
+			(function(bubble, text, index) {
+				bubble.mouseover(function () {
+					bubble.stop().animate({ 'fill-opacity': options['color'][0]['dark-alpha'] }, options['layout']['speed'], ">");
+					text.stop().animate({ 'fill': '#FFF' }, options['layout']['speed'], ">");
+				});
+				bubble.mouseout(function () {
+					bubble.stop().animate({ 'fill-opacity': options['color'][0]['light-alpha'] }, options['layout']['speed'], "<");
+					text.stop().animate({ 'fill': text.data('color') }, options['layout']['speed'], "<");
+				});
+			})(p_bubbles[i], p_texts[i], i);
+
+			p_bubbles[i].data('color', p_texts[i].attr('fill'));
+		}*/
+
+		$.InfoViz.draw_legend(paper, chart_area, legend_data, options);
+
+		// Vertical labels.
+		var v_label_unit = (v_start - chart_area['top-left'][1] - options['bubblechart']['padding-top']) / (options['bubblechart']['vertical-label-count'] - 1);
+		var v_label_value_unit = (v_max - v_min) / (options['bubblechart']['vertical-label-count'] - 1);
+		
+		cache = [];
+		x = chart_area['top-left'][0] - options['bubblechart']['vertical-bar-width'];
+		y = v_start;
+		var v_value = v_min;
+
+		for(i = 0; i < options['bubblechart']['vertical-label-count']; ++i) {
+			cache.push('M' + x + ',' + y + 'L' + chart_area['top-left'][0] + ',' + y);
+
+			paper.path(cache.join('')).attr({
+				'stroke': options['grid']['axis-color'],
+				'stroke-opacity': options['grid']['axis-alpha'],
+				'stroke-width': options['grid']['axis-width']
+			}).translate(0.5, 0.5);
+
+			paper.text(x - options['bubblechart']['vertical-bar-width'], y, v_value.toFixed(2)).attr({
+				'text-anchor': 'end',
+				'fill': options['grid']['vertical-label-color'],
+				'font-size': options['grid']['vertical-label-size']
+			}).translate(0.5, 0.5);
+
+			y -= v_label_unit;
+			v_value += v_label_value_unit;
+		}
+
+		// Horizontal labels.
+		var h_label_unit = (chart_area['top-right'][0] - options['bubblechart']['padding-right'] - h_start) / (options['bubblechart']['vertical-label-count'] - 1);
+		var h_label_value_unit = (h_max - h_min) / (options['bubblechart']['vertical-label-count'] - 1);
+
+		cache = [];
+		x = h_start;
+		y = chart_area['bottom-left'][1] + options['bubblechart']['horizontal-bar-width'];
+		var h_value = h_min;
+
+		for(i = 0; i < options['bubblechart']['horizontal-label-count']; ++i) {
+			cache.push('M' + x + ',' + y + 'L' + x + ',' + chart_area['bottom-left'][1]);
+
+			paper.path(cache.join('')).attr({
+				'stroke': options['grid']['axis-color'],
+				'stroke-opacity': options['grid']['axis-alpha'],
+				'stroke-width': options['grid']['axis-width']
+			}).translate(0.5, 0.5);
+
+			paper.text(x, y + options['bubblechart']['horizontal-bar-width'] * 2, h_value.toFixed(2)).attr({
+				'fill': options['grid']['horizontal-label-color'],
+				'font-size': options['grid']['horizontal-label-size']
+			}).translate(0.5, 0.5);
+
+			x += h_label_unit;
+			h_value += h_label_value_unit;
+		}
+	};
+
+	/* 2. Round Stuff */
 	$.InfoViz.draw_piechart = function(paper, chart_area, data, overwrite_options) {
 		if(!paper || !data) return idb('Paper or Data is empty.');
 		
 		var options = merge_options(overwrite_options), cache = [], x, y, i, item, radius;
 		var hole_radius = options['piechart']['hole-radius'];
-		var cx = chart_area['top-left'][0] + chart_area['width'] / 2;
-		var cy = chart_area['top-left'][1] + chart_area['height'] / 2;
+		var cx = chart_area['top-left'][0] + chart_area['width'] / 2 + options['piechart']['horizontal-offset'];
+		var cy = chart_area['top-left'][1] + chart_area['height'] / 2 + options['piechart']['vertical-offset'];
 		
 		if(chart_area['width'] > chart_area['height']) {
 			radius = Math.floor(chart_area['height'] / 2) * options['piechart']['sector-size-factor'];
@@ -1073,6 +1333,7 @@
 		var this_angle, current_angle = 0, this_color, p_sectors = [], p_bars = [], p_labels = [], half_angle;
 		var x2, y2, x3, y3, x4, y4, align;
 		var this_sector, this_bar, this_label;
+		var legend_data = [];
 
 		for(i = 0; i < data['data'].length; ++i) {
 			item = data['data'][i][data['value_field']];
@@ -1091,6 +1352,13 @@
 			this_sector.data('color-alpha', this_color['light-alpha']);
 			this_sector.data('index', i);
 			p_sectors.push(this_sector);
+
+			// Add legend.
+			legend_data.push({
+				'label': data['data'][i][data['label_field']],
+				'color': this_color,
+				'type': 'sector'
+			});
 
 			// Label bar
 			half_angle = -(current_angle + this_angle / 2)  * Math.PI / 180;
@@ -1141,6 +1409,8 @@
 			current_angle += this_angle;
 		}
 
+		$.InfoViz.draw_legend(paper, chart_area, legend_data, options);
+
 		var animate_on = Raphael.animation({
 			'transform': 's1.1 1.1 ' + cx + ' ' + cy
 		}, options['layout']['speed'], '>');
@@ -1183,13 +1453,13 @@
 		if(!paper || !data) return idb('Paper or Data is empty.');
 		
 		var options = merge_options(overwrite_options), cache = [], cache2 = [], x, y, i, j, item, radius, rad = Math.PI / 180;
-		var cx = chart_area['top-left'][0] + chart_area['width'] / 2;
-		var cy = chart_area['top-left'][1] + chart_area['height'] / 2;
+		var cx = chart_area['top-left'][0] + chart_area['width'] / 2 + options['radarchart']['horizontal-offset'];
+		var cy = chart_area['top-left'][1] + chart_area['height'] / 2 + options['radarchart']['vertical-offset'];
 		
 		if(chart_area['width'] > chart_area['height']) {
-			radius = Math.floor(chart_area['height'] / 2) * options['piechart']['sector-size-factor'];
+			radius = Math.floor(chart_area['height'] / 2) * options['radarchart']['sector-size-factor'];
 		} else {
-			radius = Math.floor(chart_area['width'] / 2) * options['piechart']['sector-size-factor'];
+			radius = Math.floor(chart_area['width'] / 2) * options['radarchart']['sector-size-factor'];
 		}
 
 		// Scan value fields.
@@ -1291,7 +1561,7 @@
 		}).translate(0.5, 0.5);
 
 		// Draw circles.
-		var this_r = 0, this_color, this_value, p_circles = [], p;
+		var this_r = 0, this_color, this_value, p_circles = [], p, legend_data = [];
 		for(i = 0; i < data['data'].length; ++i) {
 			this_color = options['color'][(i % options['color'].length)];
 			cache = [];
@@ -1324,7 +1594,18 @@
 
 			p.data('color-alpha', options['radarchart']['circle-background-alpha']);
 			p_circles.push(p);
+
+			if(data['data'][i][data['name_field']]) {
+				// Add legend.
+				legend_data.push({
+					'label': data['data'][i][data['name_field']],
+					'color': this_color,
+					'type': 'circle'
+				});
+			}
 		}
+
+		$.InfoViz.draw_legend(paper, chart_area, legend_data, options);
 
 		// Animations.
 		for(i = 0; i < p_circles.length; ++i) {
@@ -1343,6 +1624,7 @@
 		}
 	};
 
+	/* 3. Map */
 	$.InfoViz.draw_heatmap = function(paper, chart_area, data, overwrite_options) {
 		if(!paper || !data) return idb('Paper or Data is empty.');
 		
@@ -1434,6 +1716,9 @@
 		}
 	};
 
+	/* 4. Tree */
+
+	/* 5. Cloud */
 	$.InfoViz.draw_tagcloud = function(paper, chart_area, data, overwrite_options) {
 		if(!paper || !data) return idb('Paper or Data is empty.');
 		
