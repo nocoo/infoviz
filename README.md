@@ -472,7 +472,8 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'circle-radius': 5,
 			'label-size': 12,
 			'vertical-label-count': 10,
-			'vertical-bar-width': 5
+			'vertical-bar-width': 5,
+			'custom-circle': undefined
 		},
 		'bubblechart': {
 			'padding-top': 40,

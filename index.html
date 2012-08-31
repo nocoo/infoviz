@@ -306,7 +306,7 @@
 
 				// HeatMap
 				var data = [], r;
-				for(var i = 0; i < 1024; ++i) {
+				for(var i = 0; i < 128; ++i) {
 					r = Math.floor(Math.random() * 100);
 					data.push({ 'F1': r, 'F2': i, 'F3': r });
 				}
@@ -319,7 +319,7 @@
 						'label_field': 'F3',
 						'data': data
 					},
-					{ 'layout': { 'logo-enabled': false } }
+					{ 'layout': { 'logo-enabled': false }, 'heatmap': { 'label-size': 30 } }
 				);
 
 				// TagCloud.
