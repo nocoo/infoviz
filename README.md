@@ -2,6 +2,8 @@
 
 InfoViz, an information visualization library based on [Raphaël](http://raphaeljs.com/).
 
+Raphaël currently supports Firefox 3.0+, Safari 3.0+, Chrome 5.0+, Opera 9.5+ and Internet Explorer 6.0+.
+
 # 1 AxisCharts
 
 ## 1.1 LineChart

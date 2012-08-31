@@ -113,7 +113,8 @@
 			'circle-radius': 5,
 			'label-size': 12,
 			'vertical-label-count': 10,
-			'vertical-bar-width': 5
+			'vertical-bar-width': 5,
+			'custom-circle': undefined
 		},
 		'bubblechart': {
 			'padding-top': 40,
@@ -835,7 +836,6 @@
 				'stroke-width': options['grid']['axis-width']
 			}).translate(0.5, 0.5);
 
-
 			paper.text(x - options['linechart']['vertical-bar-width'], y, v_value).attr({
 				'text-anchor': 'end',
 				'fill': options['grid']['vertical-label-color'],
@@ -882,7 +882,7 @@
 		var index = 0, color;
 		var legend_data = [];
 		for(var line in lines) {
-			var p_line, p_node, p_label;
+			var p_line, p_node, p_label, todo = [];
 
 			cache = [];
 			color = options['color'][(index % options['color'].length)];
@@ -898,14 +898,8 @@
 				} else {
 					cache.push('L' + x + ',' + y);
 				}
-				
-				p_node = paper.circle(x, y, options['linechart']['circle-radius']);
-				p_node.attr({
-					'stroke': color['color'],
-					'stroke-opacity': color['dark-alpha'],
-					'stroke-width': options['linechart']['line-width'],
-					'fill': color['color']
-				}).translate(0.5, 0.5);
+
+				todo.push([x, y]);
 			}
 
 			p_line = paper.path(cache.join(''));
@@ -921,6 +915,28 @@
 				'text-anchor': 'start',
 				'font-size': options['linechart']['label-size']
 			}).translate(0.5, 0.5);
+
+			// Circle.
+			for(i = 0; i < todo.length; ++i) {
+				if(options['linechart']['custom-circle']) {
+					p_node = paper.image(
+						options['linechart']['custom-circle'],
+						todo[i][0] - options['linechart']['circle-radius'],
+						todo[i][1] - options['linechart']['circle-radius'],
+						options['linechart']['circle-radius'] * 2, 
+						options['linechart']['circle-radius'] * 2
+					).attr({
+						'cursor': 'pointer'
+					}).translate(0.5, 0.5);
+				} else {
+					p_node = paper.circle(todo[i][0], todo[i][1], options['linechart']['circle-radius']).attr({
+						'stroke': color['color'],
+						'stroke-opacity': color['dark-alpha'],
+						'stroke-width': options['linechart']['line-width'],
+						'fill': color['color']
+					}).translate(0.5, 0.5);
+				}
+			}
 
 			index++;
 
