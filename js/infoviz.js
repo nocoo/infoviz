@@ -141,7 +141,7 @@
 			'vertical-bar-width': 5
 		},
 		'piechart': {
-			'sector-size-factor': 0.9,
+			'size-factor': 0.9,
 			'sector-border-width': 1,
 			'label-distance': 5,
 			'label-line-width': 1,
@@ -155,7 +155,7 @@
 			'vertical-offset': 0
 		},
 		'radarchart': {
-			'sector-size-factor': 0.9,
+			'size-factor': 0.9,
 			'outer-border-width': 1,
 			'outer-border-color': '#999',
 			'outer-border-alpha': 1,
@@ -291,6 +291,11 @@
 			case 'tagcloud': {
 				area = InfoViz.draw_empty_background(paper, data, options);
 				InfoViz.draw_tagcloud(paper, area, data, options);
+				break;
+			}
+			case 'smitchgraph': {
+				area = InfoViz.draw_empty_background(paper, data, options);
+				InfoViz.draw_smitchgraph(paper, area, data, options);
 				break;
 			}
 			default: {
@@ -1305,9 +1310,9 @@
 		var cy = chart_area['top-left'][1] + chart_area['height'] / 2 + options['piechart']['vertical-offset'];
 		
 		if(chart_area['width'] > chart_area['height']) {
-			radius = Math.floor(chart_area['height'] / 2) * options['piechart']['sector-size-factor'];
+			radius = Math.floor(chart_area['height'] / 2) * options['piechart']['size-factor'];
 		} else {
-			radius = Math.floor(chart_area['width'] / 2) * options['piechart']['sector-size-factor'];
+			radius = Math.floor(chart_area['width'] / 2) * options['piechart']['size-factor'];
 		}
 
 		// Scan value fields.
@@ -1473,9 +1478,9 @@
 		var cy = chart_area['top-left'][1] + chart_area['height'] / 2 + options['radarchart']['vertical-offset'];
 		
 		if(chart_area['width'] > chart_area['height']) {
-			radius = Math.floor(chart_area['height'] / 2) * options['radarchart']['sector-size-factor'];
+			radius = Math.floor(chart_area['height'] / 2) * options['radarchart']['size-factor'];
 		} else {
-			radius = Math.floor(chart_area['width'] / 2) * options['radarchart']['sector-size-factor'];
+			radius = Math.floor(chart_area['width'] / 2) * options['radarchart']['size-factor'];
 		}
 
 		// Scan value fields.
@@ -1638,6 +1643,22 @@
 				});
 			})(p_circles[i]);
 		}
+	};
+
+	InfoViz.draw_smitchgraph = function(paper, chart_area, data, overwrite_options) {
+		if(!paper || !data) return idb('Paper or Data is empty.');
+		
+		var options = merge_options(overwrite_options), cache = [], cache2 = [], x, y, i, j, item, radius, rad = Math.PI / 180;
+		var cx = chart_area['top-left'][0] + chart_area['width'] / 2 + options['smitchgraph']['horizontal-offset'];
+		var cy = chart_area['top-left'][1] + chart_area['height'] / 2 + options['smitchgraph']['vertical-offset'];
+		
+		if(chart_area['width'] > chart_area['height']) {
+			radius = Math.floor(chart_area['height'] / 2) * options['smitchgraph']['size-factor'];
+		} else {
+			radius = Math.floor(chart_area['width'] / 2) * options['smitchgraph']['size-factor'];
+		}
+
+		console.log(data);
 	};
 
 	/* 3. Map */
@@ -1902,12 +1923,20 @@
 		var result = {}, p, q;
 
 		for(p in InfoViz.options) {
-			result[p] = InfoViz.options[p];
+			if(typeof(InfoViz.options[p]) === 'object' && (InfoViz.options[p] instanceof Array)) {
+				result[p] = [];
+			} else {
+				result[p] = {};
+			}
+
+			for(q in InfoViz.options[p]) {
+				result[p][q] = InfoViz.options[p][q];
+			}
 		}
 
 		for(p in overwrite) {
 			for(q in overwrite[p]) {
-				InfoViz.options[p][q] = overwrite[p][q];
+				result[p][q] = overwrite[p][q];
 			}
 		}
 
