@@ -6,12 +6,12 @@
 	@version 0.2.0
 */
 
-;(function($) {
-	if($.InfoViz) return;
+;(function() {
+	if(InfoViz) return;
 
-	$.InfoViz = {};
+	var InfoViz = {};
 
-	$.InfoViz.options = {
+	InfoViz.options = {
 		'layout': {
 			'padding-top': 1,
 			'padding-right': 1,
@@ -230,7 +230,7 @@
 	};
 
 	/* 0. Basic and Accessories */
-	$.InfoViz.chart = function(element, type, data, overwrite_options) {
+	InfoViz.chart = function(element, type, data, overwrite_options) {
 		var target_id = $(element).attr('id') ? $(element).attr('id') : 'infoviz_' + guid();
 		$(element).attr('id', target_id);
 
@@ -256,41 +256,41 @@
 
 		switch(type) {
 			case 'linechart': {
-				area = $.InfoViz.draw_axis_background(paper, data, options);
-				$.InfoViz.draw_linechart(paper, area, data, options);
+				area = InfoViz.draw_axis_background(paper, data, options);
+				InfoViz.draw_linechart(paper, area, data, options);
 
 				break;
 			}
 			case 'bubblechart': {
-				area = $.InfoViz.draw_axis_background(paper, data, options);
-				$.InfoViz.draw_bubblechart(paper, area, data, options);
+				area = InfoViz.draw_axis_background(paper, data, options);
+				InfoViz.draw_bubblechart(paper, area, data, options);
 
 				break;
 			}
 			case 'barchart': {
-				area = $.InfoViz.draw_axis_background(paper, data, options);
-				$.InfoViz.draw_barchart(paper, area, data, options);
+				area = InfoViz.draw_axis_background(paper, data, options);
+				InfoViz.draw_barchart(paper, area, data, options);
 
 				break;
 			}
 			case 'piechart': {
-				area = $.InfoViz.draw_empty_background(paper, data, options);
-				$.InfoViz.draw_piechart(paper, area, data, options);
+				area = InfoViz.draw_empty_background(paper, data, options);
+				InfoViz.draw_piechart(paper, area, data, options);
 				break;
 			}
 			case 'radarchart': {
-				area = $.InfoViz.draw_empty_background(paper, data, options);
-				$.InfoViz.draw_radarchart(paper, area, data, options);
+				area = InfoViz.draw_empty_background(paper, data, options);
+				InfoViz.draw_radarchart(paper, area, data, options);
 				break;
 			}
 			case 'heatmap': {
-				area = $.InfoViz.draw_empty_background(paper, data, options);
-				$.InfoViz.draw_heatmap(paper, area, data, options);
+				area = InfoViz.draw_empty_background(paper, data, options);
+				InfoViz.draw_heatmap(paper, area, data, options);
 				break;
 			}
 			case 'tagcloud': {
-				area = $.InfoViz.draw_empty_background(paper, data, options);
-				$.InfoViz.draw_tagcloud(paper, area, data, options);
+				area = InfoViz.draw_empty_background(paper, data, options);
+				InfoViz.draw_tagcloud(paper, area, data, options);
 				break;
 			}
 			default: {
@@ -336,7 +336,7 @@
 		}
 	};
 
-	$.InfoViz.draw_empty_background = function(paper, data, overwrite_options) {
+	InfoViz.draw_empty_background = function(paper, data, overwrite_options) {
 		if(!paper) return idb('Paper is empty.');
 
 		var options = merge_options(overwrite_options), chart_area = {},
@@ -408,7 +408,7 @@
 		return chart_area;
 	};
 
-	$.InfoViz.draw_axis_background = function(paper, data, overwrite_options) {
+	InfoViz.draw_axis_background = function(paper, data, overwrite_options) {
 		if(!paper) return idb('Paper is empty.');
 
 		var options = merge_options(overwrite_options), chart_area = {},
@@ -567,7 +567,7 @@
 		return chart_area;
 	};
 
-	$.InfoViz.draw_legend= function(paper, chart_area, legend_data, overwrite_options) {
+	InfoViz.draw_legend= function(paper, chart_area, legend_data, overwrite_options) {
 		if(!paper || !legend_data) return idb('Paper or Data is empty.');
 		
 		var options = merge_options(overwrite_options), cache = [], x, y, i, j, item;
@@ -754,7 +754,7 @@
 	};
 
 	/* 1. AxisCharts */
-	$.InfoViz.draw_linechart = function(paper, chart_area, data, overwrite_options) {
+	InfoViz.draw_linechart = function(paper, chart_area, data, overwrite_options) {
 		if(!paper || !data) return idb('Paper or Data is empty.');
 		
 		var options = merge_options(overwrite_options), cache = [], x, y;
@@ -781,7 +781,7 @@
 					h_min = this_h;
 				}
 
-				if($.inArray(this_h, h_fields) === -1) {
+				if(in_array(this_h, h_fields) === -1) {
 					h_fields.push(this_h);
 				}
 
@@ -799,7 +799,7 @@
 					v_min = this_v;
 				}
 
-				if($.inArray(this_v, v_fields) === -1) {
+				if(in_array(this_v, v_fields) === -1) {
 					v_fields.push(this_v);
 				}
 			}
@@ -948,10 +948,10 @@
 			});
 		}
 
-		$.InfoViz.draw_legend(paper, chart_area, legend_data, options);
+		InfoViz.draw_legend(paper, chart_area, legend_data, options);
 	};
 
-	$.InfoViz.draw_barchart = function(paper, chart_area, data, overwrite_options) {
+	InfoViz.draw_barchart = function(paper, chart_area, data, overwrite_options) {
 		if(!paper || !data) return idb('Paper or Data is empty.');
 		
 		var options = merge_options(overwrite_options), cache = [], x, y, line_count = 0;
@@ -978,7 +978,7 @@
 					h_min = this_h;
 				}
 
-				if($.inArray(this_h, h_fields) === -1) {
+				if(in_array(this_h, h_fields) === -1) {
 					h_fields.push(this_h);
 				}
 
@@ -996,7 +996,7 @@
 					v_min = this_v;
 				}
 
-				if($.inArray(this_v, v_fields) === -1) {
+				if(in_array(this_v, v_fields) === -1) {
 					v_fields.push(this_v);
 				}
 			}
@@ -1119,7 +1119,7 @@
 			index++;
 		}
 
-		$.InfoViz.draw_legend(paper, chart_area, legend_data, options);
+		InfoViz.draw_legend(paper, chart_area, legend_data, options);
 
 		// Animation.
 		for(i = 0; i < p_nodes.length; ++i) {
@@ -1134,7 +1134,7 @@
 		}
 	};
 
-	$.InfoViz.draw_bubblechart = function(paper, chart_area, data, overwrite_options) {
+	InfoViz.draw_bubblechart = function(paper, chart_area, data, overwrite_options) {
 		if(!paper || !data) return idb('Paper or Data is empty.');
 
 		var options = merge_options(overwrite_options), cache = [], i, x, y, size, item;
@@ -1237,7 +1237,7 @@
 			p_bubbles[i].data('color', p_texts[i].attr('fill'));
 		}*/
 
-		$.InfoViz.draw_legend(paper, chart_area, legend_data, options);
+		InfoViz.draw_legend(paper, chart_area, legend_data, options);
 
 		// Vertical labels.
 		var v_label_unit = (v_start - chart_area['top-left'][1] - options['bubblechart']['padding-top']) / (options['bubblechart']['vertical-label-count'] - 1);
@@ -1296,7 +1296,7 @@
 	};
 
 	/* 2. Round Stuff */
-	$.InfoViz.draw_piechart = function(paper, chart_area, data, overwrite_options) {
+	InfoViz.draw_piechart = function(paper, chart_area, data, overwrite_options) {
 		if(!paper || !data) return idb('Paper or Data is empty.');
 		
 		var options = merge_options(overwrite_options), cache = [], x, y, i, item, radius;
@@ -1425,7 +1425,7 @@
 			current_angle += this_angle;
 		}
 
-		$.InfoViz.draw_legend(paper, chart_area, legend_data, options);
+		InfoViz.draw_legend(paper, chart_area, legend_data, options);
 
 		var animate_on = Raphael.animation({
 			'transform': 's1.1 1.1 ' + cx + ' ' + cy
@@ -1465,7 +1465,7 @@
 		}
 	};
 
-	$.InfoViz.draw_radarchart = function(paper, chart_area, data, overwrite_options) {
+	InfoViz.draw_radarchart = function(paper, chart_area, data, overwrite_options) {
 		if(!paper || !data) return idb('Paper or Data is empty.');
 		
 		var options = merge_options(overwrite_options), cache = [], cache2 = [], x, y, i, j, item, radius, rad = Math.PI / 180;
@@ -1621,7 +1621,7 @@
 			}
 		}
 
-		$.InfoViz.draw_legend(paper, chart_area, legend_data, options);
+		InfoViz.draw_legend(paper, chart_area, legend_data, options);
 
 		// Animations.
 		for(i = 0; i < p_circles.length; ++i) {
@@ -1641,7 +1641,7 @@
 	};
 
 	/* 3. Map */
-	$.InfoViz.draw_heatmap = function(paper, chart_area, data, overwrite_options) {
+	InfoViz.draw_heatmap = function(paper, chart_area, data, overwrite_options) {
 		if(!paper || !data) return idb('Paper or Data is empty.');
 		
 		var options = merge_options(overwrite_options), cache = [], x, y, i, j, item;
@@ -1735,7 +1735,7 @@
 	/* 4. Tree */
 
 	/* 5. Cloud */
-	$.InfoViz.draw_tagcloud = function(paper, chart_area, data, overwrite_options) {
+	InfoViz.draw_tagcloud = function(paper, chart_area, data, overwrite_options) {
 		if(!paper || !data) return idb('Paper or Data is empty.');
 		
 		var options = merge_options(overwrite_options), cache = [], x, y, i, j, item;
@@ -1886,12 +1886,30 @@
 		}
 	};
 
-	var merge_options = function(overwrite) {
-		if(!overwrite) return $.InfoViz.options;
+	var in_array = function(target, array) {
+		if(typeof(array) === 'object' && (array instanceof Array)) {
+			for(var i = 0; i < array.length; ++i) {
+				if(target == array[i]) return i;
+			}
+		}
 
-		var result = {};		
-		$.extend(true, result, $.InfoViz.options);
-		$.extend(true, result, overwrite);
+		return -1;
+	};
+
+	var merge_options = function(overwrite) {
+		if(!overwrite) return InfoViz.options;
+
+		var result = {}, p, q;
+
+		for(p in InfoViz.options) {
+			result[p] = InfoViz.options[p];
+		}
+
+		for(p in overwrite) {
+			for(q in overwrite[p]) {
+				InfoViz.options[p][q] = overwrite[p][q];
+			}
+		}
 
 		return result;
 	};
@@ -1914,13 +1932,15 @@
 		}
 	};
 
-	$.InfoViz.global_option = function(overwrite) {
-		$.InfoViz.options = merge_options(overwrite);
+	InfoViz.global_option = function(overwrite) {
+		InfoViz.options = merge_options(overwrite);
 	};
 
-	$.InfoViz.version = function() { return '0.1.0' };
+	InfoViz.version = function() { return '0.1.0' };
 
-	$.InfoViz.enable_logo = function() {
-		$.InfoViz.options['layout']['logo-enabled'] = true;
+	InfoViz.enable_logo = function() {
+		InfoViz.options['layout']['logo-enabled'] = true;
 	};
-})(jQuery);
+
+	window.InfoViz = InfoViz;
+})();

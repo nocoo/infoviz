@@ -59,15 +59,15 @@
 		<script>
 			;(function($) {
 				// Logo is disabled by default.
-				$.InfoViz.enable_logo();
+				InfoViz.enable_logo();
 
 				// Global option overwrite.
-				$.InfoViz.global_option({
+				InfoViz.global_option({
 					'layout': { 'background-color': '#FFF' }
 				});
 
 				// LineChart.
-				$.InfoViz.chart(
+				InfoViz.chart(
 					$('.i-linechart'), 
 					'linechart', 
 					{
@@ -129,7 +129,7 @@
 				);
 
 				// BarChart.
-				$.InfoViz.chart(
+				InfoViz.chart(
 					$('.i-barchart'), 
 					'barchart', 
 					{
@@ -191,7 +191,7 @@
 				);
 
 				// BubbleChart.
-				$.InfoViz.chart(
+				InfoViz.chart(
 					$('.i-bubblechart'), 
 					'bubblechart', 
 					{
@@ -218,7 +218,7 @@
 				);
 
 				// PieChart.
-				$.InfoViz.chart(
+				InfoViz.chart(
 					$('.i-piechart1'), 
 					'piechart', 
 					{
@@ -237,7 +237,7 @@
 					{ 'legend': { 'legend-enabled': false } }
 				);
 
-				$.InfoViz.chart(
+				InfoViz.chart(
 					$('.i-piechart2'), 
 					'piechart', 
 					{
@@ -263,7 +263,7 @@
 				);
 
 				// RadarChart.
-				$.InfoViz.chart(
+				InfoViz.chart(
 					$('.i-radarchart1'), 
 					'radarchart', 
 					{
@@ -285,7 +285,7 @@
 					}
 				);
 
-				$.InfoViz.chart(
+				InfoViz.chart(
 					$('.i-radarchart2'), 
 					'radarchart', 
 					{
@@ -311,7 +311,7 @@
 					data.push({ 'F1': r, 'F2': i, 'F3': r });
 				}
 
-				$.InfoViz.chart(
+				InfoViz.chart(
 					$('.i-heatmap'), 
 					'heatmap', 
 					{
@@ -323,7 +323,7 @@
 				);
 
 				// TagCloud.
-				$.InfoViz.chart(
+				InfoViz.chart(
 					$('.i-tagcloud1'), 
 					'tagcloud',
 					{
@@ -358,7 +358,7 @@
 					}
 				);
 
-				$.InfoViz.chart(
+				InfoViz.chart(
 					$('.i-tagcloud2'), 
 					'tagcloud',
 					{
