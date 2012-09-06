@@ -931,8 +931,8 @@
 				if(options['linechart']['custom-circle']) {
 					p_node = paper.image(
 						options['linechart']['custom-circle'],
-						todo[i][0] - options['linechart']['circle-radius'],
-						todo[i][1] - options['linechart']['circle-radius'],
+						todo[i]['x'] - options['linechart']['circle-radius'],
+						todo[i]['y'] - options['linechart']['circle-radius'],
 						options['linechart']['circle-radius'] * 2, 
 						options['linechart']['circle-radius'] * 2
 					).attr({
