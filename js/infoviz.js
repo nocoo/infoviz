@@ -179,6 +179,11 @@
 			'horizontal-offset': 0,
 			'vertical-offset': 0
 		},
+		'smithgraph': {
+			'size-factor': 0.9,
+			'horizontal-offset': 0,
+			'vertical-offset': 0
+		},
 		'heatmap': {
 			'horizontal_margin': 4,
 			'vertical_margin': 4,
@@ -230,7 +235,7 @@
 	};
 
 	/* 0. Basic and Accessories */
-	InfoViz.chart = function(element, type, data, overwrite_options) {
+	InfoViz.chart = function(element, type, data, overwrite_options, callback) {
 		var target_id = $(element).attr('id') ? $(element).attr('id') : 'infoviz_' + guid();
 		$(element).attr('id', target_id);
 
@@ -257,45 +262,45 @@
 		switch(type) {
 			case 'linechart': {
 				area = InfoViz.draw_axis_background(paper, data, options);
-				InfoViz.draw_linechart(paper, area, data, options);
+				InfoViz.draw_linechart(paper, area, data, options, callback);
 
 				break;
 			}
 			case 'bubblechart': {
 				area = InfoViz.draw_axis_background(paper, data, options);
-				InfoViz.draw_bubblechart(paper, area, data, options);
+				InfoViz.draw_bubblechart(paper, area, data, options, callback);
 
 				break;
 			}
 			case 'barchart': {
 				area = InfoViz.draw_axis_background(paper, data, options);
-				InfoViz.draw_barchart(paper, area, data, options);
+				InfoViz.draw_barchart(paper, area, data, options, callback);
 
 				break;
 			}
 			case 'piechart': {
 				area = InfoViz.draw_empty_background(paper, data, options);
-				InfoViz.draw_piechart(paper, area, data, options);
+				InfoViz.draw_piechart(paper, area, data, options, callback);
 				break;
 			}
 			case 'radarchart': {
 				area = InfoViz.draw_empty_background(paper, data, options);
-				InfoViz.draw_radarchart(paper, area, data, options);
+				InfoViz.draw_radarchart(paper, area, data, options, callback);
 				break;
 			}
 			case 'heatmap': {
 				area = InfoViz.draw_empty_background(paper, data, options);
-				InfoViz.draw_heatmap(paper, area, data, options);
+				InfoViz.draw_heatmap(paper, area, data, options, callback);
 				break;
 			}
 			case 'tagcloud': {
 				area = InfoViz.draw_empty_background(paper, data, options);
-				InfoViz.draw_tagcloud(paper, area, data, options);
+				InfoViz.draw_tagcloud(paper, area, data, options, callback);
 				break;
 			}
-			case 'smitchgraph': {
+			case 'smithgraph': {
 				area = InfoViz.draw_empty_background(paper, data, options);
-				InfoViz.draw_smitchgraph(paper, area, data, options);
+				InfoViz.draw_smithgraph(paper, area, data, options, callback);
 				break;
 			}
 			default: {
@@ -759,13 +764,14 @@
 	};
 
 	/* 1. AxisCharts */
-	InfoViz.draw_linechart = function(paper, chart_area, data, overwrite_options) {
+	InfoViz.draw_linechart = function(paper, chart_area, data, overwrite_options, callback, that) {
 		if(!paper || !data) return idb('Paper or Data is empty.');
 		
 		var options = merge_options(overwrite_options), cache = [], x, y;
 		var lines = data['data'], h_fields = [], v_fields = [], i, j, k, item;
 		var h_field_name = data['horizontal_field'], v_field_name = data['vertical_field'];
 		var this_h, this_v, h_min = Infinity, h_max = -Infinity, v_min = Infinity, v_max = -Infinity;
+		var element_action = function(evt) { callback.call(that, this.data('info')); };
 
 		// Scan horizontal and vertical fields.
 		for(var line in lines) {
@@ -821,7 +827,6 @@
 		var v_unit = (v_start - chart_area['top-left'][1] - options['linechart']['padding-top']) / (v_max - v_min);
 		
 		var h_map = {};
-
 
 		// Vertical labels.
 		var v_label_unit = (v_start - chart_area['top-left'][1] - options['linechart']['padding-top']) / (options['linechart']['vertical-label-count'] - 1);
@@ -904,7 +909,7 @@
 					cache.push('L' + x + ',' + y);
 				}
 
-				todo.push([x, y]);
+				todo.push({ 'x': x, 'y': y, 'v_value': item[v_field_name], 'h_value': item[h_field_name], 'data': item });
 			}
 
 			p_line = paper.path(cache.join(''));
@@ -934,12 +939,28 @@
 						'cursor': 'pointer'
 					}).translate(0.5, 0.5);
 				} else {
-					p_node = paper.circle(todo[i][0], todo[i][1], options['linechart']['circle-radius']).attr({
+					p_node = paper.circle(todo[i]['x'], todo[i]['y'], options['linechart']['circle-radius']).attr({
 						'stroke': color['color'],
 						'stroke-opacity': color['dark-alpha'],
 						'stroke-width': options['linechart']['line-width'],
 						'fill': color['color']
 					}).translate(0.5, 0.5);
+				}
+
+				// Title.
+				p_node.attr({ 'title': todo[i]['v_value'] });
+
+				// Action.
+				if(callback && typeof(callback) === 'function') {
+					p_node.data('info', {
+						'data': todo[i]['data'],
+						'x': todo[i]['x'],
+						'y': todo[i]['y'],
+						'v_value': todo[i]['v_value'],
+						'h_value': todo[i]['h_value']
+					});
+
+					p_node.click(element_action);
 				}
 			}
 
@@ -956,13 +977,14 @@
 		InfoViz.draw_legend(paper, chart_area, legend_data, options);
 	};
 
-	InfoViz.draw_barchart = function(paper, chart_area, data, overwrite_options) {
+	InfoViz.draw_barchart = function(paper, chart_area, data, overwrite_options, callback, that) {
 		if(!paper || !data) return idb('Paper or Data is empty.');
 		
 		var options = merge_options(overwrite_options), cache = [], x, y, line_count = 0;
 		var lines = data['data'], h_fields = [], v_fields = [], i, j, k, item;
 		var h_field_name = data['horizontal_field'], v_field_name = data['vertical_field'];
 		var this_h, this_v, h_min = Infinity, h_max = -Infinity, v_min = Infinity, v_max = -Infinity;
+		var element_action = function(evt) { callback.call(that, this.data('info')); };
 
 		// Scan horizontal and vertical fields.
 		for(var line in lines) {
@@ -1111,6 +1133,21 @@
 					'fill-opacity': color['light-alpha']
 				}).translate(0.5, 0.5);
 
+				// Title.
+				this_node.attr({ 'title': item[v_field_name] });
+
+				// Action.
+				if(callback && typeof(callback) === 'function') {
+					this_node.data('info', {
+						'x': x,
+						'y': y,
+						'h_value': item[h_field_name],
+						'v_value': item[v_field_name],
+						'data': item
+					});
+					this_node.click(element_action);
+				}
+
 				p_nodes.push(this_node);
 			}
 
@@ -1139,12 +1176,13 @@
 		}
 	};
 
-	InfoViz.draw_bubblechart = function(paper, chart_area, data, overwrite_options) {
+	InfoViz.draw_bubblechart = function(paper, chart_area, data, overwrite_options, callback, that) {
 		if(!paper || !data) return idb('Paper or Data is empty.');
 
 		var options = merge_options(overwrite_options), cache = [], i, x, y, size, item;
 		var h_min = Infinity, h_max = -Infinity, v_min = Infinity, v_max = -Infinity, size_max = -Infinity, size_min = Infinity;
-		
+		var element_action = function(evt) { callback.call(that, this.data('info')); };
+
 		// Scan data.
 		for(i = 0; i < data['data'].length; ++i) {
 			item = data['data'][i];
@@ -1225,6 +1263,31 @@
 				'color': this_color,
 				'type': 'circle'
 			});
+
+			// Title.
+			this_bubble.attr({ 'title': this_v });
+			this_text.attr({ 'title': this_v });
+
+			// Action.
+			if(callback && typeof(callback) === 'function') {
+				this_bubble.data('info', {
+					'x': x,
+					'y': y,
+					'v_value': this_v,
+					'h_value': this_h,
+					'data': item
+				});
+				this_bubble.click(element_action);
+
+				this_text.data('info', {
+					'x': x,
+					'y': y,
+					'v_value': this_v,
+					'h_value': this_h,
+					'data': item
+				});
+				this_text.click(element_action);
+			}
 		}
 
 		/*for(i = 0; i < p_bubbles.length; ++i) {
@@ -1301,14 +1364,15 @@
 	};
 
 	/* 2. Round Stuff */
-	InfoViz.draw_piechart = function(paper, chart_area, data, overwrite_options) {
+	InfoViz.draw_piechart = function(paper, chart_area, data, overwrite_options, callback, that) {
 		if(!paper || !data) return idb('Paper or Data is empty.');
 		
 		var options = merge_options(overwrite_options), cache = [], x, y, i, item, radius;
 		var hole_radius = options['piechart']['hole-radius'];
 		var cx = chart_area['top-left'][0] + chart_area['width'] / 2 + options['piechart']['horizontal-offset'];
 		var cy = chart_area['top-left'][1] + chart_area['height'] / 2 + options['piechart']['vertical-offset'];
-		
+		var element_action = function(evt) { callback.call(that, this.data('info')); };
+
 		if(chart_area['width'] > chart_area['height']) {
 			radius = Math.floor(chart_area['height'] / 2) * options['piechart']['size-factor'];
 		} else {
@@ -1373,6 +1437,20 @@
 			this_sector.data('color-alpha', this_color['light-alpha']);
 			this_sector.data('index', i);
 			p_sectors.push(this_sector);
+
+			// Title.
+			this_sector.attr({ 'title': data['data'][i][data['value_field']] });
+
+			// Action.
+			if(callback && typeof(callback) === 'function') {
+				this_sector.data('info', {
+					'start': current_angle,
+					'angle': this_angle,
+					'value': data['data'][i][data['value_field']],
+					'data': data['data'][i]
+				});
+				this_sector.click(element_action);
+			}
 
 			// Add legend.
 			legend_data.push({
@@ -1470,13 +1548,14 @@
 		}
 	};
 
-	InfoViz.draw_radarchart = function(paper, chart_area, data, overwrite_options) {
+	InfoViz.draw_radarchart = function(paper, chart_area, data, overwrite_options, callback, that) {
 		if(!paper || !data) return idb('Paper or Data is empty.');
 		
 		var options = merge_options(overwrite_options), cache = [], cache2 = [], x, y, i, j, item, radius, rad = Math.PI / 180;
 		var cx = chart_area['top-left'][0] + chart_area['width'] / 2 + options['radarchart']['horizontal-offset'];
 		var cy = chart_area['top-left'][1] + chart_area['height'] / 2 + options['radarchart']['vertical-offset'];
-		
+		var element_action = function(evt) { callback.call(that, this.data('info')); };
+
 		if(chart_area['width'] > chart_area['height']) {
 			radius = Math.floor(chart_area['height'] / 2) * options['radarchart']['size-factor'];
 		} else {
@@ -1624,6 +1703,18 @@
 					'type': 'circle'
 				});
 			}
+
+			// Title.
+			p.attr({ 'title': data['data'][i][data['name_field']] });
+
+			// Action.
+			if(callback && typeof(callback) === 'function') {
+				p.data('info', {
+					'name': data['data'][i][data['name_field']],
+					'data': data['data'][i]
+				});
+				p.click(element_action);
+			}
 		}
 
 		InfoViz.draw_legend(paper, chart_area, legend_data, options);
@@ -1645,28 +1736,29 @@
 		}
 	};
 
-	InfoViz.draw_smitchgraph = function(paper, chart_area, data, overwrite_options) {
+	InfoViz.draw_smithgraph = function(paper, chart_area, data, overwrite_options) {
 		if(!paper || !data) return idb('Paper or Data is empty.');
 		
 		var options = merge_options(overwrite_options), cache = [], cache2 = [], x, y, i, j, item, radius, rad = Math.PI / 180;
-		var cx = chart_area['top-left'][0] + chart_area['width'] / 2 + options['smitchgraph']['horizontal-offset'];
-		var cy = chart_area['top-left'][1] + chart_area['height'] / 2 + options['smitchgraph']['vertical-offset'];
+		var cx = chart_area['top-left'][0] + chart_area['width'] / 2 + options['smithgraph']['horizontal-offset'];
+		var cy = chart_area['top-left'][1] + chart_area['height'] / 2 + options['smithgraph']['vertical-offset'];
 		
 		if(chart_area['width'] > chart_area['height']) {
-			radius = Math.floor(chart_area['height'] / 2) * options['smitchgraph']['size-factor'];
+			radius = Math.floor(chart_area['height'] / 2) * options['smithgraph']['size-factor'];
 		} else {
-			radius = Math.floor(chart_area['width'] / 2) * options['smitchgraph']['size-factor'];
+			radius = Math.floor(chart_area['width'] / 2) * options['smithgraph']['size-factor'];
 		}
 
-		console.log(data);
+		//console.log(data);
 	};
 
 	/* 3. Map */
-	InfoViz.draw_heatmap = function(paper, chart_area, data, overwrite_options) {
+	InfoViz.draw_heatmap = function(paper, chart_area, data, overwrite_options, callback, that) {
 		if(!paper || !data) return idb('Paper or Data is empty.');
 		
 		var options = merge_options(overwrite_options), cache = [], x, y, i, j, item;
-		
+		var element_action = function(evt) { callback.call(that, this.data('info')); };
+
 		// Find out max and min value.
 		var v_max = -Infinity, v_min = Infinity;
 		for(i = 0; i < data['data'].length; ++i) {
@@ -1712,6 +1804,7 @@
 		index = 0;
 
 		var done = false, p_boxes = [], p_labels = [];
+		this_label = undefined;
 		for(j = 0; j < count_y; ++j) {
 			x = chart_area['top-left'][0];
 			for(i = 0; i < count_x; ++i) {
@@ -1743,6 +1836,28 @@
 					p_labels.push(this_label);
 				}
 				
+				// Title.
+				this_box.attr({ 'title': this_value });
+				this_label.attr({ 'title': this_value });
+
+				// Action.
+				if(callback && typeof(callback) === 'function') {
+					this_box.data('info', {
+						'x': x,
+						'y': y,
+						'data': data['data'][index]
+					});
+
+					this_label.data('info', {
+						'x': x,
+						'y': y,
+						'data': data['data'][index]
+					});
+
+					this_box.click(element_action);
+					this_label.click(element_action);
+				}
+
 				x += unit_x + options['heatmap']['horizontal_margin'];
 				++index;
 			}
@@ -1756,11 +1871,12 @@
 	/* 4. Tree */
 
 	/* 5. Cloud */
-	InfoViz.draw_tagcloud = function(paper, chart_area, data, overwrite_options) {
+	InfoViz.draw_tagcloud = function(paper, chart_area, data, overwrite_options, callback, that) {
 		if(!paper || !data) return idb('Paper or Data is empty.');
 		
 		var options = merge_options(overwrite_options), cache = [], x, y, i, j, item;
 		var levels = options['tagcloud']['levels'] ? options['tagcloud']['levels'] : 8;
+		var element_action = function(evt) { callback.call(that, this.data('info')); };
 
 		// Find out max and min value.
 		var v_max = -Infinity, v_min = Infinity, total_text_length = 0;
@@ -1888,6 +2004,19 @@
 				'text-anchor': 'middle'
 			}).translate(0.5, 0.5);
 			p_texts.push(this_text);
+
+			// Title.
+			this_text.attr({ 'title': todo[i]['item']['value'] });
+
+			// Action.
+			if(callback && typeof(callback) === 'function') {
+				this_text.data('info', {
+					'data': todo[i]['item'],
+					'x': todo[i]['x'],
+					'y': todo[i]['y']
+				});
+				this_text.click(element_action);
+			}
 		}
 
 		// Animation.

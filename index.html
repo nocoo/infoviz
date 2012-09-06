@@ -58,7 +58,9 @@
 		<script src="./js/infoviz.js"></script>
 		<script>
 			;(function($) {
-				// Logo is disabled by default.
+				var data = [], i, j, item;
+
+				//Logo is disabled by default.
 				InfoViz.enable_logo();
 
 				// Global option overwrite.
@@ -304,11 +306,31 @@
 					}
 				);
 
+				// SmithGraph
+				data = [];
+				for(i = 0; i < 64; ++i) {
+					var edge_count = Math.floor(Math.random() * 24);
+					var edges = [];
+
+					for(j = 0; j < edge_count; ++j) {
+						edges.push({
+							'to': 'item' + Math.floor(Math.random() * 64),
+							'F3': Math.floor(Math.random() * 100)
+						});
+					}
+
+					data.push({
+						'F1': 'item' + i,
+						'F2': Math.floor(Math.random() * 100),
+						'edges': edges
+					});
+				}
+
 				// HeatMap
-				var data = [], r;
-				for(var i = 0; i < 128; ++i) {
-					r = Math.floor(Math.random() * 100);
-					data.push({ 'F1': r, 'F2': i, 'F3': r });
+				data = [];
+				for(i = 0; i < 128; ++i) {
+					item = Math.floor(Math.random() * 100);
+					data.push({ 'F1': item, 'F2': i, 'F3': item });
 				}
 
 				InfoViz.chart(
