@@ -3,13 +3,14 @@
 	@author  Zheng Li <lizheng@lizheng.me>
 	@github https://github.com/nocoo/InfoViz
 	@license MIT
-	@version 0.2.0
+	@version 0.2.1
 */
 
 ;(function() {
 	if(InfoViz) return;
 
 	var InfoViz = {};
+	var tooltip_border, tooltip_title, tooltip_content, tooltip_id;
 
 	InfoViz.options = {
 		'layout': {
@@ -102,7 +103,36 @@
 			'border-radius': 4,
 
 			'background-color': '#FDFDFD',
+			'background-alpha': 1
+		},
+		'tooltip': {
+			'padding-top': 6,
+			'padding-right': 8,
+			'padding-bottom': 6,
+			'padding-left': 8,
+			
+			'border-width': 1,
+			'border-color': '#CCC',
+			'border-alpha': 1,
+			'border-radius': 4,
+
+			'title-text-color': undefined,
+			'title-text-alpha': 1,
+			'title-text-weight': 'bold',
+			'title-text-size': 12,
+			
+			'line-spacing': 2,
+
+			'content-text-color': '#999',
+			'content-text-alpha': 1,
+			'content-text-weight': 'normal',
+			'content-text-size': 12,
+
+			'background-color': '#FDFDFD',
 			'background-alpha': 1,
+
+			'horizontal-offset': 0,
+			'vertical-offset': -10
 		},
 		'linechart': {
 			'padding-top': 30,
@@ -577,7 +607,7 @@
 		return chart_area;
 	};
 
-	InfoViz.draw_legend= function(paper, chart_area, legend_data, overwrite_options) {
+	InfoViz.draw_legend = function(paper, chart_area, legend_data, overwrite_options) {
 		if(!paper || !legend_data) return idb('Paper or Data is empty.');
 		
 		var options = merge_options(overwrite_options), cache = [], x, y, i, j, item;
@@ -763,6 +793,124 @@
 		}
 	};
 
+	InfoViz.draw_tooltip = function(paper, x, y, id, title, content, color, overwrite_options) {
+		if(id === tooltip_id) return;
+
+		var options = merge_options(overwrite_options);
+		var test_text, this_box, title_width = 0, title_height = 0, content_width = 0, content_height = 0;
+
+		// Remove old tooltip
+		if(tooltip_border) {
+			var old_border = tooltip_border;
+			old_border.stop();
+			old_border.animate({ 'opacity': 0 }, options['layout']['speed'], function() {
+				old_border.remove();
+				delete old_border;
+			});
+		}
+		if(tooltip_title) {
+			var old_title = tooltip_title;
+			old_title.stop();
+			old_title.animate({ 'opacity': 0 }, options['layout']['speed'], function() {
+				old_title.remove();
+				delete old_title;
+			});
+		}
+		if(tooltip_content) {
+			var old_content = tooltip_content;
+			old_content.stop();
+			old_content.animate({ 'opacity': 0 }, options['layout']['speed'], function() {
+				old_content.remove();
+				delete old_content;
+			});
+		}
+
+		tooltip_id = id;
+
+		// Test title size.
+		test_text = paper.text(-1000, -1000, title).attr({
+			'font-weight': options['tooltip']['title-text-weight'],
+			'font-size': options['tooltip']['title-text-size']
+		}).translate(0.5, 0.5);
+		this_box = test_text.getBBox();
+		title_width = this_box.width;
+		title_height = this_box.height;
+
+		// Test content size.
+		test_text = paper.text(-1000, -1000, content).attr({
+			'font-weight': options['tooltip']['content-text-weight'],
+			'font-size': options['tooltip']['content-text-size']
+		}).translate(0.5, 0.5);
+		this_box = test_text.getBBox();
+		content_width = this_box.width;
+		content_height = this_box.height;
+
+		var tooltip_width = (title_width > content_width) ? title_width : content_width;
+		var tooltip_height = title_height + content_height;
+
+		tooltip_width += options['tooltip']['padding-left'] + options['tooltip']['padding-right'];
+		tooltip_height += options['tooltip']['padding-top'] + options['tooltip']['padding-bottom'] + options['tooltip']['line-spacing'];
+
+		// Add up offset.
+		x -= (tooltip_width / 2) + options['tooltip']['horizontal-offset'];
+
+		if(options['tooltip']['vertical-offset'] <= 0) {
+			y -= (tooltip_height - options['tooltip']['vertical-offset']);
+		} else {
+			y += tooltip_height + options['tooltip']['vertical-offset'];
+		}
+
+		// Check if tooltip is out of paper.
+		if(x < options['layout']['padding-left']) {
+			x = options['layout']['padding-left'];
+		}
+		if(x + tooltip_width > paper.width - options['layout']['padding-right']) {
+			x = paper.width - options['layout']['padding-right'] - tooltip_width;
+		}
+
+		if(y < options['layout']['padding-top']) {
+			y = options['layout']['padding-top'];
+		}
+		if(y + tooltip_height > paper.height - options['layout']['padding-bottom']) {
+			y = paper.height - options['layout']['padding-bottom'] - tooltip_height;
+		}
+
+		tooltip_border = paper.rect(x, y, tooltip_width, tooltip_height, options['tooltip']['border-radius']).attr({
+			'stroke': options['tooltip']['border-color'],
+			'stroke-width': options['tooltip']['border-width'],
+			'stroke-opacity': options['tooltip']['border-alpha'],
+			'fill': options['tooltip']['background-color'],
+			'fill-opacity': options['tooltip']['background-alpha'],
+			'opacity': 0
+		}).translate(0.5, 0.5);
+
+		tooltip_title = paper.text(x + options['tooltip']['padding-left'], y + options['tooltip']['padding-top'] + title_height / 2, title).attr({
+			'fill': options['tooltip']['title-text-color'] ? options['tooltip']['title-text-color'] : color['color'],
+			'font-size': options['tooltip']['title-text-size'],
+			'text-anchor': 'start',
+			'font-weight': options['tooltip']['title-text-weight'],
+			'fill-opacity': options['tooltip']['title-text-alpha'],
+			'opacity': 0
+		}).translate(0.5, 0.5);
+
+		tooltip_content = paper.text(x + options['tooltip']['padding-left'], y + options['tooltip']['padding-top'] + content_height + options['tooltip']['line-spacing'] + content_height / 2, content).attr({
+			'fill': options['tooltip']['content-text-color'],
+			'font-size': options['tooltip']['content-text-size'],
+			'text-anchor': 'start',
+			'font-weight': options['tooltip']['content-text-weight'],
+			'fill-opacity': options['tooltip']['content-text-alpha'],
+			'opacity': 0
+		}).translate(0.5, 0.5);
+
+		// Animation.
+		tooltip_border.stop();
+		tooltip_title.stop();
+		tooltip_content.stop();
+		tooltip_border.animate({ 'opacity': 1 }, options['layout']['speed']);
+		tooltip_title.animate({ 'opacity': 1 }, options['layout']['speed']);
+		tooltip_content.animate({ 'opacity': 1 }, options['layout']['speed']);
+	};
+
 	/* 1. AxisCharts */
 	InfoViz.draw_linechart = function(paper, chart_area, data, overwrite_options, callback, that) {
 		if(!paper || !data) return idb('Paper or Data is empty.');
@@ -771,7 +919,13 @@
 		var lines = data['data'], h_fields = [], v_fields = [], i, j, k, item;
 		var h_field_name = data['horizontal_field'], v_field_name = data['vertical_field'];
 		var this_h, this_v, h_min = Infinity, h_max = -Infinity, v_min = Infinity, v_max = -Infinity;
+		
 		var element_action = function(evt) { callback.call(that, this.data('info')); };
+		var element_tooltip = function(evt) {
+			x = this.data('tooltip')['node_x'];
+			y = this.data('tooltip')['node_y'];
+			InfoViz.draw_tooltip(paper, x, y, this.data('tooltip')['id'], this.data('tooltip')['title'], this.data('tooltip')['content'], this.data('tooltip')['color'], options);
+		};
 
 		// Scan horizontal and vertical fields.
 		for(var line in lines) {
@@ -947,9 +1101,6 @@
 					}).translate(0.5, 0.5);
 				}
 
-				// Title.
-				p_node.attr({ 'title': todo[i]['v_value'] });
-
 				// Action.
 				if(callback && typeof(callback) === 'function') {
 					p_node.data('info', {
@@ -962,9 +1113,28 @@
 
 					p_node.click(element_action);
 				}
-			}
 
-			index++;
+				// Tooltip.
+				if(data['tooltip_title'] || data['tooltip_content']) {
+					var title = data['tooltip_title'];
+					var content = data['tooltip_content'];
+					
+					for(var p in todo[i]['data']) {
+						title = title.replace('{' + p + '}', todo[i]['data'][p]);
+						content = content.replace('{' + p + '}', todo[i]['data'][p]);
+					}
+
+					p_node.data('tooltip', {
+						'id': line + i,
+						'title': title,
+						'content': content,
+						'color': color,
+						'node_x': todo[i]['x'],
+						'node_y': todo[i]['y']
+					});
+					p_node.hover(element_tooltip);
+				}
+			}
 
 			// Add legend data.
 			legend_data.push({
@@ -972,6 +1142,8 @@
 				'color': color,
 				'type': 'line'
 			});
+
+			index++;
 		}
 
 		InfoViz.draw_legend(paper, chart_area, legend_data, options);
@@ -984,8 +1156,14 @@
 		var lines = data['data'], h_fields = [], v_fields = [], i, j, k, item;
 		var h_field_name = data['horizontal_field'], v_field_name = data['vertical_field'];
 		var this_h, this_v, h_min = Infinity, h_max = -Infinity, v_min = Infinity, v_max = -Infinity;
-		var element_action = function(evt) { callback.call(that, this.data('info')); };
 
+		var element_action = function(evt) { callback.call(that, this.data('info')); };
+		var element_tooltip = function(evt) {
+			x = this.data('tooltip')['bar_top_x'];
+			y = this.data('tooltip')['bar_top_y'];
+			InfoViz.draw_tooltip(paper, x, y, this.data('tooltip')['id'], this.data('tooltip')['title'], this.data('tooltip')['content'], this.data('tooltip')['color'], options);
+		};
+		
 		// Scan horizontal and vertical fields.
 		for(var line in lines) {
 			for(i = 0; i < lines[line]['data'].length; ++i) {
@@ -1132,9 +1310,7 @@
 					'fill': color['color'],
 					'fill-opacity': color['light-alpha']
 				}).translate(0.5, 0.5);
-
-				// Title.
-				this_node.attr({ 'title': item[v_field_name] });
+				p_nodes.push(this_node);
 
 				// Action.
 				if(callback && typeof(callback) === 'function') {
@@ -1148,7 +1324,26 @@
 					this_node.click(element_action);
 				}
 
-				p_nodes.push(this_node);
+				// Tooltip.
+				if(data['tooltip_title'] || data['tooltip_content']) {
+					var title = data['tooltip_title'];
+					var content = data['tooltip_content'];
+					
+					for(var p in item) {
+						title = title.replace('{' + p + '}', item[p]);
+						content = content.replace('{' + p + '}', item[p]);
+					}
+
+					this_node.data('tooltip', {
+						'id': line + i,
+						'title': title,
+						'content': content,
+						'color': color,
+						'bar_top_x': x,
+						'bar_top_y': y
+					});
+					this_node.hover(element_tooltip);
+				}
 			}
 
 			// Add legend data.
@@ -1181,8 +1376,14 @@
 
 		var options = merge_options(overwrite_options), cache = [], i, x, y, size, item;
 		var h_min = Infinity, h_max = -Infinity, v_min = Infinity, v_max = -Infinity, size_max = -Infinity, size_min = Infinity;
-		var element_action = function(evt) { callback.call(that, this.data('info')); };
 
+		var element_action = function(evt) { callback.call(that, this.data('info')); };
+		var element_tooltip = function(evt) {
+			x = this.data('tooltip')['x'];
+			y = this.data('tooltip')['y'];
+			InfoViz.draw_tooltip(paper, x, y, this.data('tooltip')['id'], this.data('tooltip')['title'], this.data('tooltip')['content'], this.data('tooltip')['color'], options);
+		};
+		
 		// Scan data.
 		for(i = 0; i < data['data'].length; ++i) {
 			item = data['data'][i];
@@ -1264,10 +1465,6 @@
 				'type': 'circle'
 			});
 
-			// Title.
-			this_bubble.attr({ 'title': this_v });
-			this_text.attr({ 'title': this_v });
-
 			// Action.
 			if(callback && typeof(callback) === 'function') {
 				this_bubble.data('info', {
@@ -1288,22 +1485,38 @@
 				});
 				this_text.click(element_action);
 			}
+
+			// Tooltip.
+			if(data['tooltip_title'] || data['tooltip_content']) {
+				var title = data['tooltip_title'];
+				var content = data['tooltip_content'];
+				
+				for(var p in item) {
+					title = title.replace('{' + p + '}', item[p]);
+					content = content.replace('{' + p + '}', item[p]);
+				}
+
+				this_bubble.data('tooltip', {
+					'id': i,
+					'title': title,
+					'content': content,
+					'color': this_color,
+					'x': x,
+					'y': y - size
+				});
+				this_bubble.hover(element_tooltip);
+
+				this_text.data('tooltip', {
+					'id': i,
+					'title': title,
+					'content': content,
+					'color': this_color,
+					'x': x,
+					'y': y - size
+				});
+				this_text.hover(element_tooltip);
+			}
 		}
-
-		/*for(i = 0; i < p_bubbles.length; ++i) {
-			(function(bubble, text, index) {
-				bubble.mouseover(function () {
-					bubble.stop().animate({ 'fill-opacity': options['color'][0]['dark-alpha'] }, options['layout']['speed'], ">");
-					text.stop().animate({ 'fill': '#FFF' }, options['layout']['speed'], ">");
-				});
-				bubble.mouseout(function () {
-					bubble.stop().animate({ 'fill-opacity': options['color'][0]['light-alpha'] }, options['layout']['speed'], "<");
-					text.stop().animate({ 'fill': text.data('color') }, options['layout']['speed'], "<");
-				});
-			})(p_bubbles[i], p_texts[i], i);
-
-			p_bubbles[i].data('color', p_texts[i].attr('fill'));
-		}*/
 
 		InfoViz.draw_legend(paper, chart_area, legend_data, options);
 
@@ -1371,8 +1584,14 @@
 		var hole_radius = options['piechart']['hole-radius'];
 		var cx = chart_area['top-left'][0] + chart_area['width'] / 2 + options['piechart']['horizontal-offset'];
 		var cy = chart_area['top-left'][1] + chart_area['height'] / 2 + options['piechart']['vertical-offset'];
+		
 		var element_action = function(evt) { callback.call(that, this.data('info')); };
-
+		var element_tooltip = function(evt) {
+			x = this.data('tooltip')['x'];
+			y = this.data('tooltip')['y'];
+			InfoViz.draw_tooltip(paper, x, y, this.data('tooltip')['id'], this.data('tooltip')['title'], this.data('tooltip')['content'], this.data('tooltip')['color'], options);
+		};
+		
 		if(chart_area['width'] > chart_area['height']) {
 			radius = Math.floor(chart_area['height'] / 2) * options['piechart']['size-factor'];
 		} else {
@@ -1438,9 +1657,6 @@
 			this_sector.data('index', i);
 			p_sectors.push(this_sector);
 
-			// Title.
-			this_sector.attr({ 'title': data['data'][i][data['value_field']] });
-
 			// Action.
 			if(callback && typeof(callback) === 'function') {
 				this_sector.data('info', {
@@ -1505,6 +1721,27 @@
 			}).translate(0.5, 0.5);
 			p_labels.push(this_label);
 			
+			// Tooltip.
+			if(data['tooltip_title'] || data['tooltip_content']) {
+				var title = data['tooltip_title'];
+				var content = data['tooltip_content'];
+				
+				for(var p in data['data'][i]) {
+					title = title.replace('{' + p + '}', data['data'][i][p]);
+					content = content.replace('{' + p + '}', data['data'][i][p]);
+				}
+
+				this_sector.data('tooltip', {
+					'id': i,
+					'title': title,
+					'content': content,
+					'color': this_color,
+					'x': cx + (radius / 2) * Math.cos(half_angle),
+					'y': cy + (radius / 2) * Math.sin(half_angle)
+				});
+				this_sector.hover(element_tooltip);
+			}
+
 			current_angle += this_angle;
 		}
 
@@ -1554,8 +1791,14 @@
 		var options = merge_options(overwrite_options), cache = [], cache2 = [], x, y, i, j, item, radius, rad = Math.PI / 180;
 		var cx = chart_area['top-left'][0] + chart_area['width'] / 2 + options['radarchart']['horizontal-offset'];
 		var cy = chart_area['top-left'][1] + chart_area['height'] / 2 + options['radarchart']['vertical-offset'];
+		
 		var element_action = function(evt) { callback.call(that, this.data('info')); };
-
+		var element_tooltip = function(evt) {
+			x = this.data('tooltip')['x'];
+			y = this.data('tooltip')['y'];
+			InfoViz.draw_tooltip(paper, x, y, this.data('tooltip')['id'], this.data('tooltip')['title'], this.data('tooltip')['content'], this.data('tooltip')['color'], options);
+		};
+		
 		if(chart_area['width'] > chart_area['height']) {
 			radius = Math.floor(chart_area['height'] / 2) * options['radarchart']['size-factor'];
 		} else {
@@ -1661,7 +1904,7 @@
 		}).translate(0.5, 0.5);
 
 		// Draw circles.
-		var this_r = 0, this_color, this_value, p_circles = [], p, legend_data = [];
+		var this_r = 0, this_color, this_value, p_circles = [], this_circle, legend_data = [];
 		for(i = 0; i < data['data'].length; ++i) {
 			this_color = options['color'][(i % options['color'].length)];
 			cache = [];
@@ -1684,7 +1927,7 @@
 			}
 
 			cache.push('z');
-			p = paper.path(cache.join('')).attr({
+			this_circle = paper.path(cache.join('')).attr({
 				'stroke': this_color['color'],
 				'stroke-width': options['radarchart']['circle-border-width'],
 				'stroke-opacity': this_color['dark-alpha'],
@@ -1692,8 +1935,8 @@
 				'fill-opacity': options['radarchart']['circle-background-alpha']
 			}).translate(0.5, 0.5);
 
-			p.data('color-alpha', options['radarchart']['circle-background-alpha']);
-			p_circles.push(p);
+			this_circle.data('color-alpha', options['radarchart']['circle-background-alpha']);
+			p_circles.push(this_circle);
 
 			if(data['data'][i][data['name_field']]) {
 				// Add legend.
@@ -1704,9 +1947,6 @@
 				});
 			}
 
-			// Title.
-			p.attr({ 'title': data['data'][i][data['name_field']] });
-
 			// Action.
 			if(callback && typeof(callback) === 'function') {
 				p.data('info', {
@@ -1714,6 +1954,27 @@
 					'data': data['data'][i]
 				});
 				p.click(element_action);
+			}
+
+			// Tooltip.
+			if(data['tooltip_title'] || data['tooltip_content']) {
+				var title = data['tooltip_title'];
+				var content = data['tooltip_content'];
+				
+				for(var p in data['data'][i]) {
+					title = title.replace('{' + p + '}', data['data'][i][p]);
+					content = content.replace('{' + p + '}', data['data'][i][p]);
+				}
+
+				this_circle.data('tooltip', {
+					'id': i,
+					'title': title,
+					'content': content,
+					'color': this_color,
+					'x': x,
+					'y': y
+				});
+				this_circle.hover(element_tooltip);
 			}
 		}
 
@@ -1757,7 +2018,13 @@
 		if(!paper || !data) return idb('Paper or Data is empty.');
 		
 		var options = merge_options(overwrite_options), cache = [], x, y, i, j, item;
+
 		var element_action = function(evt) { callback.call(that, this.data('info')); };
+		var element_tooltip = function(evt) {
+			x = this.data('tooltip')['x'];
+			y = this.data('tooltip')['y'];
+			InfoViz.draw_tooltip(paper, x, y, this.data('tooltip')['id'], this.data('tooltip')['title'], this.data('tooltip')['content'], this.data('tooltip')['color'], options);
+		};
 
 		// Find out max and min value.
 		var v_max = -Infinity, v_min = Infinity;
@@ -1835,11 +2102,7 @@
 					}).translate(0.5, 0.5);
 					p_labels.push(this_label);
 				}
-				
-				// Title.
-				this_box.attr({ 'title': this_value });
-				this_label.attr({ 'title': this_value });
-
+		
 				// Action.
 				if(callback && typeof(callback) === 'function') {
 					this_box.data('info', {
@@ -1856,6 +2119,38 @@
 
 					this_box.click(element_action);
 					this_label.click(element_action);
+				}
+
+				// Tooltip.
+				if(data['tooltip_title'] || data['tooltip_content']) {
+					var title = data['tooltip_title'];
+					var content = data['tooltip_content'];
+					
+					for(var p in data['data'][index]) {
+						title = title.replace('{' + p + '}', data['data'][index][p]);
+						content = content.replace('{' + p + '}', data['data'][index][p]);
+					}
+
+
+					this_box.data('tooltip', {
+						'id': index,
+						'title': title,
+						'content': content,
+						'color': this_color,
+						'x': x + unit_x / 2,
+						'y': y
+					});
+					this_box.hover(element_tooltip);
+
+					this_label.data('tooltip', {
+						'id': index,
+						'title': title,
+						'content': content,
+						'color': this_color,
+						'x': x + unit_x / 2,
+						'y': y
+					});
+					this_label.hover(element_tooltip);
 				}
 
 				x += unit_x + options['heatmap']['horizontal_margin'];
@@ -1876,7 +2171,13 @@
 		
 		var options = merge_options(overwrite_options), cache = [], x, y, i, j, item;
 		var levels = options['tagcloud']['levels'] ? options['tagcloud']['levels'] : 8;
+		
 		var element_action = function(evt) { callback.call(that, this.data('info')); };
+		var element_tooltip = function(evt) {
+			x = this.data('tooltip')['x'];
+			y = this.data('tooltip')['y'];
+			InfoViz.draw_tooltip(paper, x, y, this.data('tooltip')['id'], this.data('tooltip')['title'], this.data('tooltip')['content'], this.data('tooltip')['color'], options);
+		};
 
 		// Find out max and min value.
 		var v_max = -Infinity, v_min = Infinity, total_text_length = 0;
@@ -1914,7 +2215,8 @@
 				'length': item[data['text_field']].length,
 				'level': this_level,
 				'width': this_box.width,
-				'height': this_box.height
+				'height': this_box.height,
+				'index': i
 			});
 		}
 
@@ -1990,7 +2292,7 @@
 					last_max_height = item['height'] + options['tagcloud']['vertical_margin'];;
 				}
 
-				todo.push({ 'x': dx, 'y': dy, 'item': item, 'color': this_color });
+				todo.push({ 'x': dx, 'y': dy, 'item': item, 'color': this_color, 'data': data['data'][item['index']] });
 				index++;
 			}
 		}
@@ -2005,17 +2307,36 @@
 			}).translate(0.5, 0.5);
 			p_texts.push(this_text);
 
-			// Title.
-			this_text.attr({ 'title': todo[i]['item']['value'] });
-
 			// Action.
 			if(callback && typeof(callback) === 'function') {
 				this_text.data('info', {
-					'data': todo[i]['item'],
+					'data': todo[i]['data'],
+					'item': todo[i]['item'],
 					'x': todo[i]['x'],
 					'y': todo[i]['y']
 				});
 				this_text.click(element_action);
+			}
+
+			// Tooltip.
+			if(data['tooltip_title'] || data['tooltip_content']) {
+				var title = data['tooltip_title'];
+				var content = data['tooltip_content'];
+				
+				for(var p in todo[i]['data']) {
+					title = title.replace('{' + p + '}', todo[i]['data'][p]);
+					content = content.replace('{' + p + '}', todo[i]['data'][p]);
+				}
+
+				this_text.data('tooltip', {
+					'id': i,
+					'title': title,
+					'content': content,
+					'color': this_color,
+					'x': todo[i]['x'],
+					'y': todo[i]['y']
+				});
+				this_text.hover(element_tooltip);
 			}
 		}
 

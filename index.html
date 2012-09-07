@@ -51,7 +51,7 @@
 				<div class="infoviz i-tagcloud2"></div>
 			</section>
 		</section>
-		<footer><p>InfoViz 0.2.0, MIT License, <a href="about.me/nocoo">@zhengli</a>, <a href="https://github.com/nocoo/InfoViz">Github</a></p></footer>
+		<footer><p>InfoViz 0.2.1, MIT License, <a href="about.me/nocoo">@zhengli</a>, <a href="https://github.com/nocoo/InfoViz">Github</a></p></footer>
 		
 		<script src="./js/raphael.min.js"></script>
 		<script src="./js/jquery.min.js"></script>
@@ -77,6 +77,8 @@
 						'horizontal_axis_name': 'Horizontal',
 						'horizontal_field': 'F2',
 						'vertical_field': 'F1',
+						'tooltip_title': 'InfoViz {F2}, {F3}',
+						'tooltip_content': 'Tooltip: {F2}, {F3} | {F1}',
 						'data': {
 							'line1': {
 								'name': 'China',
@@ -139,6 +141,8 @@
 						'horizontal_axis_name': 'Horizontal',
 						'horizontal_field': 'F2',
 						'vertical_field': 'F1',
+						'tooltip_title': 'InfoViz {F2}, {F3}',
+						'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
 						'data': {
 							'bar1': {
 								'name': 'China',
@@ -203,6 +207,8 @@
 						'vertical_field': 'F2',
 						'size_field': 'F3',
 						'label_field': 'F4',
+						'tooltip_title': 'InfoViz {F2}, {F3}',
+						'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
 						'data': [
 							{ 'F1': 1,   'F2': 18, 'F3': 9, 'F4': 'CHN' },
 							{ 'F1': 42,  'F2': 30, 'F3': 6, 'F4': 'USA' },
@@ -226,6 +232,8 @@
 					{
 						'value_field': 'F2',
 						'label_field': 'F4',
+						'tooltip_title': 'InfoViz {F2}, {F3}',
+						'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
 						'data': [
 							{ 'F1': 1,   'F2': 9, 'F3': 9, 'F4': 'CHN' },
 							{ 'F1': 42,  'F2': 9, 'F3': 6, 'F4': 'USA' },
@@ -271,6 +279,8 @@
 					{
 						'value_fields': [ 'F1', 'F2', 'F3', 'F4', 'F5', 'F6' ],
 						'name_field': 'F7',
+						'tooltip_title': 'InfoViz {F2}, {F3}',
+						'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
 						'data': [
 							{ 'F1': 7, 'F2': 7, 'F3': 7, 'F4': 7, 'F5': 7, 'F6': 7, 'F7': 'China' },
 							{ 'F1': 6, 'F2': 6, 'F3': 6, 'F4': 6, 'F5': 6, 'F6': 6, 'F7': 'Unite States' },
@@ -339,6 +349,8 @@
 					{
 						'value_field': 'F1',
 						'label_field': 'F3',
+						'tooltip_title': 'InfoViz {F2}, {F3}',
+						'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
 						'data': data
 					},
 					{ 'layout': { 'logo-enabled': false }, 'heatmap': { 'label-size': 30 } }
@@ -386,6 +398,8 @@
 					{
 						'value_field': 'F1',
 						'text_field': 'F2',
+						'tooltip_title': 'InfoViz {F1}',
+						'tooltip_content': '{F2}: {F1}.',
 						'data': [
 							{ 'F1': 24, 'F2': '中华人民共和国' },
 							{ 'F1': 23, 'F2': '美利坚合众国' },
