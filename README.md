@@ -1,8 +1,17 @@
+# InfoViz
+
 ![InfoViz](http://infoviz.org/images/infoviz_logo_small.png)
 
-InfoViz, an information visualization library based on [Raphaël](http://raphaeljs.com/).
-
+InfoViz is an information visualization library based on [Raphaël](http://raphaeljs.com/).
 Raphaël currently supports Firefox 3.0+, Safari 3.0+, Chrome 5.0+, Opera 9.5+ and Internet Explorer 6.0+.
+By the way, InfoViz supports iOS devices, include Retina iPad.
+
+## Everything can be customized
+
+You may overwrite almost every visual style in InfoViz charts. There's few magic numbers in InfoViz code, when we need a number, we add an option for you to overwrite.
+Transparent background? Sure! Reverse color? Sure! Black and white? Sure!
+
+See [Configurations](#8-configuration) to find out how.
 
 # 1 AxisCharts
 
@@ -14,7 +23,7 @@ A LineChart has a enumerable as horizontal field, and a value field as vertical 
 
 Demo: [Click Here](http://infoviz.org/index.html#linechart)
 
-	$.InfoViz.chart(
+	InfoViz.chart(
 		$('.i-linechart'), 
 		'linechart', 
 		{
@@ -83,7 +92,7 @@ A BarChart has a enumerable as horizontal field, and a value field as vertical f
 
 Demo: [Click Here](http://infoviz.org/index.html#barchart)
 
-	$.InfoViz.chart(
+	InfoViz.chart(
 		$('.i-barchart'), 
 		'barchart', 
 		{
@@ -152,7 +161,7 @@ A BubbleChart has a value as horizontal field, and a value field as vertical fie
 
 Demo: [Click Here](http://infoviz.org/index.html#bubblechart)
 
-	$.InfoViz.chart(
+	InfoViz.chart(
 		$('.i-bubblechart'), 
 		'bubblechart', 
 		{
@@ -188,7 +197,7 @@ A PieChart has a value as horizontal field.
 
 Demo: [Click Here](http://infoviz.org/index.html#piechart)
 
-	$.InfoViz.chart(
+	InfoViz.chart(
 		$('.i-piechart1'), 
 		'piechart', 
 		{
@@ -215,7 +224,7 @@ A RadarChart has a group of value fields.
 
 Demo: [Click Here](http://infoviz.org/index.html#radarchart)
 
-	$.InfoViz.chart(
+	InfoViz.chart(
 		$('.i-radarchart1'), 
 		'radarchart', 
 		{
@@ -247,7 +256,7 @@ A HeatMap has a value field which indicator its load etc.
 
 Demo: [Click Here](http://infoviz.org/index.html#heatmap)
 
-	$.InfoViz.chart(
+	InfoViz.chart(
 		$('.i-heatmap2'), 
 		'heatmap', 
 		{
@@ -294,7 +303,7 @@ A TagCloud has a text string, and a value field to indicator its frequency.
 
 Demo: [Click Here](http://infoviz.org/index.html#tagcloud)
 
-	$.InfoViz.chart(
+	InfoViz.chart(
 		$('.i-tagcloud1'), 
 		'tagcloud',
 		{
@@ -331,15 +340,65 @@ Demo: [Click Here](http://infoviz.org/index.html#tagcloud)
 
 # 6 Flow
 
-# 7 Configuration
+# 7 Chart Accessories
 
-## 7.1 How to overwrite a style
+## 7.1 Legend
+
+Legend is enabled by default. Check out legend section in [Configurations](#8-configuration) to find out how to customize a legend.
+
+## 7.2 Interaction Callback
+
+You may define a event handler as the 5 parametor of InfoViz.chart. This handler will be called when user click on a chart element.
+
+	InfoViz.chart(
+		element,
+		type,
+		data,
+		overwrite_option,
+		function(info) {
+			console.log(info);
+		}
+	);
+
+## 7.3 Tooltip
+
+You may pass 'tooltip_title' and/or 'tooltip_content' into data to enable tooltip.
+
+	InfoViz.chart(
+		$('.i-bubblechart'), 
+		'bubblechart', 
+		{
+			'vertical_axis_name': 'Vertical',
+			'horizontal_axis_name': 'Horizontal',
+			'horizontal_field': 'F1',
+			'vertical_field': 'F2',
+			'size_field': 'F3',
+			'label_field': 'F4',
+
+			'tooltip_title': 'InfoViz {F2}, {F3}',
+			'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
+
+			'data': [
+				{ 'F1': 1,   'F2': 18, 'F3': 9, 'F4': 'CHN' },
+				{ 'F1': 42,  'F2': 30, 'F3': 6, 'F4': 'USA' },
+				{ 'F1': 7,   'F2': 35, 'F3': 9, 'F4': 'RUS' },
+				{ 'F1': 110, 'F2': 12, 'F3': 9, 'F4': 'CAN' },
+				{ 'F1': 50,  'F2': 19, 'F3': 2, 'F4': 'FRA' },
+				{ 'F1': 29,  'F2': 22, 'F3': 4, 'F4': 'VET' },
+				{ 'F1': 2,   'F2': 3,  'F3': 1, 'F4': 'JPN' }
+			]
+		}
+	);
+
+# 8 Configuration
+
+## 8.1 How to overwrite a style
 
 ### Global
 
 Call $.InfoViz.global_option, and pass in your option object to change options globally.
 
-	$.InfoViz.global_option({
+	InfoViz.global_option({
 		'layout': { 'background-color': '#CDCDCD' }
 	});
 
@@ -347,7 +406,7 @@ Call $.InfoViz.global_option, and pass in your option object to change options g
 
 When you using $.InfoViz.chart to create a chart, you may pass in your option object as the last parametor. This option will effect this chart only.
 
-	$.InfoViz.chart(
+	InfoViz.chart(
 		$('.i-piechart1'), 
 		'piechart', 
 		{
@@ -368,10 +427,9 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 		}
 	);
 
-## 7.2 Options
+## 8.2 Options
 
 	InfoViz.options = {
-
 		// 1. Chart layout configuration.
 		'layout': {
 			'padding-top': 1, 					// padding-top
@@ -380,7 +438,8 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'padding-left': 1,					// padding-left
 
 			'background-color': '#FFF',			// global background color
-			'background-alpha': 1,				// background opacity, you may set this value to 0, and add your customize background as DOM container's background in CSS.
+			'background-alpha': 1,				// background opacity, you may set this value to 0, and add your
+												// customize background as DOM container's background in CSS.
 			
 			'logo-enabled': false,				// is InfoViz logo enabled
 			'logo-width': 50,					// logo width
@@ -404,7 +463,8 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'axis-width': 1,					// axis line thickness
 			'axis-color': '#999',				// axis line color
 			'axis-alpha': 1,					// axis line opacity
-			'axis-dot-size': 2.4,				// axis dot radius. There're 3 axis dot, at the end of each axis, and one at (0, 0)
+			'axis-dot-size': 2.4,				// axis dot radius.
+												// There're 3 axis dot, at the end of each axis, and one at (0, 0)
 			
 			'border-width': 1,					// chart border thichness
 			'border-color': '#AAA',				// chart border color
@@ -585,9 +645,10 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'axis-color': '#999',				// radius axis color
 			'axis-alpha': 1,					// radius axis opacity
 			
-			'circle-border-width': 2,			// radar circle line thickness
-			'circle-background-alpha': 0.1,		// radar circle background opacity (use this value instead of light-alpha of the color)
 			'circle-min-radius': 30,			// radar circle min radius
+			'circle-border-width': 2,			// radar circle line thickness
+			'circle-background-alpha': 0.1,		// radar circle background opacity
+												// (use this value instead of light-alpha of the color)
 			
 			'label-distance': 15,				// distance between outer border to label
 			'label-color': '#555',				// label font color

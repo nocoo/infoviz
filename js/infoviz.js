@@ -22,7 +22,8 @@
 			'padding-left': 1,					// padding-left
 
 			'background-color': '#FFF',			// global background color
-			'background-alpha': 1,				// background opacity, you may set this value to 0, and add your customize background as DOM container's background in CSS.
+			'background-alpha': 1,				// background opacity, you may set this value to 0, and add your
+												// customize background as DOM container's background in CSS.
 			
 			'logo-enabled': false,				// is InfoViz logo enabled
 			'logo-width': 50,					// logo width
@@ -46,7 +47,8 @@
 			'axis-width': 1,					// axis line thickness
 			'axis-color': '#999',				// axis line color
 			'axis-alpha': 1,					// axis line opacity
-			'axis-dot-size': 2.4,				// axis dot radius. There're 3 axis dot, at the end of each axis, and one at (0, 0)
+			'axis-dot-size': 2.4,				// axis dot radius.
+												// There're 3 axis dot, at the end of each axis, and one at (0, 0)
 			
 			'border-width': 1,					// chart border thichness
 			'border-color': '#AAA',				// chart border color
@@ -227,9 +229,10 @@
 			'axis-color': '#999',				// radius axis color
 			'axis-alpha': 1,					// radius axis opacity
 			
-			'circle-border-width': 2,			// radar circle line thickness
-			'circle-background-alpha': 0.1,		// radar circle background opacity (use this value instead of light-alpha of the color)
 			'circle-min-radius': 30,			// radar circle min radius
+			'circle-border-width': 2,			// radar circle line thickness
+			'circle-background-alpha': 0.1,		// radar circle background opacity
+												// (use this value instead of light-alpha of the color)
 			
 			'label-distance': 15,				// distance between outer border to label
 			'label-color': '#555',				// label font color
