@@ -370,213 +370,287 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 
 ## 7.2 Options
 
-	$.InfoViz.options = {
+	InfoViz.options = {
+
+		// 1. Chart layout configuration.
 		'layout': {
-			'padding-top': 1,
-			'padding-right': 1,
-			'padding-bottom': 1,
-			'padding-left': 1,
-			'background-color': '#FFF',
-			'background-alpha': 1,
-			'logo-enabled': false,
-			'logo-width': 50,
-			'logo-height': 23,
-			'logo-position': 'top-right',
-			'speed': 300,
+			'padding-top': 1, 					// padding-top
+			'padding-right': 1,					// padding-right
+			'padding-bottom': 1,				// padding-bottom
+			'padding-left': 1,					// padding-left
 
-			'box-border-width': 1,
-			'box-border-color': '#AAA',
-			'box-border-alpha': 1,
-			'box-background-color': '#F9F9F9',
-			'box-background-alpha': 0.9
+			'background-color': '#FFF',			// global background color
+			'background-alpha': 1,				// background opacity, you may set this value to 0, and add your customize background as DOM container's background in CSS.
+			
+			'logo-enabled': false,				// is InfoViz logo enabled
+			'logo-width': 50,					// logo width
+			'logo-height': 23,					// logo height
+			'logo-position': 'top-right',		// logo position, top-right | top-left | bottom-right | bottom-left
+			
+			'speed': 300,						// animation speed
 		},
+
+		// 2. Grid and axis configuration.
 		'grid': {
-			'padding-top': 10,
-			'padding-right': 10,
-			'padding-bottom': 10,
-			'padding-left': 10,
+			'padding-top': 10, 					// padding-top
+			'padding-right': 10,				// padding-right
+			'padding-bottom': 10,				// padding-bottom
+			'padding-left': 10,					// padding-left
 
-			'grid-width': 1,
-			'grid-color': '#CCC',
-			'grid-alpha': 0.5,
+			'grid-width': 1,					// grid line thickness
+			'grid-color': '#CCC',				// grid line color
+			'grid-alpha': 0.5,					// grid line opacity
 
-			'axis-width': 1,
-			'axis-color': '#999',
-			'axis-alpha': 1,
-			'axis-dot-size': 2.4,
+			'axis-width': 1,					// axis line thickness
+			'axis-color': '#999',				// axis line color
+			'axis-alpha': 1,					// axis line opacity
+			'axis-dot-size': 2.4,				// axis dot radius. There're 3 axis dot, at the end of each axis, and one at (0, 0)
 			
-			'border-width': 1,
-			'border-color': '#AAA',
-			'border-alpha': 1,
-			'border-radius': 4,
+			'border-width': 1,					// chart border thichness
+			'border-color': '#AAA',				// chart border color
+			'border-alpha': 1,					// chart border opacity
+			'border-radius': 4,					// chart border corner radius
 			
-			'background-color': '#FFF',
-			'background-alpha': 1.0,
+			'background-color': '#FFF',			// chart area background-color
+			'background-alpha': 1.0,			// chart area background opacity
 			
-			'vertical-label-margin': 5,
-			'vertical-label-spacing': 40,
-			'vertical-label-size': 12,
-			'vertical-label-color': '#555',
-			'vertical-name-size': 12,
-			'vertical-name-color': '#000',
+			'vertical-label-margin': 5,			// distance from axis to vertical label
+			'vertical-label-spacing': 40,		// vertical label max width
+			'vertical-label-size': 12,			// vertical label font size
+			'vertical-label-color': '#555',		// vertical label font color
+			'vertical-name-size': 12,			// vertical axis name font size
+			'vertical-name-color': '#000',		// vertical axis name font color
 
-			'horizontal-label-margin': 5,
-			'horizontal-label-spacing': 10,
-			'horizontal-label-size': 12,
-			'horizontal-label-color': '#555',
-			'horizontal-name-size': 12,
-			'horizontal-name-color': '#000'
+			'horizontal-label-margin': 5,		// distance from axis to horizontal label
+			'horizontal-label-spacing': 10,		// horizontal label max height
+			'horizontal-label-size': 12,		// horizontal label font size
+			'horizontal-label-color': '#555',	// horizontal label font color
+			'horizontal-name-size': 12,			// horizontal axis name font size
+			'horizontal-name-color': '#000'		// horizontal axis name font color
 		},
+
+		// 3. Legend configuration.
 		'legend': {
-			'width': undefined,
-			'height': undefined,
-			'legend-enabled': true,
-			'legend-position': 'top-left',
+			'legend-enabled': true,				// is legend enabled
+			'legend-position': 'top-left',		// legend position, top-right | top-left | bottom-right | bottom-left
+
+			'width': undefined,					// legend width, set this option to undefined to use auto width
+			'height': undefined,				// legend height, set this option to undefined to use auto height
+
+			'margin-top': 10,					// margin-top
+			'margin-right': 10,					// margin-right
+			'margin-bottom': 10,				// margin-bottom
+			'margin-left': 10,					// margin-left
+
+			'padding-top': 5,					// padding-top
+			'padding-right': 8,					// padding-right
+			'padding-bottom': 5,				// padding-bottom
+			'padding-left': 8,					// padding-left
+
+			'indicator-size': 14,				// legend indicator size
+			'indicator-border-width': 1,		// legend indicator brush thickness
+			'indicator-margin-left': 0,			// legend indicator margin-left
+			'indicator-margin-right': 10,		// legend indicator margin-right
+			'indicator-margin-top': 2,			// legend indicator margin-top
+			'indicator-margin-bottom': 2,		// legend indicator margin-bottom
+			'indicator-sector-angle': 60,		// sector type legend indicator angle
+
+			'label-color': undefined,			// legend label font color
+			'label-alpha': 1,					// legend label font opacity
+			'label-size': 12,					// legend label font size
 			
-			'margin-top': 10,
-			'margin-right': 10,
-			'margin-bottom': 10,
-			'margin-left': 10,
+			'border-width': 1,					// legend border thickness
+			'border-color': '#CCC',				// legend border color
+			'border-alpha': 1,					// legend border opacity
+			'border-radius': 4,					// legend border radius
 
-			'padding-top': 5,
-			'padding-right': 8,
-			'padding-bottom': 5,
-			'padding-left': 8,
-
-			'indicator-size': 14,
-			'indicator-border-width': 1,
-			'indicator-margin-left': 0,
-			'indicator-margin-right': 10,
-			'indicator-margin-top': 2,
-			'indicator-margin-bottom': 2,
-			'indicator-sector-angle': 60,
-
-			'label-color': undefined,
-			'label-alpha': 1,
-			'label-size': 12,
-			
-			'border-width': 1,
-			'border-color': '#CCC',
-			'border-alpha': 1,
-			'border-radius': 4,
-
-			'background-color': '#FDFDFD',
-			'background-alpha': 1,
+			'background-color': '#FDFDFD',		// legend background color
+			'background-alpha': 1 				// legend background opacity
 		},
+
+		// 4. Tooltip configuration.
+		'tooltip': {
+			'padding-top': 6,					// padding-top
+			'padding-right': 8,					// padding-right
+			'padding-bottom': 6,				// padding-bottom
+			'padding-left': 8,					// padding-left
+			
+			'border-width': 1,					// tooltip border thickness
+			'border-color': '#CCC',				// tooltip border color
+			'border-alpha': 1,					// tooltip border opacity
+			'border-radius': 4,					// tooltip border radius
+
+			'title-text-color': undefined,		// tooltip title text font color
+			'title-text-alpha': 1,				// tooltip title text font opacity
+			'title-text-weight': 'bold',		// tooltip title text weight
+			'title-text-size': 12,				// tooltip title text font size
+			
+			'line-spacing': 2,					// distance between title and content
+
+			'content-text-color': '#999',		// tooltip content text font color
+			'content-text-alpha': 1,			// tooltip content text font opacity
+			'content-text-weight': 'normal',	// tooltip content text weight
+			'content-text-size': 12,			// tooltip content text font size
+
+			'background-color': '#FDFDFD',		// tooltip background color
+			'background-alpha': 1,				// tooltip background alpha
+
+			'horizontal-offset': 0,				// tooltip horizontal offset
+			'vertical-offset': -10 				// tooltip vertical offset
+		},
+
+		// 5. LineChart configuration.
 		'linechart': {
-			'padding-top': 30,
-			'padding-right': 90,
-			'padding-bottom': 20,
-			'padding-left': 30,
-			'line-width': 2,
-			'circle-radius': 5,
-			'label-size': 12,
-			'vertical-label-count': 10,
-			'vertical-bar-width': 5,
-			'custom-circle': undefined
+			'padding-top': 30,					// padding-top
+			'padding-right': 90,				// padding-right
+			'padding-bottom': 20,				// padding-bottom
+			'padding-left': 30,					// padding-left
+
+			'line-width': 2,					// LineChart line thickness
+			'circle-radius': 5,					// LineChart node circle radius
+			'custom-circle': undefined,			// if you want to use a customized circle image, set this to image url
+			'label-size': 12,					// label font size
+
+			'vertical-label-count': 10,			// label count in the vertical axis
+			'vertical-bar-width': 5 			// period bar width of the vertical axis
 		},
+
+		// 6. BubbleChart configuration.
 		'bubblechart': {
-			'padding-top': 40,
-			'padding-right': 100,
-			'padding-bottom': 40,
-			'padding-left': 60,
-			'circle-border-width': 2,
-			'circle-min-radius': 15,
-			'circle-max-radius': 40,
-			'label-size': 12,
-			'horizontal-label-count': 10,
-			'horizontal-bar-width': 5,
-			'vertical-label-count': 5,
-			'vertical-bar-width': 5
+			'padding-top': 40,					// padding-top
+			'padding-right': 100,				// padding-right
+			'padding-bottom': 40,				// padding-bottom
+			'padding-left': 60,					// padding-left
+
+			'circle-border-width': 2,			// bubble circle border thickness
+			'circle-min-radius': 15,			// bubble circle max radius
+			'circle-max-radius': 40,			// bubble circle min radius
+			'label-size': 12,					// bubble circle label font size
+
+			'horizontal-label-count': 10,		// label count in the horizontal axis
+			'horizontal-bar-width': 5,			// period bar width of the horizontal axis
+			'vertical-label-count': 5,			// label count in the vertical axis
+			'vertical-bar-width': 5 			// period bar width of the vertical axis
 		},
+
+		// 7. BarChart configuration.
 		'barchart': {
-			'padding-top': 30,
-			'padding-right': 30,
-			'padding-bottom': 20,
-			'padding-left': 30,
-			'group-margin': 40,
-			'bar-margin': 4,
-			'vertical-label-count': 10,
-			'vertical-bar-width': 5
+			'padding-top': 30,					// padding-top
+			'padding-right': 30,				// padding-right
+			'padding-bottom': 20,				// padding-bottom
+			'padding-left': 30,					// padding-left
+
+			'group-margin': 40,					// margin value between bar groups
+			'bar-margin': 4,					// margin value between bars (in the same group)
+
+			'vertical-label-count': 10,			// label count in the vertical axis
+			'vertical-bar-width': 5 			// period bar width of the vertical axis
 		},
+
+		// 8. PieChart configuration.
 		'piechart': {
-			'sector-size-factor': 0.9,
-			'sector-border-width': 1,
-			'label-distance': 5,
-			'label-line-width': 1,
-			'label-line-color': '#555',
-			'label-line-alpha': 1,
-			'label-size': 11,
-			'label-bar-length1': 5,
-			'label-bar-length2': 10,
-			'hole-radius': 0,
-			'horizontal-offset': 0,
-			'vertical-offset': 0
+			'size-factor': 0.9,					// size factor, 0.9 means using 90% area to draw the chart
+			'sector-border-width': 1,			// border thickness of pie sectors
+			'hole-radius': 0,					// hold radius, set this value to a positive number to make a RingChart
+
+			'label-size': 11,					// label font size
+			'label-distance': 5,				// distance from the outer size of pir and label
+			'label-bar-width': 1,				// label pointer line thickness
+			'label-bar-color': '#555',			// label pointer line color
+			'label-bar-alpha': 1,				// label pointer line opacity
+			'label-bar-length1': 5,				// label pointer first part length
+			'label-bar-length2': 10,			// label pointer second part length
+			
+			'horizontal-offset': 0,				// chart center horizontal offset
+			'vertical-offset': 0 				// chart center vertical offset
 		},
+
+		// 9. RadarChart configuration.
 		'radarchart': {
-			'sector-size-factor': 0.9,
-			'outer-border-width': 1,
-			'outer-border-color': '#999',
-			'outer-border-alpha': 1,
-			'outer-background-color': '#FFF',
-			'outer-background-alpha': 1,
-			'inner-border-width': 1,
-			'inner-border-color': '#CCC',
-			'inner-border-alpha': 1,
-			'inner-background-color': '#F9F9F9',
-			'inner-background-alpha': 1,
-			'axis-width': 2,
-			'axis-color': '#999',
-			'axis-alpha': 1,
-			'circle-border-width': 2,
-			'circle-background-alpha': 0.1,
-			'circle-min-radius': 30,
-			'label-distance': 15,
-			'label-color': '#555',
-			'label-size': 12,
-			'label-rotation': false,
+			'size-factor': 0.9,					// size factor, 0.9 means using 90% area to draw the chart
+			
+			'outer-border-width': 1,			// outer border thickness
+			'outer-border-color': '#999',		// outer border color
+			'outer-border-alpha': 1,			// outer border opacity
+			'outer-background-color': '#FFF',	// outer background color
+			'outer-background-alpha': 1,		// outer background opacity
+			
+			'inner-border-width': 1,			// inner border thickness
+			'inner-border-color': '#CCC',		// inner border color
+			'inner-border-alpha': 1,			// inner border opacity
+			'inner-background-color': '#F9F9F9',// inner background color
+			'inner-background-alpha': 1,		// inner background opacity
+			
+			'axis-width': 2,					// radius axis thickness
+			'axis-color': '#999',				// radius axis color
+			'axis-alpha': 1,					// radius axis opacity
+			
+			'circle-border-width': 2,			// radar circle line thickness
+			'circle-background-alpha': 0.1,		// radar circle background opacity (use this value instead of light-alpha of the color)
+			'circle-min-radius': 30,			// radar circle min radius
+			
+			'label-distance': 15,				// distance between outer border to label
+			'label-color': '#555',				// label font color
+			'label-size': 12,					// label font size
+			'label-rotation': false,			// is label rotated
+
+			'horizontal-offset': 0,				// chart center horizontal offset
+			'vertical-offset': 0 				// chart center vertical offset
+		},
+
+		// 10. HeatMap
+		'heatmap': {
+			'horizontal-margin': 4,				// horizontal margin between boxes
+			'vertical-margin': 4,				// vertical margin between boxes
+			'box-border-width': 1,				// box border thickness
+			'label-size': 12,					// box label font size
+			'label-color': '#FFF',				// box label font color
+			'label-alpha': 1,					// box label font opacity
+			
+			'horizontal-count': undefined,		// horizontal box count, set this value to undefined to use auto layout
+			'vertical-count': undefined,		// vertical box count, set this value to undefined to use auto layout
+			
+			'color': [							// color definition for HeatMap, from light to dark.
+				{ 'color': '#339999', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#99CC99', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#99CC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#CCCC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FFCC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FF6633', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FF3333', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#CC0066', 'dark-alpha': 1, 'light-alpha': 0.45 }
+			]
+		},
+
+		// 11. TagCloud
+		'tagcloud': {
+			'levels': 10,						// size levels
+			'text-min-size': 10,				// min font size
+			'text-max-size': 55,				// max font size
+			'row-count': 5,						// row count
+			'horizontal-margin': 5,				// horizontal margin value between texts
+			'vertical-margin': -10,				// vertical margin value between text lines
+			'color': [							// color definition for TagCloud, from light to dark.
+				{ 'color': '#339999', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#99CC99', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#99CC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#CCCC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FFCC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FF6633', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FF3333', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#CC0066', 'dark-alpha': 1, 'light-alpha': 0.45 }
+			]
+		},
+
+		// 10. SmithGraph, TBD
+		'smithgraph': {
+			'size-factor': 0.9,
 			'horizontal-offset': 0,
 			'vertical-offset': 0
 		},
-		'heatmap': {
-			'horizontal_margin': 4,
-			'vertical_margin': 4,
-			'box-border-width': 1,
-			'label-size': 12,
-			'label-color': '#FFF',
-			'label-alpha': 1,
-			'horizontal_count': undefined,
-			'vertical_count': undefined,
-			'color': [
-				{ 'color': '#339999', 'dark-alpha': 1, 'light-alpha': 0.45 },
-				{ 'color': '#99CC99', 'dark-alpha': 1, 'light-alpha': 0.45 },
-				{ 'color': '#99CC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
-				{ 'color': '#CCCC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
-				{ 'color': '#FFCC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
-				{ 'color': '#FF6633', 'dark-alpha': 1, 'light-alpha': 0.45 },
-				{ 'color': '#FF3333', 'dark-alpha': 1, 'light-alpha': 0.45 },
-				{ 'color': '#CC0066', 'dark-alpha': 1, 'light-alpha': 0.45 }
-			]
-		},
-		'tagcloud': {
-			'levels': 10,
-			'text-min-size': 10,
-			'text-max-size': 55,
-			'row-count': 5,
-			'horizontal_margin': 5,
-			'vertical_margin': -10,
-			'color': [
-				{ 'color': '#339999', 'dark-alpha': 1, 'light-alpha': 0.45 },
-				{ 'color': '#99CC99', 'dark-alpha': 1, 'light-alpha': 0.45 },
-				{ 'color': '#99CC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
-				{ 'color': '#CCCC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
-				{ 'color': '#FFCC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
-				{ 'color': '#FF6633', 'dark-alpha': 1, 'light-alpha': 0.45 },
-				{ 'color': '#FF3333', 'dark-alpha': 1, 'light-alpha': 0.45 },
-				{ 'color': '#CC0066', 'dark-alpha': 1, 'light-alpha': 0.45 }
-			]
-		},
-		'color': [
+
+		// 0. Global color definition.
+		'color': [								// color definition, from light to dark.
 			{ 'color': '#66B3DD', 'dark-alpha': 1, 'light-alpha': 0.45 },
 			{ 'color': '#EF7D31', 'dark-alpha': 1, 'light-alpha': 0.45 },
 			{ 'color': '#ABC93C', 'dark-alpha': 1, 'light-alpha': 0.45 },
