@@ -10,7 +10,7 @@
 	if(InfoViz) return;
 
 	var InfoViz = {};
-	var tooltip_border, tooltip_title, tooltip_content, tooltip_id;
+	var tooltip_border, tooltip_title, tooltip_content, tooltip_id, tooltip_timer;
 
 	InfoViz.options = {
 
@@ -130,6 +130,8 @@
 			'title-text-size': 12,				// tooltip title text font size
 			
 			'line-spacing': 2,					// distance between title and content
+			'hide-after': 5000,					// tooltip will automatic hide in seconds
+												// undefined or 0, tooltip will always be visible
 
 			'content-text-color': '#999',		// tooltip content text font color
 			'content-text-alpha': 1,			// tooltip content text font opacity
@@ -836,11 +838,8 @@
 		}
 	};
 
-	InfoViz.draw_tooltip = function(paper, x, y, id, title, content, color, overwrite_options) {
-		if(id === tooltip_id) return;
-
+	var hide_tooltip = function(overwrite_options) {
 		var options = merge_options(overwrite_options);
-		var test_text, this_box, title_width = 0, title_height = 0, content_width = 0, content_height = 0;
 
 		// Remove old tooltip
 		if(tooltip_border) {
@@ -867,6 +866,16 @@
 				delete old_content;
 			});
 		}
+	};
+
+	InfoViz.draw_tooltip = function(paper, x, y, id, title, content, color, overwrite_options) {
+		if(id === tooltip_id) return;
+
+		var options = merge_options(overwrite_options);
+		var test_text, this_box, title_width = 0, title_height = 0, content_width = 0, content_height = 0;
+
+		// Remove old tooltip
+		hide_tooltip(options);
 
 		tooltip_id = id;
 
@@ -952,6 +961,14 @@
 		tooltip_border.animate({ 'opacity': 1 }, options['layout']['speed']);
 		tooltip_title.animate({ 'opacity': 1 }, options['layout']['speed']);
 		tooltip_content.animate({ 'opacity': 1 }, options['layout']['speed']);
+
+		// Hide tooltip timer setup.
+		clearTimeout(tooltip_timer);
+		if(options['tooltip']['hide-after']) {
+			tooltip_timer = setTimeout(function() {
+				hide_tooltip();
+			}, options['tooltip']['hide-after']);
+		}
 	};
 
 	/* 1. AxisCharts */

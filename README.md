@@ -548,6 +548,8 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'title-text-size': 12,				// tooltip title text font size
 			
 			'line-spacing': 2,					// distance between title and content
+			'hide-after': 5000,					// tooltip will automatic hide in seconds
+												// undefined or 0, tooltip will always be visible
 
 			'content-text-color': '#999',		// tooltip content text font color
 			'content-text-alpha': 1,			// tooltip content text font opacity
