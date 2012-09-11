@@ -3,7 +3,7 @@
 	@author  Zheng Li <lizheng@lizheng.me>
 	@github https://github.com/nocoo/InfoViz
 	@license MIT
-	@version 0.2.1
+	@version 0.2.2
 */
 
 ;(function() {
@@ -289,14 +289,14 @@
 			]
 		},
 
-		// 10. SmithGraph, TBD
+		// 12. SmithGraph, TBD
 		'smithgraph': {
 			'size-factor': 0.9,
 			'horizontal-offset': 0,
 			'vertical-offset': 0
 		},
 
-		// 11. RadialChart
+		// 13. RadialChart
 		'radialchart': {
 			'size-factor': 0.9,					// size factor, 0.9 means using 90% area to draw the chart
 			'bar-width': 15,					// radial bar width, in angle

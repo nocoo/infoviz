@@ -248,6 +248,48 @@ Demo: [Click Here](http://infoviz.org/index.html#radarchart)
 		}
 	);
 
+## 2.3 RadialChart
+
+![RadialChart](http://infoviz.org/examples/radialchart.png "RadialChart")
+
+A RadialChart has a value field.
+
+Demo: [Click Here](http://infoviz.org/index.html#radialchart)
+
+	InfoViz.chart(
+		$('.i-radialchart2'), 
+		'radialchart', 
+		{
+			'value_field': 'F1',
+			'label_field': 'F2',
+			'tooltip_title': 'Country: {F2}',
+			'tooltip_content': 'Tooltip: {F2}',
+			'data': [
+				{ 'F1': 6, 'F2': 'China' },
+				{ 'F1': 5, 'F2': 'Unite States' },
+				{ 'F1': 6, 'F2': 'Russia' },
+				{ 'F1': 5, 'F2': 'Japan' },
+				{ 'F1': 5, 'F2': 'Botswana' },
+				{ 'F1': 6, 'F2': 'Finland' },
+				{ 'F1': 5, 'F2': 'France' },
+				{ 'F1': 4, 'F2': 'Cape Verde' },
+				{ 'F1': 3, 'F2': 'Belize' },
+				{ 'F1': 4, 'F2': 'Georgia' },
+				{ 'F1': 5, 'F2': 'Haiti' },
+				{ 'F1': 6, 'F2': 'Hungary' },
+				{ 'F1': 3, 'F2': 'India' },
+				{ 'F1': 4, 'F2': 'Laos' },
+				{ 'F1': 5, 'F2': 'Kuwait' },
+				{ 'F1': 4, 'F2': 'Namibia' },
+				{ 'F1': 3, 'F2': 'Peru' }
+			]
+		},
+		{
+			'legend': { 'margin-left': 0, 'margin-top': 5 },
+			'radialchart': { 'horizontal-offset': 40, 'label-enabled': false }
+		}
+	);
+
 # 3 Map
 
 ## 3.1 HeatMap
@@ -707,11 +749,32 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			]
 		},
 
-		// 10. SmithGraph, TBD
+		// 12. SmithGraph, TBD
 		'smithgraph': {
 			'size-factor': 0.9,
 			'horizontal-offset': 0,
 			'vertical-offset': 0
+		},
+
+		// 13. RadialChart
+		'radialchart': {
+			'size-factor': 0.9,					// size factor, 0.9 means using 90% area to draw the chart
+			'bar-width': 15,					// radial bar width, in angle
+			'bar-border-width': 1,				// border thickness of radial bars
+			'bar-min-height': 15,				// min bar height
+			'hole-radius': 50,					// hold radius
+
+			'label-enabled': true,				// if label is visible
+			'label-size': 11,					// label font size
+			'label-distance': 5,				// distance from the outer size of pir and label
+			'label-bar-width': 1,				// label pointer line thickness
+			'label-bar-color': '#555',			// label pointer line color
+			'label-bar-alpha': 1,				// label pointer line opacity
+			'label-bar-length1': 5,				// label pointer first part length
+			'label-bar-length2': 10,			// label pointer second part length
+			
+			'horizontal-offset': 0,				// chart center horizontal offset
+			'vertical-offset': 0 				// chart center vertical offset
 		},
 
 		// 0. Global color definition.
