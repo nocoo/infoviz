@@ -39,7 +39,8 @@
 			</section>
 			<section>
 				<h2>RadialChart <a href="#radialchart" name="radialchart">#</a></h2>
-				<div class="infoviz i-radialchart"></div>
+				<div class="infoviz i-radialchart1"></div>
+				<div class="infoviz i-radialchart2"></div>
 				<div class="clear"></div>
 			</section>
 
@@ -320,6 +321,73 @@
 					{
 						'radarchart': { 'label-distance': 8, 'label-rotation': true },
 						'legend': { 'legend-enabled': false }
+					}
+				);
+
+				// RadialChart
+				InfoViz.chart(
+					$('.i-radialchart1'), 
+					'radialchart', 
+					{
+						'value_field': 'F1',
+						'label_field': 'F2',
+						'data': [
+							{ 'F1': 3, 'F2': 'China' },
+							{ 'F1': 6, 'F2': 'Unite States' },
+							{ 'F1': 2, 'F2': 'Russia' },
+							{ 'F1': 4, 'F2': 'Japan' },
+							{ 'F1': 2, 'F2': 'Botswana' },
+							{ 'F1': 4, 'F2': 'Finland' },
+							{ 'F1': 1, 'F2': 'France' },
+							{ 'F1': 2, 'F2': 'Cape Verde' },
+							{ 'F1': 6, 'F2': 'Belize' },
+							{ 'F1': 4, 'F2': 'Georgia' },
+							{ 'F1': 2, 'F2': 'Haiti' },
+							{ 'F1': 3, 'F2': 'Hungary' },
+							{ 'F1': 6, 'F2': 'India' },
+							{ 'F1': 4, 'F2': 'Laos' },
+							{ 'F1': 3, 'F2': 'Kuwait' },
+							{ 'F1': 6,  'F2': 'Namibia' },
+							{ 'F1': 1,  'F2': 'Peru' }
+						]
+					},
+					{ 
+						'legend': { 'legend-enabled': false },
+						'radialchart': { 'size-factor': 0.8, 'bar-min-height': 60, 'bar-width': 10, 'hole-radius': 20 }
+					}
+				);
+
+				InfoViz.chart(
+					$('.i-radialchart2'), 
+					'radialchart', 
+					{
+						'value_field': 'F1',
+						'label_field': 'F2',
+						'tooltip_title': 'Country: {F2}',
+						'tooltip_content': 'Tooltip: {F2}',
+						'data': [
+							{ 'F1': 6, 'F2': 'China' },
+							{ 'F1': 5, 'F2': 'Unite States' },
+							{ 'F1': 3, 'F2': 'Russia' },
+							{ 'F1': 4, 'F2': 'Japan' },
+							{ 'F1': 5, 'F2': 'Botswana' },
+							{ 'F1': 6, 'F2': 'Finland' },
+							{ 'F1': 5, 'F2': 'France' },
+							{ 'F1': 4, 'F2': 'Cape Verde' },
+							{ 'F1': 3, 'F2': 'Belize' },
+							{ 'F1': 4, 'F2': 'Georgia' },
+							{ 'F1': 5, 'F2': 'Haiti' },
+							{ 'F1': 6, 'F2': 'Hungary' },
+							{ 'F1': 3, 'F2': 'India' },
+							{ 'F1': 4, 'F2': 'Laos' },
+							{ 'F1': 5, 'F2': 'Kuwait' },
+							{ 'F1': 4,  'F2': 'Namibia' },
+							{ 'F1': 3,  'F2': 'Peru' }
+						]
+					},
+					{
+						'legend': { 'margin-left': 0, 'margin-top': 5 },
+						'radialchart': { 'horizontal-offset': 40, 'label-enabled': false }
 					}
 				);
 
