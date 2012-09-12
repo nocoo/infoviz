@@ -3,7 +3,7 @@
 	@author  Zheng Li <lizheng@lizheng.me>
 	@github https://github.com/nocoo/InfoViz
 	@license MIT
-	@version 0.2.2
+	@version 0.2.3
 */
 
 ;(function() {
@@ -11,6 +11,8 @@
 
 	var InfoViz = {};
 	var tooltip_border, tooltip_title, tooltip_content, tooltip_id, tooltip_timer;
+
+	InfoViz.version = function() { return '0.2.3' };
 
 	InfoViz.options = {
 
@@ -232,8 +234,8 @@
 			'axis-alpha': 1,					// radius axis opacity
 			
 			'circle-min-radius': 30,			// radar circle min radius
-			'circle-border-width': 2,			// radar circle line thickness
-			'circle-background-alpha': 0.1,		// radar circle background opacity
+			'circle-border-width': 1.5,			// radar circle line thickness
+			'circle-background-alpha': 0.3,		// radar circle background opacity
 												// (use this value instead of light-alpha of the color)
 			
 			'label-distance': 15,				// distance between outer border to label
@@ -257,7 +259,7 @@
 			'horizontal-count': undefined,		// horizontal box count, set this value to undefined to use auto layout
 			'vertical-count': undefined,		// vertical box count, set this value to undefined to use auto layout
 			
-			'color': [							// color definition for HeatMap, from light to dark.
+			'color': [							// color definition for HeatMap, from light to dark
 				{ 'color': '#339999', 'dark-alpha': 1, 'light-alpha': 0.45 },
 				{ 'color': '#99CC99', 'dark-alpha': 1, 'light-alpha': 0.45 },
 				{ 'color': '#99CC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
@@ -277,7 +279,7 @@
 			'row-count': 5,						// row count
 			'horizontal-margin': 5,				// horizontal margin value between texts
 			'vertical-margin': -10,				// vertical margin value between text lines
-			'color': [							// color definition for TagCloud, from light to dark.
+			'color': [							// color definition for TagCloud, from light to dark
 				{ 'color': '#339999', 'dark-alpha': 1, 'light-alpha': 0.45 },
 				{ 'color': '#99CC99', 'dark-alpha': 1, 'light-alpha': 0.45 },
 				{ 'color': '#99CC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
@@ -289,20 +291,39 @@
 			]
 		},
 
-		// 12. SmithGraph, TBD
+		// 12. SmithGraph
 		'smithgraph': {
-			'size-factor': 0.9,
-			'horizontal-offset': 0,
-			'vertical-offset': 0
+			'size-factor': 1,					// size factor, 0.9 means using 90% area to draw the chart
+			'bar-width': undefined,				// radial bar width, in angle. set to undefined to use auto value
+			'bar-border-width': 1,				// border thickness of radial bars
+			'bar-min-height': 15,				// min bar height
+			'edge-margin': 5,					// distance between edge and node bar
+			'edge-border-width': 1,				// border thickness of radial edges
+			'edge-background-alpha': 0.2,		// edge background opacity
+			'hole-radius': 300,					// hole radius
+
+			'horizontal-offset': 0,				// graph center horizontal offset
+			'vertical-offset': 0,				// graph center vertical offset
+
+			'edge-color': [						// color definition for SmithGraph edges, from light to dark
+				{ 'color': '#339999', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#99CC99', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#99CC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#CCCC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FFCC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FF6633', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FF3333', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#CC0066', 'dark-alpha': 1, 'light-alpha': 0.45 }
+			]
 		},
 
 		// 13. RadialChart
 		'radialchart': {
 			'size-factor': 0.9,					// size factor, 0.9 means using 90% area to draw the chart
-			'bar-width': 15,					// radial bar width, in angle
+			'bar-width': 15,					// radial bar width, in angle. set to undefined to use auto value
 			'bar-border-width': 1,				// border thickness of radial bars
 			'bar-min-height': 15,				// min bar height
-			'hole-radius': 50,					// hold radius
+			'hole-radius': 50,					// hole radius
 
 			'label-enabled': true,				// if label is visible
 			'label-size': 11,					// label font size
@@ -317,8 +338,22 @@
 			'vertical-offset': 0 				// chart center vertical offset
 		},
 
+		// 14. StackChart configuration.
+		'stackchart': {
+			'padding-top': 30,					// padding-top
+			'padding-right': 30,				// padding-right
+			'padding-bottom': 20,				// padding-bottom
+			'padding-left': 30,					// padding-left
+
+			'group-margin': 40,					// margin value between bar groups
+			'bar-margin': 4,					// margin value between bars (in the same group)
+
+			'vertical-label-count': 10,			// label count in the vertical axis
+			'vertical-bar-width': 5 			// period bar width of the vertical axis
+		},
+
 		// 0. Global color definition.
-		'color': [								// color definition, from light to dark.
+		'color': [								// color definition, from light to dark
 			{ 'color': '#66B3DD', 'dark-alpha': 1, 'light-alpha': 0.45 },
 			{ 'color': '#EF7D31', 'dark-alpha': 1, 'light-alpha': 0.45 },
 			{ 'color': '#ABC93C', 'dark-alpha': 1, 'light-alpha': 0.45 },
@@ -402,6 +437,12 @@
 			case 'radialchart': {
 				area = InfoViz.draw_empty_background(paper, data, options);
 				InfoViz.draw_radialchart(paper, area, data, options, callback);
+				break;
+			}
+			case 'stackchart': {
+				area = InfoViz.draw_axis_background(paper, data, options);
+				InfoViz.draw_stackchart(paper, area, data, options, callback);
+
 				break;
 			}
 			default: {
@@ -1630,6 +1671,229 @@
 		}
 	};
 
+	InfoViz.draw_stackchart = function(paper, chart_area, data, overwrite_options, callback, that) {
+		if(!paper || !data) return idb('Paper or Data is empty.');
+		
+		var options = merge_options(overwrite_options), cache = [], x, y, line_count = 0;
+		var lines = data['data'], h_fields = [], v_fields = [], i, j, k, item;
+		var h_field_name = data['horizontal_field'], v_field_name = data['vertical_field'];
+		var this_h, this_v, h_min = Infinity, h_max = -Infinity, v_min = Infinity, v_max = -Infinity, v_sum_max = -Infinity;
+
+		var element_action = function(evt) { callback.call(that, this.data('info')); };
+		var element_tooltip = function(evt) {
+			x = this.data('tooltip')['bar_top_x'];
+			y = this.data('tooltip')['bar_top_y'];
+			InfoViz.draw_tooltip(paper, x, y, this.data('tooltip')['id'], this.data('tooltip')['title'], this.data('tooltip')['content'], this.data('tooltip')['color'], options);
+		};
+		
+		// Scan horizontal and vertical fields.
+		for(var line in lines) {
+			var v_sum = 0;
+			for(i = 0; i < lines[line]['data'].length; ++i) {
+				item = lines[line]['data'][i];
+
+				// horizontal field.
+				if(item[h_field_name]) {
+					this_h = item[h_field_name];
+				} else {
+					this_h = 'N/A';
+				}
+
+				if(this_h > h_max) {
+					h_max = this_h;
+				}
+				if(this_h < h_min) {
+					h_min = this_h;
+				}
+
+				if(in_array(this_h, h_fields) === -1) {
+					h_fields.push(this_h);
+				}
+
+				// vertical field.
+				if(item[v_field_name]) {
+					this_v = item[v_field_name];
+				} else {
+					this_v = 'N/A';
+				}
+
+				if(this_v > v_max) {
+					v_max = this_v;
+				}
+				if(this_v < v_min) {
+					v_min = this_v;
+				}
+
+				if(in_array(this_v, v_fields) === -1) {
+					v_fields.push(this_v);
+				}
+
+				v_sum += this_v;
+			}
+
+			if(v_sum > v_sum_max) v_sum_max = v_sum;
+
+			++line_count;
+		}
+
+		v_min = Math.floor(v_min / 10) * 10;
+		v_max = Math.ceil(v_max / 10) * 10;
+
+		// Mapping position.
+		var h_start = chart_area['top-left'][0] + options['stackchart']['padding-left'];
+		var v_start = chart_area['bottom-left'][1] - options['stackchart']['padding-bottom'];
+		var v_unit = (v_start - chart_area['top-left'][1] - options['stackchart']['padding-top'] - options['stackchart']['bar-margin'] * (line_count - 1)) / v_sum_max;
+		var h_map = {};
+
+		// Vertical labels.
+		var v_label_unit = (v_start - chart_area['top-left'][1] - options['stackchart']['padding-top']) / (options['stackchart']['vertical-label-count'] - 1);
+		var v_label_value_unit = Math.floor((v_max - v_min) / (options['stackchart']['vertical-label-count'] - 1)); // May not be accurate.
+		
+		cache = [];
+		x = chart_area['top-left'][0] - options['stackchart']['vertical-bar-width'];
+		y = v_start;
+		var v_value = v_min;
+
+		for(i = 0; i < options['stackchart']['vertical-label-count']; ++i) {
+			cache.push('M' + x + ',' + y + 'L' + chart_area['top-left'][0] + ',' + y);
+
+			paper.path(cache.join('')).attr({
+				'stroke': options['grid']['axis-color'],
+				'stroke-opacity': options['grid']['axis-alpha'],
+				'stroke-width': options['grid']['axis-width']
+			}).translate(0.5, 0.5);
+
+
+			paper.text(x - options['stackchart']['vertical-bar-width'], y, v_value).attr({
+				'text-anchor': 'end',
+				'fill': options['grid']['vertical-label-color'],
+				'font-size': options['grid']['vertical-label-size']
+			}).translate(0.5, 0.5);
+
+			y -= v_label_unit;
+			v_value += v_label_value_unit;
+		}
+
+		// grids.
+		var group_width = (chart_area['width'] - options['stackchart']['padding-left'] - options['stackchart']['padding-right'] - (h_fields.length - 1) * options['barchart']['group-margin']) / h_fields.length;
+		var p_vertical_grids;
+		cache = [];
+		x = h_start + group_width / 2;
+		y = chart_area['bottom-right'][1] + options['grid']['horizontal-name-size'] / 2 + options['grid']['horizontal-label-margin'] * 2;
+
+		for(i = 0; i < h_fields.length; ++i) {
+			cache.push('M' + x + ',' + chart_area['bottom-left'][1]);
+			cache.push('L' + x + ',' + chart_area['top-left'][1]);
+			
+			h_map[h_fields[i]] = x - group_width / 2;
+
+			// Draw horizontal labels.
+			paper.text(x, y, h_fields[i]).attr({
+				'text-anchor': 'middle',
+				'font-size': options['grid']['horizontal-label-size'],
+				'fill': options['grid']['horizontal-label-color']
+			}).translate(0.5, 0.5);
+
+			x += group_width + options['stackchart']['group-margin'];
+		}
+
+		p_vertical_grids = paper.path(cache.join(''));
+		p_vertical_grids.attr({
+			'stroke': options['grid']['grid-color'],
+			'stroke-dasharray': '--..',
+			'stroke-linecap': 'butt',
+			'stroke-width': options['grid']['grid-width'],
+			'stroke-opacity': options['grid']['grid-alpha']
+		});
+		p_vertical_grids.translate(0.5, 0.5);
+
+		// Bars.
+		var index = 0, color, p_nodes = [], this_node;
+		var legend_data = [];
+		for(var line in lines) {
+			var p_node, this_height;
+
+			color = options['color'][(index % options['color'].length)];
+			
+			y = v_start;
+			for(i = 0; i < lines[line]['data'].length; ++i) {
+				item = lines[line]['data'][i];
+
+				this_height = v_unit * item[v_field_name];
+
+				x = h_map[item[h_field_name]];
+				y -= this_height;
+				this_node = paper.rect(x, y, group_width, this_height);
+				this_node.attr({
+					'stroke': color['color'],
+					'stroke-opacity': color['dark-alpha'],
+					'stroke-width': options['stackchart']['line-width'],
+					'fill': color['color'],
+					'fill-opacity': color['light-alpha']
+				}).translate(0.5, 0.5);
+				p_nodes.push(this_node);
+
+				// Action.
+				if(callback && typeof(callback) === 'function') {
+					this_node.data('info', {
+						'x': x,
+						'y': y,
+						'h_value': item[h_field_name],
+						'v_value': item[v_field_name],
+						'data': item
+					});
+					this_node.click(element_action);
+				}
+
+				// Tooltip.
+				if(data['tooltip_title'] || data['tooltip_content']) {
+					var title = data['tooltip_title'];
+					var content = data['tooltip_content'];
+					
+					for(var p in item) {
+						title = title.replace('{' + p + '}', item[p]);
+						content = content.replace('{' + p + '}', item[p]);
+					}
+
+					this_node.data('tooltip', {
+						'id': line + i,
+						'title': title,
+						'content': content,
+						'color': color,
+						'bar_top_x': x,
+						'bar_top_y': y
+					});
+					this_node.hover(element_tooltip);
+				}
+
+				y -= options['stackchart']['bar-margin'];
+			}
+
+			// Add legend data.
+			legend_data.push({
+				'label': lines[line]['name'],
+				'color': color,
+				'type': 'box'
+			});
+
+			index++;
+		}
+
+		InfoViz.draw_legend(paper, chart_area, legend_data, options);
+
+		// Animation.
+		for(i = 0; i < p_nodes.length; ++i) {
+			(function(target) {
+				target.mouseover(function () {
+					target.stop().animate({ 'fill-opacity': options['color'][0]['dark-alpha'] }, options['layout']['speed'], ">");
+				});
+				target.mouseout(function () {
+					target.stop().animate({ 'fill-opacity': options['color'][0]['light-alpha'] }, options['layout']['speed'], "<");
+				});
+			})(p_nodes[i]);
+		}
+	};
+
 	/* 2. Round Stuff */
 	InfoViz.draw_piechart = function(paper, chart_area, data, overwrite_options, callback, that) {
 		if(!paper || !data) return idb('Paper or Data is empty.');
@@ -2089,6 +2353,7 @@
 		}
 
 		var angle_unit = 360 / data['data'].length;
+		var bar_width = options['radialchart']['bar-width'] ? options['radialchart']['bar-width'] : angle_unit;
 		var radius_unit = (radius - hole_radius - options['radialchart']['bar-min-height']) / (v_max - v_min);
 		var current_angle = 0, this_color, p_boxes = [], p_bars = [], p_labels = [];
 		var x2, y2, x3, y3, x4, y4, align, this_radius;
@@ -2113,13 +2378,13 @@
 			cache.push('L' + x + ',' + y);
 
 			// Box end x2, y2
-			x = cx + this_radius * Math.cos((current_angle + options['radialchart']['bar-width']) * rad);
-			y = cy + this_radius * Math.sin((current_angle + options['radialchart']['bar-width']) * rad);
+			x = cx + this_radius * Math.cos((current_angle + bar_width) * rad);
+			y = cy + this_radius * Math.sin((current_angle + bar_width) * rad);
 			cache.push('L' + x + ',' + y);
 
 			// Box start x2, y2
-			x = cx + hole_radius * Math.cos((current_angle + options['radialchart']['bar-width']) * rad);
-			y = cy + hole_radius * Math.sin((current_angle + options['radialchart']['bar-width']) * rad);
+			x = cx + hole_radius * Math.cos((current_angle + bar_width) * rad);
+			y = cy + hole_radius * Math.sin((current_angle + bar_width) * rad);
 			cache.push('L' + x + ',' + y);
 
 			cache.push('Z');
@@ -2157,11 +2422,11 @@
 			var half_angle = current_angle + options['radialchart']['bar-width'] / 2;
 			if(options['radialchart']['label-enabled']) {
 				// Label bar
-				x = cx + (radius + options['radialchart']['label-distance']) * Math.cos(half_angle * rad);
-				y = cy + (radius + options['radialchart']['label-distance']) * Math.sin(half_angle * rad);
+				x = cx + (this_radius + options['radialchart']['label-distance']) * Math.cos(half_angle * rad);
+				y = cy + (this_radius + options['radialchart']['label-distance']) * Math.sin(half_angle * rad);
 				
-				x2 = cx + (radius + options['radialchart']['label-distance'] + options['radialchart']['label-bar-length1']) * Math.cos(half_angle * rad);
-				y2 = cy + (radius + options['radialchart']['label-distance'] + options['radialchart']['label-bar-length1']) * Math.sin(half_angle * rad);
+				x2 = cx + (this_radius + options['radialchart']['label-distance'] + options['radialchart']['label-bar-length1']) * Math.cos(half_angle * rad);
+				y2 = cy + (this_radius + options['radialchart']['label-distance'] + options['radialchart']['label-bar-length1']) * Math.sin(half_angle * rad);
 
 				if(x > cx) {
 					x3 = x2 + options['radialchart']['label-bar-length2'];
@@ -2266,12 +2531,20 @@
 		}
 	};
 
-	InfoViz.draw_smithgraph = function(paper, chart_area, data, overwrite_options) {
+	InfoViz.draw_smithgraph = function(paper, chart_area, data, overwrite_options, callback, that) {
 		if(!paper || !data) return idb('Paper or Data is empty.');
 		
-		var options = merge_options(overwrite_options), cache = [], cache2 = [], x, y, i, j, item, radius, rad = Math.PI / 180;
+		var options = merge_options(overwrite_options), cache = [], x, y, i, item, radius, rad = Math.PI / 180;
+		var hole_radius = options['smithgraph']['hole-radius'];
 		var cx = chart_area['top-left'][0] + chart_area['width'] / 2 + options['smithgraph']['horizontal-offset'];
 		var cy = chart_area['top-left'][1] + chart_area['height'] / 2 + options['smithgraph']['vertical-offset'];
+		
+		var element_action = function(evt) { callback.call(that, this.data('info')); };
+		var element_tooltip = function(evt) {
+			x = this.data('tooltip')['x'];
+			y = this.data('tooltip')['y'];
+			InfoViz.draw_tooltip(paper, x, y, this.data('tooltip')['id'], this.data('tooltip')['title'], this.data('tooltip')['content'], this.data('tooltip')['color'], options);
+		};
 		
 		if(chart_area['width'] > chart_area['height']) {
 			radius = Math.floor(chart_area['height'] / 2) * options['smithgraph']['size-factor'];
@@ -2279,7 +2552,222 @@
 			radius = Math.floor(chart_area['width'] / 2) * options['smithgraph']['size-factor'];
 		}
 
-		//console.log(data);
+		// Pre-scan
+		// Scan node value fields.
+		var nv_max = -Infinity, nv_min = Infinity, nv_sum = 0;
+		var node_map = {};
+		for(i = 0; i < data['data'].length; ++i) {
+			item = data['data'][i];
+
+			if(item[data['node_value_field']] > nv_max) {
+				nv_max = item[data['node_value_field']];
+			}
+
+			if(item[data['node_value_field']] < nv_min) {
+				nv_min = item[data['node_value_field']];
+			}
+
+			nv_sum += item[data['node_value_field']];
+
+			if(!node_map[item[data['node_id_field']]]) {
+				node_map[item[data['node_id_field']]] = {
+					'node': item,
+					'out': item['edges'].length,
+					'in': 0
+				};
+			} else {
+				console.log('node id: ' + item[data['node_id_field']] + ' is not unique. skip.');
+				continue;
+			}
+		}
+
+		// Scan node value fields.
+		var ev_max, ev_min, ev_sum;
+		var gev_max = -Infinity, gev_min = Infinity, gev_sum = 0;
+		for(i = 0; i < data['data'].length; ++i) {
+			item = data['data'][i];
+			ev_max = -Infinity, ev_min = Infinity, ev_sum = 0;
+			
+			for(j = 0; j < item['edges'].length; ++j) {
+				if(!node_map[item['edges'][j]['to']]) {
+					console.log('destination node id: ' + item['edges'][j]['to'] + ' not found. skip.');
+					continue;
+				}
+
+				node_map[item['edges'][j]['to']]['in']++;
+				
+				var value = item['edges'][j][data['edge_value_field']];
+				if(value > ev_max) { ev_max = value; }
+				if(value < ev_min) { ev_min = value; }
+				ev_sum += value;
+			}
+
+			node_map[item[data['node_id_field']]]['edge_max'] = ev_max;
+			node_map[item[data['node_id_field']]]['edge_min'] = ev_min;
+			node_map[item[data['node_id_field']]]['edge_sum'] = ev_sum;
+
+			// Global max, min and sum.
+			if(ev_max > gev_max) gev_max = ev_max;
+			if(ev_min < gev_min) gev_min = ev_min;
+			gev_sum += ev_sum;
+		}
+
+		// Draw node.
+		var angle_unit = 360 / data['data'].length;
+		var bar_width = options['smithgraph']['bar-width'] ? options['smithgraph']['bar-width'] : angle_unit;
+		var radius_unit = (radius - hole_radius - options['smithgraph']['bar-min-height']) / (nv_max - nv_min);
+		var current_angle = 0, this_color, p_boxes = [], p_edges;
+		var x2, y2, x3, y3, x4, y4, align, this_radius;
+		var this_box, this_bar, this_label;
+		var legend_data = [];
+
+		for(i = 0; i < data['data'].length; ++i) {
+			item = data['data'][i][data['node_value_field']];
+			this_radius = hole_radius + options['smithgraph']['bar-min-height'] + radius_unit * (item - nv_min);
+			this_color = options['color'][(i % options['color'].length)];
+
+			cache = [];
+
+			// Box start x, y
+			x = cx + hole_radius * Math.cos(current_angle * rad);
+			y = cy + hole_radius * Math.sin(current_angle * rad);
+			cache.push('M' + x + ',' + y);
+
+			// Box end x, y
+			x = cx + this_radius * Math.cos(current_angle * rad);
+			y = cy + this_radius * Math.sin(current_angle * rad);
+			cache.push('L' + x + ',' + y);
+
+			// Box end x2, y2
+			x = cx + this_radius * Math.cos((current_angle + bar_width) * rad);
+			y = cy + this_radius * Math.sin((current_angle + bar_width) * rad);
+			cache.push('L' + x + ',' + y);
+
+			// Box start x2, y2
+			x = cx + hole_radius * Math.cos((current_angle + bar_width) * rad);
+			y = cy + hole_radius * Math.sin((current_angle + bar_width) * rad);
+			cache.push('L' + x + ',' + y);
+
+			cache.push('Z');
+
+			// Box
+			this_box = paper.path(cache.join('')).attr({
+				'fill': this_color['color'],
+				'fill-opacity': this_color['light-alpha'],
+				'stroke': this_color['color'],
+				'stroke-opacity': this_color['dark-alpha'],
+				'stroke-width': options['smithgraph']['bar-border-width']
+			}).translate(0.5, 0.5);
+			this_box.data('color-alpha', this_color['light-alpha']);
+			this_box.data('index', i);
+			p_boxes.push(this_box);
+
+			// Action.
+			if(callback && typeof(callback) === 'function') {
+				this_box.data('info', {
+					'type': 'node',
+					'start': current_angle,
+					'angle': bar_width,
+					'value': data['data'][i][data['node_value_field']],
+					'data': data['data'][i]
+				});
+				this_box.click(element_action);
+			}
+
+			//Add legend.
+			legend_data.push({
+				'label': data['data'][i][data['node_label_field']],
+				'color': this_color,
+				'type': 'box'
+			});
+
+			// Tooltip.
+			if(data['node_tooltip_title'] || data['node_tooltip_content']) {
+				var title = data['node_tooltip_title'];
+				var content = data['node_tooltip_content'];
+				
+				for(var p in data['data'][i]) {
+					title = title.replace('{' + p + '}', data['data'][i][p]);
+					content = content.replace('{' + p + '}', data['data'][i][p]);
+				}
+
+				this_box.data('tooltip', {
+					'id': i,
+					'title': title,
+					'content': content,
+					'color': this_color,
+					'x': cx + radius * Math.cos((current_angle + bar_width / 2) * rad),
+					'y': cy + radius * Math.sin((current_angle + bar_width / 2) * rad)
+				});
+				this_box.hover(element_tooltip);
+			}
+
+			// Save position to node_map
+			node_map[data['data'][i][data['node_id_field']]]['start'] = current_angle;
+			node_map[data['data'][i][data['node_id_field']]]['end'] = current_angle + angle_unit;
+
+			current_angle += angle_unit;
+		}
+
+		// Draw edges.
+		current_angle = 0;
+		for(i = 0; i < data['data'].length; ++i) {
+			var node = node_map[data['data'][i][data['node_id_field']]], to_node;
+			var edge_unit = angle_unit / node['edge_sum'];
+			var this_edge, this_edge_angle, this_position = current_angle, p_edge;
+			var edge_area_radius = hole_radius - options['smithgraph']['edge-margin'];
+
+			if(edge_unit == Infinity) { edge_unit = angle_unit; }
+
+			for(j = 0; j < node['node']['edges'].length; ++j) {
+				this_edge = node['node']['edges'][j];
+				to_node = node_map[this_edge['to']];
+
+				this_edge_angle = edge_unit * this_edge[data['edge_value_field']];
+				this_color = options['smithgraph']['edge-color'][
+					Math.floor(
+						(options['smithgraph']['edge-color'].length - 1) * 
+						(this_edge[data['edge_value_field']] - gev_min) / 
+						(gev_max - gev_min)
+					)
+				];
+
+				cache = [];
+				x = cx + edge_area_radius * Math.cos(this_position * rad);
+				y = cy + edge_area_radius * Math.sin(this_position * rad);
+				cache.push('M' + x + ',' + y);
+
+				x2 = cx + edge_area_radius * Math.cos((to_node['start'] + to_node['end'])/2 * rad);
+				y2 = cy + edge_area_radius * Math.sin((to_node['start'] + to_node['end'])/2 * rad);
+				cache.push('L' + x2 + ',' + y2);
+				//cache.push('A' + hole_radius / 4 + ',' + hole_radius / 4 + ', 0, 0, 0,' + x2 + ',' + y2);
+
+				//x3 = cx + edge_area_radius * Math.cos(to_node['start'] * rad);
+				//y3 = cy + edge_area_radius * Math.sin(to_node['start'] * rad);
+				//cache.push('L' + x3 + ',' + y3);
+				//cache.push('A' + hole_radius / 4 + ',' + hole_radius / 4 + ', 0, 0, 0,' + x3 + ',' + y3);
+
+				x4 = cx + edge_area_radius * Math.cos((this_position + this_edge_angle) * rad);
+				y4 = cy + edge_area_radius * Math.sin((this_position + this_edge_angle) * rad);
+				cache.push('L' + x4 + ',' + y4);
+				cache.push('Z');
+
+				// Edge.
+				p_edge = paper.path(cache.join('')).attr({
+					'fill': this_color['color'],
+					'fill-opacity': options['smithgraph']['edge-background-alpha'],
+					'stroke': this_color['color'],
+					'stroke-opacity': this_color['dark-alpha'],
+					'stroke-width': options['smithgraph']['edge-border-width']
+				}).translate(0.5, 0.5);
+
+				this_position += this_edge_angle;
+			}
+
+			current_angle += angle_unit;
+		}
+
+		InfoViz.draw_legend(paper, chart_area, legend_data, options);
 	};
 
 	/* 3. Map */
@@ -2714,8 +3202,6 @@
 	InfoViz.global_option = function(overwrite) {
 		InfoViz.options = merge_options(overwrite);
 	};
-
-	InfoViz.version = function() { return '0.1.0' };
 
 	InfoViz.enable_logo = function() {
 		InfoViz.options['layout']['logo-enabled'] = true;

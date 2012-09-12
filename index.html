@@ -43,6 +43,11 @@
 				<div class="infoviz i-radialchart2"></div>
 				<div class="clear"></div>
 			</section>
+			<section>
+				<h2>SmithGraph <a href="#smithgraph" name="smithgraph">#</a></h2>
+				<div class="infoviz i-smithgraph"></div>
+				<div class="clear"></div>
+			</section>
 
 			<h1>Map</h1>
 			<section>
@@ -59,7 +64,7 @@
 
 			<a class="fork" href="https://github.com/nocoo/InfoViz"><img src="./images/forkme.png" alt="Fork me on GitHub"></a>
 		</section>
-		<footer><p>InfoViz 0.2.2, MIT License, <a href="about.me/nocoo">@zhengli</a>, <a href="https://github.com/nocoo/InfoViz">Github</a></p></footer>
+		<footer><p>InfoViz 0.2.3, MIT License, <a href="about.me/nocoo">@zhengli</a>, <a href="https://github.com/nocoo/InfoViz">Github</a></p></footer>
 		
 		<script src="./js/raphael.min.js"></script>
 		<script src="./js/jquery.min.js"></script>
@@ -218,13 +223,19 @@
 						'tooltip_title': 'InfoViz {F2}, {F3}',
 						'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
 						'data': [
-							{ 'F1': 1,   'F2': 18, 'F3': 9, 'F4': 'CHN' },
-							{ 'F1': 42,  'F2': 30, 'F3': 6, 'F4': 'USA' },
-							{ 'F1': 7,   'F2': 35, 'F3': 9, 'F4': 'RUS' },
-							{ 'F1': 110, 'F2': 12, 'F3': 9, 'F4': 'CAN' },
-							{ 'F1': 50,  'F2': 19, 'F3': 2, 'F4': 'FRA' },
-							{ 'F1': 29,  'F2': 22, 'F3': 4, 'F4': 'VET' },
-							{ 'F1': 2,   'F2': 3,  'F3': 1, 'F4': 'JPN' }
+							{ 'F1': 1,   'F2': 18, 'F3': 6, 'F4': 'China' },
+							{ 'F1': 42,  'F2': 30, 'F3': 9, 'F4': 'Unite States' },
+							{ 'F1': 3,   'F2': 38, 'F3': 9, 'F4': 'Russia' },
+							{ 'F1': 50,  'F2': 12, 'F3': 9, 'F4': 'Japan' },
+							{ 'F1': 50,  'F2': 25, 'F3': 8, 'F4': 'Botswana' },
+							{ 'F1': 29,  'F2': 22, 'F3': 4, 'F4': 'Finland' },
+							{ 'F1': 2,   'F2': 3,  'F3': 3, 'F4': 'France' },
+							{ 'F1': 38,  'F2': 10, 'F3': 6, 'F4': 'Cape Verde' },
+							{ 'F1': 24,  'F2': 10, 'F3': 6, 'F4': 'Belize' },
+							{ 'F1': 17,  'F2': 35, 'F3': 2, 'F4': 'Haiti' },
+							{ 'F1': 10,  'F2': 4,  'F3': 5, 'F4': 'Georgia' },
+							{ 'F1': 20,  'F2': 30, 'F3': 5, 'F4': 'Hungary' },
+							{ 'F1': 10,  'F2': 22, 'F3': 8, 'F4': 'Laos' }
 						]
 					},
 					{ 
@@ -336,7 +347,7 @@
 							{ 'F1': 6, 'F2': 'Unite States' },
 							{ 'F1': 2, 'F2': 'Russia' },
 							{ 'F1': 4, 'F2': 'Japan' },
-							{ 'F1': 2, 'F2': 'Botswana' },
+							{ 'F1': 5, 'F2': 'Botswana' },
 							{ 'F1': 6, 'F2': 'Finland' },
 							{ 'F1': 1, 'F2': 'France' },
 							{ 'F1': 2, 'F2': 'Cape Verde' },
@@ -353,7 +364,7 @@
 					},
 					{ 
 						'legend': { 'legend-enabled': false },
-						'radialchart': { 'size-factor': 0.8, 'bar-min-height': 60, 'bar-width': 10, 'hole-radius': 20 }
+						'radialchart': { 'size-factor': 0.8, 'bar-min-height': 60, 'bar-width': 14, 'hole-radius': 36 }
 					}
 				);
 
@@ -387,33 +398,52 @@
 					},
 					{
 						'legend': { 'margin-left': 0, 'margin-top': 5 },
-						'radialchart': { 'horizontal-offset': 40, 'label-enabled': false }
+						'radialchart': { 'horizontal-offset': 40, 'label-enabled': false, 'bar-width': 18 }
 					}
 				);
 
 				// SmithGraph
 				data = [];
-				for(i = 0; i < 64; ++i) {
-					var edge_count = Math.floor(Math.random() * 24);
+				var max_nodes = 256;
+				var max_edge = 6;
+				var max_value = 100;
+				for(i = 0; i < max_nodes; ++i) {
+					var edge_count = Math.floor(Math.random() * max_edge);
 					var edges = [];
 
 					for(j = 0; j < edge_count; ++j) {
 						edges.push({
-							'to': 'item' + Math.floor(Math.random() * 64),
-							'F3': Math.floor(Math.random() * 100)
+							'to': 'item' + Math.floor(Math.random() * max_nodes),
+							'F3': Math.floor(Math.random() * max_value)
 						});
 					}
 
 					data.push({
 						'F1': 'item' + i,
-						'F2': Math.floor(Math.random() * 100),
+						'F2': Math.floor(Math.random() * max_value),
+						'F4': edges.length,
 						'edges': edges
 					});
 				}
 
+				InfoViz.chart(
+					$('.i-smithgraph'), 
+					'smithgraph', 
+					{
+						'node_id_field': 'F1',
+						'node_label_field': 'F1',
+						'node_value_field': 'F2',
+						'edge_value_field': 'F3',
+						'node_tooltip_title': 'Node #{F1}',
+						'node_tooltip_content': 'Value: {F2}. Edges: {F4}.',
+						'data': data
+					},
+					{ 'legend': { 'legend-enabled': false } }
+				);
+
 				// HeatMap
 				data = [];
-				for(i = 0; i < 128; ++i) {
+				for(i = 0; i < 256; ++i) {
 					item = Math.floor(Math.random() * 100);
 					data.push({ 'F1': item, 'F2': i, 'F3': item });
 				}
@@ -428,7 +458,7 @@
 						'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
 						'data': data
 					},
-					{ 'layout': { 'logo-enabled': false }, 'heatmap': { 'label-size': 30 } }
+					{ 'layout': { 'logo-enabled': false }, 'heatmap': { 'label-size': 20 } }
 				);
 
 				// TagCloud.

@@ -290,6 +290,69 @@ Demo: [Click Here](http://infoviz.org/index.html#radialchart)
 		}
 	);
 
+## 2.4 SmithGraph
+
+![SmithGraph](http://infoviz.org/examples/smithgraph.png "SmithGraph")
+
+A SmithGraph is a complex visulization graph offten been uesd to visualize many nodes and edges between them.
+Each node has a value field, which will be visualized as bars with different height. Each node may also has one or more edges.
+Each edge has a value field, and a destination node. Its value field will be visualized as color of the edge.
+
+Demo: [Click Here](http://infoviz.org/index.html#smithgraph)
+
+	InfoViz.chart(
+		$('.i-smithgraph'), 
+		'smithgraph', 
+		{
+			'node_id_field': 'F1',
+			'node_label_field': 'F1',
+			'node_value_field': 'F2',
+			'edge_value_field': 'F3',
+			'node_tooltip_title': 'Node #{F1}',
+			'node_tooltip_content': 'Value: {F2}. Edges: {F4}.',
+			'data': [
+				{
+					'F1': 'item1',
+					'F2': 1,
+					'F4': 3,
+					'edges': [
+						{ 'to': 'item2', 'F3': 1 },
+						{ 'to': 'item3', 'F3': 2 },
+						{ 'to': 'item4', 'F3': 3 }
+					]
+				},
+				{
+					'F1': 'item2',
+					'F2': 2,
+					'F4': 2,
+					'edges': [
+						{ 'to': 'item1', 'F3': 1 },
+						{ 'to': 'item4', 'F3': 2 }
+					]
+				},
+				{
+					'F1': 'item3',
+					'F2': 3,
+					'F4': 1,
+					'edges': [
+						{ 'to': 'item1', 'F3': 1 }
+					]
+				},
+				{
+					'F1': 'item4',
+					'F2': 4,
+					'F4': 3,
+					'edges': [
+						{ 'to': 'item1', 'F3': 1 },
+						{ 'to': 'item2', 'F3': 2 },
+						{ 'to': 'item3', 'F3': 3 }
+					]
+				}
+			]
+		},
+		{ 'legend': { 'legend-enabled': false } }
+	);
+
 # 3 Map
 
 ## 3.1 HeatMap
@@ -474,6 +537,7 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 ## 8.2 Options
 
 	InfoViz.options = {
+
 		// 1. Chart layout configuration.
 		'layout': {
 			'padding-top': 1, 					// padding-top
@@ -717,7 +781,7 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'horizontal-count': undefined,		// horizontal box count, set this value to undefined to use auto layout
 			'vertical-count': undefined,		// vertical box count, set this value to undefined to use auto layout
 			
-			'color': [							// color definition for HeatMap, from light to dark.
+			'color': [							// color definition for HeatMap, from light to dark
 				{ 'color': '#339999', 'dark-alpha': 1, 'light-alpha': 0.45 },
 				{ 'color': '#99CC99', 'dark-alpha': 1, 'light-alpha': 0.45 },
 				{ 'color': '#99CC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
@@ -737,7 +801,7 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'row-count': 5,						// row count
 			'horizontal-margin': 5,				// horizontal margin value between texts
 			'vertical-margin': -10,				// vertical margin value between text lines
-			'color': [							// color definition for TagCloud, from light to dark.
+			'color': [							// color definition for TagCloud, from light to dark
 				{ 'color': '#339999', 'dark-alpha': 1, 'light-alpha': 0.45 },
 				{ 'color': '#99CC99', 'dark-alpha': 1, 'light-alpha': 0.45 },
 				{ 'color': '#99CC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
@@ -749,20 +813,39 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			]
 		},
 
-		// 12. SmithGraph, TBD
+		// 12. SmithGraph
 		'smithgraph': {
-			'size-factor': 0.9,
-			'horizontal-offset': 0,
-			'vertical-offset': 0
+			'size-factor': 1,					// size factor, 0.9 means using 90% area to draw the chart
+			'bar-width': undefined,				// radial bar width, in angle. set to undefined to use auto value
+			'bar-border-width': 1,				// border thickness of radial bars
+			'bar-min-height': 15,				// min bar height
+			'edge-margin': 5,					// distance between edge and node bar
+			'edge-border-width': 1,				// border thickness of radial edges
+			'edge-alpha': 0.2,					// edge fill opacity
+			'hole-radius': 300,					// hole radius
+			
+			'horizontal-offset': 0,				// graph center horizontal offset
+			'vertical-offset': 0,				// graph center vertical offset
+
+			'edge-color': [						// color definition for SmithGraph edges, from light to dark
+				{ 'color': '#339999', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#99CC99', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#99CC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#CCCC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FFCC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FF6633', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FF3333', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#CC0066', 'dark-alpha': 1, 'light-alpha': 0.45 }
+			]
 		},
 
 		// 13. RadialChart
 		'radialchart': {
 			'size-factor': 0.9,					// size factor, 0.9 means using 90% area to draw the chart
-			'bar-width': 15,					// radial bar width, in angle
+			'bar-width': 15,					// radial bar width, in angle. set to undefined to use auto value
 			'bar-border-width': 1,				// border thickness of radial bars
 			'bar-min-height': 15,				// min bar height
-			'hole-radius': 50,					// hold radius
+			'hole-radius': 50,					// hole radius
 
 			'label-enabled': true,				// if label is visible
 			'label-size': 11,					// label font size
@@ -778,7 +861,7 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 		},
 
 		// 0. Global color definition.
-		'color': [								// color definition, from light to dark.
+		'color': [								// color definition, from light to dark
 			{ 'color': '#66B3DD', 'dark-alpha': 1, 'light-alpha': 0.45 },
 			{ 'color': '#EF7D31', 'dark-alpha': 1, 'light-alpha': 0.45 },
 			{ 'color': '#ABC93C', 'dark-alpha': 1, 'light-alpha': 0.45 },
