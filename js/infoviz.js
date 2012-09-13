@@ -3,7 +3,7 @@
 	@author  Zheng Li <lizheng@lizheng.me>
 	@github https://github.com/nocoo/InfoViz
 	@license MIT
-	@version 0.2.3
+	@version 0.2.4
 */
 
 ;(function() {
@@ -12,7 +12,7 @@
 	var InfoViz = {};
 	var tooltip_border, tooltip_title, tooltip_content, tooltip_id, tooltip_timer;
 
-	InfoViz.version = function() { return '0.2.3' };
+	InfoViz.version = function() { return '0.2.4' };
 
 	InfoViz.options = {
 
@@ -342,11 +342,11 @@
 		'stackchart': {
 			'padding-top': 30,					// padding-top
 			'padding-right': 30,				// padding-right
-			'padding-bottom': 20,				// padding-bottom
+			'padding-bottom': 0,				// padding-bottom
 			'padding-left': 30,					// padding-left
 
 			'group-margin': 40,					// margin value between bar groups
-			'bar-margin': 4,					// margin value between bars (in the same group)
+			'bar-margin': 0,					// margin value between bars (in the same group)
 
 			'vertical-label-count': 10,			// label count in the vertical axis
 			'vertical-bar-width': 5 			// period bar width of the vertical axis
@@ -1689,6 +1689,7 @@
 		// Scan horizontal and vertical fields.
 		for(var line in lines) {
 			var v_sum = 0;
+			
 			for(i = 0; i < lines[line]['data'].length; ++i) {
 				item = lines[line]['data'][i];
 
@@ -1747,7 +1748,7 @@
 
 		// Vertical labels.
 		var v_label_unit = (v_start - chart_area['top-left'][1] - options['stackchart']['padding-top']) / (options['stackchart']['vertical-label-count'] - 1);
-		var v_label_value_unit = Math.floor((v_max - v_min) / (options['stackchart']['vertical-label-count'] - 1)); // May not be accurate.
+		var v_label_value_unit = Math.floor((v_sum_max - v_min) / (options['stackchart']['vertical-label-count'] - 1)); // May not be accurate.
 		
 		cache = [];
 		x = chart_area['top-left'][0] - options['stackchart']['vertical-bar-width'];
@@ -1762,7 +1763,6 @@
 				'stroke-opacity': options['grid']['axis-alpha'],
 				'stroke-width': options['grid']['axis-width']
 			}).translate(0.5, 0.5);
-
 
 			paper.text(x - options['stackchart']['vertical-bar-width'], y, v_value).attr({
 				'text-anchor': 'end',
@@ -1807,6 +1807,11 @@
 		});
 		p_vertical_grids.translate(0.5, 0.5);
 
+		var group_y = {};
+		for(var g in h_map) {
+			group_y[g] = v_start;
+		}
+
 		// Bars.
 		var index = 0, color, p_nodes = [], this_node;
 		var legend_data = [];
@@ -1814,15 +1819,15 @@
 			var p_node, this_height;
 
 			color = options['color'][(index % options['color'].length)];
-			
-			y = v_start;
+
 			for(i = 0; i < lines[line]['data'].length; ++i) {
 				item = lines[line]['data'][i];
 
 				this_height = v_unit * item[v_field_name];
 
 				x = h_map[item[h_field_name]];
-				y -= this_height;
+				y = group_y[item[h_field_name]] - this_height - options['stackchart']['bar-margin'];
+
 				this_node = paper.rect(x, y, group_width, this_height);
 				this_node.attr({
 					'stroke': color['color'],
@@ -1860,13 +1865,13 @@
 						'title': title,
 						'content': content,
 						'color': color,
-						'bar_top_x': x,
+						'bar_top_x': x + group_width / 2,
 						'bar_top_y': y
 					});
 					this_node.hover(element_tooltip);
 				}
 
-				y -= options['stackchart']['bar-margin'];
+				group_y[item[h_field_name]] = y;
 			}
 
 			// Add legend data.
