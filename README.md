@@ -189,6 +189,78 @@ Demo: [Click Here](http://infoviz.org/index.html#bubblechart)
 		}
 	);
 
+## 1.4 StackChart
+
+A StackChart has a enumerable as horizontal field, and a value field as vertical field.
+
+![StackChart](http://infoviz.org/examples/stackchart.png "StackChart")
+
+Demo: [Click Here](http://infoviz.org/index.html#stackchart)
+
+	InfoViz.chart(
+		$('.i-stackchart'), 
+		'stackchart', 
+		{
+			'vertical_axis_name': 'Vertical',
+			'horizontal_axis_name': 'Horizontal',
+			'horizontal_field': 'F2',
+			'vertical_field': 'F1',
+			'tooltip_title': 'InfoViz {F2}, {F3}',
+			'tooltip_content': 'Value: {F1}',
+			'data': {
+				'bar1': {
+					'name': 'China',
+					'data': [
+						{ 'F1': 10, 'F2': 'A', 'F3': 3  },
+						{ 'F1': 20, 'F2': 'B', 'F3': 6  },
+						{ 'F1': 30, 'F2': 'C', 'F3': 9  },
+						{ 'F1': 40, 'F2': 'D', 'F3': 12 }
+					]
+				},
+				'bar2': {
+					'name': 'Unite States',
+					'data': [
+						{ 'F1': 40, 'F2': 'A', 'F3': 15 },
+						{ 'F1': 30, 'F2': 'B', 'F3': 12 },
+						{ 'F1': 20, 'F2': 'C', 'F3': 9  },
+						{ 'F1': 10, 'F2': 'D', 'F3': 3  },
+						{ 'F1': 15, 'F2': 'E', 'F3': 6  }
+					]
+				},
+				'bar3': {
+					'name': 'Unite Kingdom',
+					'data': [
+						{ 'F1': 20, 'F2': 'A', 'F3': 15 },
+						{ 'F1': 30, 'F2': 'B', 'F3': 12 },
+						{ 'F1': 10, 'F2': 'D', 'F3': 3  },
+						{ 'F1': 40, 'F2': 'E', 'F3': 6  }
+					]
+				},
+				'bar4': {
+					'name': 'Italy',
+					'data': [
+						{ 'F1': 29, 'F2': 'A', 'F3': 15 },
+						{ 'F1': 70, 'F2': 'B', 'F3': 12 },
+						{ 'F1': 42, 'F2': 'C', 'F3': 9  },
+						{ 'F1': 51, 'F2': 'D', 'F3': 3  },
+						{ 'F1': 22, 'F2': 'E', 'F3': 6  }
+					]
+				},
+				'bar5': {
+					'name': 'Russia',
+					'data': [
+						{ 'F1': 29,  'F2': 'A', 'F3': 15 },
+						{ 'F1': 50, 'F2': 'B', 'F3': 12 },
+						{ 'F1': 52, 'F2': 'C', 'F3': 9  },
+						{ 'F1': 52, 'F2': 'E', 'F3': 6  }
+					]
+				}
+			}
+		},
+		{ 'legend': { 'margin-top': 0 } }
+	);
+
+
 # 2 Round Stuff
 
 ## 2.1 PieChart
