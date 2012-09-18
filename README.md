@@ -6,7 +6,7 @@ InfoViz is an information visualization library based on [Raphaël](http://rapha
 
 Raphaël currently supports Firefox 3.0+, Safari 3.0+, Chrome 5.0+, Opera 9.5+ and Internet Explorer 6.0+.
 
-By the way, InfoViz supports iOS devices, include Retina iPad.
+By the way, InfoViz supports iOS devices, include the new iPad with retina display.
 
 ## Everything can be customized
 
