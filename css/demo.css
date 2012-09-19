@@ -68,7 +68,7 @@ table {
 .p-index .container .infoviz { margin: 0px 10px; width: 850px; height: 350px; }
 .p-index footer { height: 28px; margin: 0 auto 10px auto; width: 870px; background: #FDFDFD; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top: 1px solid #EEE; }
 .p-index footer p { color: #999; text-align: center; font-size: 0.6em; line-height: 30px; }
-.p-index a.fork { position: fixed; top: 0; right: 0; border: 0; width: 140px; height: 140px; display: block; background: url('../images/forkme.png') center no-repeat; background-image: -webkit-image-set(url('../images/forkme.png') 1x, url('../images/forkme@2x.png') 2x); }
+.p-index a.fork { position: absolute; top: 0; right: 0; border: 0; width: 140px; height: 140px; display: block; background: url('../images/forkme.png') center no-repeat; background-image: -webkit-image-set(url('../images/forkme.png') 1x, url('../images/forkme@2x.png') 2x); }
 
 .p-index .container .infoviz.i-piechart1 { width: 340px; height: 280px; float: left; }
 .p-index .container .infoviz.i-piechart2 { width: 490px; height: 280px; float: left; }
