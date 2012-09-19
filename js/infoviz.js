@@ -29,7 +29,7 @@
 			
 			'logo-enabled': false,				// is InfoViz logo enabled
 			'logo-width': 50,					// logo width
-			'logo-height': 23,					// logo height
+			'logo-height': 17,					// logo height
 			'logo-position': 'top-right',		// logo position, top-right | top-left | bottom-right | bottom-left
 			
 			'speed': 300,						// animation speed
@@ -174,6 +174,7 @@
 			'circle-min-radius': 15,			// bubble circle max radius
 			'circle-max-radius': 40,			// bubble circle min radius
 			'label-size': 12,					// bubble circle label font size
+			'label-color': '#FFF',				// bubble circle label text color
 
 			'horizontal-label-count': 10,		// label count in the horizontal axis
 			'horizontal-bar-width': 5,			// period bar width of the horizontal axis
@@ -235,7 +236,7 @@
 			
 			'circle-min-radius': 30,			// radar circle min radius
 			'circle-border-width': 1.5,			// radar circle line thickness
-			'circle-background-alpha': 0.3,		// radar circle background opacity
+			'circle-background-alpha': 0.2,		// radar circle background opacity
 												// (use this value instead of light-alpha of the color)
 			
 			'label-distance': 15,				// distance between outer border to label
@@ -354,14 +355,14 @@
 
 		// 0. Global color definition.
 		'color': [								// color definition, from light to dark
-			{ 'color': '#66B3DD', 'dark-alpha': 1, 'light-alpha': 0.45 },
-			{ 'color': '#EF7D31', 'dark-alpha': 1, 'light-alpha': 0.45 },
-			{ 'color': '#ABC93C', 'dark-alpha': 1, 'light-alpha': 0.45 },
-			{ 'color': '#E05170', 'dark-alpha': 1, 'light-alpha': 0.45 },
-			{ 'color': '#297FB5', 'dark-alpha': 1, 'light-alpha': 0.45 },
-			{ 'color': '#F5BE21', 'dark-alpha': 1, 'light-alpha': 0.45 },
-			{ 'color': '#5ABABB', 'dark-alpha': 1, 'light-alpha': 0.45 },
-			{ 'color': '#9D66A4', 'dark-alpha': 1, 'light-alpha': 0.45 }
+			{ 'color': '#3A89C9', 'dark-alpha': 1, 'light-alpha': 0.6 },
+			{ 'color': '#EB540A', 'dark-alpha': 1, 'light-alpha': 0.6 },
+			{ 'color': '#5AAD34', 'dark-alpha': 1, 'light-alpha': 0.6 },
+			{ 'color': '#FECC09', 'dark-alpha': 1, 'light-alpha': 0.6 },
+			{ 'color': '#6699FF', 'dark-alpha': 1, 'light-alpha': 0.6 },
+			{ 'color': '#14B694', 'dark-alpha': 1, 'light-alpha': 0.6 },
+			{ 'color': '#104386', 'dark-alpha': 1, 'light-alpha': 0.6 },
+			{ 'color': '#DA0101', 'dark-alpha': 1, 'light-alpha': 0.6 }
 		]
 	};
 
@@ -1543,7 +1544,7 @@
 			}).translate(0.5, 0.5);
 
 			this_text = paper.text(x, y, this_label).attr({
-				'fill': this_color['color'],
+				'fill': options['bubblechart']['label-color'],
 				'font-size': options['bubblechart']['label-size'],
 				'text-anchor': 'middle'
 			}).translate(0.5, 0.5);

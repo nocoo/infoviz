@@ -58,9 +58,9 @@ table {
 
 .p-index { background: #F0F0F0; font-family: 'Lucida Grande', Helvetica, Arial, sans-serif; }
 .p-index a { color: #999; }
-.p-index header { height: 70px; margin: 0 auto; width: 870px; background: #FDFDFD; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom: 1px solid #EEE; }
+.p-index header { height: 60px; margin: 0 auto; width: 870px; background: #FDFDFD; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom: 1px solid #EEE; }
 .p-index header h1 { margin: 10px; padding-top: 10px; }
-.p-index header a { width: 100px; height: 45px; display: block; background: url('../images/infoviz_logo_small.png') center no-repeat; background-image: -webkit-image-set(url('../images/infoviz_logo_small.png') 1x, url('../images/infoviz_logo_small@2x.png') 2x); }
+.p-index header a { width: 100px; height: 40px; display: block; background: url('../images/infoviz_logo_small.png') center no-repeat; background-image: -webkit-image-set(url('../images/infoviz_logo_small.png') 1x, url('../images/infoviz_logo_small@2x.png') 2x); }
 .p-index .container { background: #FDFDFD; width: 870px; margin: 0 auto; padding-bottom: 40px; }
 .p-index .container h1 { font-size: 1.5em; margin-left: 10px; padding-top: 30px; color: #333; }
 .p-index .container h2 { margin-left: 10px; line-height: 50px; -webkit-margin-before: 0; -webkit-margin-after: 0; padding-top: 10px; color: #555; }
@@ -76,7 +76,7 @@ table {
 .p-index .container .infoviz.i-radarchart2 { width: 340px; height: 350px; float: left; }
 .p-index .container .infoviz.i-radialchart1 { width: 410px; height: 350px; float: left; }
 .p-index .container .infoviz.i-radialchart2 { width: 420px; height: 350px; float: left; }
-.p-index .container .infoviz.i-heatmap { width: 850px; height: 550px; }
+.p-index .container .infoviz.i-heatmap { width: 850px; height: 850px; }
 .p-index .container .infoviz.i-tagcloud1 { height: 240px; }
 .p-index .container .infoviz.i-tagcloud2 { height: 240px; }
 .p-index .container .infoviz.i-smithgraph { width: 850px; height: 850px; }

@@ -1,6 +1,4 @@
-# InfoViz
-
-![InfoViz](http://infoviz.org/images/infoviz_logo_small.png)
+![InfoViz](http://infoviz.org/images/infoviz_logo.png)
 
 InfoViz is an information visualization library based on [Raphaël](http://raphaeljs.com/).
 
