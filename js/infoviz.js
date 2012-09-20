@@ -415,88 +415,99 @@ define(function(require, exports, module) {
 
 		switch(type) {
 			case 'linechart': {
+				area = core.draw_axis_background(paper, data, options);
+
 				require.async([ 'infoviz.linechart' ], function(linechart) {
-					area = core.draw_axis_background(paper, data, options);
 					linechart.draw_linechart(paper, area, data, options, callback);
 				});
 
 				break;
 			}
 			case 'bubblechart': {
+				area = core.draw_axis_background(paper, data, options);
+
 				require.async([ 'infoviz.bubblechart' ], function(bubblechart) {
-					area = core.draw_axis_background(paper, data, options);
 					bubblechart.draw_bubblechart(paper, area, data, options, callback);
 				});
 
 				break;
 			}
 			case 'barchart': {
-				require.async([ 'infoviz.barchart' ], function(barchart) {
-					area = core.draw_axis_background(paper, data, options);
+				area = core.draw_axis_background(paper, data, options);
+
+				require.async([ 'infoviz.barchart' ], function(barchart) {	
 					barchart.draw_barchart(paper, area, data, options, callback);
 				});
 
 				break;
 			}
 			case 'piechart': {
-				require.async([ 'infoviz.piechart' ], function(piechart) {
-					area = core.draw_empty_background(paper, data, options);
+				area = core.draw_empty_background(paper, data, options);
+
+				require.async([ 'infoviz.piechart' ], function(piechart) {	
 					piechart.draw_piechart(paper, area, data, options, callback);
 				});
 
 				break;
 			}
 			case 'radarchart': {
-				require.async([ 'infoviz.radarchart' ], function(radarchart) {
-					area = core.draw_empty_background(paper, data, options);
+				area = core.draw_empty_background(paper, data, options);
+
+				require.async([ 'infoviz.radarchart' ], function(radarchart) {	
 					radarchart.draw_radarchart(paper, area, data, options, callback);
 				});
 				
 				break;
 			}
 			case 'heatmap': {
+				area = core.draw_empty_background(paper, data, options);
+
 				require.async([ 'infoviz.heatmap' ], function(heatmap) {
-					area = core.draw_empty_background(paper, data, options);
 					heatmap.draw_heatmap(paper, area, data, options, callback);
 				});
 
 				break;
 			}
 			case 'tagcloud': {
-				require.async([ 'infoviz.tagcloud' ], function(tagcloud) {
-					area = core.draw_empty_background(paper, data, options);
+				area = core.draw_empty_background(paper, data, options);
+
+				require.async([ 'infoviz.tagcloud' ], function(tagcloud) {	
 					tagcloud.draw_tagcloud(paper, area, data, options, callback);
 				});
 				
 				break;
 			}
 			case 'smithgraph': {
-				require.async([ 'infoviz.smithgraph' ], function(smithgraph) {
-					area = core.draw_empty_background(paper, data, options);
+				area = core.draw_empty_background(paper, data, options);
+
+				require.async([ 'infoviz.smithgraph' ], function(smithgraph) {	
 					smithgraph.draw_smithgraph(paper, area, data, options, callback);
 				});
 
 				break;
 			}
 			case 'radialchart': {
-				require.async([ 'infoviz.radialchart' ], function(radialchart) {
-					area = core.draw_empty_background(paper, data, options);
+				area = core.draw_empty_background(paper, data, options);
+
+				require.async([ 'infoviz.radialchart' ], function(radialchart) {	
 					radialchart.draw_radialchart(paper, area, data, options, callback);
 				});
 
 				break;
 			}
 			case 'stackchart': {
-				require.async([ 'infoviz.stackchart' ], function(stackchart) {
-					area = core.draw_axis_background(paper, data, options);
+				area = core.draw_axis_background(paper, data, options);
+
+				require.async([ 'infoviz.stackchart' ], function(stackchart) {	
 					stackchart.draw_stackchart(paper, area, data, options, callback);
 				});
 
 				break;
 			}
 			case 'basictree': {
-				require.async([ 'infoviz.basictree' ], function(basictree) {
-					area = core.draw_empty_background(paper, data, options);
+				area = core.draw_empty_background(paper, data, options);
+
+				require.async([ 'infoviz.basictree' ], function(basictree) {	
 					basictree.draw_basictree(paper, area, data, options, callback);
 				});
 				
