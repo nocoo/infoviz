@@ -607,7 +607,6 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 ## 8.2 Options
 
 	InfoViz.options = {
-
 		// 1. Chart layout configuration.
 		'layout': {
 			'padding-top': 1, 					// padding-top
@@ -621,7 +620,7 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			
 			'logo-enabled': false,				// is InfoViz logo enabled
 			'logo-width': 50,					// logo width
-			'logo-height': 23,					// logo height
+			'logo-height': 17,					// logo height
 			'logo-position': 'top-right',		// logo position, top-right | top-left | bottom-right | bottom-left
 			
 			'speed': 300,						// animation speed
@@ -736,7 +735,9 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'background-alpha': 1,				// tooltip background alpha
 
 			'horizontal-offset': 0,				// tooltip horizontal offset
-			'vertical-offset': -10 				// tooltip vertical offset
+			'vertical-offset': -10,				// tooltip vertical offset
+
+			'speed': 100						// tooltip animation
 		},
 
 		// 5. LineChart configuration.
@@ -766,6 +767,7 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'circle-min-radius': 15,			// bubble circle max radius
 			'circle-max-radius': 40,			// bubble circle min radius
 			'label-size': 12,					// bubble circle label font size
+			'label-color': '#FFF',				// bubble circle label text color
 
 			'horizontal-label-count': 10,		// label count in the horizontal axis
 			'horizontal-bar-width': 5,			// period bar width of the horizontal axis
@@ -826,8 +828,8 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'axis-alpha': 1,					// radius axis opacity
 			
 			'circle-min-radius': 30,			// radar circle min radius
-			'circle-border-width': 2,			// radar circle line thickness
-			'circle-background-alpha': 0.1,		// radar circle background opacity
+			'circle-border-width': 1.5,			// radar circle line thickness
+			'circle-background-alpha': 0.2,		// radar circle background opacity
 												// (use this value instead of light-alpha of the color)
 			
 			'label-distance': 15,				// distance between outer border to label
@@ -891,9 +893,9 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'bar-min-height': 15,				// min bar height
 			'edge-margin': 5,					// distance between edge and node bar
 			'edge-border-width': 1,				// border thickness of radial edges
-			'edge-alpha': 0.2,					// edge fill opacity
+			'edge-background-alpha': 0.2,		// edge background opacity
 			'hole-radius': 300,					// hole radius
-			
+
 			'horizontal-offset': 0,				// graph center horizontal offset
 			'vertical-offset': 0,				// graph center vertical offset
 
@@ -930,18 +932,59 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'vertical-offset': 0 				// chart center vertical offset
 		},
 
+		// 14. StackChart configuration.
+		'stackchart': {
+			'padding-top': 30,					// padding-top
+			'padding-right': 30,				// padding-right
+			'padding-bottom': 0,				// padding-bottom
+			'padding-left': 30,					// padding-left
+
+			'group-margin': 40,					// margin value between bar groups
+			'bar-margin': 0,					// margin value between bars (in the same group)
+
+			'vertical-label-count': 10,			// label count in the vertical axis
+			'vertical-bar-width': 5 			// period bar width of the vertical axis
+		},
+
+		// 15. BasicTree configuration.
+		'basictree': {
+			'padding-top': 30,					// padding-top
+			'padding-right': 30,				// padding-right
+			'padding-bottom': 30,				// padding-bottom
+			'padding-left': 30,					// padding-left
+
+			'node-border-width': 1,				// border thickness of tree nodes
+			'node-max-radius': 30,				// max radius of tree nodes
+			'node-min-radius': 15,				// min radius of tree nodes
+			'node-label-size': 12,				// tree node label font size
+			'node-label-color': '#FFF',			// tree node label font color
+			'node-label-alpha': 1,				// tree node label font opacity
+
+			'edge-width': 1,					// tree edge thickness
+			'edge-color': '#555',				// tree edge color
+			'edge-alpha': 1,					// tree edge opacity
+			'edge-label-size': 12,				// tree edge label font size
+			'edge-label-color': '#FFF',			// tree edge label font color
+			'edge-label-alpha': 1				// tree edge label font opacity
+		},
+
 		// 0. Global color definition.
 		'color': [								// color definition, from light to dark
-			{ 'color': '#66B3DD', 'dark-alpha': 1, 'light-alpha': 0.45 },
-			{ 'color': '#EF7D31', 'dark-alpha': 1, 'light-alpha': 0.45 },
-			{ 'color': '#ABC93C', 'dark-alpha': 1, 'light-alpha': 0.45 },
-			{ 'color': '#E05170', 'dark-alpha': 1, 'light-alpha': 0.45 },
-			{ 'color': '#297FB5', 'dark-alpha': 1, 'light-alpha': 0.45 },
-			{ 'color': '#F5BE21', 'dark-alpha': 1, 'light-alpha': 0.45 },
-			{ 'color': '#5ABABB', 'dark-alpha': 1, 'light-alpha': 0.45 },
-			{ 'color': '#9D66A4', 'dark-alpha': 1, 'light-alpha': 0.45 }
+			{ 'color': '#3A89C9', 'dark-alpha': 1, 'light-alpha': 0.6 },
+			{ 'color': '#EB540A', 'dark-alpha': 1, 'light-alpha': 0.6 },
+			{ 'color': '#5AAD34', 'dark-alpha': 1, 'light-alpha': 0.6 },
+			{ 'color': '#FECC09', 'dark-alpha': 1, 'light-alpha': 0.6 },
+			{ 'color': '#6699FF', 'dark-alpha': 1, 'light-alpha': 0.6 },
+			{ 'color': '#14B694', 'dark-alpha': 1, 'light-alpha': 0.6 },
+			{ 'color': '#104386', 'dark-alpha': 1, 'light-alpha': 0.6 },
+			{ 'color': '#DA0101', 'dark-alpha': 1, 'light-alpha': 0.6 }
 		]
 	};
+
+## 8.3 Dependencies
+
+* Raphaël: [http://raphaeljs.com/](http://raphaeljs.com/)
+* SeaJS: [http://seajs.org/docs/](http://seajs.org/docs/)
 
 ### License
 
