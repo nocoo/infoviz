@@ -159,7 +159,10 @@ define(function(require, exports, module) {
 			'label-size': 12,					// label font size
 
 			'vertical-label-count': 10,			// label count in the vertical axis
-			'vertical-bar-width': 5 			// period bar width of the vertical axis
+			'vertical-bar-width': 5, 			// period bar width of the vertical axis
+
+			'area-enabled': false,				// if area is enabled, area under every line will be highlighted
+			'area-alpha': 0.1					// area fill opacity
 		},
 
 		// 6. BubbleChart configuration.

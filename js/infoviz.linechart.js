@@ -141,9 +141,10 @@ define(function(require, exports, module) {
 
 			// Lines.
 			var index = 0, color;
-			var legend_data = [];
+			var legend_data = [], p_nodes = [];
 			for(var line in lines) {
-				var p_line, p_node, p_label, todo = [];
+				var p_line, p_node, p_label, p_area, todo = [];
+				var area_start_x, area_end_x;
 
 				cache = [];
 				color = options['color'][(index % options['color'].length)];
@@ -156,26 +157,40 @@ define(function(require, exports, module) {
 
 					if(i === 0) {
 						cache.push('M' + x + ',' + y);
+						area_start_x = x;
 					} else {
 						cache.push('L' + x + ',' + y);
+					}
+
+					if(i === lines[line]['data'].length - 1) {
+						area_end_x = x;
 					}
 
 					todo.push({ 'x': x, 'y': y, 'v_value': item[v_field_name], 'h_value': item[h_field_name], 'data': item });
 				}
 
-				p_line = paper.path(cache.join(''));
-				p_line.attr({
+				p_line = paper.path(cache.join('')).attr({
 					'stroke': color['color'],
 					'stroke-opacity': color['light-alpha'],
 					'stroke-width': options['linechart']['line-width']
 				}).translate(0.5, 0.5);
 
-				p_label = paper.text(x + options['linechart']['circle-radius'] * 2, y, lines[line]['name']);
-				p_label.attr({
+				p_label = paper.text(x + options['linechart']['circle-radius'] * 2, y, lines[line]['name']).attr({
 					'fill': color['color'],
 					'text-anchor': 'start',
 					'font-size': options['linechart']['label-size']
 				}).translate(0.5, 0.5);
+
+				if(options['linechart']['area-enabled']) {
+					cache.push('L' + area_end_x + ',' + chart_area['bottom-left'][1]);
+					cache.push('L' + area_start_x + ',' + chart_area['bottom-left'][1]);
+					cache.push('Z');
+					p_area = paper.path(cache.join('')).attr({
+						'stroke': 'none',
+						'fill': color['color'],
+						'fill-opacity': options['linechart']['area-alpha']
+					}).translate(0.5, 0.5);
+				}
 
 				// Circle.
 				for(i = 0; i < todo.length; ++i) {
@@ -197,6 +212,8 @@ define(function(require, exports, module) {
 							'fill': color['color']
 						}).translate(0.5, 0.5);
 					}
+
+					p_nodes.push(p_node);
 
 					// Action.
 					if(callback && typeof(callback) === 'function') {
@@ -241,6 +258,10 @@ define(function(require, exports, module) {
 				});
 
 				index++;
+			}
+
+			for(i = 0; i < p_nodes.length; ++i) {
+				p_nodes[i].toFront();
 			}
 
 			core.draw_legend(paper, chart_area, legend_data, options);
