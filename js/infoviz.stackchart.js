@@ -3,7 +3,6 @@
 	@copyright 2012  Zheng Li <lizheng@lizheng.me>
 	@github https://github.com/nocoo/InfoViz
 	@license MIT
-	@version 0.3.1
 */
 
 define(function(require, exports, module) {
@@ -170,7 +169,7 @@ define(function(require, exports, module) {
 					this_node.attr({
 						'stroke': color['color'],
 						'stroke-opacity': color['dark-alpha'],
-						'stroke-width': options['stackchart']['line-width'],
+						'stroke-width': options['stackchart']['border-width'],
 						'fill': color['color'],
 						'fill-opacity': color['light-alpha']
 					}).translate(0.5, 0.5);

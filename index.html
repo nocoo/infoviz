@@ -29,6 +29,10 @@
 				<h2>StackChart <a href="#stackchart" name="stackchart">#</a></h2>
 				<div id="i_stackchart" class="infoviz"></div>
 			</section>
+			<section>
+				<h2>StockChart <a href="#stockchart" name="stockchart">#</a></h2>
+				<div id="i_stockchart" class="infoviz"></div>
+			</section>
 
 			<h1>Round Stuff</h1>
 			<section>
@@ -61,6 +65,13 @@
 				<div id="i_heatmap" class="infoviz"></div>
 			</section>
 
+			<h1>Tree</h1>
+			<section>
+				<h2>BasicTree <a href="#basictree" name="basictree">#</a></h2>
+				<div id="i_basictree" class="infoviz"></div>
+				<div class="clear"></div>
+			</section>
+
 			<h1>Cloud</h1>
 			<section>
 				<h2>TagCloud <a href="#tagcloud" name="tagcloud">#</a></h2>
@@ -70,7 +81,7 @@
 
 			<a class="fork" href="https://github.com/nocoo/InfoViz"></a>
 		</section>
-		<footer><p>InfoViz 0.3.1, MIT License, <a href="http://about.me/nocoo">@zhengli</a>, <a href="https://github.com/nocoo/InfoViz">Github</a></p></footer>
+		<footer><p>InfoViz 0.3.2, MIT License, <a href="http://about.me/nocoo">@zhengli</a>, <a href="https://github.com/nocoo/InfoViz">Github</a></p></footer>
 
 		<script src="./js/raphael.min.js"></script>
 		<script src="./js/sea.min.js"></script>
@@ -377,6 +388,70 @@
 						{ 'legend': { 'margin-top': 0 } }
 					);
 
+					// StockChart.
+					InfoViz.chart(
+						'i_stockchart',
+						'stockchart',
+						{
+							'vertical_axis_name': 'Vertical',
+							'horizontal_axis_name': 'Horizontal',
+							'horizontal_field': 'F2',
+							'vertical_field': { 'min': 'F4', 'middle': 'F5', 'max': 'F6' },
+							'tooltip_title': 'InfoViz {F2}, {F3}',
+							'tooltip_content': 'Tooltip: max={F6}, middle={F5}, min={F4}',
+							'data': {
+								'bar1': {
+									'name': 'China',
+									'data': [
+										{ 'F1': 1,   'F2': 'A', 'F3': 3,  'F4': 1, 'F5': 2, 'F6': 5 },
+										{ 'F1': 42,  'F2': 'B', 'F3': 6,  'F4': 3, 'F5': 4, 'F6': 4 },
+										{ 'F1': 7,   'F2': 'C', 'F3': 9,  'F4': 2, 'F5': 3, 'F6': 4 },
+										{ 'F1': 110, 'F2': 'D', 'F3': 12, 'F4': 4, 'F5': 5, 'F6': 6 }
+									]
+								},
+								'bar2': {
+									'name': 'Unite States',
+									'data': [
+										{ 'F1': 13, 'F2': 'A', 'F3': 15, 'F4': 4, 'F5': 7,  'F6': 8  },
+										{ 'F1': 10, 'F2': 'B', 'F3': 12, 'F4': 9, 'F5': 12, 'F6': 13 },
+										{ 'F1': 72, 'F2': 'C', 'F3': 9,  'F4': 4, 'F5': 10, 'F6': 15 },
+										{ 'F1': 1,  'F2': 'D', 'F3': 3,  'F4': 6, 'F5': 9,  'F6': 18 },
+										{ 'F1': 4,  'F2': 'E', 'F3': 6,  'F4': 5, 'F5': 7,  'F6': 10 }
+									]
+								},
+								'bar3': {
+									'name': 'Unite Kingdom',
+									'data': [
+										{ 'F1': 19, 'F2': 'A', 'F3': 15, 'F4': 1, 'F5': 7,  'F6': 12 },
+										{ 'F1': 20, 'F2': 'B', 'F3': 12, 'F4': 2, 'F5': 8,  'F6': 15 },
+										{ 'F1': 11, 'F2': 'D', 'F3': 3,  'F4': 3, 'F5': 9,  'F6': 17 },
+										{ 'F1': 42, 'F2': 'E', 'F3': 6,  'F4': 4, 'F5': 10, 'F6': 11 }
+									]
+								},
+								'bar4': {
+									'name': 'Italy',
+									'data': [
+										{ 'F1': 29, 'F2': 'A', 'F3': 15, 'F4': 5, 'F5': 8,  'F6': 10 },
+										{ 'F1': 70, 'F2': 'B', 'F3': 12, 'F4': 8, 'F5': 10, 'F6': 12 },
+										{ 'F1': 42, 'F2': 'C', 'F3': 9,  'F4': 2, 'F5': 11, 'F6': 15 },
+										{ 'F1': 51, 'F2': 'D', 'F3': 3,  'F4': 4, 'F5': 7,  'F6': 17 },
+										{ 'F1': 22, 'F2': 'E', 'F3': 6,  'F4': 3, 'F5': 7,  'F6': 19 }
+									]
+								},
+								'bar5': {
+									'name': 'Russia',
+									'data': [
+										{ 'F1': 9,  'F2': 'A', 'F3': 15, 'F4': 1, 'F5': 5,  'F6': 13 },
+										{ 'F1': 90, 'F2': 'B', 'F3': 12, 'F4': 3, 'F5': 13, 'F6': 16 },
+										{ 'F1': 92, 'F2': 'C', 'F3': 9,  'F4': 5, 'F5': 15, 'F6': 18 },
+										{ 'F1': 52, 'F2': 'E', 'F3': 6,  'F4': 9, 'F5': 10, 'F6': 15 }
+									]
+								}
+							}
+						},
+						{ 'legend': { 'margin-top': 0 } }
+					);
+
 					// PieChart.
 					InfoViz.chart(
 						'i_piechart1',
@@ -592,6 +667,54 @@
 							'data': data
 						},
 						{ 'layout': { 'logo-enabled': false }, 'heatmap': { 'label-size': 12 } }
+					);
+
+					// BasicTree
+					InfoViz.chart(
+						'i_basictree',
+						'basictree',
+						{
+							'node_label_field': 'F1',
+							'node_value_field': 'F2',
+							'edge_value_field': 'F3',
+							'node_tooltip_title': 'Node #{F1}',
+							'node_tooltip_content': 'Value: {F1}.{F2}',
+							'edge_tooltip_title': 'Edge #{F1}',
+							'edge_tooltip_content': 'Value: {F2}.{F3}',
+							'data': {
+								'F1': 'Frankfurt', 'F2': 1, 'children': [
+									{
+										'F1': 'Mannheim', 'F2': 2, 'F3': 85, 'children': [
+											{
+												'F1': 'Karlsruhe', 'F2': 3, 'F3': 80, 'children': [
+													{ 'F1': 'Augsburg', 'F2': 1, 'F3': 250 },
+													{ 'F1': 'Augsburg', 'F2': 1, 'F3': 250 }
+												]
+											}
+										]
+									},
+									{
+										'F1': 'Würzburg', 'F2': 3, 'F3': 217, 'children': [
+											{ 'F1': 'Erfurt', 'F2': 4, 'F3': 186 },
+											{ 'F1': 'Nürnberg', 'F2': 2, 'F3': 103 },
+											{ 'F1': 'Erfurt', 'F2': 4, 'F3': 186, 'children': [
+													{ 'F1': 'München', 'F2': 5, 'F3': 167 }
+												]
+											}
+										]
+									},
+									{
+										'F1': 'Kassel', 'F2': 2, 'F3': 173, 'children': [
+											{ 'F1': 'Stuggart', 'F2': 3, 'F3': 99, 'children': [
+													{ 'F1': 'München', 'F2': 5, 'F3': 167 },
+													{ 'F1': 'Augsburg', 'F2': 1, 'F3': 250 }
+												]
+											}
+										]
+									}
+								]
+							}
+						}
 					);
 
 					// TagCloud.

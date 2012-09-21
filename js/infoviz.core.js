@@ -3,7 +3,6 @@
 	@copyright 2012  Zheng Li <lizheng@lizheng.me>
 	@github https://github.com/nocoo/InfoViz
 	@license MIT
-	@version 0.3.1
 */
 
 define(function(require, exports, module) {
@@ -350,6 +349,25 @@ define(function(require, exports, module) {
 					cache.push('L' + (x + options['legend']['indicator-margin-left'] + options['legend']['indicator-size']) + ',' + (y + options['legend']['indicator-margin-top']));
 
 					this_indicator = paper.path(cache.join('')).attr({
+						'stroke': item['color']['color'],
+						'stroke-opacity': item['color']['dark-alpha'],
+						'stroke-width': options['legend']['indicator-border-width']
+					}).translate(0.5, 0.5);
+
+					break;
+				}
+				case 'area': {
+					cache = [];
+					cache.push('M' + (x + options['legend']['indicator-margin-left']) + ',' + (y + options['legend']['indicator-margin-top'] + options['legend']['indicator-size']));
+					cache.push('L' + (x + options['legend']['indicator-margin-left'] + 2 * options['legend']['indicator-size'] / 5) + ',' + (y + options['legend']['indicator-margin-top'] + 2 * options['legend']['indicator-size'] / 5));
+					cache.push('L' + (x + options['legend']['indicator-margin-left'] + 4 * options['legend']['indicator-size'] / 7) + ',' + (y + options['legend']['indicator-margin-top'] + 5 * options['legend']['indicator-size'] / 7));
+					cache.push('L' + (x + options['legend']['indicator-margin-left'] + options['legend']['indicator-size']) + ',' + (y + options['legend']['indicator-margin-top']));
+					cache.push('L' + (x + options['legend']['indicator-margin-left'] + options['legend']['indicator-size']) + ',' +  + (y + options['legend']['indicator-margin-top'] + options['legend']['indicator-size']));
+					cache.push('Z');
+
+					this_indicator = paper.path(cache.join('')).attr({
+						'fill': item['color']['color'],
+						'fill-opacity': item['color']['light-alpha'],
 						'stroke': item['color']['color'],
 						'stroke-opacity': item['color']['dark-alpha'],
 						'stroke-width': options['legend']['indicator-border-width']

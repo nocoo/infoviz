@@ -3,7 +3,6 @@
 	@copyright 2012  Zheng Li <lizheng@lizheng.me>
 	@github https://github.com/nocoo/InfoViz
 	@license MIT
-	@version 0.3.1
 */
 
 define(function(require, exports, module) {
@@ -251,11 +250,19 @@ define(function(require, exports, module) {
 				}
 
 				// Add legend data.
-				legend_data.push({
-					'label': lines[line]['name'],
-					'color': color,
-					'type': 'line'
-				});
+				if(options['linechart']['area-enabled']) {
+					legend_data.push({
+						'label': lines[line]['name'],
+						'color': color,
+						'type': 'area'
+					});
+				} else {
+					legend_data.push({
+						'label': lines[line]['name'],
+						'color': color,
+						'type': 'line'
+					});
+				}
 
 				index++;
 			}

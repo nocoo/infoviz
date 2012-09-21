@@ -3,7 +3,6 @@
 	@copyright 2012  Zheng Li <lizheng@lizheng.me>
 	@github https://github.com/nocoo/InfoViz
 	@license MIT
-	@version 0.3.1
 */
 
 define(function(require, exports, module) {
@@ -94,7 +93,7 @@ define(function(require, exports, module) {
 			'indicator-margin-right': 10,		// legend indicator margin-right
 			'indicator-margin-top': 2,			// legend indicator margin-top
 			'indicator-margin-bottom': 2,		// legend indicator margin-bottom
-			'indicator-sector-angle': 60,		// sector type legend indicator angle
+			'indicator-sector-angle': 50,		// sector type legend indicator angle
 
 			'label-color': undefined,			// legend label font color
 			'label-alpha': 1,					// legend label font opacity
@@ -189,6 +188,8 @@ define(function(require, exports, module) {
 			'padding-bottom': 20,				// padding-bottom
 			'padding-left': 30,					// padding-left
 
+			'border-width': 1,					// Bar border thickness
+
 			'group-margin': 40,					// margin value between bar groups
 			'bar-margin': 4,					// margin value between bars (in the same group)
 
@@ -256,6 +257,7 @@ define(function(require, exports, module) {
 			'label-size': 12,					// box label font size
 			'label-color': '#FFF',				// box label font color
 			'label-alpha': 1,					// box label font opacity
+			'sort-enabled': false,				// whether sort boxes by value
 
 			'horizontal-count': undefined,		// horizontal box count, set this value to undefined to use auto layout
 			'vertical-count': undefined,		// vertical box count, set this value to undefined to use auto layout
@@ -346,6 +348,8 @@ define(function(require, exports, module) {
 			'padding-bottom': 0,				// padding-bottom
 			'padding-left': 30,					// padding-left
 
+			'border-width': 1,					// Bar border thickness
+
 			'group-margin': 40,					// margin value between bar groups
 			'bar-margin': 0,					// margin value between bars (in the same group)
 
@@ -355,24 +359,55 @@ define(function(require, exports, module) {
 
 		// 15. BasicTree configuration.
 		'basictree': {
-			'padding-top': 30,					// padding-top
-			'padding-right': 30,				// padding-right
-			'padding-bottom': 30,				// padding-bottom
-			'padding-left': 30,					// padding-left
+			'padding-top': 0,					// padding-top
+			'padding-right': 0,					// padding-right
+			'padding-bottom': 0,				// padding-bottom
+			'padding-left': 0,					// padding-left
 
 			'node-border-width': 1,				// border thickness of tree nodes
-			'node-max-radius': 30,				// max radius of tree nodes
-			'node-min-radius': 15,				// min radius of tree nodes
+			'node-max-radius': 40,				// max radius of tree nodes
+			'node-min-radius': 30,				// min radius of tree nodes
 			'node-label-size': 12,				// tree node label font size
 			'node-label-color': '#FFF',			// tree node label font color
 			'node-label-alpha': 1,				// tree node label font opacity
 
-			'edge-width': 1,					// tree edge thickness
+			'edge-width': 2,					// tree edge thickness
 			'edge-color': '#555',				// tree edge color
 			'edge-alpha': 1,					// tree edge opacity
 			'edge-label-size': 12,				// tree edge label font size
-			'edge-label-color': '#FFF',			// tree edge label font color
-			'edge-label-alpha': 1				// tree edge label font opacity
+			'edge-label-color': '#555',			// tree edge label font color
+			'edge-label-alpha': 1,				// tree edge label font opacity
+
+			'edge-box-padding-top': 2,			// padding-top
+			'edge-box-padding-right': 4,		// padding-right
+			'edge-box-padding-bottom': 2,		// padding-bottom
+			'edge-box-padding-left': 4,			// padding-left
+			'edge-box-border-width': 1,			// label box border thickness
+			'edge-box-border-color': '#555',	// label box border color
+			'edge-box-border-alpha': 1,			// label box border opacity
+			'edge-box-border-radius': 4,		// label box border radius
+			'edge-box-background-color': '#FFF',// label box background color
+			'edge-box-background-alpha': 1 		// label box background opacity
+		},
+
+		// 16. StockChart configuration.
+		'stockchart': {
+			'padding-top': 20,					// padding-top
+			'padding-right': 30,				// padding-right
+			'padding-bottom': 10,				// padding-bottom
+			'padding-left': 30,					// padding-left
+
+			'border-width': 1,					// Bar border thickness
+
+			'middle-line-width': 2,				// middle line thickness
+			'middle-line-color': undefined,		// middle line color. set to undefined to use theme color
+			'middle-line-alpha': 1,				// middle line opacity
+
+			'group-margin': 40,					// margin value between bar groups
+			'bar-margin': 4,					// margin value between bars (in the same group)
+
+			'vertical-label-count': 10,			// label count in the vertical axis
+			'vertical-bar-width': 5 			// period bar width of the vertical axis
 		},
 
 		// 0. Global color definition.
@@ -388,7 +423,7 @@ define(function(require, exports, module) {
 		]
 	};
 
-	exports.version = function() { return '0.3.1' };
+	exports.version = function() { return '0.3.2' };
 
 	exports.chart = function(element, type, data, overwrite_options, callback) {
 		seajs.use([ 'infoviz.core' ], function(core) {
@@ -508,6 +543,15 @@ define(function(require, exports, module) {
 
 					require.async([ 'infoviz.basictree' ], function(basictree) {
 						basictree.draw_basictree(paper, area, data, options, callback);
+					});
+
+					break;
+				}
+				case 'stockchart': {
+					area = core.draw_axis_background(paper, data, options);
+
+					require.async([ 'infoviz.stockchart' ], function(barchart) {
+						barchart.draw_stockchart(paper, area, data, options, callback);
 					});
 
 					break;

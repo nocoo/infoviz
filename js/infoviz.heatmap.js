@@ -3,7 +3,6 @@
 	@copyright 2012  Zheng Li <lizheng@lizheng.me>
 	@github https://github.com/nocoo/InfoViz
 	@license MIT
-	@version 0.3.1
 */
 
 define(function(require, exports, module) {
@@ -20,6 +19,10 @@ define(function(require, exports, module) {
 				y = this.data('tooltip')['y'];
 				core.draw_tooltip(paper, x, y, this.data('tooltip')['id'], this.data('tooltip')['title'], this.data('tooltip')['content'], this.data('tooltip')['color'], options);
 			};
+
+			if(options['heatmap']['sort-enabled']) {
+				data['data'].sort(function(a, b) { return b[data['value_field']] - a[data['value_field']]; });
+			}
 
 			// Find out max and min value.
 			var v_max = -Infinity, v_min = Infinity;

@@ -338,6 +338,76 @@ Demo: [Click Here](http://infoviz.org/index.html#stackchart)
 		{ 'legend': { 'margin-top': 0 } }
 	);
 
+## 1.5 StockChart
+
+A StockChart like BarChart. In BarChart, each bar has only one vertical value, but in StockChart, each bar has three: max, middle and min value.
+
+![StockChart](http://infoviz.org/examples/stockchart.png "StockChart")
+
+Demo: [Click Here](http://infoviz.org/index.html#stockchart)
+
+	InfoViz.chart(
+		'i_stockchart',
+		'stockchart',
+		{
+			'vertical_axis_name': 'Vertical',
+			'horizontal_axis_name': 'Horizontal',
+			'horizontal_field': 'F2',
+			'vertical_field': { 'min': 'F4', 'middle': 'F5', 'max': 'F6' },
+			'tooltip_title': 'InfoViz {F2}, {F3}',
+			'tooltip_content': 'Tooltip: max={F6}, middle={F5}, min={F4}',
+			'data': {
+				'bar1': {
+					'name': 'China',
+					'data': [
+						{ 'F1': 1,   'F2': 'A', 'F3': 3,  'F4': 1, 'F5': 2, 'F6': 5 },
+						{ 'F1': 42,  'F2': 'B', 'F3': 6,  'F4': 3, 'F5': 4, 'F6': 4 },
+						{ 'F1': 7,   'F2': 'C', 'F3': 9,  'F4': 2, 'F5': 3, 'F6': 4 },
+						{ 'F1': 110, 'F2': 'D', 'F3': 12, 'F4': 4, 'F5': 5, 'F6': 6 }
+					]
+				},
+				'bar2': {
+					'name': 'Unite States',
+					'data': [
+						{ 'F1': 13, 'F2': 'A', 'F3': 15, 'F4': 4, 'F5': 7,  'F6': 8  },
+						{ 'F1': 10, 'F2': 'B', 'F3': 12, 'F4': 9, 'F5': 12, 'F6': 13 },
+						{ 'F1': 72, 'F2': 'C', 'F3': 9,  'F4': 4, 'F5': 10, 'F6': 15 },
+						{ 'F1': 1,  'F2': 'D', 'F3': 3,  'F4': 6, 'F5': 9,  'F6': 18 },
+						{ 'F1': 4,  'F2': 'E', 'F3': 6,  'F4': 5, 'F5': 7,  'F6': 10 }
+					]
+				},
+				'bar3': {
+					'name': 'Unite Kingdom',
+					'data': [
+						{ 'F1': 19, 'F2': 'A', 'F3': 15, 'F4': 1, 'F5': 7,  'F6': 12 },
+						{ 'F1': 20, 'F2': 'B', 'F3': 12, 'F4': 2, 'F5': 8,  'F6': 15 },
+						{ 'F1': 11, 'F2': 'D', 'F3': 3,  'F4': 3, 'F5': 9,  'F6': 17 },
+						{ 'F1': 42, 'F2': 'E', 'F3': 6,  'F4': 4, 'F5': 10, 'F6': 11 }
+					]
+				},
+				'bar4': {
+					'name': 'Italy',
+					'data': [
+						{ 'F1': 29, 'F2': 'A', 'F3': 15, 'F4': 5, 'F5': 8,  'F6': 10 },
+						{ 'F1': 70, 'F2': 'B', 'F3': 12, 'F4': 8, 'F5': 10, 'F6': 12 },
+						{ 'F1': 42, 'F2': 'C', 'F3': 9,  'F4': 2, 'F5': 11, 'F6': 15 },
+						{ 'F1': 51, 'F2': 'D', 'F3': 3,  'F4': 4, 'F5': 7,  'F6': 17 },
+						{ 'F1': 22, 'F2': 'E', 'F3': 6,  'F4': 3, 'F5': 7,  'F6': 19 }
+					]
+				},
+				'bar5': {
+					'name': 'Russia',
+					'data': [
+						{ 'F1': 9,  'F2': 'A', 'F3': 15, 'F4': 1, 'F5': 5,  'F6': 13 },
+						{ 'F1': 90, 'F2': 'B', 'F3': 12, 'F4': 3, 'F5': 13, 'F6': 16 },
+						{ 'F1': 92, 'F2': 'C', 'F3': 9,  'F4': 5, 'F5': 15, 'F6': 18 },
+						{ 'F1': 52, 'F2': 'E', 'F3': 6,  'F4': 9, 'F5': 10, 'F6': 15 }
+					]
+				}
+			}
+		},
+		{ 'legend': { 'margin-top': 0 } }
+	);
 
 # 2 Round Stuff
 
@@ -549,6 +619,62 @@ Demo: [Click Here](http://infoviz.org/index.html#heatmap)
 	);
 
 # 4 Tree
+
+## 4.1 BasicTree
+
+![BasicTree](http://infoviz.org/examples/basictree.png "BasicTree")
+
+A BasicTree can visualize tree structure data. BasicTree has a top-down layout, root node is in the top.
+
+Demo: [Click Here](http://infoviz.org/index.html#basictree)
+
+
+	InfoViz.chart(
+		'i_basictree',
+		'basictree',
+		{
+			'node_label_field': 'F1',
+			'node_value_field': 'F2',
+			'edge_value_field': 'F3',
+			'node_tooltip_title': 'Node #{F1}',
+			'node_tooltip_content': 'Value: {F1}.{F2}',
+			'edge_tooltip_title': 'Edge #{F1}',
+			'edge_tooltip_content': 'Value: {F2}.{F3}',
+			'data': {
+				'F1': 'Frankfurt', 'F2': 1, 'children': [
+					{
+						'F1': 'Mannheim', 'F2': 2, 'F3': 85, 'children': [
+							{
+								'F1': 'Karlsruhe', 'F2': 3, 'F3': 80, 'children': [
+									{ 'F1': 'Augsburg', 'F2': 1, 'F3': 250 },
+									{ 'F1': 'Augsburg', 'F2': 1, 'F3': 250 }
+								]
+							}
+						]
+					},
+					{
+						'F1': 'Würzburg', 'F2': 3, 'F3': 217, 'children': [
+							{ 'F1': 'Erfurt', 'F2': 4, 'F3': 186 },
+							{ 'F1': 'Nürnberg', 'F2': 2, 'F3': 103 },
+							{ 'F1': 'Erfurt', 'F2': 4, 'F3': 186, 'children': [
+									{ 'F1': 'München', 'F2': 5, 'F3': 167 }
+								]
+							}
+						]
+					},
+					{
+						'F1': 'Kassel', 'F2': 2, 'F3': 173, 'children': [
+							{ 'F1': 'Stuggart', 'F2': 3, 'F3': 99, 'children': [
+									{ 'F1': 'München', 'F2': 5, 'F3': 167 },
+									{ 'F1': 'Augsburg', 'F2': 1, 'F3': 250 }
+								]
+							}
+						]
+					}
+				]
+			}
+		}
+	);
 
 # 5 Cloud
 
@@ -775,7 +901,7 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'indicator-margin-right': 10,		// legend indicator margin-right
 			'indicator-margin-top': 2,			// legend indicator margin-top
 			'indicator-margin-bottom': 2,		// legend indicator margin-bottom
-			'indicator-sector-angle': 60,		// sector type legend indicator angle
+			'indicator-sector-angle': 50,		// sector type legend indicator angle
 
 			'label-color': undefined,			// legend label font color
 			'label-alpha': 1,					// legend label font opacity
@@ -870,6 +996,8 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'padding-bottom': 20,				// padding-bottom
 			'padding-left': 30,					// padding-left
 
+			'border-width': 1,					// Bar border thickness
+
 			'group-margin': 40,					// margin value between bar groups
 			'bar-margin': 4,					// margin value between bars (in the same group)
 
@@ -937,6 +1065,7 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'label-size': 12,					// box label font size
 			'label-color': '#FFF',				// box label font color
 			'label-alpha': 1,					// box label font opacity
+			'sort-enabled': false,				// whether sort boxes by value
 
 			'horizontal-count': undefined,		// horizontal box count, set this value to undefined to use auto layout
 			'vertical-count': undefined,		// vertical box count, set this value to undefined to use auto layout
@@ -1027,6 +1156,8 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'padding-bottom': 0,				// padding-bottom
 			'padding-left': 30,					// padding-left
 
+			'border-width': 1,					// Bar border thickness
+
 			'group-margin': 40,					// margin value between bar groups
 			'bar-margin': 0,					// margin value between bars (in the same group)
 
@@ -1036,24 +1167,55 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 
 		// 15. BasicTree configuration.
 		'basictree': {
-			'padding-top': 30,					// padding-top
-			'padding-right': 30,				// padding-right
-			'padding-bottom': 30,				// padding-bottom
-			'padding-left': 30,					// padding-left
+			'padding-top': 0,					// padding-top
+			'padding-right': 0,					// padding-right
+			'padding-bottom': 0,				// padding-bottom
+			'padding-left': 0,					// padding-left
 
 			'node-border-width': 1,				// border thickness of tree nodes
-			'node-max-radius': 30,				// max radius of tree nodes
-			'node-min-radius': 15,				// min radius of tree nodes
+			'node-max-radius': 40,				// max radius of tree nodes
+			'node-min-radius': 30,				// min radius of tree nodes
 			'node-label-size': 12,				// tree node label font size
 			'node-label-color': '#FFF',			// tree node label font color
 			'node-label-alpha': 1,				// tree node label font opacity
 
-			'edge-width': 1,					// tree edge thickness
+			'edge-width': 2,					// tree edge thickness
 			'edge-color': '#555',				// tree edge color
 			'edge-alpha': 1,					// tree edge opacity
 			'edge-label-size': 12,				// tree edge label font size
-			'edge-label-color': '#FFF',			// tree edge label font color
-			'edge-label-alpha': 1				// tree edge label font opacity
+			'edge-label-color': '#555',			// tree edge label font color
+			'edge-label-alpha': 1,				// tree edge label font opacity
+
+			'edge-box-padding-top': 2,			// padding-top
+			'edge-box-padding-right': 4,		// padding-right
+			'edge-box-padding-bottom': 2,		// padding-bottom
+			'edge-box-padding-left': 4,			// padding-left
+			'edge-box-border-width': 1,			// label box border thickness
+			'edge-box-border-color': '#555',	// label box border color
+			'edge-box-border-alpha': 1,			// label box border opacity
+			'edge-box-border-radius': 4,		// label box border radius
+			'edge-box-background-color': '#FFF',// label box background color
+			'edge-box-background-alpha': 1 		// label box background opacity
+		},
+
+		// 16. StockChart configuration.
+		'stockchart': {
+			'padding-top': 20,					// padding-top
+			'padding-right': 30,				// padding-right
+			'padding-bottom': 10,				// padding-bottom
+			'padding-left': 30,					// padding-left
+
+			'border-width': 1,					// Bar border thickness
+
+			'middle-line-width': 2,				// middle line thickness
+			'middle-line-color': undefined,		// middle line color. set to undefined to use theme color
+			'middle-line-alpha': 1,				// middle line opacity
+
+			'group-margin': 40,					// margin value between bar groups
+			'bar-margin': 4,					// margin value between bars (in the same group)
+
+			'vertical-label-count': 10,			// label count in the vertical axis
+			'vertical-bar-width': 5 			// period bar width of the vertical axis
 		},
 
 		// 0. Global color definition.

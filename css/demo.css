@@ -16,8 +16,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
@@ -28,7 +28,7 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
@@ -80,3 +80,4 @@ table {
 .p-index .container .infoviz#i_tagcloud1 { height: 240px; }
 .p-index .container .infoviz#i_tagcloud2 { height: 240px; }
 .p-index .container .infoviz#i_smithgraph { width: 850px; height: 850px; }
+.p-index .container .infoviz#i_basictree { width: 850px; height: 450px; }
