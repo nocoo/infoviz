@@ -17,6 +17,8 @@ See [Configurations](#8-configuration) to find out how.
 
 ## 1.1 LineChart
 
+### LineChart
+
 ![LineChart](http://infoviz.org/examples/linechart.png "LineChart")
 
 A LineChart has a enumerable as horizontal field, and a value field as vertical field.
@@ -24,8 +26,8 @@ A LineChart has a enumerable as horizontal field, and a value field as vertical 
 Demo: [Click Here](http://infoviz.org/index.html#linechart)
 
 	InfoViz.chart(
-		$('.i-linechart'), 
-		'linechart', 
+		$('.i-linechart'),
+		'linechart',
 		{
 			'vertical_axis_name': 'Vertical',
 			'horizontal_axis_name': 'Horizontal',
@@ -84,6 +86,29 @@ Demo: [Click Here](http://infoviz.org/index.html#linechart)
 		{ 'legend': { 'margin-top': 0 } }
 	);
 
+### AreaChart
+
+![AreaChart](http://infoviz.org/examples/areachart.png "AreaChart")
+
+Some people may want to use an AreaChart to visualize their LineChart data. You can turn on area-enabled option in linechart configuration to enable it.
+
+Demo: [Click Here](http://infoviz.org/index.html#linechart)
+
+	InfoViz.chart(
+		$('.i-linechart'),
+		'linechart',
+		{
+			'vertical_axis_name': 'Vertical',
+			'horizontal_axis_name': 'Horizontal',
+			'horizontal_field': 'F2',
+			'vertical_field': 'F1',
+			'data': {
+				// ... Same with Normal LineChart
+			}
+		},
+		{ 'legend': { 'margin-top': 0 }, 'linechart': { 'area-enabled': true } }
+	);
+
 ## 1.2 BarChart
 
 ![BarChart](http://infoviz.org/examples/barchart.png "BarChart")
@@ -93,8 +118,8 @@ A BarChart has a enumerable as horizontal field, and a value field as vertical f
 Demo: [Click Here](http://infoviz.org/index.html#barchart)
 
 	InfoViz.chart(
-		$('.i-barchart'), 
-		'barchart', 
+		$('.i-barchart'),
+		'barchart',
 		{
 			'vertical_axis_name': 'Vertical',
 			'horizontal_axis_name': 'Horizontal',
@@ -162,8 +187,8 @@ A BubbleChart has a value as horizontal field, and a value field as vertical fie
 Demo: [Click Here](http://infoviz.org/index.html#bubblechart)
 
 	InfoViz.chart(
-		$('.i-bubblechart'), 
-		'bubblechart', 
+		$('.i-bubblechart'),
+		'bubblechart',
 		{
 			'vertical_axis_name': 'Vertical',
 			'horizontal_axis_name': 'Horizontal',
@@ -181,7 +206,7 @@ Demo: [Click Here](http://infoviz.org/index.html#bubblechart)
 				{ 'F1': 2,   'F2': 3,  'F3': 1, 'F4': 'JPN' }
 			]
 		},
-		{ 
+		{
 			'bubblechart': { 'padding-right': 200 },
 			'legend': { 'legend-position': 'top-right', 'margin-top': 40, 'margin-right': 0 }
 		}
@@ -196,8 +221,8 @@ A StackChart has a enumerable as horizontal field, and a value field as vertical
 Demo: [Click Here](http://infoviz.org/index.html#stackchart)
 
 	InfoViz.chart(
-		$('.i-stackchart'), 
-		'stackchart', 
+		$('.i-stackchart'),
+		'stackchart',
 		{
 			'vertical_axis_name': 'Vertical',
 			'horizontal_axis_name': 'Horizontal',
@@ -270,8 +295,8 @@ A PieChart has a value as horizontal field.
 Demo: [Click Here](http://infoviz.org/index.html#piechart)
 
 	InfoViz.chart(
-		$('.i-piechart1'), 
-		'piechart', 
+		$('.i-piechart1'),
+		'piechart',
 		{
 			'value_field': 'F2',
 			'label_field': 'F4',
@@ -297,8 +322,8 @@ A RadarChart has a group of value fields.
 Demo: [Click Here](http://infoviz.org/index.html#radarchart)
 
 	InfoViz.chart(
-		$('.i-radarchart1'), 
-		'radarchart', 
+		$('.i-radarchart1'),
+		'radarchart',
 		{
 			'value_fields': [ 'F1', 'F2', 'F3', 'F4', 'F5', 'F6' ],
 			'name_field': 'F7',
@@ -327,8 +352,8 @@ A RadialChart has a value field.
 Demo: [Click Here](http://infoviz.org/index.html#radialchart)
 
 	InfoViz.chart(
-		$('.i-radialchart2'), 
-		'radialchart', 
+		$('.i-radialchart2'),
+		'radialchart',
 		{
 			'value_field': 'F1',
 			'label_field': 'F2',
@@ -371,8 +396,8 @@ Each edge has a value field, and a destination node. Its value field will be vis
 Demo: [Click Here](http://infoviz.org/index.html#smithgraph)
 
 	InfoViz.chart(
-		$('.i-smithgraph'), 
-		'smithgraph', 
+		$('.i-smithgraph'),
+		'smithgraph',
 		{
 			'node_id_field': 'F1',
 			'node_label_field': 'F1',
@@ -434,8 +459,8 @@ A HeatMap has a value field which indicator its load etc.
 Demo: [Click Here](http://infoviz.org/index.html#heatmap)
 
 	InfoViz.chart(
-		$('.i-heatmap2'), 
-		'heatmap', 
+		$('.i-heatmap2'),
+		'heatmap',
 		{
 			'value_field': 'F1',
 			'label_field': 'F4',
@@ -481,7 +506,7 @@ A TagCloud has a text string, and a value field to indicator its frequency.
 Demo: [Click Here](http://infoviz.org/index.html#tagcloud)
 
 	InfoViz.chart(
-		$('.i-tagcloud1'), 
+		$('.i-tagcloud1'),
 		'tagcloud',
 		{
 			'value_field': 'F1',
@@ -521,7 +546,8 @@ Demo: [Click Here](http://infoviz.org/index.html#tagcloud)
 
 ## 7.1 Legend
 
-Legend is enabled by default. Check out legend section in [Configurations](#8-configuration) to find out how to customize a legend.
+Legend is enabled by default. Legend visual style can be customized in legend section.
+Check out legend section in [Configurations](#8-configuration) to find out how to customize a legend.
 
 ## 7.2 Interaction Callback
 
@@ -539,11 +565,12 @@ You may define a event handler as the 5 parametor of InfoViz.chart. This handler
 
 ## 7.3 Tooltip
 
-You may pass 'tooltip_title' and/or 'tooltip_content' into data to enable tooltip.
+You may pass 'tooltip_title' and/or 'tooltip_content' into data to enable tooltip. Tooltip visual style can be customized in tooltip section.
+Check out tooltip section in [Configurations](#8-configuration) to find out how to customize a tooltip.
 
 	InfoViz.chart(
-		$('.i-bubblechart'), 
-		'bubblechart', 
+		$('.i-bubblechart'),
+		'bubblechart',
 		{
 			'vertical_axis_name': 'Vertical',
 			'horizontal_axis_name': 'Horizontal',
@@ -564,6 +591,9 @@ You may pass 'tooltip_title' and/or 'tooltip_content' into data to enable toolti
 				{ 'F1': 29,  'F2': 22, 'F3': 4, 'F4': 'VET' },
 				{ 'F1': 2,   'F2': 3,  'F3': 1, 'F4': 'JPN' }
 			]
+		},
+		{
+			'tooltip': { 'speed': 300 }
 		}
 	);
 
@@ -584,8 +614,8 @@ Call $.InfoViz.global_option, and pass in your option object to change options g
 When you using $.InfoViz.chart to create a chart, you may pass in your option object as the last parametor. This option will effect this chart only.
 
 	InfoViz.chart(
-		$('.i-piechart1'), 
-		'piechart', 
+		$('.i-piechart1'),
+		'piechart',
 		{
 			'value_field': 'F2',
 			'label_field': 'F4',
@@ -617,12 +647,12 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'background-color': '#FFF',			// global background color
 			'background-alpha': 1,				// background opacity, you may set this value to 0, and add your
 												// customize background as DOM container's background in CSS.
-			
+
 			'logo-enabled': false,				// is InfoViz logo enabled
 			'logo-width': 50,					// logo width
 			'logo-height': 17,					// logo height
 			'logo-position': 'top-right',		// logo position, top-right | top-left | bottom-right | bottom-left
-			
+
 			'speed': 300,						// animation speed
 		},
 
@@ -642,15 +672,15 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'axis-alpha': 1,					// axis line opacity
 			'axis-dot-size': 2.4,				// axis dot radius.
 												// There're 3 axis dot, at the end of each axis, and one at (0, 0)
-			
+
 			'border-width': 1,					// chart border thichness
 			'border-color': '#AAA',				// chart border color
 			'border-alpha': 1,					// chart border opacity
 			'border-radius': 4,					// chart border corner radius
-			
+
 			'background-color': '#FFF',			// chart area background-color
 			'background-alpha': 1.0,			// chart area background opacity
-			
+
 			'vertical-label-margin': 5,			// distance from axis to vertical label
 			'vertical-label-spacing': 40,		// vertical label max width
 			'vertical-label-size': 12,			// vertical label font size
@@ -695,7 +725,7 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'label-color': undefined,			// legend label font color
 			'label-alpha': 1,					// legend label font opacity
 			'label-size': 12,					// legend label font size
-			
+
 			'border-width': 1,					// legend border thickness
 			'border-color': '#CCC',				// legend border color
 			'border-alpha': 1,					// legend border opacity
@@ -711,7 +741,7 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'padding-right': 8,					// padding-right
 			'padding-bottom': 6,				// padding-bottom
 			'padding-left': 8,					// padding-left
-			
+
 			'border-width': 1,					// tooltip border thickness
 			'border-color': '#CCC',				// tooltip border color
 			'border-alpha': 1,					// tooltip border opacity
@@ -721,7 +751,7 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'title-text-alpha': 1,				// tooltip title text font opacity
 			'title-text-weight': 'bold',		// tooltip title text weight
 			'title-text-size': 12,				// tooltip title text font size
-			
+
 			'line-spacing': 2,					// distance between title and content
 			'hide-after': 5000,					// tooltip will automatic hide in seconds
 												// undefined or 0, tooltip will always be visible
@@ -753,7 +783,10 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'label-size': 12,					// label font size
 
 			'vertical-label-count': 10,			// label count in the vertical axis
-			'vertical-bar-width': 5 			// period bar width of the vertical axis
+			'vertical-bar-width': 5, 			// period bar width of the vertical axis
+
+			'area-enabled': false,				// if area is enabled, area under every line will be highlighted
+			'area-alpha': 0.1					// area fill opacity
 		},
 
 		// 6. BubbleChart configuration.
@@ -802,7 +835,7 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'label-bar-alpha': 1,				// label pointer line opacity
 			'label-bar-length1': 5,				// label pointer first part length
 			'label-bar-length2': 10,			// label pointer second part length
-			
+
 			'horizontal-offset': 0,				// chart center horizontal offset
 			'vertical-offset': 0 				// chart center vertical offset
 		},
@@ -810,28 +843,28 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 		// 9. RadarChart configuration.
 		'radarchart': {
 			'size-factor': 0.9,					// size factor, 0.9 means using 90% area to draw the chart
-			
+
 			'outer-border-width': 1,			// outer border thickness
 			'outer-border-color': '#999',		// outer border color
 			'outer-border-alpha': 1,			// outer border opacity
 			'outer-background-color': '#FFF',	// outer background color
 			'outer-background-alpha': 1,		// outer background opacity
-			
+
 			'inner-border-width': 1,			// inner border thickness
 			'inner-border-color': '#CCC',		// inner border color
 			'inner-border-alpha': 1,			// inner border opacity
 			'inner-background-color': '#F9F9F9',// inner background color
 			'inner-background-alpha': 1,		// inner background opacity
-			
+
 			'axis-width': 2,					// radius axis thickness
 			'axis-color': '#999',				// radius axis color
 			'axis-alpha': 1,					// radius axis opacity
-			
+
 			'circle-min-radius': 30,			// radar circle min radius
 			'circle-border-width': 1.5,			// radar circle line thickness
 			'circle-background-alpha': 0.2,		// radar circle background opacity
 												// (use this value instead of light-alpha of the color)
-			
+
 			'label-distance': 15,				// distance between outer border to label
 			'label-color': '#555',				// label font color
 			'label-size': 12,					// label font size
@@ -849,10 +882,10 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'label-size': 12,					// box label font size
 			'label-color': '#FFF',				// box label font color
 			'label-alpha': 1,					// box label font opacity
-			
+
 			'horizontal-count': undefined,		// horizontal box count, set this value to undefined to use auto layout
 			'vertical-count': undefined,		// vertical box count, set this value to undefined to use auto layout
-			
+
 			'color': [							// color definition for HeatMap, from light to dark
 				{ 'color': '#339999', 'dark-alpha': 1, 'light-alpha': 0.45 },
 				{ 'color': '#99CC99', 'dark-alpha': 1, 'light-alpha': 0.45 },
@@ -927,7 +960,7 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'label-bar-alpha': 1,				// label pointer line opacity
 			'label-bar-length1': 5,				// label pointer first part length
 			'label-bar-length2': 10,			// label pointer second part length
-			
+
 			'horizontal-offset': 0,				// chart center horizontal offset
 			'vertical-offset': 0 				// chart center vertical offset
 		},
