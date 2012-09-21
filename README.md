@@ -618,6 +618,10 @@ Demo: [Click Here](http://infoviz.org/index.html#heatmap)
 		}
 	);
 
+Note there's an option in heatmap section named sort-enabled. Turn this option to true, you will get this:
+
+![HeatMap](http://infoviz.org/examples/heatmap2.png "HeatMap")
+
 # 4 Tree
 
 ## 4.1 BasicTree
