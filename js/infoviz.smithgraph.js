@@ -3,7 +3,7 @@
 	@copyright 2012  Zheng Li <lizheng@lizheng.me>
 	@github https://github.com/nocoo/InfoViz
 	@license MIT
-	@version 0.3.0
+	@version 0.3.1
 */
 
 define(function(require, exports, module) {
@@ -11,19 +11,19 @@ define(function(require, exports, module) {
 
 		exports.draw_smithgraph = function(paper, chart_area, data, overwrite_options, callback, that) {
 			if(!paper || !data) return idb('Paper or Data is empty.');
-			
+
 			var options = core.merge_options(overwrite_options), cache = [], x, y, i, item, radius, rad = Math.PI / 180;
 			var hole_radius = options['smithgraph']['hole-radius'];
 			var cx = chart_area['top-left'][0] + chart_area['width'] / 2 + options['smithgraph']['horizontal-offset'];
 			var cy = chart_area['top-left'][1] + chart_area['height'] / 2 + options['smithgraph']['vertical-offset'];
-			
+
 			var element_action = function(evt) { callback.call(that, this.data('info')); };
 			var element_tooltip = function(evt) {
 				x = this.data('tooltip')['x'];
 				y = this.data('tooltip')['y'];
 				core.draw_tooltip(paper, x, y, this.data('tooltip')['id'], this.data('tooltip')['title'], this.data('tooltip')['content'], this.data('tooltip')['color'], options);
 			};
-			
+
 			if(chart_area['width'] > chart_area['height']) {
 				radius = Math.floor(chart_area['height'] / 2) * options['smithgraph']['size-factor'];
 			} else {
@@ -65,7 +65,7 @@ define(function(require, exports, module) {
 			for(i = 0; i < data['data'].length; ++i) {
 				item = data['data'][i];
 				ev_max = -Infinity, ev_min = Infinity, ev_sum = 0;
-				
+
 				for(j = 0; j < item['edges'].length; ++j) {
 					if(!node_map[item['edges'][j]['to']]) {
 						console.log('destination node id: ' + item['edges'][j]['to'] + ' not found. skip.');
@@ -73,7 +73,7 @@ define(function(require, exports, module) {
 					}
 
 					node_map[item['edges'][j]['to']]['in']++;
-					
+
 					var value = item['edges'][j][data['edge_value_field']];
 					if(value > ev_max) { ev_max = value; }
 					if(value < ev_min) { ev_min = value; }
@@ -163,7 +163,7 @@ define(function(require, exports, module) {
 				if(data['node_tooltip_title'] || data['node_tooltip_content']) {
 					var title = data['node_tooltip_title'];
 					var content = data['node_tooltip_content'];
-					
+
 					for(var p in data['data'][i]) {
 						title = title.replace('{' + p + '}', data['data'][i][p]);
 						content = content.replace('{' + p + '}', data['data'][i][p]);
@@ -204,8 +204,8 @@ define(function(require, exports, module) {
 					this_edge_angle = edge_unit * this_edge[data['edge_value_field']];
 					this_color = options['smithgraph']['edge-color'][
 						Math.floor(
-							(options['smithgraph']['edge-color'].length - 1) * 
-							(this_edge[data['edge_value_field']] - gev_min) / 
+							(options['smithgraph']['edge-color'].length - 1) *
+							(this_edge[data['edge_value_field']] - gev_min) /
 							(gev_max - gev_min)
 						)
 					];

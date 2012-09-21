@@ -2,6 +2,7 @@ srcdir = js/
 destdir = min/
 
 js_modules = 	${destdir}infoviz.barchart.js\
+				${destdir}infoviz.basictree.js\
 				${destdir}infoviz.bubblechart.js\
 				${destdir}infoviz.core.js\
 				${destdir}infoviz.heatmap.js\
@@ -20,8 +21,8 @@ all: prepare ${js_modules}
 	@echo "All Done."
 
 prepare:
-	cp ${srcdir}jquery.min.js ${destdir};
 	cp ${srcdir}raphael.min.js ${destdir};
+	cp ${srcdir}sea.min.js ${destdir};
 
 ${destdir}infoviz.barchart.js: ${srcdir}infoviz.barchart.js
 	java -jar bin/yuicompressor-2.4.7.jar -o $@ $^

@@ -3,7 +3,7 @@
 	@copyright 2012  Zheng Li <lizheng@lizheng.me>
 	@github https://github.com/nocoo/InfoViz
 	@license MIT
-	@version 0.3.0
+	@version 0.3.1
 */
 
 define(function(require, exports, module) {
@@ -21,7 +21,7 @@ define(function(require, exports, module) {
 				y = this.data('tooltip')['y'];
 				core.draw_tooltip(paper, x, y, this.data('tooltip')['id'], this.data('tooltip')['title'], this.data('tooltip')['content'], this.data('tooltip')['color'], options);
 			};
-			
+
 			// Scan data.
 			for(i = 0; i < data['data'].length; ++i) {
 				item = data['data'][i];
@@ -72,11 +72,11 @@ define(function(require, exports, module) {
 				this_size = item[data['size_field']];
 				this_label = item[data['label_field']];
 				this_color = options['color'][(i % options['color'].length)];
-				
+
 				size = size_start + this_size * size_unit;
 				x = h_start + this_h * h_unit;
 				y = v_start - (this_v - v_min) * v_unit;
-				
+
 				this_bubble = paper.circle(x, y, size).attr({
 					'fill': this_color['color'],
 					'fill-opacity': this_color['light-alpha'],
@@ -128,7 +128,7 @@ define(function(require, exports, module) {
 				if(data['tooltip_title'] || data['tooltip_content']) {
 					var title = data['tooltip_title'];
 					var content = data['tooltip_content'];
-					
+
 					for(var p in item) {
 						title = title.replace('{' + p + '}', item[p]);
 						content = content.replace('{' + p + '}', item[p]);
@@ -161,7 +161,7 @@ define(function(require, exports, module) {
 			// Vertical labels.
 			var v_label_unit = (v_start - chart_area['top-left'][1] - options['bubblechart']['padding-top']) / (options['bubblechart']['vertical-label-count'] - 1);
 			var v_label_value_unit = (v_max - v_min) / (options['bubblechart']['vertical-label-count'] - 1);
-			
+
 			cache = [];
 			x = chart_area['top-left'][0] - options['bubblechart']['vertical-bar-width'];
 			y = v_start;

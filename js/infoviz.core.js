@@ -3,7 +3,7 @@
 	@copyright 2012  Zheng Li <lizheng@lizheng.me>
 	@github https://github.com/nocoo/InfoViz
 	@license MIT
-	@version 0.3.0
+	@version 0.3.1
 */
 
 define(function(require, exports, module) {
@@ -26,7 +26,7 @@ define(function(require, exports, module) {
 		// Draw border.
 		var p_border = paper.rect(
 			options['layout']['padding-left'],
-			options['layout']['padding-top'], 
+			options['layout']['padding-top'],
 			paper_width - options['layout']['padding-left'] - options['layout']['padding-right'],
 			paper_height - options['layout']['padding-top'] - options['layout']['padding-bottom'],
 			options['grid']['border-radius']
@@ -42,28 +42,28 @@ define(function(require, exports, module) {
 		p_border.translate(0.5, 0.5);
 
 		// bottom, left
-		x = options['layout']['padding-left'] + 
-			options['grid']['border-width'] + 
+		x = options['layout']['padding-left'] +
+			options['grid']['border-width'] +
 			options['grid']['padding-left'];
 
-		y = paper_height - 
-			options['layout']['padding-bottom'] - 
-			options['grid']['border-width'] - 
+		y = paper_height -
+			options['layout']['padding-bottom'] -
+			options['grid']['border-width'] -
 			options['grid']['padding-bottom'];
 
 		chart_area['bottom-left'] = [ x, y ];
 
 		// top, left
 		y = options['layout']['padding-top'] +
-			options['grid']['border-width'] + 
+			options['grid']['border-width'] +
 			options['grid']['padding-top'];
 
 		chart_area['top-left'] = [ x, y ];
 
 		// top, right
-		x = paper_width - 
-			options['layout']['padding-right'] - 
-			options['grid']['border-width'] - 
+		x = paper_width -
+			options['layout']['padding-right'] -
+			options['grid']['border-width'] -
 			options['grid']['padding-right'];
 
 		y = chart_area['top-left'][1];
@@ -98,7 +98,7 @@ define(function(require, exports, module) {
 		// Draw border.
 		var p_border = paper.rect(
 			options['layout']['padding-left'],
-			options['layout']['padding-top'], 
+			options['layout']['padding-top'],
 			paper_width - options['layout']['padding-left'] - options['layout']['padding-right'],
 			paper_height - options['layout']['padding-top'] - options['layout']['padding-bottom'],
 			options['grid']['border-radius']
@@ -114,34 +114,34 @@ define(function(require, exports, module) {
 		p_border.translate(0.5, 0.5);
 
 		// bottom, left
-		x = options['layout']['padding-left'] + 
-			options['grid']['border-width'] + 
-			options['grid']['padding-left'] + 
-			options['grid']['vertical-label-margin'] + 
-			options['grid']['vertical-label-spacing'] + 
+		x = options['layout']['padding-left'] +
+			options['grid']['border-width'] +
+			options['grid']['padding-left'] +
+			options['grid']['vertical-label-margin'] +
+			options['grid']['vertical-label-spacing'] +
 			options['grid']['vertical-label-margin'];
 
-		y = paper_height - 
-			options['layout']['padding-bottom'] - 
-			options['grid']['border-width'] - 
+		y = paper_height -
+			options['layout']['padding-bottom'] -
+			options['grid']['border-width'] -
 			options['grid']['padding-bottom'] -
-			options['grid']['horizontal-label-margin'] - 
-			options['grid']['horizontal-label-spacing'] - 
+			options['grid']['horizontal-label-margin'] -
+			options['grid']['horizontal-label-spacing'] -
 			options['grid']['horizontal-label-margin'];
 
 		chart_area['bottom-left'] = [ x, y ];
-		
+
 		// top, left
 		y = options['layout']['padding-top'] +
-			options['grid']['border-width'] + 
+			options['grid']['border-width'] +
 			options['grid']['padding-top'];
 
 		chart_area['top-left'] = [ x, y ];
 
 		// top, right
-		x = paper_width - 
-			options['layout']['padding-right'] - 
-			options['grid']['border-width'] - 
+		x = paper_width -
+			options['layout']['padding-right'] -
+			options['grid']['border-width'] -
 			options['grid']['padding-right'];
 
 		y = chart_area['top-left'][1];
@@ -242,7 +242,7 @@ define(function(require, exports, module) {
 
 	exports.draw_legend = function(paper, chart_area, legend_data, overwrite_options) {
 		if(!paper || !legend_data) return idb('Paper or Data is empty.');
-		
+
 		var options = exports.merge_options(overwrite_options), cache = [], x, y, i, j, item;
 
 		if(!options['legend']['legend-enabled']) return;
@@ -265,10 +265,10 @@ define(function(require, exports, module) {
 				}
 			}
 
-			width = 
-				max_width + 
-				options['legend']['padding-left'] + 
-				options['legend']['padding-right'] + 
+			width =
+				max_width +
+				options['legend']['padding-left'] +
+				options['legend']['padding-right'] +
 				options['legend']['indicator-margin-left'] +
 				options['legend']['indicator-margin-right'] +
 				options['legend']['indicator-size'];
@@ -328,8 +328,8 @@ define(function(require, exports, module) {
 				default:
 				case 'box': {
 					this_indicator = paper.rect(
-						x + options['legend']['indicator-margin-left'], 
-						y + options['legend']['indicator-margin-top'], 
+						x + options['legend']['indicator-margin-left'],
+						y + options['legend']['indicator-margin-top'],
 						options['legend']['indicator-size'],
 						options['legend']['indicator-size']
 					).attr({
@@ -360,7 +360,7 @@ define(function(require, exports, module) {
 				case 'node': {
 					this_indicator = paper.circle(
 						x + options['legend']['indicator-margin-left'] + options['legend']['indicator-size'] / 2,
-						y + options['legend']['indicator-margin-top'] + options['legend']['indicator-size'] / 2, 
+						y + options['legend']['indicator-margin-top'] + options['legend']['indicator-size'] / 2,
 						options['legend']['indicator-size'] / 2
 					).attr({
 						'fill': item['color']['color'],
@@ -394,7 +394,7 @@ define(function(require, exports, module) {
 				case 'circle': {
 					this_indicator = paper.circle(
 						x + options['legend']['indicator-margin-left'] + options['legend']['indicator-size'] / 2,
-						y + options['legend']['indicator-margin-top'] + options['legend']['indicator-size'] / 2, 
+						y + options['legend']['indicator-margin-top'] + options['legend']['indicator-size'] / 2,
 						options['legend']['indicator-size'] / 2
 					).attr({
 						'fill': item['color']['color'],
@@ -407,12 +407,12 @@ define(function(require, exports, module) {
 					break;
 				}
 			}
-			
+
 			p_indicators.push(this_indicator);
 
 			// Label.
 			this_label = paper.text(
-				x + options['legend']['indicator-margin-left'] + options['legend']['indicator-margin-right'] + options['legend']['indicator-size'], 
+				x + options['legend']['indicator-margin-left'] + options['legend']['indicator-margin-right'] + options['legend']['indicator-size'],
 				y + options['legend']['indicator-margin-top'] + options['legend']['indicator-size'] / 2,
 				item['label']
 			).attr({
@@ -519,7 +519,7 @@ define(function(require, exports, module) {
 		tooltip_border.animate({ 'opacity': 1 }, options['tooltip']['speed']);
 		tooltip_title.animate({ 'opacity': 1 }, options['tooltip']['speed']);
 		tooltip_content.animate({ 'opacity': 1 }, options['tooltip']['speed']);
-		
+
 		// Hide tooltip timer setup.
 		clearTimeout(tooltip_timer);
 		if(options['tooltip']['hide-after']) {
@@ -612,7 +612,7 @@ define(function(require, exports, module) {
 
 	exports.guid = function(type) {
 		var S4 = function() { return (((1 + Math.random()) * 0x10000)|0).toString(16).substring(1); };
-				
+
 		if(type === 'long') {
 			return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
 		} else {

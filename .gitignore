@@ -16,3 +16,5 @@ npm-debug.log
 .DS_Store
 
 min/*.js
+
+devpage.html

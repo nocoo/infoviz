@@ -14,69 +14,80 @@
 			<h1>Axis Chart</h1>
 			<section>
 				<h2>LineChart <a href="#linechart" name="linechart">#</a></h2>
-				<div class="infoviz i-linechart1"></div>
-				<div class="infoviz i-linechart2"></div>
+				<div id="i_linechart1" class="infoviz"></div>
+				<div id="i_linechart2" class="infoviz"></div>
 			</section>
 			<section>
 				<h2>BarChart <a href="#barchart" name="barchart">#</a></h2>
-				<div class="infoviz i-barchart"></div>
+				<div id="i_barchart" class="infoviz"></div>
 			</section>
 			<section>
 				<h2>BubbleChart <a href="#bubblechart" name="bubblechart">#</a></h2>
-				<div class="infoviz i-bubblechart"></div>
+				<div id="i_bubblechart" class="infoviz"></div>
 			</section>
 			<section>
 				<h2>StackChart <a href="#stackchart" name="stackchart">#</a></h2>
-				<div class="infoviz i-stackchart"></div>
+				<div id="i_stackchart" class="infoviz"></div>
 			</section>
 
 			<h1>Round Stuff</h1>
 			<section>
 				<h2>PieChart <a href="#piechart" name="piechart">#</a></h2>
-				<div class="infoviz i-piechart1"></div>
-				<div class="infoviz i-piechart2"></div>
+				<div id="i_piechart1" class="infoviz"></div>
+				<div id="i_piechart2" class="infoviz"></div>
 				<div class="clear"></div>
 			</section>
 			<section>
 				<h2>RadidarChart <a href="#radarchart" name="radarchart">#</a></h2>
-				<div class="infoviz i-radarchart1"></div>
-				<div class="infoviz i-radarchart2"></div>
+				<div id="i_radarchart1" class="infoviz"></div>
+				<div id="i_radarchart2" class="infoviz"></div>
 				<div class="clear"></div>
 			</section>
 			<section>
 				<h2>RadialChart <a href="#radialchart" name="radialchart">#</a></h2>
-				<div class="infoviz i-radialchart1"></div>
-				<div class="infoviz i-radialchart2"></div>
+				<div id="i_radialchart1" class="infoviz"></div>
+				<div id="i_radialchart2" class="infoviz"></div>
 				<div class="clear"></div>
 			</section>
 			<section>
 				<h2>SmithGraph <a href="#smithgraph" name="smithgraph">#</a></h2>
-				<div class="infoviz i-smithgraph"></div>
+				<div id="i_smithgraph" class="infoviz"></div>
+				<div class="clear"></div>
+			</section>
+
+			<h1>Tree</h1>
+			<section>
+				<h2>BasicTree <a href="#basictree" name="basictree">#</a></h2>
+				<div id="i_basictree" class="infoviz"></div>
+				<div class="clear"></div>
+			</section>
+			<section>
+				<h2>FolderTree <a href="#foldertree" name="foldertree">#</a></h2>
+				<div id="i_foldertree" class="infoviz"></div>
 				<div class="clear"></div>
 			</section>
 
 			<h1>Map</h1>
 			<section>
 				<h2>HeatMap <a href="#heatmap" name="heatmap">#</a></h2>
-				<div class="infoviz i-heatmap"></div>
+				<div id="i_heatmap" class="infoviz"></div>
 			</section>
 
 			<h1>Cloud</h1>
 			<section>
 				<h2>TagCloud <a href="#tagcloud" name="tagcloud">#</a></h2>
-				<div class="infoviz i-tagcloud1"></div>
-				<div class="infoviz i-tagcloud2"></div>
+				<div id="i_tagcloud1" class="infoviz"></div>
+				<div id="i_tagcloud2" class="infoviz"></div>
 			</section>
 
 			<a class="fork" href="https://github.com/nocoo/InfoViz"></a>
 		</section>
-		<footer><p>InfoViz 0.3.0, MIT License, <a href="about.me/nocoo">@zhengli</a>, <a href="https://github.com/nocoo/InfoViz">Github</a></p></footer>
-		
+		<footer><p>InfoViz 0.3.1, MIT License, <a href="about.me/nocoo">@zhengli</a>, <a href="https://github.com/nocoo/InfoViz">Github</a></p></footer>
+
 		<script src="./js/raphael.min.js"></script>
-		<script src="./js/jquery.min.js"></script>
-		<script src="./js/sea.js"></script>
+		<script src="./js/sea.min.js"></script>
 		<script>
-			;(function($) {
+			;(function() {
 				seajs.use([ './js/infoviz' ], function(InfoViz) {
 					var data = [], i, j, item;
 
@@ -90,8 +101,8 @@
 
 					// LineChart.
 					InfoViz.chart(
-						$('.i-linechart1'), 
-						'linechart', 
+						'i_linechart1',
+						'linechart',
 						{
 							'vertical_axis_name': 'Vertical',
 							'horizontal_axis_name': 'Horizontal',
@@ -153,8 +164,8 @@
 					);
 
 					InfoViz.chart(
-						$('.i-linechart2'), 
-						'linechart', 
+						'i_linechart2',
+						'linechart',
 						{
 							'vertical_axis_name': 'Vertical',
 							'horizontal_axis_name': 'Horizontal',
@@ -217,8 +228,8 @@
 
 					// BarChart.
 					InfoViz.chart(
-						$('.i-barchart'), 
-						'barchart', 
+						'i_barchart',
+						'barchart',
 						{
 							'vertical_axis_name': 'Vertical',
 							'horizontal_axis_name': 'Horizontal',
@@ -281,8 +292,8 @@
 
 					// BubbleChart.
 					InfoViz.chart(
-						$('.i-bubblechart'), 
-						'bubblechart', 
+						'i_bubblechart',
+						'bubblechart',
 						{
 							'vertical_axis_name': 'Vertical',
 							'horizontal_axis_name': 'Horizontal',
@@ -308,16 +319,16 @@
 								{ 'F1': 10,  'F2': 22, 'F3': 8, 'F4': 'Laos' }
 							]
 						},
-						{ 
+						{
 							'bubblechart': { 'padding-right': 200 },
 							'legend': { 'legend-position': 'top-right', 'margin-top': 40, 'margin-right': 0 }
 						}
 					);
-					
+
 					// StackChart
 					InfoViz.chart(
-						$('.i-stackchart'), 
-						'stackchart', 
+						'i_stackchart',
+						'stackchart',
 						{
 							'vertical_axis_name': 'Vertical',
 							'horizontal_axis_name': 'Horizontal',
@@ -380,8 +391,8 @@
 
 					// PieChart.
 					InfoViz.chart(
-						$('.i-piechart1'), 
-						'piechart', 
+						'i_piechart1',
+						'piechart',
 						{
 							'value_field': 'F2',
 							'label_field': 'F4',
@@ -401,8 +412,8 @@
 					);
 
 					InfoViz.chart(
-						$('.i-piechart2'), 
-						'piechart', 
+						'i_piechart2',
+						'piechart',
 						{
 							'value_field': 'F2',
 							'label_field': 'F4',
@@ -419,7 +430,7 @@
 								{ 'F1': 2,   'F2': 1,  'F3': 1, 'F4': 'RMB' }
 							]
 						},
-						{ 
+						{
 							'piechart': { 'hole-radius': 40, 'horizontal-offset': -50 },
 							'legend': { 'legend-position': 'bottom-right', 'margin-right': 0, 'margin-bottom': 0 }
 						}
@@ -427,8 +438,8 @@
 
 					// RadarChart.
 					InfoViz.chart(
-						$('.i-radarchart1'), 
-						'radarchart', 
+						'i_radarchart1',
+						'radarchart',
 						{
 							'value_fields': [ 'F1', 'F2', 'F3', 'F4', 'F5', 'F6' ],
 							'name_field': 'F7',
@@ -451,8 +462,8 @@
 					);
 
 					InfoViz.chart(
-						$('.i-radarchart2'), 
-						'radarchart', 
+						'i_radarchart2',
+						'radarchart',
 						{
 							'value_fields': [ 'Repulsion Power', 'Durability', 'Hitting Sound', 'Shock Absorption', 'Control' ],
 							'data': [
@@ -471,8 +482,8 @@
 
 					// RadialChart
 					InfoViz.chart(
-						$('.i-radialchart1'), 
-						'radialchart', 
+						'i_radialchart1',
+						'radialchart',
 						{
 							'value_field': 'F1',
 							'label_field': 'F2',
@@ -496,15 +507,15 @@
 								{ 'F1': 1, 'F2': 'Peru' }
 							]
 						},
-						{ 
+						{
 							'legend': { 'legend-enabled': false },
 							'radialchart': { 'size-factor': 0.8, 'bar-min-height': 60, 'bar-width': 14, 'hole-radius': 36 }
 						}
 					);
 
 					InfoViz.chart(
-						$('.i-radialchart2'), 
-						'radialchart', 
+						'i_radialchart2',
+						'radialchart',
 						{
 							'value_field': 'F1',
 							'label_field': 'F2',
@@ -561,8 +572,8 @@
 					}
 
 					InfoViz.chart(
-						$('.i-smithgraph'), 
-						'smithgraph', 
+						'i_smithgraph',
+						'smithgraph',
 						{
 							'node_id_field': 'F1',
 							'node_label_field': 'F1',
@@ -574,7 +585,51 @@
 						},
 						{ 'legend': { 'legend-enabled': false } }
 					);
-					
+
+					// BasicTree
+					InfoViz.chart(
+						'i_basictree',
+						'basictree',
+						{
+							'node_label_field': 'F1',
+							'node_value_field': 'F2',
+							'edge_value_field': 'F3',
+							//'node_tooltip_title': 'Node #{F1}',
+							//'node_tooltip_content': 'Value: {F2}. Edges: {F4}.',
+							//'edge_tooltip_title': 'Edge #{F1}',
+							//'edge_tooltip_content': 'Value: {F2}. Edges: {F4}.',
+							'data': {
+								'F1': 'Frankfurt', 'F2': 1, 'children': [
+									{
+										'F1': 'Mannheim', 'F2': 2, 'F3': 85, 'children': [
+											{
+												'F1': 'Karlsruhe', 'F2': 3, 'F3': 80, 'children': [
+													{ 'F1': 'Augsburg', 'F2': 1, 'F3': 250 }
+												]
+											}
+										]
+									},
+									{
+										'F1': 'Würzburg', 'F2': 3, 'F3': 217, 'children': [
+											{ 'F1': 'Erfurt', 'F2': 4, 'F3': 186 },
+											{
+												'F1': 'Nürnberg', 'F2': 2, 'F3': 103, 'children': [
+													{ 'F1': 'München', 'F2': 5, 'F3': 167 }
+												]
+											}
+										]
+									},
+									{
+										'F1': 'Kassel', 'F2': 2, 'F3': 173, 'children': [
+											{ 'F1': 'Stuggart', 'F2': 3, 'F3': 99 }
+										]
+									}
+								]
+							}
+						},
+						{}
+					);
+
 					// HeatMap
 					data = [];
 					for(i = 0; i < 1024; ++i) {
@@ -583,8 +638,8 @@
 					}
 
 					InfoViz.chart(
-						$('.i-heatmap'), 
-						'heatmap', 
+						'i_heatmap',
+						'heatmap',
 						{
 							'value_field': 'F1',
 							'label_field': 'F3',
@@ -597,7 +652,7 @@
 
 					// TagCloud.
 					InfoViz.chart(
-						$('.i-tagcloud1'), 
+						'i_tagcloud1',
 						'tagcloud',
 						{
 							'value_field': 'F1',
@@ -632,7 +687,7 @@
 					);
 
 					InfoViz.chart(
-						$('.i-tagcloud2'), 
+						'i_tagcloud2',
 						'tagcloud',
 						{
 							'value_field': 'F1',
@@ -678,7 +733,7 @@
 						] } }
 					);
 				});
-			})(jQuery);
+			})();
 		</script>
 
 		<!-- Please do remove following Google Analytics code, sorry for the inconvenient. -->

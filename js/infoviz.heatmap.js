@@ -3,7 +3,7 @@
 	@copyright 2012  Zheng Li <lizheng@lizheng.me>
 	@github https://github.com/nocoo/InfoViz
 	@license MIT
-	@version 0.3.0
+	@version 0.3.1
 */
 
 define(function(require, exports, module) {
@@ -11,7 +11,7 @@ define(function(require, exports, module) {
 
 		exports.draw_heatmap = function(paper, chart_area, data, overwrite_options, callback, that) {
 			if(!paper || !data) return idb('Paper or Data is empty.');
-			
+
 			var options = core.merge_options(overwrite_options), cache = [], x, y, i, j, item;
 
 			var element_action = function(evt) { callback.call(that, this.data('info')); };
@@ -97,7 +97,7 @@ define(function(require, exports, module) {
 						}).translate(0.5, 0.5);
 						p_labels.push(this_label);
 					}
-			
+
 					// Action.
 					if(callback && typeof(callback) === 'function') {
 						this_box.data('info', {
@@ -120,7 +120,7 @@ define(function(require, exports, module) {
 					if(data['tooltip_title'] || data['tooltip_content']) {
 						var title = data['tooltip_title'];
 						var content = data['tooltip_content'];
-						
+
 						for(var p in data['data'][index]) {
 							title = title.replace('{' + p + '}', data['data'][index][p]);
 							content = content.replace('{' + p + '}', data['data'][index][p]);

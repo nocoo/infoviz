@@ -3,7 +3,7 @@
 	@copyright 2012  Zheng Li <lizheng@lizheng.me>
 	@github https://github.com/nocoo/InfoViz
 	@license MIT
-	@version 0.3.0
+	@version 0.3.1
 */
 
 define(function(require, exports, module) {
@@ -11,10 +11,10 @@ define(function(require, exports, module) {
 
 		exports.draw_tagcloud = function(paper, chart_area, data, overwrite_options, callback, that) {
 			if(!paper || !data) return idb('Paper or Data is empty.');
-			
+
 			var options = core.merge_options(overwrite_options), cache = [], x, y, i, j, item;
 			var levels = options['tagcloud']['levels'] ? options['tagcloud']['levels'] : 8;
-			
+
 			var element_action = function(evt) { callback.call(that, this.data('info')); };
 			var element_tooltip = function(evt) {
 				x = this.data('tooltip')['x'];
@@ -68,18 +68,18 @@ define(function(require, exports, module) {
 			var rows = options['tagcloud']['row-count'], rows_map = [];
 
 			// Initialize rows array.
-			for(i = 0; i < rows; ++i) { 
-				rows_map.push({ 'node': [] }); 
+			for(i = 0; i < rows; ++i) {
+				rows_map.push({ 'node': [] });
 			}
 
 			// Make sure cy is in the middle.
-			if(rows % 2 === 0) { 
-				cy -= options['tagcloud']['text-max-size'] / 2; 
+			if(rows % 2 === 0) {
+				cy -= options['tagcloud']['text-max-size'] / 2;
 			}
 
 			// Sort by size.
 			text_map.sort(function(a, b) { return b['size'] - a['size']; });
-			
+
 			// Put text node into rows.
 			for(i = 0; i < text_map.length; ++i) {
 				rows_map[i % rows_map.length]['node'].push(text_map[i]);
@@ -165,7 +165,7 @@ define(function(require, exports, module) {
 				if(data['tooltip_title'] || data['tooltip_content']) {
 					var title = data['tooltip_title'];
 					var content = data['tooltip_content'];
-					
+
 					for(var p in todo[i]['data']) {
 						title = title.replace('{' + p + '}', todo[i]['data'][p]);
 						content = content.replace('{' + p + '}', todo[i]['data'][p]);

@@ -3,7 +3,7 @@
 	@copyright 2012  Zheng Li <lizheng@lizheng.me>
 	@github https://github.com/nocoo/InfoViz
 	@license MIT
-	@version 0.3.0
+	@version 0.3.1
 */
 
 define(function(require, exports, module) {
@@ -11,19 +11,19 @@ define(function(require, exports, module) {
 
 		exports.draw_piechart = function(paper, chart_area, data, overwrite_options, callback, that) {
 			if(!paper || !data) return idb('Paper or Data is empty.');
-			
+
 			var options = core.merge_options(overwrite_options), cache = [], x, y, i, item, radius;
 			var hole_radius = options['piechart']['hole-radius'];
 			var cx = chart_area['top-left'][0] + chart_area['width'] / 2 + options['piechart']['horizontal-offset'];
 			var cy = chart_area['top-left'][1] + chart_area['height'] / 2 + options['piechart']['vertical-offset'];
-			
+
 			var element_action = function(evt) { callback.call(that, this.data('info')); };
 			var element_tooltip = function(evt) {
 				x = this.data('tooltip')['x'];
 				y = this.data('tooltip')['y'];
 				core.draw_tooltip(paper, x, y, this.data('tooltip')['id'], this.data('tooltip')['title'], this.data('tooltip')['content'], this.data('tooltip')['color'], options);
 			};
-			
+
 			if(chart_area['width'] > chart_area['height']) {
 				radius = Math.floor(chart_area['height'] / 2) * options['piechart']['size-factor'];
 			} else {
@@ -52,14 +52,14 @@ define(function(require, exports, module) {
 					x2 = cx + r * Math.cos(-endAngle * rad),
 					y1 = cy + r * Math.sin(-startAngle * rad),
 					y2 = cy + r * Math.sin(-endAngle * rad);
-				
+
 					x3 = cx + hole_r * Math.cos(-startAngle * rad),
 					x4 = cx + hole_r * Math.cos(-endAngle * rad),
 					y3 = cy + hole_r * Math.sin(-startAngle * rad),
 					y4 = cy + hole_r * Math.sin(-endAngle * rad);
 
 				if(hole_r > 0) {
-					return paper.path(["M", x3, y3, "L", x1, y1, "A", r, r, 0, +(endAngle - startAngle > 180), 0, x2, y2, "L", x4, y4, "A", hole_r, hole_r, 0, -(endAngle - startAngle > 180), 1, x3, y3]).attr(params);	
+					return paper.path(["M", x3, y3, "L", x1, y1, "A", r, r, 0, +(endAngle - startAngle > 180), 0, x2, y2, "L", x4, y4, "A", hole_r, hole_r, 0, -(endAngle - startAngle > 180), 1, x3, y3]).attr(params);
 				} else {
 					return paper.path(["M", cx, cy, "L", x1, y1, "A", r, r, 0, +(endAngle - startAngle > 180), 0, x2, y2, "z"]).attr(params);
 				}
@@ -77,7 +77,7 @@ define(function(require, exports, module) {
 				this_color = options['color'][(i % options['color'].length)];
 
 				// Sector
-				this_sector = sector(cx, cy, radius, hole_radius, current_angle, current_angle + this_angle, { 
+				this_sector = sector(cx, cy, radius, hole_radius, current_angle, current_angle + this_angle, {
 					'fill': this_color['color'],
 					'fill-opacity': this_color['light-alpha'],
 					'stroke': this_color['color'],
@@ -111,7 +111,7 @@ define(function(require, exports, module) {
 				half_angle = -(current_angle + this_angle / 2)  * Math.PI / 180;
 				x = cx + (radius + options['piechart']['label-distance']) * Math.cos(half_angle);
 				y = cy + (radius + options['piechart']['label-distance']) * Math.sin(half_angle);
-				
+
 				x2 = cx + (radius + options['piechart']['label-distance'] + options['piechart']['label-bar-length1']) * Math.cos(half_angle);
 				y2 = cy + (radius + options['piechart']['label-distance'] + options['piechart']['label-bar-length1']) * Math.sin(half_angle);
 
@@ -152,12 +152,12 @@ define(function(require, exports, module) {
 					'font-size': options['piechart']['label-size']
 				}).translate(0.5, 0.5);
 				p_labels.push(this_label);
-				
+
 				// Tooltip.
 				if(data['tooltip_title'] || data['tooltip_content']) {
 					var title = data['tooltip_title'];
 					var content = data['tooltip_content'];
-					
+
 					for(var p in data['data'][i]) {
 						title = title.replace('{' + p + '}', data['data'][i][p]);
 						content = content.replace('{' + p + '}', data['data'][i][p]);

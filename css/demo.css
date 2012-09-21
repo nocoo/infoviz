@@ -70,13 +70,13 @@ table {
 .p-index footer p { color: #999; text-align: center; font-size: 0.6em; line-height: 30px; }
 .p-index a.fork { position: absolute; top: 0; right: 0; border: 0; width: 140px; height: 140px; display: block; background: url('../images/forkme.png') center no-repeat; background-image: -webkit-image-set(url('../images/forkme.png') 1x, url('../images/forkme@2x.png') 2x); }
 
-.p-index .container .infoviz.i-piechart1 { width: 340px; height: 280px; float: left; }
-.p-index .container .infoviz.i-piechart2 { width: 490px; height: 280px; float: left; }
-.p-index .container .infoviz.i-radarchart1 { width: 490px; height: 350px; float: left; }
-.p-index .container .infoviz.i-radarchart2 { width: 340px; height: 350px; float: left; }
-.p-index .container .infoviz.i-radialchart1 { width: 410px; height: 350px; float: left; }
-.p-index .container .infoviz.i-radialchart2 { width: 420px; height: 350px; float: left; }
-.p-index .container .infoviz.i-heatmap { width: 850px; height: 850px; }
-.p-index .container .infoviz.i-tagcloud1 { height: 240px; }
-.p-index .container .infoviz.i-tagcloud2 { height: 240px; }
-.p-index .container .infoviz.i-smithgraph { width: 850px; height: 850px; }
+.p-index .container .infoviz#i_piechart1 { width: 340px; height: 280px; float: left; }
+.p-index .container .infoviz#i_piechart2 { width: 490px; height: 280px; float: left; }
+.p-index .container .infoviz#i_radarchart1 { width: 490px; height: 350px; float: left; }
+.p-index .container .infoviz#i_radarchart2 { width: 340px; height: 350px; float: left; }
+.p-index .container .infoviz#i_radialchart1 { width: 410px; height: 350px; float: left; }
+.p-index .container .infoviz#i_radialchart2 { width: 420px; height: 350px; float: left; }
+.p-index .container .infoviz#i_heatmap { width: 850px; height: 850px; }
+.p-index .container .infoviz#i_tagcloud1 { height: 240px; }
+.p-index .container .infoviz#i_tagcloud2 { height: 240px; }
+.p-index .container .infoviz#i_smithgraph { width: 850px; height: 850px; }

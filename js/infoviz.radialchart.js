@@ -3,7 +3,7 @@
 	@copyright 2012  Zheng Li <lizheng@lizheng.me>
 	@github https://github.com/nocoo/InfoViz
 	@license MIT
-	@version 0.3.0
+	@version 0.3.1
 */
 
 define(function(require, exports, module) {
@@ -11,19 +11,19 @@ define(function(require, exports, module) {
 
 		exports.draw_radialchart = function(paper, chart_area, data, overwrite_options, callback, that) {
 			if(!paper || !data) return idb('Paper or Data is empty.');
-			
+
 			var options = core.merge_options(overwrite_options), cache = [], x, y, i, item, radius, rad = Math.PI / 180;
 			var hole_radius = options['radialchart']['hole-radius'];
 			var cx = chart_area['top-left'][0] + chart_area['width'] / 2 + options['radialchart']['horizontal-offset'];
 			var cy = chart_area['top-left'][1] + chart_area['height'] / 2 + options['radialchart']['vertical-offset'];
-			
+
 			var element_action = function(evt) { callback.call(that, this.data('info')); };
 			var element_tooltip = function(evt) {
 				x = this.data('tooltip')['x'];
 				y = this.data('tooltip')['y'];
 				core.draw_tooltip(paper, x, y, this.data('tooltip')['id'], this.data('tooltip')['title'], this.data('tooltip')['content'], this.data('tooltip')['color'], options);
 			};
-			
+
 			if(chart_area['width'] > chart_area['height']) {
 				radius = Math.floor(chart_area['height'] / 2) * options['radialchart']['size-factor'];
 			} else {
@@ -118,7 +118,7 @@ define(function(require, exports, module) {
 					// Label bar
 					x = cx + (this_radius + options['radialchart']['label-distance']) * Math.cos(half_angle * rad);
 					y = cy + (this_radius + options['radialchart']['label-distance']) * Math.sin(half_angle * rad);
-					
+
 					x2 = cx + (this_radius + options['radialchart']['label-distance'] + options['radialchart']['label-bar-length1']) * Math.cos(half_angle * rad);
 					y2 = cy + (this_radius + options['radialchart']['label-distance'] + options['radialchart']['label-bar-length1']) * Math.sin(half_angle * rad);
 
@@ -165,7 +165,7 @@ define(function(require, exports, module) {
 				if(data['tooltip_title'] || data['tooltip_content']) {
 					var title = data['tooltip_title'];
 					var content = data['tooltip_content'];
-					
+
 					for(var p in data['data'][i]) {
 						title = title.replace('{' + p + '}', data['data'][i][p]);
 						content = content.replace('{' + p + '}', data['data'][i][p]);

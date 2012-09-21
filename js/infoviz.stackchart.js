@@ -3,7 +3,7 @@
 	@copyright 2012  Zheng Li <lizheng@lizheng.me>
 	@github https://github.com/nocoo/InfoViz
 	@license MIT
-	@version 0.3.0
+	@version 0.3.1
 */
 
 define(function(require, exports, module) {
@@ -11,7 +11,7 @@ define(function(require, exports, module) {
 
 		exports.draw_stackchart = function(paper, chart_area, data, overwrite_options, callback, that) {
 			if(!paper || !data) return idb('Paper or Data is empty.');
-			
+
 			var options = core.merge_options(overwrite_options), cache = [], x, y, line_count = 0;
 			var lines = data['data'], h_fields = [], v_fields = [], i, j, k, item;
 			var h_field_name = data['horizontal_field'], v_field_name = data['vertical_field'];
@@ -23,11 +23,11 @@ define(function(require, exports, module) {
 				y = this.data('tooltip')['bar_top_y'];
 				core.draw_tooltip(paper, x, y, this.data('tooltip')['id'], this.data('tooltip')['title'], this.data('tooltip')['content'], this.data('tooltip')['color'], options);
 			};
-			
+
 			// Scan horizontal and vertical fields.
 			for(var line in lines) {
 				var v_sum = 0;
-				
+
 				for(i = 0; i < lines[line]['data'].length; ++i) {
 					item = lines[line]['data'][i];
 
@@ -87,7 +87,7 @@ define(function(require, exports, module) {
 			// Vertical labels.
 			var v_label_unit = (v_start - chart_area['top-left'][1] - options['stackchart']['padding-top']) / (options['stackchart']['vertical-label-count'] - 1);
 			var v_label_value_unit = Math.floor((v_sum_max - v_min) / (options['stackchart']['vertical-label-count'] - 1)); // May not be accurate.
-			
+
 			cache = [];
 			x = chart_area['top-left'][0] - options['stackchart']['vertical-bar-width'];
 			y = v_start;
@@ -122,7 +122,7 @@ define(function(require, exports, module) {
 			for(i = 0; i < h_fields.length; ++i) {
 				cache.push('M' + x + ',' + chart_area['bottom-left'][1]);
 				cache.push('L' + x + ',' + chart_area['top-left'][1]);
-				
+
 				h_map[h_fields[i]] = x - group_width / 2;
 
 				// Draw horizontal labels.
@@ -192,7 +192,7 @@ define(function(require, exports, module) {
 					if(data['tooltip_title'] || data['tooltip_content']) {
 						var title = data['tooltip_title'];
 						var content = data['tooltip_content'];
-						
+
 						for(var p in item) {
 							title = title.replace('{' + p + '}', item[p]);
 							content = content.replace('{' + p + '}', item[p]);

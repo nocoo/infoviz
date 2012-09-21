@@ -3,14 +3,14 @@
 	@copyright 2012  Zheng Li <lizheng@lizheng.me>
 	@github https://github.com/nocoo/InfoViz
 	@license MIT
-	@version 0.3.0
+	@version 0.3.1
 */
 
 define(function(require, exports, module) {
 	seajs.use([ 'infoviz.core' ], function(core) {
 		exports.draw_basictree = function(paper, chart_area, data, overwrite_options, callback, that) {
 			if(!paper || !data) return idb('Paper or Data is empty.');
-			
+
 			var options = core.merge_options(overwrite_options), cache = [], x, y, i, j, item;
 
 			/*var element_action = function(evt) { callback.call(that, this.data('info')); };
@@ -35,7 +35,7 @@ define(function(require, exports, module) {
 					'count_direct': root['children'].length,
 					'count_leaf': 0
 				};
-				
+
 				// Enqueue the root node.
 				queue.push(root);
 
@@ -74,7 +74,7 @@ define(function(require, exports, module) {
 								m = dict[m['parent_id']];
 							}
 						}
-						
+
 						t = dict[t['parent_id']]
 						++level;
 					}
@@ -101,7 +101,7 @@ define(function(require, exports, module) {
 				level_map[t['level']]['count_node']++;
 				level_map[t['level']]['nodes'].push(set[t['index']]['_id']);
 			}
-			
+
 			// Make sure these two data structures is correct.
 			//console.log(node_map);
 			//console.log(level_map);
@@ -111,7 +111,7 @@ define(function(require, exports, module) {
 			var height = chart_area['height'] - options['basictree']['padding-top'] - options['basictree']['padding-bottom'];
 			//console.log(width);
 			//console.log(height);
-			
+
 			var level_x = 0, level_y = 0, level, h_unit, v_unit;
 			var this_radius, parent;
 
@@ -120,10 +120,10 @@ define(function(require, exports, module) {
 			} else {
 				v_unit = height;
 			}
-			
+
 			for(i = 0; i < level_count; ++i) {
 				level = level_map[i];
-				
+
 				if(level['count_node'] === 0) continue;
 
 				h_unit = width / level['count_node'];
@@ -142,7 +142,7 @@ define(function(require, exports, module) {
 					} else {
 						x += h_unit / 2;
 					}
-					
+
 					paper.circle(x, y, this_radius).attr({
 						'stroke-width': options['basictree']['node-border-width'],
 						'stroke': 'red',

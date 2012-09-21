@@ -3,12 +3,10 @@
 	@copyright 2012  Zheng Li <lizheng@lizheng.me>
 	@github https://github.com/nocoo/InfoViz
 	@license MIT
-	@version 0.3.0
+	@version 0.3.1
 */
 
 define(function(require, exports, module) {
-	var core = require('infoviz.core');
-
 	if(InfoViz) return;
 
 	var InfoViz = {};
@@ -23,12 +21,12 @@ define(function(require, exports, module) {
 			'background-color': '#FFF',			// global background color
 			'background-alpha': 1,				// background opacity, you may set this value to 0, and add your
 												// customize background as DOM container's background in CSS.
-			
+
 			'logo-enabled': false,				// is InfoViz logo enabled
 			'logo-width': 50,					// logo width
 			'logo-height': 17,					// logo height
 			'logo-position': 'top-right',		// logo position, top-right | top-left | bottom-right | bottom-left
-			
+
 			'speed': 300,						// animation speed
 		},
 
@@ -48,15 +46,15 @@ define(function(require, exports, module) {
 			'axis-alpha': 1,					// axis line opacity
 			'axis-dot-size': 2.4,				// axis dot radius.
 												// There're 3 axis dot, at the end of each axis, and one at (0, 0)
-			
+
 			'border-width': 1,					// chart border thichness
 			'border-color': '#AAA',				// chart border color
 			'border-alpha': 1,					// chart border opacity
 			'border-radius': 4,					// chart border corner radius
-			
+
 			'background-color': '#FFF',			// chart area background-color
 			'background-alpha': 1.0,			// chart area background opacity
-			
+
 			'vertical-label-margin': 5,			// distance from axis to vertical label
 			'vertical-label-spacing': 40,		// vertical label max width
 			'vertical-label-size': 12,			// vertical label font size
@@ -101,7 +99,7 @@ define(function(require, exports, module) {
 			'label-color': undefined,			// legend label font color
 			'label-alpha': 1,					// legend label font opacity
 			'label-size': 12,					// legend label font size
-			
+
 			'border-width': 1,					// legend border thickness
 			'border-color': '#CCC',				// legend border color
 			'border-alpha': 1,					// legend border opacity
@@ -117,7 +115,7 @@ define(function(require, exports, module) {
 			'padding-right': 8,					// padding-right
 			'padding-bottom': 6,				// padding-bottom
 			'padding-left': 8,					// padding-left
-			
+
 			'border-width': 1,					// tooltip border thickness
 			'border-color': '#CCC',				// tooltip border color
 			'border-alpha': 1,					// tooltip border opacity
@@ -127,7 +125,7 @@ define(function(require, exports, module) {
 			'title-text-alpha': 1,				// tooltip title text font opacity
 			'title-text-weight': 'bold',		// tooltip title text weight
 			'title-text-size': 12,				// tooltip title text font size
-			
+
 			'line-spacing': 2,					// distance between title and content
 			'hide-after': 5000,					// tooltip will automatic hide in seconds
 												// undefined or 0, tooltip will always be visible
@@ -211,7 +209,7 @@ define(function(require, exports, module) {
 			'label-bar-alpha': 1,				// label pointer line opacity
 			'label-bar-length1': 5,				// label pointer first part length
 			'label-bar-length2': 10,			// label pointer second part length
-			
+
 			'horizontal-offset': 0,				// chart center horizontal offset
 			'vertical-offset': 0 				// chart center vertical offset
 		},
@@ -219,28 +217,28 @@ define(function(require, exports, module) {
 		// 9. RadarChart configuration.
 		'radarchart': {
 			'size-factor': 0.9,					// size factor, 0.9 means using 90% area to draw the chart
-			
+
 			'outer-border-width': 1,			// outer border thickness
 			'outer-border-color': '#999',		// outer border color
 			'outer-border-alpha': 1,			// outer border opacity
 			'outer-background-color': '#FFF',	// outer background color
 			'outer-background-alpha': 1,		// outer background opacity
-			
+
 			'inner-border-width': 1,			// inner border thickness
 			'inner-border-color': '#CCC',		// inner border color
 			'inner-border-alpha': 1,			// inner border opacity
 			'inner-background-color': '#F9F9F9',// inner background color
 			'inner-background-alpha': 1,		// inner background opacity
-			
+
 			'axis-width': 2,					// radius axis thickness
 			'axis-color': '#999',				// radius axis color
 			'axis-alpha': 1,					// radius axis opacity
-			
+
 			'circle-min-radius': 30,			// radar circle min radius
 			'circle-border-width': 1.5,			// radar circle line thickness
 			'circle-background-alpha': 0.2,		// radar circle background opacity
 												// (use this value instead of light-alpha of the color)
-			
+
 			'label-distance': 15,				// distance between outer border to label
 			'label-color': '#555',				// label font color
 			'label-size': 12,					// label font size
@@ -258,10 +256,10 @@ define(function(require, exports, module) {
 			'label-size': 12,					// box label font size
 			'label-color': '#FFF',				// box label font color
 			'label-alpha': 1,					// box label font opacity
-			
+
 			'horizontal-count': undefined,		// horizontal box count, set this value to undefined to use auto layout
 			'vertical-count': undefined,		// vertical box count, set this value to undefined to use auto layout
-			
+
 			'color': [							// color definition for HeatMap, from light to dark
 				{ 'color': '#339999', 'dark-alpha': 1, 'light-alpha': 0.45 },
 				{ 'color': '#99CC99', 'dark-alpha': 1, 'light-alpha': 0.45 },
@@ -336,7 +334,7 @@ define(function(require, exports, module) {
 			'label-bar-alpha': 1,				// label pointer line opacity
 			'label-bar-length1': 5,				// label pointer first part length
 			'label-bar-length2': 10,			// label pointer second part length
-			
+
 			'horizontal-offset': 0,				// chart center horizontal offset
 			'vertical-offset': 0 				// chart center vertical offset
 		},
@@ -390,178 +388,179 @@ define(function(require, exports, module) {
 		]
 	};
 
-	exports.version = function() { return '0.3.0' };
+	exports.version = function() { return '0.3.1' };
 
 	exports.chart = function(element, type, data, overwrite_options, callback) {
-		var target_id = $(element).attr('id') ? $(element).attr('id') : 'infoviz_' + core.guid();
-		$(element).attr('id', target_id);
+		seajs.use([ 'infoviz.core' ], function(core) {
+			var paper = Raphael(element);
+			var options = core.merge_options(overwrite_options);
 
-		var paper = Raphael(target_id, $(element).width(), $(element).height());
-		var options = core.merge_options(overwrite_options);
+			// Default area.
+			var area = {
+				'top-left': [ options['layout']['padding-left'], options['layout']['padding-top'] ],
+				'top-right': [ paper.width - options['layout']['padding-right'], options['layout']['padding-top'] ],
+				'bottom-left': [ options['layout']['padding-left'], paper.height - options['layout']['padding-bottom'] ],
+				'bottom-right': [ paper.width - options['layout']['padding-right'], paper.height - options['layout']['padding-bottom'] ],
+				'width': paper.width,
+				'height': paper.height
+			};
 
-		// Default area.
-		var area = {
-			'top-left': [ options['layout']['padding-left'], options['layout']['padding-top'] ],
-			'top-right': [ paper.width - options['layout']['padding-right'], options['layout']['padding-top'] ],
-			'bottom-left': [ options['layout']['padding-left'], paper.height - options['layout']['padding-bottom'] ],
-			'bottom-right': [ paper.width - options['layout']['padding-right'], paper.height - options['layout']['padding-bottom'] ],
-			'width': paper.width,
-			'height': paper.height
-		};
+			// Default background.
+			paper.rect(0, 0, paper.width, paper.height).attr({
+				'stroke': 'none',
+				'fill': options['layout']['background-color'],
+				'fill-opacity': options['layout']['background-alpha']
+			});
 
-		// Default background.
-		paper.rect(0, 0, paper.width, paper.height).attr({
-			'stroke': 'none',
-			'fill': options['layout']['background-color'],
-			'fill-opacity': options['layout']['background-alpha']
+			switch(type) {
+				case 'linechart': {
+					area = core.draw_axis_background(paper, data, options);
+
+					require.async([ 'infoviz.linechart' ], function(linechart) {
+						linechart.draw_linechart(paper, area, data, options, callback);
+					});
+
+					break;
+				}
+				case 'bubblechart': {
+					area = core.draw_axis_background(paper, data, options);
+
+					require.async([ 'infoviz.bubblechart' ], function(bubblechart) {
+						bubblechart.draw_bubblechart(paper, area, data, options, callback);
+					});
+
+					break;
+				}
+				case 'barchart': {
+					area = core.draw_axis_background(paper, data, options);
+
+					require.async([ 'infoviz.barchart' ], function(barchart) {
+						barchart.draw_barchart(paper, area, data, options, callback);
+					});
+
+					break;
+				}
+				case 'piechart': {
+					area = core.draw_empty_background(paper, data, options);
+
+					require.async([ 'infoviz.piechart' ], function(piechart) {
+						piechart.draw_piechart(paper, area, data, options, callback);
+					});
+
+					break;
+				}
+				case 'radarchart': {
+					area = core.draw_empty_background(paper, data, options);
+
+					require.async([ 'infoviz.radarchart' ], function(radarchart) {
+						radarchart.draw_radarchart(paper, area, data, options, callback);
+					});
+
+					break;
+				}
+				case 'heatmap': {
+					area = core.draw_empty_background(paper, data, options);
+
+					require.async([ 'infoviz.heatmap' ], function(heatmap) {
+						heatmap.draw_heatmap(paper, area, data, options, callback);
+					});
+
+					break;
+				}
+				case 'tagcloud': {
+					area = core.draw_empty_background(paper, data, options);
+
+					require.async([ 'infoviz.tagcloud' ], function(tagcloud) {
+						tagcloud.draw_tagcloud(paper, area, data, options, callback);
+					});
+
+					break;
+				}
+				case 'smithgraph': {
+					area = core.draw_empty_background(paper, data, options);
+
+					require.async([ 'infoviz.smithgraph' ], function(smithgraph) {
+						smithgraph.draw_smithgraph(paper, area, data, options, callback);
+					});
+
+					break;
+				}
+				case 'radialchart': {
+					area = core.draw_empty_background(paper, data, options);
+
+					require.async([ 'infoviz.radialchart' ], function(radialchart) {
+						radialchart.draw_radialchart(paper, area, data, options, callback);
+					});
+
+					break;
+				}
+				case 'stackchart': {
+					area = core.draw_axis_background(paper, data, options);
+
+					require.async([ 'infoviz.stackchart' ], function(stackchart) {
+						stackchart.draw_stackchart(paper, area, data, options, callback);
+					});
+
+					break;
+				}
+				case 'basictree': {
+					area = core.draw_empty_background(paper, data, options);
+
+					require.async([ 'infoviz.basictree' ], function(basictree) {
+						basictree.draw_basictree(paper, area, data, options, callback);
+					});
+
+					break;
+				}
+				default: {
+					paper.text(area['width'] / 2, area['height'] / 2, 'Type "' + type +'" not supported.').attr({ 'font-size': 12, 'fill': '#000' }).translate(0.5, 0.5);
+
+					break;
+				}
+			}
+
+			// Draw InfoViz logo.
+			if(options['layout']['logo-enabled']) {
+				var x, y;
+
+				switch(options['layout']['logo-position']) {
+					default:
+					case 'top-right': {
+						x = area['top-right'][0] - options['layout']['logo-width'];
+						y = area['top-right'][1];
+						break;
+					}
+					case 'top-left': {
+						x = area['top-left'][0];
+						y = area['top-right'][1];
+						break;
+					}
+					case 'bottom-left': {
+						x = area['bottom-left'][0];
+						y = area['bottom-left'][1] - options['layout']['logo-height'];
+						break;
+					}
+					case 'bottom-right': {
+						x = area['bottom-right'][0] - options['layout']['logo-width'];
+						y = area['bottom-right'][1] - options['layout']['logo-height'];
+						break;
+					}
+				}
+
+				var logo = paper.image(
+					'./images/infoviz_logo_tiny.png',
+					x, y,
+					options['layout']['logo-width'],
+					options['layout']['logo-height']).attr({ 'cursor': 'pointer' }).translate(0.5, 0.5);
+				logo.click(function() { window.location.href = 'https://github.com/nocoo/InfoViz'; });
+			}
 		});
-
-		switch(type) {
-			case 'linechart': {
-				area = core.draw_axis_background(paper, data, options);
-
-				require.async([ 'infoviz.linechart' ], function(linechart) {
-					linechart.draw_linechart(paper, area, data, options, callback);
-				});
-
-				break;
-			}
-			case 'bubblechart': {
-				area = core.draw_axis_background(paper, data, options);
-
-				require.async([ 'infoviz.bubblechart' ], function(bubblechart) {
-					bubblechart.draw_bubblechart(paper, area, data, options, callback);
-				});
-
-				break;
-			}
-			case 'barchart': {
-				area = core.draw_axis_background(paper, data, options);
-
-				require.async([ 'infoviz.barchart' ], function(barchart) {	
-					barchart.draw_barchart(paper, area, data, options, callback);
-				});
-
-				break;
-			}
-			case 'piechart': {
-				area = core.draw_empty_background(paper, data, options);
-
-				require.async([ 'infoviz.piechart' ], function(piechart) {	
-					piechart.draw_piechart(paper, area, data, options, callback);
-				});
-
-				break;
-			}
-			case 'radarchart': {
-				area = core.draw_empty_background(paper, data, options);
-
-				require.async([ 'infoviz.radarchart' ], function(radarchart) {	
-					radarchart.draw_radarchart(paper, area, data, options, callback);
-				});
-				
-				break;
-			}
-			case 'heatmap': {
-				area = core.draw_empty_background(paper, data, options);
-
-				require.async([ 'infoviz.heatmap' ], function(heatmap) {
-					heatmap.draw_heatmap(paper, area, data, options, callback);
-				});
-
-				break;
-			}
-			case 'tagcloud': {
-				area = core.draw_empty_background(paper, data, options);
-
-				require.async([ 'infoviz.tagcloud' ], function(tagcloud) {	
-					tagcloud.draw_tagcloud(paper, area, data, options, callback);
-				});
-				
-				break;
-			}
-			case 'smithgraph': {
-				area = core.draw_empty_background(paper, data, options);
-
-				require.async([ 'infoviz.smithgraph' ], function(smithgraph) {	
-					smithgraph.draw_smithgraph(paper, area, data, options, callback);
-				});
-
-				break;
-			}
-			case 'radialchart': {
-				area = core.draw_empty_background(paper, data, options);
-
-				require.async([ 'infoviz.radialchart' ], function(radialchart) {	
-					radialchart.draw_radialchart(paper, area, data, options, callback);
-				});
-
-				break;
-			}
-			case 'stackchart': {
-				area = core.draw_axis_background(paper, data, options);
-
-				require.async([ 'infoviz.stackchart' ], function(stackchart) {	
-					stackchart.draw_stackchart(paper, area, data, options, callback);
-				});
-
-				break;
-			}
-			case 'basictree': {
-				area = core.draw_empty_background(paper, data, options);
-
-				require.async([ 'infoviz.basictree' ], function(basictree) {	
-					basictree.draw_basictree(paper, area, data, options, callback);
-				});
-				
-				break;
-			}
-			default: {
-				paper.text(area['width'] / 2, area['height'] / 2, 'Type "' + type +'" not supported.').attr({ 'font-size': 12, 'fill': '#000' }).translate(0.5, 0.5);
-
-				break;
-			}
-		}
-
-		// Draw InfoViz logo.
-		if(options['layout']['logo-enabled']) {
-			var x, y;
-
-			switch(options['layout']['logo-position']) {
-				default:
-				case 'top-right': {
-					x = area['top-right'][0] - options['layout']['logo-width'];
-					y = area['top-right'][1];
-					break;
-				}
-				case 'top-left': {
-					x = area['top-left'][0];
-					y = area['top-right'][1];
-					break;
-				}
-				case 'bottom-left': {
-					x = area['bottom-left'][0];
-					y = area['bottom-left'][1] - options['layout']['logo-height'];
-					break;
-				}
-				case 'bottom-right': {
-					x = area['bottom-right'][0] - options['layout']['logo-width'];
-					y = area['bottom-right'][1] - options['layout']['logo-height'];
-					break;
-				}
-			}
-
-			var logo = paper.image(
-				'./images/infoviz_logo_tiny.png', 
-				x, y,
-				options['layout']['logo-width'],
-				options['layout']['logo-height']).attr({ 'cursor': 'pointer' }).translate(0.5, 0.5);
-			logo.click(function() { window.location.href = 'https://github.com/nocoo/InfoViz'; });
-		}
 	};
 
 	exports.global_option = function(overwrite) {
-		InfoViz.options = core.merge_options(overwrite);
+		seajs.use([ 'infoviz.core' ], function(core) {
+			InfoViz.options = core.merge_options(overwrite);
+		});
 	};
 
 	exports.enable_logo = function() {
