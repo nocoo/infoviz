@@ -6,12 +6,67 @@ Raphaël currently supports Firefox 3.0+, Safari 3.0+, Chrome 5.0+, Opera 9.5+ a
 
 By the way, InfoViz supports iOS devices, include the new iPad with retina display.
 
+
 ## Everything can be customized
 
 You may overwrite almost every visual style in InfoViz charts. There's few magic numbers in InfoViz code, when we need a number, we add an option for you to overwrite.
 Transparent background? Sure! Reverse color? Sure! Black and white? Sure!
 
 See [Configurations](#8-configuration) to find out how.
+
+
+## Introducing v0.3.x
+
+We hate to change client APIs, but there's some changes you may have to do in your side to make it work with v0.3.x:
+
+### New Module System
+
+Since v0.3.x, InfoViz use [SeaJS](http://seajs.org/docs/) to seperate visualization controls into modules. Instead of load every control, it will load controls on demand.
+It's a tradeoff between HTTP connections and one big big JavaScript file. We hope our module system could work well in most cases.
+
+To use SeaJS module system:
+
+	<script src="./js/raphael.min.js"></script>
+	<script src="./js/sea.min.js"></script>
+	<script>
+		;(function() {
+			seajs.use([ './js/infoviz' ], function(InfoViz) {
+				// Use InfoViz.chart here.
+			});
+		})();
+	</script>
+
+or:
+
+	<script src="./min/raphael.min.js"></script>
+	<script src="./min/sea.min.js"></script>
+	<script>
+		;(function() {
+			seajs.use([ './min/infoviz' ], function(InfoViz) {
+				// Use InfoViz.chart here.
+			});
+		})();
+	</script>
+
+After you run the make command.
+
+### jQuery is no longer needed
+
+	InfoViz.chart(
+		'i_linechart', // Give DOM element an id, and change this line from jQuery selector to id string, without #
+		'linechart',
+		{
+			'vertical_axis_name': 'Vertical',
+			'horizontal_axis_name': 'Horizontal',
+			'horizontal_field': 'F2',
+			'vertical_field': 'F1',
+			'data': {
+				// some data
+			}
+		}
+	);
+
+Sorry for the inconvenient, but we think it was worth it.
 
 # 1 AxisCharts
 
@@ -26,7 +81,7 @@ A LineChart has a enumerable as horizontal field, and a value field as vertical 
 Demo: [Click Here](http://infoviz.org/index.html#linechart)
 
 	InfoViz.chart(
-		$('.i-linechart'),
+		'i_linechart',
 		'linechart',
 		{
 			'vertical_axis_name': 'Vertical',
@@ -95,7 +150,7 @@ Some people may want to use an AreaChart to visualize their LineChart data. You 
 Demo: [Click Here](http://infoviz.org/index.html#linechart)
 
 	InfoViz.chart(
-		$('.i-linechart'),
+		'i_linechart',
 		'linechart',
 		{
 			'vertical_axis_name': 'Vertical',
@@ -118,7 +173,7 @@ A BarChart has a enumerable as horizontal field, and a value field as vertical f
 Demo: [Click Here](http://infoviz.org/index.html#barchart)
 
 	InfoViz.chart(
-		$('.i-barchart'),
+		'i_barchart',
 		'barchart',
 		{
 			'vertical_axis_name': 'Vertical',
@@ -187,7 +242,7 @@ A BubbleChart has a value as horizontal field, and a value field as vertical fie
 Demo: [Click Here](http://infoviz.org/index.html#bubblechart)
 
 	InfoViz.chart(
-		$('.i-bubblechart'),
+		'i_bubblechart',
 		'bubblechart',
 		{
 			'vertical_axis_name': 'Vertical',
@@ -221,7 +276,7 @@ A StackChart has a enumerable as horizontal field, and a value field as vertical
 Demo: [Click Here](http://infoviz.org/index.html#stackchart)
 
 	InfoViz.chart(
-		$('.i-stackchart'),
+		'i_stackchart',
 		'stackchart',
 		{
 			'vertical_axis_name': 'Vertical',
@@ -295,7 +350,7 @@ A PieChart has a value as horizontal field.
 Demo: [Click Here](http://infoviz.org/index.html#piechart)
 
 	InfoViz.chart(
-		$('.i-piechart1'),
+		'i_piechart1',
 		'piechart',
 		{
 			'value_field': 'F2',
@@ -322,7 +377,7 @@ A RadarChart has a group of value fields.
 Demo: [Click Here](http://infoviz.org/index.html#radarchart)
 
 	InfoViz.chart(
-		$('.i-radarchart1'),
+		'i_radarchart1',
 		'radarchart',
 		{
 			'value_fields': [ 'F1', 'F2', 'F3', 'F4', 'F5', 'F6' ],
@@ -352,7 +407,7 @@ A RadialChart has a value field.
 Demo: [Click Here](http://infoviz.org/index.html#radialchart)
 
 	InfoViz.chart(
-		$('.i-radialchart2'),
+		'i_radialchart2',
 		'radialchart',
 		{
 			'value_field': 'F1',
@@ -396,7 +451,7 @@ Each edge has a value field, and a destination node. Its value field will be vis
 Demo: [Click Here](http://infoviz.org/index.html#smithgraph)
 
 	InfoViz.chart(
-		$('.i-smithgraph'),
+		'i_smithgraph',
 		'smithgraph',
 		{
 			'node_id_field': 'F1',
@@ -459,7 +514,7 @@ A HeatMap has a value field which indicator its load etc.
 Demo: [Click Here](http://infoviz.org/index.html#heatmap)
 
 	InfoViz.chart(
-		$('.i-heatmap2'),
+		'i_heatmap2',
 		'heatmap',
 		{
 			'value_field': 'F1',
@@ -506,7 +561,7 @@ A TagCloud has a text string, and a value field to indicator its frequency.
 Demo: [Click Here](http://infoviz.org/index.html#tagcloud)
 
 	InfoViz.chart(
-		$('.i-tagcloud1'),
+		'i_tagcloud1',
 		'tagcloud',
 		{
 			'value_field': 'F1',
