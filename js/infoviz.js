@@ -423,7 +423,7 @@ define(function(require, exports, module) {
 		]
 	};
 
-	exports.version = function() { return '0.3.2' };
+	exports.version = function() { return '0.3.3' };
 
 	exports.chart = function(element, type, data, overwrite_options, callback) {
 		seajs.use([ 'infoviz.core' ], function(core) {
