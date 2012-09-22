@@ -453,7 +453,7 @@ Demo: [Click Here](http://infoviz.org/index.html#radarchart)
 			'value_fields': [ 'F1', 'F2', 'F3', 'F4', 'F5', 'F6' ],
 			'name_field': 'F7',
 			'value_maxs': [ 8, 8, 8, 8, 8, 8 ],
-			'value_mins': [ 1, 1, 1, 1, 1, 8 ],
+			'value_mins': [ 1, 1, 1, 1, 1, 1 ],
 			'data': [
 				{ 'F1': 7, 'F2': 7, 'F3': 7, 'F4': 7, 'F5': 7, 'F6': 7, 'F7': 'China' },
 				{ 'F1': 6, 'F2': 6, 'F3': 6, 'F4': 6, 'F5': 6, 'F6': 6, 'F7': 'Unite States' },
