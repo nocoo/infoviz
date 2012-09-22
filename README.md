@@ -452,6 +452,8 @@ Demo: [Click Here](http://infoviz.org/index.html#radarchart)
 		{
 			'value_fields': [ 'F1', 'F2', 'F3', 'F4', 'F5', 'F6' ],
 			'name_field': 'F7',
+			'value_maxs': [ 8, 8, 8, 8, 8, 8 ],
+			'value_mins': [ 1, 1, 1, 1, 1, 8 ],
 			'data': [
 				{ 'F1': 7, 'F2': 7, 'F3': 7, 'F4': 7, 'F5': 7, 'F6': 7, 'F7': 'China' },
 				{ 'F1': 6, 'F2': 6, 'F3': 6, 'F4': 6, 'F5': 6, 'F6': 6, 'F7': 'Unite States' },
@@ -467,6 +469,11 @@ Demo: [Click Here](http://infoviz.org/index.html#radarchart)
 			'legend': { 'legend-position': 'bottom-left', 'margin-left': 0, 'margin-bottom': 0 }
 		}
 	);
+
+Update:
+
+In v0.3.3, we fix a bug in RadarChart, when there's only one or two circles in RadarChart. You must provide max and min value of each series, pass them in as value_maxs and value_mins.
+
 
 ## 2.3 RadialChart
 

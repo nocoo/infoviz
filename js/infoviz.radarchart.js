@@ -44,10 +44,20 @@ define(function(require, exports, module) {
 
 			for(i = 0; i < data['data'].length; ++i) {
 				for(j = 0; j < data['value_fields'].length; ++j) {
+
+					if(typeof(data['value_maxs']) === 'object' && (data['value_maxs'] instanceof Array)) {
+						v_map[data['value_fields'][j]]['v_max'] = data['value_maxs'][j];
+					}
+
+					if(typeof(data['value_mins']) === 'object' && (data['value_mins'] instanceof Array)) {
+						v_map[data['value_fields'][j]]['v_min'] = data['value_mins'][j];
+					}
+
 					item = data['data'][i][data['value_fields'][j]];
 
 					if(item > v_map[data['value_fields'][j]]['v_max']) {
 						v_map[data['value_fields'][j]]['v_max'] = item;
+
 					}
 
 					if(item < v_map[data['value_fields'][j]]['v_min']) {

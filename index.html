@@ -81,7 +81,7 @@
 
 			<a class="fork" href="https://github.com/nocoo/InfoViz"></a>
 		</section>
-		<footer><p>InfoViz 0.3.2, MIT License, <a href="http://about.me/nocoo">@zhengli</a>, <a href="https://github.com/nocoo/InfoViz">Github</a></p></footer>
+		<footer><p>InfoViz 0.3.3, MIT License, <a href="http://about.me/nocoo">@zhengli</a>, <a href="https://github.com/nocoo/InfoViz">Github</a></p></footer>
 
 		<script src="./js/raphael.min.js"></script>
 		<script src="./js/sea.min.js"></script>
@@ -508,6 +508,8 @@
 							'name_field': 'F7',
 							'tooltip_title': 'InfoViz {F2}, {F3}',
 							'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
+							'value_maxs': [ 8, 8, 8, 8, 8, 8 ],
+							'value_mins': [ 1, 1, 1, 1, 1, 1 ],
 							'data': [
 								{ 'F1': 7, 'F2': 7, 'F3': 7, 'F4': 7, 'F5': 7, 'F6': 7, 'F7': 'China' },
 								{ 'F1': 6, 'F2': 6, 'F3': 6, 'F4': 6, 'F5': 6, 'F6': 6, 'F7': 'Unite States' },
@@ -529,6 +531,8 @@
 						'radarchart',
 						{
 							'value_fields': [ 'Repulsion Power', 'Durability', 'Hitting Sound', 'Shock Absorption', 'Control' ],
+							'value_maxs': [ 6, 6, 6, 6, 6 ],
+							'value_mins': [ 1, 1, 1, 1, 1 ],
 							'data': [
 								{ 'Repulsion Power': 1, 'Durability': 2, 'Hitting Sound': 3, 'Shock Absorption': 4, 'Control': 5 },
 								{ 'Repulsion Power': 2, 'Durability': 3, 'Hitting Sound': 4, 'Shock Absorption': 5, 'Control': 1 },
