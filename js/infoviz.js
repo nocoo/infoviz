@@ -5,14 +5,16 @@
 	@license MIT
 */
 
+/*global seajs, define, Raphael*/
 define(function(require, exports, module) {
-	if(InfoViz) return;
+	'use strict';
+	if (InfoViz) { return; }
 
 	var InfoViz = {};
 	InfoViz.options = {
 		// 1. Chart layout configuration.
 		'layout': {
-			'padding-top': 1, 					// padding-top
+			'padding-top': 1,					// padding-top
 			'padding-right': 1,					// padding-right
 			'padding-bottom': 1,				// padding-bottom
 			'padding-left': 1,					// padding-left
@@ -26,12 +28,12 @@ define(function(require, exports, module) {
 			'logo-height': 17,					// logo height
 			'logo-position': 'top-right',		// logo position, top-right | top-left | bottom-right | bottom-left
 
-			'speed': 300,						// animation speed
+			'speed': 300						// animation speed
 		},
 
 		// 2. Grid and axis configuration.
 		'grid': {
-			'padding-top': 10, 					// padding-top
+			'padding-top': 10,					// padding-top
 			'padding-right': 10,				// padding-right
 			'padding-bottom': 10,				// padding-bottom
 			'padding-left': 10,					// padding-left
@@ -105,7 +107,7 @@ define(function(require, exports, module) {
 			'border-radius': 4,					// legend border radius
 
 			'background-color': '#FDFDFD',		// legend background color
-			'background-alpha': 1 				// legend background opacity
+			'background-alpha': 1				// legend background opacity
 		},
 
 		// 4. Tooltip configuration.
@@ -156,7 +158,7 @@ define(function(require, exports, module) {
 			'label-size': 12,					// label font size
 
 			'vertical-label-count': 10,			// label count in the vertical axis
-			'vertical-bar-width': 5, 			// period bar width of the vertical axis
+			'vertical-bar-width': 5,			// period bar width of the vertical axis
 
 			'area-enabled': false,				// if area is enabled, area under every line will be highlighted
 			'area-alpha': 0.1					// area fill opacity
@@ -178,7 +180,7 @@ define(function(require, exports, module) {
 			'horizontal-label-count': 10,		// label count in the horizontal axis
 			'horizontal-bar-width': 5,			// period bar width of the horizontal axis
 			'vertical-label-count': 5,			// label count in the vertical axis
-			'vertical-bar-width': 5 			// period bar width of the vertical axis
+			'vertical-bar-width': 5				// period bar width of the vertical axis
 		},
 
 		// 7. BarChart configuration.
@@ -194,7 +196,7 @@ define(function(require, exports, module) {
 			'bar-margin': 4,					// margin value between bars (in the same group)
 
 			'vertical-label-count': 10,			// label count in the vertical axis
-			'vertical-bar-width': 5 			// period bar width of the vertical axis
+			'vertical-bar-width': 5				// period bar width of the vertical axis
 		},
 
 		// 8. PieChart configuration.
@@ -212,7 +214,7 @@ define(function(require, exports, module) {
 			'label-bar-length2': 10,			// label pointer second part length
 
 			'horizontal-offset': 0,				// chart center horizontal offset
-			'vertical-offset': 0 				// chart center vertical offset
+			'vertical-offset': 0				// chart center vertical offset
 		},
 
 		// 9. RadarChart configuration.
@@ -246,7 +248,7 @@ define(function(require, exports, module) {
 			'label-rotation': false,			// is label rotated
 
 			'horizontal-offset': 0,				// chart center horizontal offset
-			'vertical-offset': 0 				// chart center vertical offset
+			'vertical-offset': 0				// chart center vertical offset
 		},
 
 		// 10. HeatMap
@@ -338,7 +340,7 @@ define(function(require, exports, module) {
 			'label-bar-length2': 10,			// label pointer second part length
 
 			'horizontal-offset': 0,				// chart center horizontal offset
-			'vertical-offset': 0 				// chart center vertical offset
+			'vertical-offset': 0				// chart center vertical offset
 		},
 
 		// 14. StackChart configuration.
@@ -354,7 +356,7 @@ define(function(require, exports, module) {
 			'bar-margin': 0,					// margin value between bars (in the same group)
 
 			'vertical-label-count': 10,			// label count in the vertical axis
-			'vertical-bar-width': 5 			// period bar width of the vertical axis
+			'vertical-bar-width': 5				// period bar width of the vertical axis
 		},
 
 		// 15. BasicTree configuration.
@@ -387,7 +389,7 @@ define(function(require, exports, module) {
 			'edge-box-border-alpha': 1,			// label box border opacity
 			'edge-box-border-radius': 4,		// label box border radius
 			'edge-box-background-color': '#FFF',// label box background color
-			'edge-box-background-alpha': 1 		// label box background opacity
+			'edge-box-background-alpha': 1		// label box background opacity
 		},
 
 		// 16. StockChart configuration.
@@ -407,7 +409,7 @@ define(function(require, exports, module) {
 			'bar-margin': 4,					// margin value between bars (in the same group)
 
 			'vertical-label-count': 10,			// label count in the vertical axis
-			'vertical-bar-width': 5 			// period bar width of the vertical axis
+			'vertical-bar-width': 5				// period bar width of the vertical axis
 		},
 
 		// 0. Global color definition.
@@ -423,7 +425,7 @@ define(function(require, exports, module) {
 		]
 	};
 
-	exports.version = function() { return '0.3.3' };
+	exports.version = function() { return '0.3.3'; };
 
 	exports.chart = function(element, type, data, overwrite_options, callback) {
 		seajs.use([ 'infoviz.core' ], function(core) {

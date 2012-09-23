@@ -4,77 +4,84 @@
 		<meta name="viewport" content="width=device-width, user-scalable=no, target-densitydpi=device-dpi" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="author" content="@zhengli" />
+		<meta name="description" content="InfoViz is an information visualization library which uses pure JavaScript and SVG to visualize data on almost every major browsers and mobile devices. InfoViz supports Retina display. MIT license." />
 		<link rel="shortcut icon" href="./images/favicon.ico" />
 		<link rel="stylesheet" type="text/css" href="./css/demo.css" />
-		<title>InfoViz</title>
+		<title>InfoViz - Open Source JavaScript Information Visualization</title>
 	</head>
-	<body class="p-index">
+	<body class="p-demo p-index">
 		<header><h1><a href="http://infoviz.org"></a></h1></header>
 		<section class="container">
+			<ul class="menu">
+				<li><a class="active" href="./index.html" title="Controls">Controls</a></li>
+				<li><a href="https://github.com/nocoo/InfoViz" title="Documentation">Documentation</a></li>
+				<li><a href="./history.html" title="History">History</a></li>
+				<li><a href="http://about.me/nocoo" title="About Author">About Author</a></li>
+				<div class="clear"></div>
+			</ul>
+
 			<h1>Axis Chart</h1>
 			<section>
-				<h2>LineChart <a href="#linechart" name="linechart">#</a></h2>
+				<h2>LineChart <a href="#top">top</a> <a href="#linechart" name="linechart">#link</a></h2>
 				<div id="i_linechart1" class="infoviz"></div>
 				<div id="i_linechart2" class="infoviz"></div>
 			</section>
 			<section>
-				<h2>BarChart <a href="#barchart" name="barchart">#</a></h2>
+				<h2>BarChart <a href="#top">top</a> <a href="#barchart" name="barchart">#link</a></h2>
 				<div id="i_barchart" class="infoviz"></div>
 			</section>
 			<section>
-				<h2>BubbleChart <a href="#bubblechart" name="bubblechart">#</a></h2>
+				<h2>BubbleChart <a href="#top">top</a> <a href="#bubblechart" name="bubblechart">#link</a></h2>
 				<div id="i_bubblechart" class="infoviz"></div>
 			</section>
 			<section>
-				<h2>StackChart <a href="#stackchart" name="stackchart">#</a></h2>
+				<h2>StackChart <a href="#top">top</a> <a href="#stackchart" name="stackchart">#link</a></h2>
 				<div id="i_stackchart" class="infoviz"></div>
 			</section>
 			<section>
-				<h2>StockChart <a href="#stockchart" name="stockchart">#</a></h2>
+				<h2>StockChart <a href="#top">top</a> <a href="#stockchart" name="stockchart">#link</a></h2>
 				<div id="i_stockchart" class="infoviz"></div>
 			</section>
 
 			<h1>Round Stuff</h1>
 			<section>
-				<h2>PieChart <a href="#piechart" name="piechart">#</a></h2>
+				<h2>PieChart <a href="#top">top</a> <a href="#piechart" name="piechart">#link</a></h2>
 				<div id="i_piechart1" class="infoviz"></div>
 				<div id="i_piechart2" class="infoviz"></div>
 				<div class="clear"></div>
 			</section>
 			<section>
-				<h2>RadidarChart <a href="#radarchart" name="radarchart">#</a></h2>
+				<h2>RadidarChart <a href="#top">top</a> <a href="#radarchart" name="radarchart">#link</a></h2>
 				<div id="i_radarchart1" class="infoviz"></div>
 				<div id="i_radarchart2" class="infoviz"></div>
 				<div class="clear"></div>
 			</section>
 			<section>
-				<h2>RadialChart <a href="#radialchart" name="radialchart">#</a></h2>
+				<h2>RadialChart <a href="#top">top</a> <a href="#radialchart" name="radialchart">#link</a></h2>
 				<div id="i_radialchart1" class="infoviz"></div>
 				<div id="i_radialchart2" class="infoviz"></div>
 				<div class="clear"></div>
 			</section>
 			<section>
-				<h2>SmithGraph <a href="#smithgraph" name="smithgraph">#</a></h2>
+				<h2>SmithGraph <a href="#top">top</a> <a href="#smithgraph" name="smithgraph">#link</a></h2>
 				<div id="i_smithgraph" class="infoviz"></div>
-				<div class="clear"></div>
 			</section>
 
 			<h1>Map</h1>
 			<section>
-				<h2>HeatMap <a href="#heatmap" name="heatmap">#</a></h2>
+				<h2>HeatMap <a href="#top">top</a> <a href="#heatmap" name="heatmap">#link</a></h2>
 				<div id="i_heatmap" class="infoviz"></div>
 			</section>
 
 			<h1>Tree</h1>
 			<section>
-				<h2>BasicTree <a href="#basictree" name="basictree">#</a></h2>
+				<h2>BasicTree <a href="#top">top</a> <a href="#basictree" name="basictree">#link</a></h2>
 				<div id="i_basictree" class="infoviz"></div>
-				<div class="clear"></div>
 			</section>
 
 			<h1>Cloud</h1>
 			<section>
-				<h2>TagCloud <a href="#tagcloud" name="tagcloud">#</a></h2>
+				<h2>TagCloud <a href="#top">top</a> <a href="#tagcloud" name="tagcloud">#link</a></h2>
 				<div id="i_tagcloud1" class="infoviz"></div>
 				<div id="i_tagcloud2" class="infoviz"></div>
 			</section>
@@ -86,8 +93,10 @@
 		<script src="./js/raphael.min.js"></script>
 		<script src="./js/sea.min.js"></script>
 		<script>
-			;(function() {
-				seajs.use([ './js/infoviz' ], function(InfoViz) {
+			(function () {
+				'use strict';
+				/*global seajs*/
+				seajs.use([ './js/infoviz' ], function (InfoViz) {
 					var data = [], i, j, item;
 
 					//Logo is disabled by default.
@@ -616,12 +625,9 @@
 
 					// SmithGraph
 					data = [];
-					var max_nodes = 256;
-					var max_edge = 6;
-					var max_value = 100;
+					var max_nodes = 256, max_edge = 6, max_value = 100;
 					for(i = 0; i < max_nodes; ++i) {
-						var edge_count = Math.floor(Math.random() * max_edge);
-						var edges = [];
+						var edge_count = Math.floor(Math.random() * max_edge), edges = [];
 
 						for(j = 0; j < edge_count; ++j) {
 							edges.push({
@@ -804,7 +810,7 @@
 						] } }
 					);
 				});
-			})();
+			}());
 		</script>
 
 		<!-- Please do remove following Google Analytics code, sorry for the inconvenient. -->
