@@ -64,7 +64,7 @@ table {
 .p-demo .container h2 { margin-left: 10px; line-height: 36px; padding-top: 10px; color: #555; -webkit-margin-before: 0; -webkit-margin-after: 0; }
 .p-demo .container h2 a { float: right; margin-right: 10px; font-size: 12px; text-decoration: none; }
 .p-demo footer { height: 28px; margin: 0 auto 10px auto; width: 870px; background: #FDFDFD; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top: 1px solid #EEE; }
-.p-demo footer p { color: #999; text-align: center; font-size: 0.6em; line-height: 30px; }
+.p-demo footer p { color: #999; text-align: center; font-size: 12px; line-height: 30px; }
 .p-demo a.fork { position: absolute; top: 0; right: 0; border: 0; width: 140px; height: 140px; display: block; background: url('../images/forkme.png') center no-repeat; background-image: -webkit-image-set(url('../images/forkme.png') 1x, url('../images/forkme@2x.png') 2x); }
 .p-demo ul.menu { border-bottom: 1px solid #EEE; }
 .p-demo ul.menu li { float: left; margin: 0px 4px 0 0; }
