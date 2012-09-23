@@ -24,6 +24,7 @@ all: prepare ${js_modules}
 prepare:
 	cp ${srcdir}raphael.min.js ${destdir};
 	cp ${srcdir}sea.min.js ${destdir};
+	cp ${srcdir}html5.js ${destdir};
 
 ${destdir}infoviz.barchart.js: ${srcdir}infoviz.barchart.js
 	java -jar bin/yuicompressor-2.4.7.jar -o $@ $^
