@@ -95,7 +95,10 @@ table {
 .p-history ul.history.color7 li { background-color: #104386; }
 .p-history ul.history.color8 li { background-color: #DA0101; }
 
-.p-history ul.history li { float: left; width: 206px;  margin: 10px 6px 0 0; border: 1px solid #EEE; }
-.p-history ul.history li a { display: block; border: none; text-decoration: none; color: #FFF; }
-.p-history ul.history li h1 { font-size: 18px; display: block; padding: 0; margin: 0; line-height: 40px; color: #FFF; text-align: center; }
-.p-history ul.history li p.date { font-size: 12px; padding: 0; margin: 0px 0 10px 0; text-align: center; }
+.p-history ul.history li { float: left; width: 206px;  margin: 10px 6px 0 0; border: 1px solid #CCC; color: #FFF; }
+.p-history ul.history li h1 { font-size: 20px; display: block; padding: 0; margin: 0; line-height: 40px; text-align: center; }
+.p-history ul.history li h1 a { display: block; border: none; color: #FFF; }
+.p-history ul.history li p { font-size: 12px; padding: 0; margin: 0px 0 10px 0; text-align: center; }
+
+.p-license .license h1 { margin-bottom: 20px; }
+.p-license .license p { margin-left: 10px; font-size: 14px; color: #333; line-height: 20px; margin-bottom: 20px; }
