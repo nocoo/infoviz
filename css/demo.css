@@ -56,9 +56,9 @@ table {
 .p-demo { background: #F0F0F0; font-family: 'Lucida Grande', Helvetica, Arial, sans-serif; }
 .p-demo a { color: #999; }
 
-.p-demo header { height: 60px; margin: 0 auto; width: 870px; background: #FDFDFD; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom: 1px solid #EEE; }
+.p-demo header { height: 80px; margin: 0 auto; width: 870px; background: #FDFDFD; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom: 1px solid #EEE; }
 .p-demo header h1 { margin: 10px; padding-top: 10px; }
-.p-demo header a { width: 100px; height: 40px; display: block; background: url('../images/infoviz_logo_small.png') center no-repeat; background-image: -webkit-image-set(url('../images/infoviz_logo_small.png') 1x, url('../images/infoviz_logo_small@2x.png') 2x); }
+.p-demo header a { width: 100px; height: 60px; display: block; background: url('../images/infoviz_logo_small.png') center no-repeat; background-image: -webkit-image-set(url('../images/infoviz_logo_small.png') 1x, url('../images/infoviz_logo_small@2x.png') 2x); }
 .p-demo .container { background: #FDFDFD; width: 870px; margin: 0 auto; padding-bottom: 40px; }
 .p-demo .container h1 { font-size: 1.5em; margin-left: 10px; padding-top: 30px; color: #333; }
 .p-demo .container h2 { margin-left: 10px; line-height: 50px; -webkit-margin-before: 0; -webkit-margin-after: 0; padding-top: 10px; color: #555; }
