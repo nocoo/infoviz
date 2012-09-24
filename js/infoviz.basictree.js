@@ -112,14 +112,14 @@ define(function(require, exports, module) {
 				dict[set[i]['_id']]['_color'] = options['color'][(i % options['color'].length)];
 
 				var n_value = set[i]['node'][data['node_value_field']];
-				if(n_value) {
+				if(core.isNumber(n_value)) {
 					if(n_value > n_max) n_max = n_value;
 					if(n_value < n_min) n_min = n_value;
 					n_sum += n_value;
 				}
 
 				var e_value = set[i]['node'][data['edge_value_field']];
-				if(e_value) {
+				if(core.isNumber(e_value)) {
 					if(e_value > e_max) e_max = e_value;
 					if(e_value < e_min) e_min = e_value;
 					e_sum += e_value;

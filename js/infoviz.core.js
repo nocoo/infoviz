@@ -645,4 +645,8 @@ define(function(require, exports, module) {
 			alert(message);
 		}
 	};
+
+	exports.isNumber = function(n) {
+		return !isNaN(parseFloat(n)) && isFinite(n);
+	};
 });

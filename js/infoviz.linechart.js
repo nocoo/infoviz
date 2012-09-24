@@ -29,7 +29,7 @@ define(function(require, exports, module) {
 					item = lines[line]['data'][i];
 
 					// horizontal field.
-					if(item[h_field_name]) {
+					if(item[h_field_name] !== undefined) {
 						this_h = item[h_field_name];
 					} else {
 						this_h = 'N/A';
@@ -47,7 +47,7 @@ define(function(require, exports, module) {
 					}
 
 					// vertical field.
-					if(item[v_field_name]) {
+					if(core.isNumber(item[v_field_name])) {
 						this_v = item[v_field_name];
 					} else {
 						this_v = 'N/A';
@@ -75,7 +75,6 @@ define(function(require, exports, module) {
 
 			var v_start = chart_area['bottom-left'][1] - options['linechart']['padding-bottom'];
 			var v_unit = (v_start - chart_area['top-left'][1] - options['linechart']['padding-top']) / (v_max - v_min);
-
 			var h_map = {};
 
 			// Vertical labels.
