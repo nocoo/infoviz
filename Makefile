@@ -23,6 +23,7 @@ all: prepare ${js_modules}
 	@echo "All Done."
 
 prepare:
+	mkdir ${destdir};
 	cp ${srcdir}raphael.min.js ${destdir};
 	cp ${srcdir}sea.min.js ${destdir};
 	cp ${srcdir}html5.js ${destdir};
