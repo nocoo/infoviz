@@ -582,7 +582,57 @@ Demo: [Click Here](http://infoviz.org/index.html#smithgraph)
 
 # 3 Map
 
-## 3.1 HeatMap
+## 3.1 WorldMap
+
+![WorldMap](http://infoviz.org/examples/worldmap.png "WorldMap")
+
+A WorldMap is a global map, each area can has a value field indicates counts or frequency.
+
+Demo: [Click Here](http://infoviz.org/index.html#worldmap)
+
+	InfoViz.chart(
+		'i_worldmap',
+		'worldmap',
+		{
+			'value_field': 'F1',
+			'tooltip_title': 'InfoViz: {area}',
+			'tooltip_content': '{area}: value = {F1}',
+			'data': [
+				{ 'area': 'BR', 'F1': 1 },
+				{ 'area': 'CH', 'F1': 2 },
+				{ 'area': 'CL', 'F1': 3 },
+				{ 'area': 'US', 'F1': 4 },
+				{ 'area': 'JP', 'F1': 7 },
+				{ 'area': 'MX', 'F1': 6 },
+				{ 'area': 'PE', 'F1': 7 },
+				{ 'area': 'ZA', 'F1': 8 },
+				{ 'area': 'ZW', 'F1': 9 },
+				{ 'area': 'RU', 'F1': 3 },
+				{ 'area': 'QA', 'F1': 2 },
+				{ 'area': 'NO', 'F1': 8 },
+				{ 'area': 'ML', 'F1': 4 },
+				{ 'area': 'KR', 'F1': 5 },
+				{ 'area': 'CN', 'F1': 8 },
+				{ 'area': 'TW', 'F1': 8 },
+				{ 'area': 'CU', 'F1': 7 },
+				{ 'area': 'ER', 'F1': 8 },
+				{ 'area': 'GH', 'F1': 9 },
+				{ 'area': 'HN', 'F1': 1 },
+				{ 'area': 'IN', 'F1': 2 },
+				{ 'area': 'AU', 'F1': 9 },
+				{ 'area': 'CA', 'F1': 7 },
+				{ 'area': 'IT', 'F1': 7 },
+				{ 'area': 'GB', 'F1': 5 },
+				{ 'area': 'FR', 'F1': 8 },
+				{ 'area': 'DE', 'F1': 6 },
+				{ 'area': 'PT', 'F1': 9 },
+				{ 'area': 'ES', 'F1': 5 },
+				{ 'area': 'SE', 'F1': 7 }
+			]
+		}
+	);
+
+## 3.2 HeatMap
 
 ![HeatMap](http://infoviz.org/examples/heatmap.png "HeatMap")
 
@@ -831,7 +881,7 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 	InfoViz.options = {
 		// 1. Chart layout configuration.
 		'layout': {
-			'padding-top': 1, 					// padding-top
+			'padding-top': 1,					// padding-top
 			'padding-right': 1,					// padding-right
 			'padding-bottom': 1,				// padding-bottom
 			'padding-left': 1,					// padding-left
@@ -845,12 +895,12 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'logo-height': 17,					// logo height
 			'logo-position': 'top-right',		// logo position, top-right | top-left | bottom-right | bottom-left
 
-			'speed': 300,						// animation speed
+			'speed': 300						// animation speed
 		},
 
 		// 2. Grid and axis configuration.
 		'grid': {
-			'padding-top': 10, 					// padding-top
+			'padding-top': 10,					// padding-top
 			'padding-right': 10,				// padding-right
 			'padding-bottom': 10,				// padding-bottom
 			'padding-left': 10,					// padding-left
@@ -924,7 +974,7 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'border-radius': 4,					// legend border radius
 
 			'background-color': '#FDFDFD',		// legend background color
-			'background-alpha': 1 				// legend background opacity
+			'background-alpha': 1				// legend background opacity
 		},
 
 		// 4. Tooltip configuration.
@@ -975,7 +1025,7 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'label-size': 12,					// label font size
 
 			'vertical-label-count': 10,			// label count in the vertical axis
-			'vertical-bar-width': 5, 			// period bar width of the vertical axis
+			'vertical-bar-width': 5,			// period bar width of the vertical axis
 
 			'area-enabled': false,				// if area is enabled, area under every line will be highlighted
 			'area-alpha': 0.1					// area fill opacity
@@ -997,7 +1047,7 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'horizontal-label-count': 10,		// label count in the horizontal axis
 			'horizontal-bar-width': 5,			// period bar width of the horizontal axis
 			'vertical-label-count': 5,			// label count in the vertical axis
-			'vertical-bar-width': 5 			// period bar width of the vertical axis
+			'vertical-bar-width': 5				// period bar width of the vertical axis
 		},
 
 		// 7. BarChart configuration.
@@ -1013,7 +1063,7 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'bar-margin': 4,					// margin value between bars (in the same group)
 
 			'vertical-label-count': 10,			// label count in the vertical axis
-			'vertical-bar-width': 5 			// period bar width of the vertical axis
+			'vertical-bar-width': 5				// period bar width of the vertical axis
 		},
 
 		// 8. PieChart configuration.
@@ -1031,7 +1081,7 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'label-bar-length2': 10,			// label pointer second part length
 
 			'horizontal-offset': 0,				// chart center horizontal offset
-			'vertical-offset': 0 				// chart center vertical offset
+			'vertical-offset': 0				// chart center vertical offset
 		},
 
 		// 9. RadarChart configuration.
@@ -1065,7 +1115,7 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'label-rotation': false,			// is label rotated
 
 			'horizontal-offset': 0,				// chart center horizontal offset
-			'vertical-offset': 0 				// chart center vertical offset
+			'vertical-offset': 0				// chart center vertical offset
 		},
 
 		// 10. HeatMap
@@ -1157,7 +1207,7 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'label-bar-length2': 10,			// label pointer second part length
 
 			'horizontal-offset': 0,				// chart center horizontal offset
-			'vertical-offset': 0 				// chart center vertical offset
+			'vertical-offset': 0				// chart center vertical offset
 		},
 
 		// 14. StackChart configuration.
@@ -1173,7 +1223,7 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'bar-margin': 0,					// margin value between bars (in the same group)
 
 			'vertical-label-count': 10,			// label count in the vertical axis
-			'vertical-bar-width': 5 			// period bar width of the vertical axis
+			'vertical-bar-width': 5				// period bar width of the vertical axis
 		},
 
 		// 15. BasicTree configuration.
@@ -1206,7 +1256,7 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'edge-box-border-alpha': 1,			// label box border opacity
 			'edge-box-border-radius': 4,		// label box border radius
 			'edge-box-background-color': '#FFF',// label box background color
-			'edge-box-background-alpha': 1 		// label box background opacity
+			'edge-box-background-alpha': 1		// label box background opacity
 		},
 
 		// 16. StockChart configuration.
@@ -1226,7 +1276,43 @@ When you using $.InfoViz.chart to create a chart, you may pass in your option ob
 			'bar-margin': 4,					// margin value between bars (in the same group)
 
 			'vertical-label-count': 10,			// label count in the vertical axis
-			'vertical-bar-width': 5 			// period bar width of the vertical axis
+			'vertical-bar-width': 5				// period bar width of the vertical axis
+		},
+
+		// 17. WorldMap configuration.
+		'worldmap': {
+			'padding-top': 0,					// padding-top
+			'padding-right': 0,					// padding-right
+			'padding-bottom': 0,				// padding-bottom
+			'padding-left': 0,					// padding-left
+
+			'levels': 8,						// value levels, will be colored with different colors
+
+			'sea-color': '#FFF',				// Sea background color
+			'sea-alpha': 1,						// Sea background opacity
+
+			'border-color': '#AAA',				// area border color
+			'border-alpha': 0.8,				// area border opacity
+			'border-width': 1,					// area border thickness
+
+			'area-normal-color': '#EEE',		// normal area color
+			'area-normal-alpha': 1,				// normal area opacity
+			'area-highlight-color': '#eb540a',	// hovered area color
+			'area-highlight-alpha': 1,			// hovered area opacity
+
+			'horizontal-offset': 0,				// horizontal offset of the map
+			'vertical-offset': 0,				// vertical offset of the map
+
+			'color': [							// color definition for WorldMap, from light to dark
+				{ 'color': '#339999', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#99CC99', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#99CC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#CCCC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FFCC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FF6633', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FF3333', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#CC0066', 'dark-alpha': 1, 'light-alpha': 0.45 }
+			]
 		},
 
 		// 0. Global color definition.

@@ -412,6 +412,42 @@ define(function(require, exports, module) {
 			'vertical-bar-width': 5				// period bar width of the vertical axis
 		},
 
+		// 17. WorldMap configuration.
+		'worldmap': {
+			'padding-top': 0,					// padding-top
+			'padding-right': 0,					// padding-right
+			'padding-bottom': 0,				// padding-bottom
+			'padding-left': 0,					// padding-left
+
+			'levels': 8,						// value levels, will be colored with different colors
+
+			'sea-color': '#FFF',				// Sea background color
+			'sea-alpha': 1,						// Sea background opacity
+
+			'border-color': '#AAA',				// area border color
+			'border-alpha': 0.8,				// area border opacity
+			'border-width': 1,					// area border thickness
+
+			'area-normal-color': '#EEE',		// normal area color
+			'area-normal-alpha': 1,				// normal area opacity
+			'area-highlight-color': '#eb540a',	// hovered area color
+			'area-highlight-alpha': 1,			// hovered area opacity
+
+			'horizontal-offset': 0,				// horizontal offset of the map
+			'vertical-offset': 0,				// vertical offset of the map
+
+			'color': [							// color definition for WorldMap, from light to dark
+				{ 'color': '#339999', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#99CC99', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#99CC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#CCCC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FFCC33', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FF6633', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#FF3333', 'dark-alpha': 1, 'light-alpha': 0.45 },
+				{ 'color': '#CC0066', 'dark-alpha': 1, 'light-alpha': 0.45 }
+			]
+		},
+
 		// 0. Global color definition.
 		'color': [								// color definition, from light to dark
 			{ 'color': '#3A89C9', 'dark-alpha': 1, 'light-alpha': 0.6 },
@@ -425,7 +461,7 @@ define(function(require, exports, module) {
 		]
 	};
 
-	exports.version = function() { return '0.3.3'; };
+	exports.version = function() { return '0.3.4'; };
 
 	exports.chart = function(element, type, data, overwrite_options, callback) {
 		seajs.use([ 'infoviz.core' ], function(core) {
@@ -455,6 +491,7 @@ define(function(require, exports, module) {
 
 					require.async([ 'infoviz.linechart' ], function(linechart) {
 						linechart.draw_linechart(paper, area, data, options, callback);
+						logo_front();
 					});
 
 					break;
@@ -464,6 +501,7 @@ define(function(require, exports, module) {
 
 					require.async([ 'infoviz.bubblechart' ], function(bubblechart) {
 						bubblechart.draw_bubblechart(paper, area, data, options, callback);
+						logo_front();
 					});
 
 					break;
@@ -473,6 +511,7 @@ define(function(require, exports, module) {
 
 					require.async([ 'infoviz.barchart' ], function(barchart) {
 						barchart.draw_barchart(paper, area, data, options, callback);
+						logo_front();
 					});
 
 					break;
@@ -482,6 +521,7 @@ define(function(require, exports, module) {
 
 					require.async([ 'infoviz.piechart' ], function(piechart) {
 						piechart.draw_piechart(paper, area, data, options, callback);
+						logo_front();
 					});
 
 					break;
@@ -491,6 +531,7 @@ define(function(require, exports, module) {
 
 					require.async([ 'infoviz.radarchart' ], function(radarchart) {
 						radarchart.draw_radarchart(paper, area, data, options, callback);
+						logo_front();
 					});
 
 					break;
@@ -500,6 +541,7 @@ define(function(require, exports, module) {
 
 					require.async([ 'infoviz.heatmap' ], function(heatmap) {
 						heatmap.draw_heatmap(paper, area, data, options, callback);
+						logo_front();
 					});
 
 					break;
@@ -509,6 +551,7 @@ define(function(require, exports, module) {
 
 					require.async([ 'infoviz.tagcloud' ], function(tagcloud) {
 						tagcloud.draw_tagcloud(paper, area, data, options, callback);
+						logo_front();
 					});
 
 					break;
@@ -518,6 +561,7 @@ define(function(require, exports, module) {
 
 					require.async([ 'infoviz.smithgraph' ], function(smithgraph) {
 						smithgraph.draw_smithgraph(paper, area, data, options, callback);
+						logo_front();
 					});
 
 					break;
@@ -527,6 +571,7 @@ define(function(require, exports, module) {
 
 					require.async([ 'infoviz.radialchart' ], function(radialchart) {
 						radialchart.draw_radialchart(paper, area, data, options, callback);
+						logo_front();
 					});
 
 					break;
@@ -536,6 +581,7 @@ define(function(require, exports, module) {
 
 					require.async([ 'infoviz.stackchart' ], function(stackchart) {
 						stackchart.draw_stackchart(paper, area, data, options, callback);
+						logo_front();
 					});
 
 					break;
@@ -545,6 +591,7 @@ define(function(require, exports, module) {
 
 					require.async([ 'infoviz.basictree' ], function(basictree) {
 						basictree.draw_basictree(paper, area, data, options, callback);
+						logo_front();
 					});
 
 					break;
@@ -554,6 +601,17 @@ define(function(require, exports, module) {
 
 					require.async([ 'infoviz.stockchart' ], function(barchart) {
 						barchart.draw_stockchart(paper, area, data, options, callback);
+						logo_front();
+					});
+
+					break;
+				}
+				case 'worldmap': {
+					area = core.draw_empty_background(paper, data, options);
+
+					require.async([ 'infoviz.worldmap' ], function(barchart) {
+						barchart.draw_worldmap(paper, area, data, options, callback);
+						logo_front();
 					});
 
 					break;
@@ -566,6 +624,7 @@ define(function(require, exports, module) {
 			}
 
 			// Draw InfoViz logo.
+			var logo, logo_front = function() { if(logo) logo.toFront(); };
 			if(options['layout']['logo-enabled']) {
 				var x, y;
 
@@ -593,7 +652,7 @@ define(function(require, exports, module) {
 					}
 				}
 
-				var logo = paper.image(
+				logo = paper.image(
 					'./images/infoviz_logo_tiny.png',
 					x, y,
 					options['layout']['logo-width'],

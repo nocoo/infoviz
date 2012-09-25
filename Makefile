@@ -14,7 +14,8 @@ js_modules = 	${destdir}infoviz.barchart.js\
 				${destdir}infoviz.smithgraph.js\
 				${destdir}infoviz.stackchart.js\
 				${destdir}infoviz.stockchart.js\
-				${destdir}infoviz.tagcloud.js
+				${destdir}infoviz.tagcloud.js\
+				${destdir}infoviz.worldmap.js
 
 .PHONY: clean prepare
 
@@ -66,6 +67,9 @@ ${destdir}infoviz.stockchart.js: ${srcdir}infoviz.stockchart.js
 	java -jar bin/yuicompressor-2.4.7.jar -o $@ $^
 
 ${destdir}infoviz.tagcloud.js: ${srcdir}infoviz.tagcloud.js
+	java -jar bin/yuicompressor-2.4.7.jar -o $@ $^
+
+${destdir}infoviz.worldmap.js: ${srcdir}infoviz.worldmap.js
 	java -jar bin/yuicompressor-2.4.7.jar -o $@ $^
 
 clean:

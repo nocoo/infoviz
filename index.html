@@ -71,6 +71,11 @@
 			</section>
 
 			<h1>Map</h1>
+			<h1>Map</h1>
+			<section>
+				<h2>WorldMap <a href="#worldmap" name="worldmap">#</a></h2>
+				<div id="i_worldmap" class="infoviz"></div>
+			</section>
 			<section>
 				<h2>HeatMap <a href="#top">top</a> <a href="#heatmap" name="heatmap">#link</a></h2>
 				<div id="i_heatmap" class="infoviz"></div>
@@ -91,7 +96,7 @@
 
 			<a class="fork" href="https://github.com/nocoo/InfoViz"></a>
 		</section>
-		<footer><p>InfoViz 0.3.3, <a href="./license.html">the MIT License</a>, <a href="http://about.me/nocoo">@zhengli</a>, <a href="https://github.com/nocoo/InfoViz">Github</a></p></footer>
+		<footer><p>InfoViz 0.3.4, <a href="./license.html">the MIT License</a>, <a href="http://about.me/nocoo">@zhengli</a>, <a href="https://github.com/nocoo/InfoViz">Github</a></p></footer>
 
 		<script src="./js/raphael.min.js"></script>
 		<script src="./js/sea.min.js"></script>
@@ -660,6 +665,49 @@
 							'data': data
 						},
 						{ 'legend': { 'legend-enabled': false } }
+					);
+
+					// WorldMap
+					InfoViz.chart(
+						'i_worldmap',
+						'worldmap',
+						{
+							'value_field': 'F1',
+							'tooltip_title': 'InfoViz: {area}',
+							'tooltip_content': '{area}: value = {F1}',
+							'data': [
+								{ 'area': 'BR', 'F1': 1 },
+								{ 'area': 'CH', 'F1': 2 },
+								{ 'area': 'CL', 'F1': 3 },
+								{ 'area': 'US', 'F1': 4 },
+								{ 'area': 'JP', 'F1': 7 },
+								{ 'area': 'MX', 'F1': 6 },
+								{ 'area': 'PE', 'F1': 7 },
+								{ 'area': 'ZA', 'F1': 8 },
+								{ 'area': 'ZW', 'F1': 9 },
+								{ 'area': 'RU', 'F1': 3 },
+								{ 'area': 'QA', 'F1': 2 },
+								{ 'area': 'NO', 'F1': 8 },
+								{ 'area': 'ML', 'F1': 4 },
+								{ 'area': 'KR', 'F1': 5 },
+								{ 'area': 'CN', 'F1': 8 },
+								{ 'area': 'TW', 'F1': 8 },
+								{ 'area': 'CU', 'F1': 7 },
+								{ 'area': 'ER', 'F1': 8 },
+								{ 'area': 'GH', 'F1': 9 },
+								{ 'area': 'HN', 'F1': 1 },
+								{ 'area': 'IN', 'F1': 2 },
+								{ 'area': 'AU', 'F1': 9 },
+								{ 'area': 'CA', 'F1': 7 },
+								{ 'area': 'IT', 'F1': 7 },
+								{ 'area': 'GB', 'F1': 5 },
+								{ 'area': 'FR', 'F1': 8 },
+								{ 'area': 'DE', 'F1': 6 },
+								{ 'area': 'PT', 'F1': 9 },
+								{ 'area': 'ES', 'F1': 5 },
+								{ 'area': 'SE', 'F1': 7 }
+							]
+						}
 					);
 
 					// HeatMap
