@@ -632,6 +632,14 @@ Demo: [Click Here](http://infoviz.org/index.html#worldmap)
 		}
 	);
 
+In data of WorldMap, you must provide a two-letter short name to identify an area. A cheat sheet is available at global variable:
+
+	console.log(InfoViz.WorldMap.names);
+
+or
+
+	console.log(InfoViz.WorldMap.areas);
+
 ## 3.2 HeatMap
 
 ![HeatMap](http://infoviz.org/examples/heatmap.png "HeatMap")

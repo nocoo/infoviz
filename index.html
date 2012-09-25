@@ -71,7 +71,6 @@
 			</section>
 
 			<h1>Map</h1>
-			<h1>Map</h1>
 			<section>
 				<h2>WorldMap <a href="#worldmap" name="worldmap">#</a></h2>
 				<div id="i_worldmap" class="infoviz"></div>
@@ -98,13 +97,13 @@
 		</section>
 		<footer><p>InfoViz 0.3.4, <a href="./license.html">the MIT License</a>, <a href="http://about.me/nocoo">@zhengli</a>, <a href="https://github.com/nocoo/InfoViz">Github</a></p></footer>
 
-		<script src="./js/raphael.min.js"></script>
-		<script src="./js/sea.min.js"></script>
+		<script src="./min/raphael.min.js"></script>
+		<script src="./min/sea.min.js"></script>
 		<script>
 			(function () {
 				'use strict';
 				/*global seajs*/
-				seajs.use([ './js/infoviz' ], function (InfoViz) {
+				seajs.use([ './min/infoviz' ], function (InfoViz) {
 					var data = [], i, j, item;
 
 					//Logo is disabled by default.
