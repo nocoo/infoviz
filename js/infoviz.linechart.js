@@ -151,7 +151,7 @@ define(function(require, exports, module) {
 					item = lines[line]['data'][i];
 
 					x = h_map[item[h_field_name]];
-					y = v_start - item[v_field_name] * v_unit + options['linechart']['circle-radius'];
+					y = v_start - (item[v_field_name] - v_min) * v_unit + options['linechart']['circle-radius'];
 
 					if(i === 0) {
 						cache.push('M' + x + ',' + y);

@@ -157,7 +157,7 @@ define(function(require, exports, module) {
 					item = lines[line]['data'][i];
 
 					x = h_map[item[h_field_name]] + (index) * (bar_width + options['barchart']['bar-margin']);
-					y = v_start - item[v_field_name] * v_unit;
+					y = v_start - (item[v_field_name] - v_min) * v_unit;
 
 					this_node = paper.rect(x, y, bar_width, chart_area['bottom-left'][1] - y - 1);
 					this_node.attr({
