@@ -28,6 +28,10 @@
 				<h2>Test1 <a href="#test1" name="test1">#</a></h2>
 				<div id="i_radarchart1" class="infoviz"></div>
 			</section>
+			<section>
+				<h2>Test4 <a href="#test4" name="test4">#</a></h2>
+				<div id="i_radarchart4" class="infoviz"></div>
+			</section>
 
 			<div class="clear"></div>
 			<a class="fork" href="https://github.com/nocoo/InfoViz"></a>
@@ -51,7 +55,7 @@
 						'layout': { 'background-color': '#FFF', 'logo-url': '../images/infoviz_logo_tiny.png' },
 					});
 
-					// RadarChart.
+					// Test1.
 					InfoViz.chart(
 						'i_radarchart1',
 						'radarchart',
@@ -77,6 +81,46 @@
 							'legend': { 'legend-position': 'bottom-left', 'margin-left': 0, 'margin-bottom': 0 }
 						},
 						function(info) { console.log(info); }
+					);
+
+					// Test4.
+					InfoViz.chart(
+						'i_radarchart4',
+						'radarchart',
+						{
+							'value_fields': [ 'F1', 'F2', 'F3', 'F4', 'F5', 'F6' ],
+							'name_field': 'F7',
+							'tooltip_title': 'InfoViz {F2}, {F3}',
+							'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
+							'value_maxs': [ 8, 8, 8, 8, 8, 8 ],
+							'value_mins': [ 1, 1, 1, 1, 1, 1 ],
+							'data': [
+								{ 'F1': 7, 'F2': 7, 'F3': 7, 'F4': 7, 'F5': 7, 'F6': 7, 'F7': 'China' },
+								{ 'F1': 6, 'F2': 6, 'F3': 6, 'F4': 6, 'F5': 6, 'F6': 6, 'F7': 'Unite States' },
+								{ 'F1': 5, 'F2': 5, 'F3': 5, 'F4': 5, 'F5': 5, 'F6': 5, 'F7': 'Unite Kingdom' },
+								{ 'F1': 4, 'F2': 4, 'F3': 4, 'F4': 4, 'F5': 4, 'F6': 4, 'F7': 'France' },
+								{ 'F1': 3, 'F2': 3, 'F3': 3, 'F4': 3, 'F5': 3, 'F6': 3, 'F7': 'Japan' },
+								{ 'F1': 2, 'F2': 2, 'F3': 2, 'F4': 2, 'F5': 2, 'F6': 2, 'F7': 'South Korea' },
+								{ 'F1': 1, 'F2': 1, 'F3': 1, 'F4': 1, 'F5': 1, 'F6': 1, 'F7': 'Russia' }
+							]
+						},
+						{
+							'layout': { 'logo-url': '../images/infoviz_logo_tiny_white.png' },
+							'grid': { 'background-color': '#333' },
+							'tooltip': { 'border-color': '#DDD', 'background-color': '#333' },
+							'legend': { 'legend-position': 'bottom-left', 'margin-bottom': 0, 'margin-right': 0, 'border-color': '#DDD', 'background-color': '#333' },
+							'radarchart': { 'outer-border-color': '#FFF', 'inner-border-color': '#DDD', 'inner-background-color': '#333', 'label-color': '#DDD' },
+							'color': [
+								{ 'color': '#FFF', 'dark-alpha': 0.20, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.30, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.40, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.50, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.60, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.70, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.80, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.85, 'light-alpha': 0.45 }
+							]
+						}
 					);
 				});
 			}());

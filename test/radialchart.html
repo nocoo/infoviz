@@ -32,6 +32,10 @@
 				<h2>Test2 <a href="#test2" name="test2">#</a></h2>
 				<div id="i_radialchart2" class="infoviz"></div>
 			</section>
+			<section>
+				<h2>Test4 <a href="#test4" name="test4">#</a></h2>
+				<div id="i_radialchart4" class="infoviz"></div>
+			</section>
 
 			<div class="clear"></div>
 			<a class="fork" href="https://github.com/nocoo/InfoViz"></a>
@@ -121,6 +125,52 @@
 						{
 							'legend': { 'margin-left': 0, 'margin-top': 5 },
 							'radialchart': { 'horizontal-offset': 40, 'label-enabled': false, 'bar-width': 18 }
+						}
+					);
+
+					// Test4
+					InfoViz.chart(
+						'i_radialchart4',
+						'radialchart',
+						{
+							'value_field': 'F1',
+							'label_field': 'F2',
+							'data': [
+								{ 'F1': 3, 'F2': 'China' },
+								{ 'F1': 6, 'F2': 'Unite States' },
+								{ 'F1': 2, 'F2': 'Russia' },
+								{ 'F1': 4, 'F2': 'Japan' },
+								{ 'F1': 5, 'F2': 'Botswana' },
+								{ 'F1': 3, 'F2': 'Finland' },
+								{ 'F1': 1, 'F2': 'France' },
+								{ 'F1': 2, 'F2': 'Cape Verde' },
+								{ 'F1': 6, 'F2': 'Belize' },
+								{ 'F1': 4, 'F2': 'Georgia' },
+								{ 'F1': 2, 'F2': 'Haiti' },
+								{ 'F1': 3, 'F2': 'Hungary' },
+								{ 'F1': 6, 'F2': 'India' },
+								{ 'F1': 4, 'F2': 'Laos' },
+								{ 'F1': 3, 'F2': 'Kuwait' },
+								{ 'F1': 6, 'F2': 'Namibia' },
+								{ 'F1': 1, 'F2': 'Peru' }
+							]
+						},
+						{
+							'layout': { 'logo-url': '../images/infoviz_logo_tiny_white.png' },
+							'grid': { 'background-color': '#333' },
+							'tooltip': { 'border-color': '#DDD', 'background-color': '#333' },
+							'legend': { 'legend-position': 'top-right', 'margin-top': 40, 'margin-right': 0, 'border-color': '#DDD', 'background-color': '#333' },
+							'radialchart': { 'size-factor': 0.8, 'bar-min-height': 60, 'bar-width': 14, 'hole-radius': 36, 'label-bar-color': '#DDD' },
+							'color': [
+								{ 'color': '#FFF', 'dark-alpha': 0.20, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.30, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.40, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.50, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.60, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.70, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.80, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.85, 'light-alpha': 0.45 }
+							]
 						}
 					);
 				});

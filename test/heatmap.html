@@ -28,6 +28,10 @@
 				<h2>Test1 <a href="#test1" name="test1">#</a></h2>
 				<div id="i_heatmap1" class="infoviz i-heatmap"></div>
 			</section>
+			<section>
+				<h2>Test4 <a href="#test4" name="test4">#</a></h2>
+				<div id="i_heatmap4" class="infoviz i-heatmap"></div>
+			</section>
 
 			<a class="fork" href="https://github.com/nocoo/InfoViz"></a>
 		</section>
@@ -50,13 +54,14 @@
 						'layout': { 'background-color': '#FFF', 'logo-url': '../images/infoviz_logo_tiny.png' },
 					});
 
-					// HeatMap
+					// HeatMap data.
 					var data = [];
 					for(i = 0; i < 1024; ++i) {
 						item = Math.floor(Math.random() * 100);
 						data.push({ 'F1': item, 'F2': i, 'F3': item });
 					}
 
+					// Test1
 					InfoViz.chart(
 						'i_heatmap1',
 						'heatmap',
@@ -69,6 +74,38 @@
 						},
 						{ 'layout': { 'logo-enabled': false }, 'heatmap': { 'label-size': 12 } },
 						function(info) { console.log(info); }
+					);
+
+					// Test4
+					InfoViz.chart(
+						'i_heatmap4',
+						'heatmap',
+						{
+							'value_field': 'F1',
+							'label_field': 'F3',
+							'tooltip_title': 'InfoViz {F2}, {F3}',
+							'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
+							'data': data
+						},
+						{
+							'layout': { 'logo-enabled': false },
+							'grid': { 'background-color': '#333'},
+							'tooltip': { 'border-color': '#DDD', 'background-color': '#333' },
+							'legend': { 'legend-position': 'top-right', 'margin-top': 40, 'margin-right': 0, 'border-color': '#DDD', 'background-color': '#333' },
+							'heatmap': {
+								'label-size': 12,
+								'color': [
+									{ 'color': '#FFF', 'dark-alpha': 0.20, 'light-alpha': 0.45 },
+									{ 'color': '#FFF', 'dark-alpha': 0.30, 'light-alpha': 0.45 },
+									{ 'color': '#FFF', 'dark-alpha': 0.40, 'light-alpha': 0.45 },
+									{ 'color': '#FFF', 'dark-alpha': 0.50, 'light-alpha': 0.45 },
+									{ 'color': '#FFF', 'dark-alpha': 0.60, 'light-alpha': 0.45 },
+									{ 'color': '#FFF', 'dark-alpha': 0.70, 'light-alpha': 0.45 },
+									{ 'color': '#FFF', 'dark-alpha': 0.80, 'light-alpha': 0.45 },
+									{ 'color': '#FFF', 'dark-alpha': 0.85, 'light-alpha': 0.45 }
+								]
+							}
+						}
 					);
 				});
 			}());

@@ -28,6 +28,10 @@
 				<h2>Test1 <a href="#test1" name="test1">#</a></h2>
 				<div id="i_stackchart1" class="infoviz"></div>
 			</section>
+			<section>
+				<h2>Test4 <a href="#test4" name="test4">#</a></h2>
+				<div id="i_stackchart4" class="infoviz"></div>
+			</section>
 
 			<a class="fork" href="https://github.com/nocoo/InfoViz"></a>
 		</section>
@@ -50,6 +54,7 @@
 						'layout': { 'background-color': '#FFF', 'logo-url': '../images/infoviz_logo_tiny.png' },
 					});
 
+					// Test1
 					InfoViz.chart(
 						'i_stackchart1',
 						'stackchart',
@@ -112,6 +117,90 @@
 						},
 						{ 'legend': { 'margin-top': 0 } },
 						function(info) { console.log(info); }
+					);
+
+					// Test4
+					InfoViz.chart(
+						'i_stackchart4',
+						'stackchart',
+						{
+							'vertical_axis_name': 'Vertical',
+							'horizontal_axis_name': 'Horizontal',
+							'horizontal_field': 'F2',
+							'vertical_field': 'F1',
+							'tooltip_title': 'InfoViz {F2}, {F3}',
+							'tooltip_content': 'Value: {F1}',
+							'data': {
+								'bar1': {
+									'name': 'China',
+									'data': [
+										{ 'F1': 10, 'F2': 'A', 'F3': 3  },
+										{ 'F1': 20, 'F2': 'B', 'F3': 6  },
+										{ 'F1': 30, 'F2': 'C', 'F3': 9  },
+										{ 'F1': 40, 'F2': 'D', 'F3': 12 }
+									]
+								},
+								'bar2': {
+									'name': 'Unite States',
+									'data': [
+										{ 'F1': 40, 'F2': 'A', 'F3': 15 },
+										{ 'F1': 30, 'F2': 'B', 'F3': 12 },
+										{ 'F1': 20, 'F2': 'C', 'F3': 9  },
+										{ 'F1': 10, 'F2': 'D', 'F3': 3  },
+										{ 'F1': 15, 'F2': 'E', 'F3': 6  }
+									]
+								},
+								'bar3': {
+									'name': 'Unite Kingdom',
+									'data': [
+										{ 'F1': 20, 'F2': 'A', 'F3': 15 },
+										{ 'F1': 30, 'F2': 'B', 'F3': 12 },
+										{ 'F1': 10, 'F2': 'D', 'F3': 3  },
+										{ 'F1': 40, 'F2': 'E', 'F3': 6  }
+									]
+								},
+								'bar4': {
+									'name': 'Italy',
+									'data': [
+										{ 'F1': 29, 'F2': 'A', 'F3': 15 },
+										{ 'F1': 70, 'F2': 'B', 'F3': 12 },
+										{ 'F1': 42, 'F2': 'C', 'F3': 9  },
+										{ 'F1': 51, 'F2': 'D', 'F3': 3  },
+										{ 'F1': 22, 'F2': 'E', 'F3': 6  }
+									]
+								},
+								'bar5': {
+									'name': 'Russia',
+									'data': [
+										{ 'F1': 29,  'F2': 'A', 'F3': 15 },
+										{ 'F1': 50, 'F2': 'B', 'F3': 12 },
+										{ 'F1': 52, 'F2': 'C', 'F3': 9  },
+										{ 'F1': 52, 'F2': 'E', 'F3': 6  }
+									]
+								}
+							}
+						},
+						{
+							'layout': { 'logo-url': '../images/infoviz_logo_tiny_white.png' },
+							'grid': {
+								'background-color': '#333',
+								'vertical-label-color': '#DDD',
+								'horizontal-label-color': '#DDD',
+								'vertical-name-color': '#FFF',
+								'horizontal-name-color': '#FFF' },
+							'tooltip': { 'border-color': '#DDD', 'background-color': '#333' },
+							'legend': { 'margin-top': 0, 'border-color': '#DDD', 'background-color': '#333' },
+							'color': [
+								{ 'color': '#FFF', 'dark-alpha': 0.20, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.30, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.40, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.50, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.60, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.70, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.80, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.85, 'light-alpha': 0.45 }
+							]
+						}
 					);
 				});
 			}());

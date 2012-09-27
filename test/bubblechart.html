@@ -28,6 +28,10 @@
 				<h2>Test1 <a href="#test1" name="test1">#</a></h2>
 				<div id="i_bubblechart1" class="infoviz"></div>
 			</section>
+			<section>
+				<h2>Test4 <a href="#test4" name="test4">#</a></h2>
+				<div id="i_bubblechart4" class="infoviz"></div>
+			</section>
 
 			<a class="fork" href="https://github.com/nocoo/InfoViz"></a>
 		</section>
@@ -50,7 +54,7 @@
 						'layout': { 'background-color': '#FFF', 'logo-url': '../images/infoviz_logo_tiny.png' },
 					});
 
-					// BubbleChart.
+					// Test1.
 					InfoViz.chart(
 						'i_bubblechart1',
 						'bubblechart',
@@ -84,6 +88,59 @@
 							'legend': { 'legend-position': 'top-right', 'margin-top': 40, 'margin-right': 0 }
 						},
 						function(info) { console.log(info); }
+					);
+
+					// Test4.
+					InfoViz.chart(
+						'i_bubblechart4',
+						'bubblechart',
+						{
+							'vertical_axis_name': 'Vertical',
+							'horizontal_axis_name': 'Horizontal',
+							'horizontal_field': 'F1',
+							'vertical_field': 'F2',
+							'size_field': 'F3',
+							'label_field': 'F4',
+							'tooltip_title': 'InfoViz {F2}, {F3}',
+							'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
+							'data': [
+								{ 'F1': 1,   'F2': 18, 'F3': 6, 'F4': 'China' },
+								{ 'F1': 42,  'F2': 30, 'F3': 9, 'F4': 'Unite States' },
+								{ 'F1': 3,   'F2': 38, 'F3': 9, 'F4': 'Russia' },
+								{ 'F1': 50,  'F2': 12, 'F3': 9, 'F4': 'Japan' },
+								{ 'F1': 50,  'F2': 25, 'F3': 8, 'F4': 'Botswana' },
+								{ 'F1': 29,  'F2': 22, 'F3': 4, 'F4': 'Finland' },
+								{ 'F1': 2,   'F2': 3,  'F3': 3, 'F4': 'France' },
+								{ 'F1': 38,  'F2': 10, 'F3': 6, 'F4': 'Cape Verde' },
+								{ 'F1': 24,  'F2': 10, 'F3': 6, 'F4': 'Belize' },
+								{ 'F1': 17,  'F2': 35, 'F3': 2, 'F4': 'Haiti' },
+								{ 'F1': 10,  'F2': 4,  'F3': 5, 'F4': 'Georgia' },
+								{ 'F1': 20,  'F2': 30, 'F3': 5, 'F4': 'Hungary' },
+								{ 'F1': 10,  'F2': 22, 'F3': 8, 'F4': 'Laos' }
+							]
+						},
+						{
+							'layout': { 'logo-url': '../images/infoviz_logo_tiny_white.png' },
+							'grid': {
+								'background-color': '#333',
+								'vertical-label-color': '#DDD',
+								'horizontal-label-color': '#DDD',
+								'vertical-name-color': '#FFF',
+								'horizontal-name-color': '#FFF' },
+							'tooltip': { 'border-color': '#DDD', 'background-color': '#333' },
+							'legend': { 'legend-position': 'top-right', 'margin-top': 40, 'margin-right': 0, 'border-color': '#DDD', 'background-color': '#333' },
+							'bubblechart': { 'padding-right': 200, 'label-color': '#333' },
+							'color': [
+								{ 'color': '#FFF', 'dark-alpha': 0.20, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.30, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.40, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.50, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.60, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.70, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.80, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.85, 'light-alpha': 0.45 }
+							]
+						}
 					);
 				});
 			}());
