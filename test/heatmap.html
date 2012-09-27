@@ -67,7 +67,8 @@
 							'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
 							'data': data
 						},
-						{ 'layout': { 'logo-enabled': false }, 'heatmap': { 'label-size': 12 } }
+						{ 'layout': { 'logo-enabled': false }, 'heatmap': { 'label-size': 12 } },
+						function(info) { console.log(info); }
 					);
 				});
 			}());

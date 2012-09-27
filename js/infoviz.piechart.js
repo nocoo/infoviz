@@ -87,7 +87,9 @@ define(function(require, exports, module) {
 						'start': current_angle,
 						'angle': this_angle,
 						'value': data['data'][i][data['value_field']],
-						'data': data['data'][i]
+						'data': data['data'][i],
+						'callback': callback,
+						'that': that
 					});
 					this_sector.click(core.element_action);
 				}

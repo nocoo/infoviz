@@ -213,7 +213,9 @@ define(function(require, exports, module) {
 							'x': todo[i]['x'],
 							'y': todo[i]['y'],
 							'v_value': todo[i]['v_value'],
-							'h_value': todo[i]['h_value']
+							'h_value': todo[i]['h_value'],
+							'that': that,
+							'callback': callback
 						});
 
 						p_node.click(core.element_action);
@@ -240,7 +242,7 @@ define(function(require, exports, module) {
 							'options': options,
 							'paper': paper
 						});
-						p_node.hover(element_tooltip);
+						p_node.hover(core.element_tooltip);
 					}
 				}
 

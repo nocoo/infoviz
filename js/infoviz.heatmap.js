@@ -99,13 +99,19 @@ define(function(require, exports, module) {
 						this_box.data('info', {
 							'x': x,
 							'y': y,
-							'data': data['data'][index]
+							'data': data['data'][index],
+							'type': 'box',
+							'callback': callback,
+							'that': that
 						});
 
 						this_label.data('info', {
 							'x': x,
 							'y': y,
-							'data': data['data'][index]
+							'data': data['data'][index],
+							'type': 'label',
+							'callback': callback,
+							'that': that
 						});
 
 						this_box.click(core.element_action);

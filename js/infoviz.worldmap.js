@@ -457,7 +457,9 @@ define(function(require, exports, module) {
 						'box': this_area.getBBox(),
 						'area': country,
 						'name': worldmap.names[country],
-						'data': item
+						'data': item,
+						'callback': callback,
+						'that': that
 					});
 					this_area.click(core.element_action);
 				}

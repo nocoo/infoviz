@@ -93,7 +93,9 @@ define(function(require, exports, module) {
 						'start': current_angle,
 						'angle': options['radialchart']['bar-width'],
 						'value': data['data'][i][data['value_field']],
-						'data': data['data'][i]
+						'data': data['data'][i],
+						'callback': callback,
+						'that': that
 					});
 					this_box.click(core.element_action);
 				}

@@ -102,7 +102,10 @@ define(function(require, exports, module) {
 						'y': y,
 						'v_value': this_v,
 						'h_value': this_h,
-						'data': item
+						'data': item,
+						'type': 'circle',
+						'callback': callback,
+						'that': that
 					});
 					this_bubble.click(core.element_action);
 
@@ -111,7 +114,10 @@ define(function(require, exports, module) {
 						'y': y,
 						'v_value': this_v,
 						'h_value': this_h,
-						'data': item
+						'data': item,
+						'type': 'label',
+						'callback': callback,
+						'that': that
 					});
 					this_text.click(core.element_action);
 				}

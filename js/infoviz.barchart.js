@@ -169,7 +169,9 @@ define(function(require, exports, module) {
 							'y': y,
 							'h_value': item[h_field_name],
 							'v_value': item[v_field_name],
-							'data': item
+							'data': item,
+							'that': that,
+							'callback': callback
 						});
 						this_node.click(core.element_action);
 					}

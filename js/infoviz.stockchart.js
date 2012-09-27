@@ -185,7 +185,9 @@ define(function(require, exports, module) {
 							'max_y': max_y,
 							'h_value': item[h_field_name],
 							'v_value': item[v_field_name],
-							'data': item
+							'data': item,
+							'callback': callback,
+							'that': that
 						});
 						this_node.click(core.element_action);
 					}

@@ -214,7 +214,9 @@ define(function(require, exports, module) {
 							'y': y,
 							'type': 'node',
 							'radius': this_radius,
-							'data': set[this_node['index']]['node']
+							'data': set[this_node['index']]['node'],
+							'callback': callback,
+							'that': that
 						});
 						p_node.click(core.element_action);
 
@@ -224,7 +226,9 @@ define(function(require, exports, module) {
 								'y': y,
 								'type': 'label',
 								'radius': this_radius,
-								'data': set[this_node['index']]['node']
+								'data': set[this_node['index']]['node'],
+								'callback': callback,
+								'that': that
 							});
 							p_label.click(core.element_action);
 						}
@@ -314,7 +318,9 @@ define(function(require, exports, module) {
 									'x': lx,
 									'y': ly,
 									'type': 'edge',
-									'data': set[this_node['index']]['node']
+									'data': set[this_node['index']]['node'],
+									'callback': callback,
+									'that': that
 								});
 								p_label.click(core.element_action);
 							}

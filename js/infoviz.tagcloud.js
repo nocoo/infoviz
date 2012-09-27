@@ -148,7 +148,9 @@ define(function(require, exports, module) {
 						'data': todo[i]['data'],
 						'item': todo[i]['item'],
 						'x': todo[i]['x'],
-						'y': todo[i]['y']
+						'y': todo[i]['y'],
+						'callback': callback,
+						'that': that
 					});
 					this_text.click(core.element_action);
 				}

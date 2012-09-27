@@ -175,11 +175,13 @@ define(function(require, exports, module) {
 
 				// Action.
 				if(callback && typeof(callback) === 'function') {
-					p.data('info', {
+					this_circle.data('info', {
 						'name': data['data'][i][data['name_field']],
-						'data': data['data'][i]
+						'data': data['data'][i],
+						'callback': callback,
+						'that': that
 					});
-					p.click(core.element_action);
+					this_circle.click(core.element_action);
 				}
 
 				// Tooltip.

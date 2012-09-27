@@ -562,7 +562,15 @@ define(function(require, exports, module) {
 		}
 	};
 
-	exports.element_action = function(evt) { callback.call(that, this.data('info')); };
+	exports.element_action = function(evt) {
+		if(this.data('info')['callback'] && typeof(this.data('info')['callback']) === 'function') {
+			this.data('info')['callback'].call(
+				this.data('info')['that'],
+				exports.filter_node(this.data('info'), [ 'callback', 'that' ])
+			);
+		}
+	};
+
 	exports.element_tooltip = function(evt) {
 		exports.draw_tooltip(
 			this.data('tooltip')['paper'],
@@ -655,24 +663,6 @@ define(function(require, exports, module) {
 				old_content.remove();
 				delete old_content;
 			});
-		}
-	};
-
-	exports.guid = function(type) {
-		var S4 = function() { return (((1 + Math.random()) * 0x10000)|0).toString(16).substring(1); };
-
-		if(type === 'long') {
-			return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
-		} else {
-			return (S4()+S4());
-		}
-	};
-
-	exports.idb = function(message) {
-		if(console && typeof(console.log) === 'function') {
-			console.log(message);
-		} else {
-			alert(message);
 		}
 	};
 

@@ -142,8 +142,6 @@ define(function(require, exports, module) {
 				group_y[g] = v_start;
 			}
 
-			console.log(v_start);
-
 			// Bars.
 			var index = 0, color, p_nodes = [], this_node;
 			var legend_data = [];
@@ -177,7 +175,9 @@ define(function(require, exports, module) {
 							'y': y,
 							'h_value': item[h_field_name],
 							'v_value': item[v_field_name],
-							'data': item
+							'data': item,
+							'callback': callback,
+							'that': that
 						});
 						this_node.click(core.element_action);
 					}

@@ -84,7 +84,8 @@
 							'node_tooltip_content': 'Value: {F2}. Edges: {F4}.',
 							'data': data
 						},
-						{ 'legend': { 'legend-enabled': false } }
+						{ 'legend': { 'legend-enabled': false } },
+						function(info) { console.log(info); }
 					);
 				});
 			}());
