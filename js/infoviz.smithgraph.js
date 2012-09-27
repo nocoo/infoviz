@@ -16,13 +16,6 @@ define(function(require, exports, module) {
 			var cx = chart_area['top-left'][0] + chart_area['width'] / 2 + options['smithgraph']['horizontal-offset'];
 			var cy = chart_area['top-left'][1] + chart_area['height'] / 2 + options['smithgraph']['vertical-offset'];
 
-			var element_action = function(evt) { callback.call(that, this.data('info')); };
-			var element_tooltip = function(evt) {
-				x = this.data('tooltip')['x'];
-				y = this.data('tooltip')['y'];
-				core.draw_tooltip(paper, x, y, this.data('tooltip')['id'], this.data('tooltip')['title'], this.data('tooltip')['content'], this.data('tooltip')['color'], options);
-			};
-
 			if(chart_area['width'] > chart_area['height']) {
 				radius = Math.floor(chart_area['height'] / 2) * options['smithgraph']['size-factor'];
 			} else {
@@ -148,7 +141,7 @@ define(function(require, exports, module) {
 						'value': data['data'][i][data['node_value_field']],
 						'data': data['data'][i]
 					});
-					this_box.click(element_action);
+					this_box.click(core.element_action);
 				}
 
 				//Add legend.
@@ -174,9 +167,12 @@ define(function(require, exports, module) {
 						'content': content,
 						'color': this_color,
 						'x': cx + radius * Math.cos((current_angle + bar_width / 2) * rad),
-						'y': cy + radius * Math.sin((current_angle + bar_width / 2) * rad)
+						'y': cy + radius * Math.sin((current_angle + bar_width / 2) * rad),
+						'element': this_box,
+						'options': options,
+						'paper': paper
 					});
-					this_box.hover(element_tooltip);
+					this_box.hover(core.element_tooltip);
 				}
 
 				// Save position to node_map

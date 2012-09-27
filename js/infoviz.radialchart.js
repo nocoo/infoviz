@@ -16,13 +16,6 @@ define(function(require, exports, module) {
 			var cx = chart_area['top-left'][0] + chart_area['width'] / 2 + options['radialchart']['horizontal-offset'];
 			var cy = chart_area['top-left'][1] + chart_area['height'] / 2 + options['radialchart']['vertical-offset'];
 
-			var element_action = function(evt) { callback.call(that, this.data('info')); };
-			var element_tooltip = function(evt) {
-				x = this.data('tooltip')['x'];
-				y = this.data('tooltip')['y'];
-				core.draw_tooltip(paper, x, y, this.data('tooltip')['id'], this.data('tooltip')['title'], this.data('tooltip')['content'], this.data('tooltip')['color'], options);
-			};
-
 			if(chart_area['width'] > chart_area['height']) {
 				radius = Math.floor(chart_area['height'] / 2) * options['radialchart']['size-factor'];
 			} else {
@@ -102,7 +95,7 @@ define(function(require, exports, module) {
 						'value': data['data'][i][data['value_field']],
 						'data': data['data'][i]
 					});
-					this_box.click(element_action);
+					this_box.click(core.element_action);
 				}
 
 				// Add legend.
@@ -175,10 +168,13 @@ define(function(require, exports, module) {
 						'title': title,
 						'content': content,
 						'color': this_color,
-						'x': cx + radius / 2 * Math.cos(half_angle * rad),
-						'y': cy + radius / 2 * Math.sin(half_angle * rad)
+						'x': cx + options['radialchart']['tooltip-position'] * radius * Math.cos(half_angle * rad),
+						'y': cy + options['radialchart']['tooltip-position'] * radius * Math.sin(half_angle * rad),
+						'element': this_box,
+						'options': options,
+						'paper': paper
 					});
-					this_box.hover(element_tooltip);
+					this_box.hover(core.element_tooltip);
 				}
 
 				current_angle += angle_unit;

@@ -13,13 +13,6 @@ define(function(require, exports, module) {
 
 			var options = core.merge_options(overwrite_options), cache = [], x, y, i, j, item;
 
-			var element_action = function(evt) { callback.call(that, this.data('info')); };
-			var element_tooltip = function(evt) {
-				x = this.data('tooltip')['x'];
-				y = this.data('tooltip')['y'];
-				core.draw_tooltip(paper, x, y, this.data('tooltip')['id'], this.data('tooltip')['title'], this.data('tooltip')['content'], this.data('tooltip')['color'], options);
-			};
-
 			if(options['heatmap']['sort-enabled']) {
 				data['data'].sort(function(a, b) { return b[data['value_field']] - a[data['value_field']]; });
 			}
@@ -115,8 +108,8 @@ define(function(require, exports, module) {
 							'data': data['data'][index]
 						});
 
-						this_box.click(element_action);
-						this_label.click(element_action);
+						this_box.click(core.element_action);
+						this_label.click(core.element_action);
 					}
 
 					// Tooltip.
@@ -129,16 +122,6 @@ define(function(require, exports, module) {
 							content = content.replace('{' + p + '}', data['data'][index][p]);
 						}
 
-						this_box.data('tooltip', {
-							'id': index,
-							'title': title,
-							'content': content,
-							'color': this_color,
-							'x': x + unit_x / 2,
-							'y': y
-						});
-						this_box.hover(element_tooltip);
-
 						if(this_label) {
 							this_label.data('tooltip', {
 								'id': index,
@@ -146,9 +129,25 @@ define(function(require, exports, module) {
 								'content': content,
 								'color': this_color,
 								'x': x + unit_x / 2,
-								'y': y
+								'y': y,
+								'element': this_label,
+								'options': options,
+								'paper': paper
 							});
-							this_label.hover(element_tooltip);
+							this_label.hover(core.element_tooltip);
+						} else {
+							this_box.data('tooltip', {
+								'id': index,
+								'title': title,
+								'content': content,
+								'color': this_color,
+								'x': x + unit_x / 2,
+								'y': y,
+								'element': this_box,
+								'options': options,
+								'paper': paper
+							});
+							this_box.hover(core.element_tooltip);
 						}
 					}
 

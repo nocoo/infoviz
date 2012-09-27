@@ -28,6 +28,10 @@
 				<h2>Test1 <a href="#test1" name="test1">#</a></h2>
 				<div id="i_radialchart1" class="infoviz"></div>
 			</section>
+			<section>
+				<h2>Test2 <a href="#test2" name="test2">#</a></h2>
+				<div id="i_radialchart2" class="infoviz"></div>
+			</section>
 
 			<div class="clear"></div>
 			<a class="fork" href="https://github.com/nocoo/InfoViz"></a>
@@ -51,7 +55,7 @@
 						'layout': { 'background-color': '#FFF', 'logo-url': '../images/infoviz_logo_tiny.png' },
 					});
 
-					// RadialChart
+					// Test1
 					InfoViz.chart(
 						'i_radialchart1',
 						'radialchart',
@@ -81,6 +85,41 @@
 						{
 							'legend': { 'legend-enabled': false },
 							'radialchart': { 'size-factor': 0.8, 'bar-min-height': 60, 'bar-width': 14, 'hole-radius': 36 }
+						}
+					);
+
+					// Test2
+					InfoViz.chart(
+						'i_radialchart2',
+						'radialchart',
+						{
+							'value_field': 'F1',
+							'label_field': 'F2',
+							'tooltip_title': 'Country: {F2}',
+							'tooltip_content': 'Tooltip: {F2}',
+							'data': [
+								{ 'F1': 6, 'F2': 'China' },
+								{ 'F1': 5, 'F2': 'Unite States' },
+								{ 'F1': 6, 'F2': 'Russia' },
+								{ 'F1': 5, 'F2': 'Japan' },
+								{ 'F1': 5, 'F2': 'Botswana' },
+								{ 'F1': 6, 'F2': 'Finland' },
+								{ 'F1': 5, 'F2': 'France' },
+								{ 'F1': 4, 'F2': 'Cape Verde' },
+								{ 'F1': 3, 'F2': 'Belize' },
+								{ 'F1': 4, 'F2': 'Georgia' },
+								{ 'F1': 5, 'F2': 'Haiti' },
+								{ 'F1': 6, 'F2': 'Hungary' },
+								{ 'F1': 3, 'F2': 'India' },
+								{ 'F1': 4, 'F2': 'Laos' },
+								{ 'F1': 5, 'F2': 'Kuwait' },
+								{ 'F1': 4, 'F2': 'Namibia' },
+								{ 'F1': 3, 'F2': 'Peru' }
+							]
+						},
+						{
+							'legend': { 'margin-left': 0, 'margin-top': 5 },
+							'radialchart': { 'horizontal-offset': 40, 'label-enabled': false, 'bar-width': 18 }
 						}
 					);
 				});

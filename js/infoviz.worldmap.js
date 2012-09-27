@@ -379,7 +379,6 @@ define(function(require, exports, module) {
 			var levels = options['worldmap']['levels'] ? options['worldmap']['levels'] : 8;
 			var offset_x, offset_y;
 
-			var element_action = function(evt) { callback.call(that, this.data('info')); };
 			var element_hover_over = function(evt) {
 				this.data('fill', this.data('fill') || this.attr('fill'));
 				this.data('fill-opacity', this.data('fill-opacity') || this.attr('fill-opacity'));
@@ -393,11 +392,6 @@ define(function(require, exports, module) {
 					'fill': this.data('fill'),
 					'fill-opacity': this.data('fill-opacity'),
 				}, options['layout']['speed']);
-			};
-			var element_tooltip = function(evt) {
-				x = this.data('tooltip')['x'];
-				y = this.data('tooltip')['y'];
-				core.draw_tooltip(paper, x, y, this.data('tooltip')['id'], this.data('tooltip')['title'], this.data('tooltip')['content'], this.data('tooltip')['color'], options);
 			};
 
 			// Walk through data
@@ -465,7 +459,7 @@ define(function(require, exports, module) {
 						'name': worldmap.names[country],
 						'data': item
 					});
-					this_area.click(element_action);
+					this_area.click(core.element_action);
 				}
 
 				// Tooltip.
@@ -482,9 +476,12 @@ define(function(require, exports, module) {
 						'id': country,
 						'title': title,
 						'content': content,
-						'color': this_color
+						'color': this_color,
+						'element': this_area,
+						'options': options,
+						'paper': paper
 					});
-					this_area.hover(element_tooltip);
+					this_area.hover(core.element_tooltip);
 				} else {
 					this_area.hover(element_hover_over, element_hover_out);
 				}
@@ -507,7 +504,7 @@ define(function(require, exports, module) {
 				var tip = p_areas[i].data('tooltip');
 				if(tip) {
 					tip['x'] = p_areas[i].getBBox().x + p_areas[i].getBBox().width / 2;
-					tip['y'] = p_areas[i].getBBox().y + p_areas[i].getBBox().height / 2;
+					tip['y'] = p_areas[i].getBBox().y;
 				}
 
 				p_areas[i].data('tooltip', tip);

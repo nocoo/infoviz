@@ -16,13 +16,6 @@ define(function(require, exports, module) {
 			var h_field_name = data['horizontal_field'], v_field_name = data['vertical_field'];
 			var this_h, this_v, h_min = Infinity, h_max = -Infinity, v_min = Infinity, v_max = -Infinity;
 
-			var element_action = function(evt) { callback.call(that, this.data('info')); };
-			var element_tooltip = function(evt) {
-				x = this.data('tooltip')['node_x'];
-				y = this.data('tooltip')['node_y'];
-				core.draw_tooltip(paper, x, y, this.data('tooltip')['id'], this.data('tooltip')['title'], this.data('tooltip')['content'], this.data('tooltip')['color'], options, this.data('tooltip')['element']);
-			};
-
 			// Scan horizontal and vertical fields.
 			for(var line in lines) {
 				for(i = 0; i < lines[line]['data'].length; ++i) {
@@ -223,7 +216,7 @@ define(function(require, exports, module) {
 							'h_value': todo[i]['h_value']
 						});
 
-						p_node.click(element_action);
+						p_node.click(core.element_action);
 					}
 
 					// Tooltip.
@@ -241,9 +234,11 @@ define(function(require, exports, module) {
 							'title': title,
 							'content': content,
 							'color': color,
-							'node_x': todo[i]['x'],
-							'node_y': todo[i]['y'],
-							'element': p_node
+							'x': todo[i]['x'],
+							'y': todo[i]['y'],
+							'element': p_node,
+							'options': options,
+							'paper': paper
 						});
 						p_node.hover(element_tooltip);
 					}

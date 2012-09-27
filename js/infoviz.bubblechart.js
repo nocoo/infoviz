@@ -14,13 +14,6 @@ define(function(require, exports, module) {
 			var options = core.merge_options(overwrite_options), cache = [], i, x, y, size, item;
 			var h_min = Infinity, h_max = -Infinity, v_min = Infinity, v_max = -Infinity, size_max = -Infinity, size_min = Infinity;
 
-			var element_action = function(evt) { callback.call(that, this.data('info')); };
-			var element_tooltip = function(evt) {
-				x = this.data('tooltip')['x'];
-				y = this.data('tooltip')['y'];
-				core.draw_tooltip(paper, x, y, this.data('tooltip')['id'], this.data('tooltip')['title'], this.data('tooltip')['content'], this.data('tooltip')['color'], options);
-			};
-
 			// Scan data.
 			for(i = 0; i < data['data'].length; ++i) {
 				item = data['data'][i];
@@ -111,7 +104,7 @@ define(function(require, exports, module) {
 						'h_value': this_h,
 						'data': item
 					});
-					this_bubble.click(element_action);
+					this_bubble.click(core.element_action);
 
 					this_text.data('info', {
 						'x': x,
@@ -120,7 +113,7 @@ define(function(require, exports, module) {
 						'h_value': this_h,
 						'data': item
 					});
-					this_text.click(element_action);
+					this_text.click(core.element_action);
 				}
 
 				// Tooltip.
@@ -133,15 +126,18 @@ define(function(require, exports, module) {
 						content = content.replace('{' + p + '}', item[p]);
 					}
 
-					this_bubble.data('tooltip', {
-						'id': i,
-						'title': title,
-						'content': content,
-						'color': this_color,
-						'x': x,
-						'y': y - size
-					});
-					this_bubble.hover(element_tooltip);
+					// this_bubble.data('tooltip', {
+					// 	'id': i,
+					// 	'title': title,
+					// 	'content': content,
+					// 	'color': this_color,
+					// 	'x': x,
+					// 	'y': y - size,
+					// 	'element': this_bubble,
+					// 'options': options,
+					// 'paper': paper
+					// });
+					// this_bubble.hover(core.element_tooltip);
 
 					this_text.data('tooltip', {
 						'id': i,
@@ -149,9 +145,12 @@ define(function(require, exports, module) {
 						'content': content,
 						'color': this_color,
 						'x': x,
-						'y': y - size
+						'y': y - size,
+						'element': this_text,
+						'options': options,
+						'paper': paper
 					});
-					this_text.hover(element_tooltip);
+					this_text.hover(core.element_tooltip);
 				}
 			}
 

@@ -16,13 +16,6 @@ define(function(require, exports, module) {
 			var h_field_name = data['horizontal_field'], v_field_name = data['vertical_field'];
 			var this_h, this_v, h_min = Infinity, h_max = -Infinity, v_min = Infinity, v_max = -Infinity, v_sum_max = -Infinity;
 
-			var element_action = function(evt) { callback.call(that, this.data('info')); };
-			var element_tooltip = function(evt) {
-				x = this.data('tooltip')['bar_top_x'];
-				y = this.data('tooltip')['bar_top_y'];
-				core.draw_tooltip(paper, x, y, this.data('tooltip')['id'], this.data('tooltip')['title'], this.data('tooltip')['content'], this.data('tooltip')['color'], options);
-			};
-
 			// Scan horizontal and vertical fields.
 			for(var line in lines) {
 				var v_sum = 0;
@@ -186,7 +179,7 @@ define(function(require, exports, module) {
 							'v_value': item[v_field_name],
 							'data': item
 						});
-						this_node.click(element_action);
+						this_node.click(core.element_action);
 					}
 
 					// Tooltip.
@@ -204,10 +197,13 @@ define(function(require, exports, module) {
 							'title': title,
 							'content': content,
 							'color': color,
-							'bar_top_x': x + group_width / 2,
-							'bar_top_y': y
+							'x': x + group_width / 2,
+							'y': y,
+							'element': this_node,
+							'options': options,
+							'paper': paper
 						});
-						this_node.hover(element_tooltip);
+						this_node.hover(core.element_tooltip);
 					}
 
 					group_y[item[h_field_name]] = y;

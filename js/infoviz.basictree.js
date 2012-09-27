@@ -11,12 +11,6 @@ define(function(require, exports, module) {
 			if(!paper || !data) return idb('Paper or Data is empty.');
 
 			var options = core.merge_options(overwrite_options), cache = [], x, y, i, j, item;
-			var element_action = function(evt) { callback.call(that, this.data('info')); };
-			var element_tooltip = function(evt) {
-				x = this.data('tooltip')['x'];
-				y = this.data('tooltip')['y'];
-				core.draw_tooltip(paper, x, y, this.data('tooltip')['id'], this.data('tooltip')['title'], this.data('tooltip')['content'], this.data('tooltip')['color'], options);
-			};
 
 			// BFS the tree.
 			var walk_bfs = function(root) {
@@ -222,7 +216,7 @@ define(function(require, exports, module) {
 							'radius': this_radius,
 							'data': set[this_node['index']]['node']
 						});
-						p_node.click(element_action);
+						p_node.click(core.element_action);
 
 						if(p_label) {
 							p_label.data('info', {
@@ -232,7 +226,7 @@ define(function(require, exports, module) {
 								'radius': this_radius,
 								'data': set[this_node['index']]['node']
 							});
-							p_label.click(element_action);
+							p_label.click(core.element_action);
 						}
 					}
 
@@ -253,9 +247,12 @@ define(function(require, exports, module) {
 							'content': content,
 							'color': dict[item['_id']]['_color'],
 							'x': x,
-							'y': y - this_radius
+							'y': y - this_radius,
+							'element': p_label,
+							'options': options,
+							'paper': paper
 						});
-						p_node.hover(element_tooltip);
+						p_node.hover(core.element_tooltip);
 					}
 
 					// edge
@@ -319,7 +316,7 @@ define(function(require, exports, module) {
 									'type': 'edge',
 									'data': set[this_node['index']]['node']
 								});
-								p_label.click(element_action);
+								p_label.click(core.element_action);
 							}
 
 							// Node tooltip.
@@ -339,9 +336,12 @@ define(function(require, exports, module) {
 									'content': content,
 									'color': dict[item['_id']]['_color'],
 									'x': lx,
-									'y': ly - bheight / 2
+									'y': ly - bheight / 2,
+									'element': p_label,
+									'options': options,
+									'paper': paper
 								});
-								p_label.hover(element_tooltip);
+								p_label.hover(core.element_tooltip);
 							}
 						}
 					}

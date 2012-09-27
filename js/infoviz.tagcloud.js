@@ -14,13 +14,6 @@ define(function(require, exports, module) {
 			var options = core.merge_options(overwrite_options), cache = [], x, y, i, j, item;
 			var levels = options['tagcloud']['levels'] ? options['tagcloud']['levels'] : 8;
 
-			var element_action = function(evt) { callback.call(that, this.data('info')); };
-			var element_tooltip = function(evt) {
-				x = this.data('tooltip')['x'];
-				y = this.data('tooltip')['y'];
-				core.draw_tooltip(paper, x, y, this.data('tooltip')['id'], this.data('tooltip')['title'], this.data('tooltip')['content'], this.data('tooltip')['color'], options);
-			};
-
 			// Find out max and min value.
 			var v_max = -Infinity, v_min = Infinity, total_text_length = 0;
 			for(i = 0; i < data['data'].length; ++i) {
@@ -157,7 +150,7 @@ define(function(require, exports, module) {
 						'x': todo[i]['x'],
 						'y': todo[i]['y']
 					});
-					this_text.click(element_action);
+					this_text.click(core.element_action);
 				}
 
 				// Tooltip.
@@ -176,9 +169,12 @@ define(function(require, exports, module) {
 						'content': content,
 						'color': this_color,
 						'x': todo[i]['x'],
-						'y': todo[i]['y']
+						'y': todo[i]['y'],
+						'element': this_text,
+						'options': options,
+						'paper': paper
 					});
-					this_text.hover(element_tooltip);
+					this_text.hover(core.element_tooltip);
 				}
 			}
 

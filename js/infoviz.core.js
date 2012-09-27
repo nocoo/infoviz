@@ -562,6 +562,21 @@ define(function(require, exports, module) {
 		}
 	};
 
+	exports.element_action = function(evt) { callback.call(that, this.data('info')); };
+	exports.element_tooltip = function(evt) {
+		exports.draw_tooltip(
+			this.data('tooltip')['paper'],
+			this.data('tooltip')['x'],
+			this.data('tooltip')['y'],
+			this.data('tooltip')['id'],
+			this.data('tooltip')['title'],
+			this.data('tooltip')['content'],
+			this.data('tooltip')['color'],
+			this.data('tooltip')['options'],
+			this.data('tooltip')['element']
+		);
+	};
+
 	exports.filter_node = function(node, except) {
 		if(!except || except.length === 0) return node;
 

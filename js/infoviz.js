@@ -212,6 +212,7 @@ define(function(require, exports, module) {
 			'size-factor': 0.9,					// size factor, 0.9 means using 90% area to draw the chart
 			'sector-border-width': 1,			// border thickness of pie sectors
 			'hole-radius': 0,					// hold radius, set this value to a positive number to make a RingChart
+			'tooltip-position': 0.9,			// tooltip will be shown at this percentage of radius
 
 			'label-size': 11,					// label font size
 			'label-distance': 5,				// distance from the outer size of pir and label
@@ -337,6 +338,7 @@ define(function(require, exports, module) {
 			'bar-border-width': 1,				// border thickness of radial bars
 			'bar-min-height': 15,				// min bar height
 			'hole-radius': 50,					// hole radius
+			'tooltip-position': 0.9,			// tooltip will be shown at this percentage of radius
 
 			'label-enabled': true,				// if label is visible
 			'label-size': 11,					// label font size
