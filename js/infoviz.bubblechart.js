@@ -73,7 +73,7 @@ define(function(require, exports, module) {
 				this_color = options['color'][(i % options['color'].length)];
 
 				size = size_start + this_size * size_unit;
-				x = h_start + this_h * h_unit;
+				x = h_start + (this_h - h_min) * h_unit;
 				y = v_start - (this_v - v_min) * v_unit;
 
 				this_bubble = paper.circle(x, y, size).attr({

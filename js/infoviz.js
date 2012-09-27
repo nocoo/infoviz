@@ -24,6 +24,8 @@ define(function(require, exports, module) {
 												// customize background as DOM container's background in CSS.
 
 			'logo-enabled': false,				// is InfoViz logo enabled
+			'logo-url': './images/infoviz_logo_tiny.png',
+												// logo url
 			'logo-width': 50,					// logo width
 			'logo-height': 17,					// logo height
 			'logo-position': 'top-right',		// logo position, top-right | top-left | bottom-right | bottom-left
@@ -128,7 +130,12 @@ define(function(require, exports, module) {
 			'title-text-size': 12,				// tooltip title text font size
 
 			'line-spacing': 2,					// distance between title and content
-			'hide-after': 5000,					// tooltip will automatic hide in seconds
+			'hide-when': 'mouse-out',			// 'mouse-out': when mouse is away from target element,
+												// tooltip timer start to count down
+												// 'mouse-in': tooltip timer start to count down immediately after
+												// tooltip is shown
+
+			'hide-after': 500,					// tooltip will automatic hide in seconds
 												// undefined or 0, tooltip will always be visible
 
 			'content-text-color': '#999',		// tooltip content text font color
@@ -653,7 +660,7 @@ define(function(require, exports, module) {
 				}
 
 				logo = paper.image(
-					'./images/infoviz_logo_tiny.png',
+					options['layout']['logo-url'],
 					x, y,
 					options['layout']['logo-width'],
 					options['layout']['logo-height']).attr({ 'cursor': 'pointer' }).translate(0.5, 0.5);

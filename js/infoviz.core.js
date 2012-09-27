@@ -444,7 +444,7 @@ define(function(require, exports, module) {
 		}
 	};
 
-	exports.draw_tooltip = function(paper, x, y, id, title, content, color, overwrite_options) {
+	exports.draw_tooltip = function(paper, x, y, id, title, content, color, overwrite_options, target) {
 		if(id === tooltip_id) return;
 
 		var options = exports.merge_options(overwrite_options);
@@ -539,11 +539,26 @@ define(function(require, exports, module) {
 		tooltip_content.animate({ 'opacity': 1 }, options['tooltip']['speed']);
 
 		// Hide tooltip timer setup.
-		clearTimeout(tooltip_timer);
 		if(options['tooltip']['hide-after']) {
-			tooltip_timer = setTimeout(function() {
-				exports.hide_tooltip();
-			}, options['tooltip']['hide-after']);
+			if(target && options['tooltip']['hide-when'] === 'mouse-out') {
+				var on_target_mouseout = function(evt) {
+					clearTimeout(tooltip_timer);
+					tooltip_timer = setTimeout(function() {
+						exports.hide_tooltip();
+						tooltip_id = undefined;
+					}, options['tooltip']['hide-after']);
+				};
+
+				clearTimeout(tooltip_timer);
+				target.unmouseout(on_target_mouseout);
+				target.mouseout(on_target_mouseout);
+			} else {
+				clearTimeout(tooltip_timer);
+				tooltip_timer = setTimeout(function() {
+					exports.hide_tooltip();
+					tooltip_id = undefined;
+				}, options['tooltip']['hide-after']);
+			}
 		}
 	};
 

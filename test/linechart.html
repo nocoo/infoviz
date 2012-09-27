@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, user-scalable=no, target-densitydpi=device-dpi" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="author" content="@zhengli" />
+		<link rel="shortcut icon" href="../images/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+		<title>LineChart Test - InfoViz</title>
+		<!--[if lt IE 9]>
+			<script src="../js/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body class="p-demo p-index">
+		<header><h1><a href="http://infoviz.org"></a></h1></header>
+		<section class="container">
+			<ul class="menu">
+				<li><a href="../index.html" title="Controls">Controls</a></li>
+				<li><a href="https://github.com/nocoo/InfoViz" title="Documentation">Documentation</a></li>
+				<li><a class="active" href="./index.html" title="Test">Test</a></li>
+				<li><a href="../history.html" title="History">History</a></li>
+				<li><a href="../license.html" title="The MIT License">The MIT License</a></li>
+				<div class="clear"></div>
+			</ul>
+
+			<h1>LineChart Test</h1>
+			<section>
+				<h2>Test1 <a href="#test1" name="test1">#</a></h2>
+				<div id="i_linechart1" class="infoviz"></div>
+			</section>
+			<section>
+				<h2>Test2 <a href="#test2" name="test2">#</a></h2>
+				<div id="i_linechart2" class="infoviz"></div>
+			</section>
+			<section>
+				<h2>Test3 <a href="#test3" name="test3">#</a></h2>
+				<div id="i_linechart3" class="infoviz"></div>
+			</section>
+			<section>
+				<h2>Test4 <a href="#test4" name="test4">#</a></h2>
+				<div id="i_linechart4" class="infoviz"></div>
+			</section>
+
+			<a class="fork" href="https://github.com/nocoo/InfoViz"></a>
+		</section>
+		<footer><p>InfoViz Dev, the MIT License, <a href="about.me/nocoo">@zhengli</a>, <a href="https://github.com/nocoo/InfoViz">Github</a></p></footer>
+
+		<script src="../js/raphael.min.js"></script>
+		<script src="../js/sea.min.js"></script>
+		<script>
+			(function () {
+				'use strict';
+				/*global seajs*/
+				seajs.use([ '../js/infoviz' ], function (InfoViz) {
+					var i, j, item;
+
+					//Logo is disabled by default.
+					InfoViz.enable_logo();
+
+					// Global option overwrite.
+					InfoViz.global_option({
+						'layout': { 'background-color': '#FFF', 'logo-url': '../images/infoviz_logo_tiny.png' },
+					});
+
+					// Test1
+					InfoViz.chart(
+						'i_linechart1',
+						'linechart',
+						{
+							'vertical_axis_name': 'Vertical',
+							'horizontal_axis_name': 'Horizontal',
+							'horizontal_field': 'F2',
+							'vertical_field': 'F1',
+							'tooltip_title': 'InfoViz {F2}, {F3}',
+							'tooltip_content': 'Tooltip: {F2}, {F3} | {F1}',
+							'data': {
+								'line1': {
+									'name': 'China',
+									'data': [
+										{ 'F1': 1,   'F2': 'A', 'F3': 3  },
+										{ 'F1': 42,  'F2': 'B', 'F3': 6  },
+										{ 'F1': 7,   'F2': 'C', 'F3': 9  },
+										{ 'F1': 110, 'F2': 'D', 'F3': 12 }
+									]
+								},
+								'line2': {
+									'name': 'Unite States',
+									'data': [
+										{ 'F1': 13, 'F2': 'A', 'F3': 15 },
+										{ 'F1': 10, 'F2': 'B', 'F3': 12 },
+										{ 'F1': 72, 'F2': 'C', 'F3': 9  },
+										{ 'F1': 1,  'F2': 'D', 'F3': 3  },
+										{ 'F1': 4,  'F2': 'E', 'F3': 6  }
+									]
+								},
+								'line3': {
+									'name': 'Unite Kingdom',
+									'data': [
+										{ 'F1': 19, 'F2': 'A', 'F3': 15 },
+										{ 'F1': 20, 'F2': 'B', 'F3': 12 },
+										{ 'F1': 11, 'F2': 'D', 'F3': 3  },
+										{ 'F1': 42, 'F2': 'E', 'F3': 6  }
+									]
+								},
+								'line4': {
+									'name': 'Italy',
+									'data': [
+										{ 'F1': 29, 'F2': 'A', 'F3': 15 },
+										{ 'F1': 70, 'F2': 'B', 'F3': 12 },
+										{ 'F1': 42, 'F2': 'C', 'F3': 9  },
+										{ 'F1': 51, 'F2': 'D', 'F3': 3  },
+										{ 'F1': 22, 'F2': 'E', 'F3': 6  }
+									]
+								},
+								'line5': {
+									'name': 'Russia',
+									'data': [
+										{ 'F1': 9,  'F2': 'A', 'F3': 15 },
+										{ 'F1': 90, 'F2': 'B', 'F3': 12 },
+										{ 'F1': 92, 'F2': 'C', 'F3': 9  },
+										{ 'F1': 52, 'F2': 'E', 'F3': 6  }
+									]
+								}
+							}
+						},
+						{ 'legend': { 'margin-top': 0 } },
+						function(info) { console.log(info); }
+					);
+
+					// Test2
+					InfoViz.chart(
+						'i_linechart2',
+						'linechart',
+						{
+							'vertical_axis_name': '总GPD',
+							'horizontal_axis_name': '地区',
+							'horizontal_field': 'F2',
+							'vertical_field': 'F1',
+							'tooltip_title': 'InfoViz {F2}, {F3}',
+							'tooltip_content': 'Tooltip: {F2}, {F3} | {F1}',
+							'data': {
+								'line1': {
+									'name': '1990',
+									'data': [
+										{ 'F1': 1,   'F2': '北京', 'F3': 3  },
+										{ 'F1': 42,  'F2': '上海', 'F3': 6  },
+										{ 'F1': 7,   'F2': '济南', 'F3': 9  },
+										{ 'F1': 110, 'F2': '天津', 'F3': 12 }
+									]
+								},
+								'line2': {
+									'name': '1991',
+									'data': [
+										{ 'F1': 13, 'F2': '北京', 'F3': 15 },
+										{ 'F1': 10, 'F2': '上海', 'F3': 12 },
+										{ 'F1': 72, 'F2': '济南', 'F3': 9  },
+										{ 'F1': 1,  'F2': '天津', 'F3': 3  },
+										{ 'F1': 4,  'F2': '成都', 'F3': 6  }
+									]
+								},
+								'line3': {
+									'name': '2010',
+									'data': [
+										{ 'F1': 19, 'F2': '北京', 'F3': 15 },
+										{ 'F1': 20, 'F2': '上海', 'F3': 12 },
+										{ 'F1': 11, 'F2': '天津', 'F3': 3  },
+										{ 'F1': 42, 'F2': '成都', 'F3': 6  }
+									]
+								},
+								'line4': {
+									'name': '2011',
+									'data': [
+										{ 'F1': 29, 'F2': '北京', 'F3': 15 },
+										{ 'F1': 70, 'F2': '上海', 'F3': 12 },
+										{ 'F1': 42, 'F2': '济南', 'F3': 9  },
+										{ 'F1': 51, 'F2': '天津', 'F3': 3  },
+										{ 'F1': 22, 'F2': '成都', 'F3': 6  }
+									]
+								},
+								'line5': {
+									'name': '2012',
+									'data': [
+										{ 'F1': 9,  'F2': '北京', 'F3': 15 },
+										{ 'F1': 90, 'F2': '上海', 'F3': 12 },
+										{ 'F1': 92, 'F2': '济南', 'F3': 9  },
+										{ 'F1': 52, 'F2': '成都', 'F3': 6  }
+									]
+								}
+							}
+						},
+						{
+							'legend': { 'legend-enabled': false },
+							'linechart': { 'padding-right': 40, 'label-size': 8 },
+							'tooltip': { 'hide-when': 'mouse-in', 'hide-after': 300 }
+						}
+					);
+
+					// Test3
+					var data1 = [], data2 = [];
+					var base = Math.floor(Math.random() * 100000);
+					var count = Math.floor(Math.random() * 99) + 1;
+
+					for(i = 0; i < count; ++i) {
+						data1.push({
+							'F1': base + Math.floor(Math.random() * 100),
+							'F2': 'n' + i,
+							'F3': 'node-' + i
+						});
+
+						data2.push({
+							'F1': base + Math.floor(Math.random() * 100),
+							'F2': 'n' + i,
+							'F3': 'node-' + i
+						});
+					}
+
+					InfoViz.chart(
+						'i_linechart3',
+						'linechart',
+						{
+							'vertical_axis_name': 'Vertical',
+							'horizontal_axis_name': 'Horizontal',
+							'horizontal_field': 'F2',
+							'vertical_field': 'F1',
+							'tooltip_title': 'InfoViz {F2}, {F3}',
+							'tooltip_content': 'Tooltip: {F2}, {F3} | {F1}',
+							'data': {
+								'line1': {
+									'name': 'China',
+									'data': data1
+								},
+								'line2': {
+									'name': 'Unite States',
+									'data': data2
+								}
+							}
+						},
+						{ 'legend': { 'margin-right': 0, 'legend-position': 'bottom-right' } }
+					);
+
+					// Test4
+					InfoViz.chart(
+						'i_linechart4',
+						'linechart',
+						{
+							'vertical_axis_name': 'Vertical',
+							'horizontal_axis_name': 'Horizontal',
+							'horizontal_field': 'F2',
+							'vertical_field': 'F1',
+							'tooltip_title': 'InfoViz {F2}, {F3}',
+							'tooltip_content': 'Tooltip: {F2}, {F3} | {F1}',
+							'data': {
+								'line1': {
+									'name': 'China',
+									'data': [
+										{ 'F1': 1,   'F2': 'A', 'F3': 3  },
+										{ 'F1': 42,  'F2': 'B', 'F3': 6  },
+										{ 'F1': 7,   'F2': 'C', 'F3': 9  },
+										{ 'F1': 110, 'F2': 'D', 'F3': 12 }
+									]
+								},
+								'line2': {
+									'name': 'Unite States',
+									'data': [
+										{ 'F1': 13, 'F2': 'A', 'F3': 15 },
+										{ 'F1': 10, 'F2': 'B', 'F3': 12 },
+										{ 'F1': 72, 'F2': 'C', 'F3': 9  },
+										{ 'F1': 1,  'F2': 'D', 'F3': 3  },
+										{ 'F1': 4,  'F2': 'E', 'F3': 6  }
+									]
+								},
+								'line3': {
+									'name': 'Unite Kingdom',
+									'data': [
+										{ 'F1': 19, 'F2': 'A', 'F3': 15 },
+										{ 'F1': 20, 'F2': 'B', 'F3': 12 },
+										{ 'F1': 11, 'F2': 'D', 'F3': 3  },
+										{ 'F1': 42, 'F2': 'E', 'F3': 6  }
+									]
+								},
+								'line4': {
+									'name': 'Italy',
+									'data': [
+										{ 'F1': 29, 'F2': 'A', 'F3': 15 },
+										{ 'F1': 70, 'F2': 'B', 'F3': 12 },
+										{ 'F1': 42, 'F2': 'C', 'F3': 9  },
+										{ 'F1': 51, 'F2': 'D', 'F3': 3  },
+										{ 'F1': 22, 'F2': 'E', 'F3': 6  }
+									]
+								},
+								'line5': {
+									'name': 'Russia',
+									'data': [
+										{ 'F1': 9,  'F2': 'A', 'F3': 15 },
+										{ 'F1': 90, 'F2': 'B', 'F3': 12 },
+										{ 'F1': 92, 'F2': 'C', 'F3': 9  },
+										{ 'F1': 52, 'F2': 'E', 'F3': 6  }
+									]
+								}
+							}
+						},
+						{
+							'layout': { 'logo-url': '../images/infoviz_logo_tiny_white.png' },
+							'grid': {
+								'background-color': '#333',
+								'vertical-label-color': '#DDD',
+								'horizontal-label-color': '#DDD',
+								'vertical-name-color': '#FFF',
+								'horizontal-name-color': '#FFF' },
+							'tooltip': { 'border-color': '#DDD', 'background-color': '#333' },
+							'legend': { 'margin-top': 0, 'border-color': '#DDD', 'background-color': '#333' },
+							'color': [
+								{ 'color': '#FFF', 'dark-alpha': 0.20, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.30, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.40, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.50, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.60, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.70, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.80, 'light-alpha': 0.45 },
+								{ 'color': '#FFF', 'dark-alpha': 0.85, 'light-alpha': 0.45 }
+							]
+						}
+					);
+				});
+			}());
+		</script>
+	</body>
+</html>

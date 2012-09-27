@@ -20,7 +20,7 @@ define(function(require, exports, module) {
 			var element_tooltip = function(evt) {
 				x = this.data('tooltip')['node_x'];
 				y = this.data('tooltip')['node_y'];
-				core.draw_tooltip(paper, x, y, this.data('tooltip')['id'], this.data('tooltip')['title'], this.data('tooltip')['content'], this.data('tooltip')['color'], options);
+				core.draw_tooltip(paper, x, y, this.data('tooltip')['id'], this.data('tooltip')['title'], this.data('tooltip')['content'], this.data('tooltip')['color'], options, this.data('tooltip')['element']);
 			};
 
 			// Scan horizontal and vertical fields.
@@ -242,7 +242,8 @@ define(function(require, exports, module) {
 							'content': content,
 							'color': color,
 							'node_x': todo[i]['x'],
-							'node_y': todo[i]['y']
+							'node_y': todo[i]['y'],
+							'element': p_node
 						});
 						p_node.hover(element_tooltip);
 					}

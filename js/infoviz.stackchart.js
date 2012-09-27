@@ -149,6 +149,8 @@ define(function(require, exports, module) {
 				group_y[g] = v_start;
 			}
 
+			console.log(v_start);
+
 			// Bars.
 			var index = 0, color, p_nodes = [], this_node;
 			var legend_data = [];
