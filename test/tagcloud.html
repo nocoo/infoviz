@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, user-scalable=no, target-densitydpi=device-dpi" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="author" content="@zhengli" />
+		<link rel="shortcut icon" href="../images/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+		<title>TagCloud Test - InfoViz</title>
+		<!--[if lt IE 9]>
+			<script src="../js/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body class="p-demo p-test">
+		<header><h1><a href="http://infoviz.org"></a></h1></header>
+		<section class="container">
+			<ul class="menu">
+				<li><a href="../index.html" title="Controls">Controls</a></li>
+				<li><a href="https://github.com/nocoo/InfoViz" title="Documentation">Documentation</a></li>
+				<li><a class="active" href="./index.html" title="Test">Test</a></li>
+				<li><a href="../history.html" title="History">History</a></li>
+				<li><a href="../license.html" title="The MIT License">The MIT License</a></li>
+				<div class="clear"></div>
+			</ul>
+
+			<h1>TagCloud Test</h1>
+			<section>
+				<h2>Test1 <a href="#test1" name="test1">#</a></h2>
+				<div id="i_tagcloud1" class="infoviz"></div>
+			</section>
+			<section>
+				<h2>Test2 <a href="#test2" name="test2">#</a></h2>
+				<div id="i_tagcloud2" class="infoviz"></div>
+			</section>
+
+			<a class="fork" href="https://github.com/nocoo/InfoViz"></a>
+		</section>
+		<footer><p>InfoViz Dev, the MIT License, <a href="http://about.me/nocoo">@zhengli</a>, <a href="https://github.com/nocoo/InfoViz">Github</a></p></footer>
+
+		<script src="../js/raphael.min.js"></script>
+		<script src="../js/sea.min.js"></script>
+		<script>
+			(function () {
+				'use strict';
+				/*global seajs*/
+				seajs.use([ '../js/infoviz' ], function (InfoViz) {
+					var i, j, item;
+
+					//Logo is disabled by default.
+					InfoViz.enable_logo();
+
+					// Global option overwrite.
+					InfoViz.global_option({
+						'layout': { 'background-color': '#FFF', 'logo-url': '../images/infoviz_logo_tiny.png' },
+					});
+
+					// TagCloud.
+					InfoViz.chart(
+						'i_tagcloud1',
+						'tagcloud',
+						{
+							'value_field': 'F1',
+							'text_field': 'F2',
+							'data': [
+								{ 'F1': 24, 'F2': 'China' },
+								{ 'F1': 23, 'F2': 'Unite States' },
+								{ 'F1': 22, 'F2': 'Russia' },
+								{ 'F1': 21, 'F2': 'Japan' },
+								{ 'F1': 20, 'F2': 'Botswana' },
+								{ 'F1': 19, 'F2': 'Finland' },
+								{ 'F1': 18, 'F2': 'France' },
+								{ 'F1': 17, 'F2': 'Cape Verde' },
+								{ 'F1': 16, 'F2': 'Belize' },
+								{ 'F1': 15, 'F2': 'Georgia' },
+								{ 'F1': 14, 'F2': 'Haiti' },
+								{ 'F1': 13, 'F2': 'Hungary' },
+								{ 'F1': 12, 'F2': 'India' },
+								{ 'F1': 11, 'F2': 'Laos' },
+								{ 'F1': 10, 'F2': 'Kuwait' },
+								{ 'F1': 9,  'F2': 'Namibia' },
+								{ 'F1': 8,  'F2': 'Peru' },
+								{ 'F1': 7,  'F2': 'Qatar' },
+								{ 'F1': 6,  'F2': 'Spain' },
+								{ 'F1': 5,  'F2': 'Thailand' },
+								{ 'F1': 4,  'F2': 'Ukraine' },
+								{ 'F1': 3,  'F2': 'Vanuatu' },
+								{ 'F1': 2,  'F2': 'Zambia' },
+								{ 'F1': 1,  'F2': 'Palestine' }
+							]
+						}
+					);
+
+					InfoViz.chart(
+						'i_tagcloud2',
+						'tagcloud',
+						{
+							'value_field': 'F1',
+							'text_field': 'F2',
+							'tooltip_title': 'InfoViz {F1}',
+							'tooltip_content': '{F2}: {F1}.',
+							'data': [
+								{ 'F1': 24, 'F2': '中华人民共和国' },
+								{ 'F1': 23, 'F2': '美利坚合众国' },
+								{ 'F1': 22, 'F2': '俄罗斯联邦' },
+								{ 'F1': 21, 'F2': '日本' },
+								{ 'F1': 20, 'F2': '博茨瓦纳' },
+								{ 'F1': 19, 'F2': '芬兰' },
+								{ 'F1': 18, 'F2': '法兰西共和国' },
+								{ 'F1': 17, 'F2': '佛得角' },
+								{ 'F1': 16, 'F2': '伯利兹城' },
+								{ 'F1': 15, 'F2': '格鲁吉亚' },
+								{ 'F1': 14, 'F2': '海地' },
+								{ 'F1': 13, 'F2': '匈牙利' },
+								{ 'F1': 12, 'F2': '印度' },
+								{ 'F1': 11, 'F2': '老挝人民民主共和国' },
+								{ 'F1': 10, 'F2': '科威特' },
+								{ 'F1': 9,  'F2': '纳米比亚' },
+								{ 'F1': 8,  'F2': '秘鲁' },
+								{ 'F1': 7,  'F2': '卡塔尔' },
+								{ 'F1': 6,  'F2': '西班牙' },
+								{ 'F1': 5,  'F2': '泰国' },
+								{ 'F1': 4,  'F2': '乌克兰' },
+								{ 'F1': 3,  'F2': '瓦努阿图' },
+								{ 'F1': 2,  'F2': '赞比亚' },
+								{ 'F1': 1,  'F2': '巴勒斯坦' }
+							]
+						},
+						{ 'tagcloud': { 'color': [
+							{ 'color': '#000', 'dark-alpha': 0.20, 'light-alpha': 0.45 },
+							{ 'color': '#000', 'dark-alpha': 0.30, 'light-alpha': 0.45 },
+							{ 'color': '#000', 'dark-alpha': 0.40, 'light-alpha': 0.45 },
+							{ 'color': '#000', 'dark-alpha': 0.50, 'light-alpha': 0.45 },
+							{ 'color': '#000', 'dark-alpha': 0.60, 'light-alpha': 0.45 },
+							{ 'color': '#000', 'dark-alpha': 0.70, 'light-alpha': 0.45 },
+							{ 'color': '#000', 'dark-alpha': 0.80, 'light-alpha': 0.45 },
+							{ 'color': '#000', 'dark-alpha': 0.85, 'light-alpha': 0.45 }
+						] } }
+					);
+				});
+			}());
+		</script>
+	</body>
+</html>

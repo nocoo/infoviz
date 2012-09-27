@@ -11,7 +11,7 @@
 			<script src="../js/html5.js"></script>
 		<![endif]-->
 	</head>
-	<body class="p-demo p-index">
+	<body class="p-demo p-test">
 		<header><h1><a href="http://infoviz.org"></a></h1></header>
 		<section class="container">
 			<ul class="menu">
@@ -43,7 +43,7 @@
 
 			<a class="fork" href="https://github.com/nocoo/InfoViz"></a>
 		</section>
-		<footer><p>InfoViz Dev, the MIT License, <a href="about.me/nocoo">@zhengli</a>, <a href="https://github.com/nocoo/InfoViz">Github</a></p></footer>
+		<footer><p>InfoViz Dev, the MIT License, <a href="http://about.me/nocoo">@zhengli</a>, <a href="https://github.com/nocoo/InfoViz">Github</a></p></footer>
 
 		<script src="../js/raphael.min.js"></script>
 		<script src="../js/sea.min.js"></script>
@@ -180,17 +180,48 @@
 								'line5': {
 									'name': '2012',
 									'data': [
-										{ 'F1': 9,  'F2': '北京', 'F3': 15 },
-										{ 'F1': 90, 'F2': '上海', 'F3': 12 },
-										{ 'F1': 92, 'F2': '济南', 'F3': 9  },
-										{ 'F1': 52, 'F2': '成都', 'F3': 6  }
+										{ 'F1': 30,  'F2': '北京', 'F3': 15 },
+										{ 'F1': 50, 'F2': '上海', 'F3': 12 },
+										{ 'F1': 60, 'F2': '济南', 'F3': 9  },
+										{ 'F1': 77, 'F2': '天津', 'F3': 3  },
+										{ 'F1': 59, 'F2': '成都', 'F3': 6  }
+									]
+								},
+								'line6': {
+									'name': '2013',
+									'data': [
+										{ 'F1': 19,  'F2': '北京', 'F3': 15 },
+										{ 'F1': 29, 'F2': '上海', 'F3': 12 },
+										{ 'F1': 90, 'F2': '济南', 'F3': 9  },
+										{ 'F1': 20, 'F2': '天津', 'F3': 3  },
+										{ 'F1': 90, 'F2': '成都', 'F3': 6  }
+									]
+								},
+								'line7': {
+									'name': '2014',
+									'data': [
+										{ 'F1': 49,  'F2': '北京', 'F3': 15 },
+										{ 'F1': 50, 'F2': '上海', 'F3': 12 },
+										{ 'F1': 52, 'F2': '济南', 'F3': 9  },
+										{ 'F1': 51, 'F2': '天津', 'F3': 3  },
+										{ 'F1': 80, 'F2': '成都', 'F3': 6  }
+									]
+								},
+								'line8': {
+									'name': '2015',
+									'data': [
+										{ 'F1': 90,  'F2': '北京', 'F3': 15 },
+										{ 'F1': 80, 'F2': '上海', 'F3': 12 },
+										{ 'F1': 60, 'F2': '济南', 'F3': 9  },
+										{ 'F1': 30, 'F2': '天津', 'F3': 3  },
+										{ 'F1': 35, 'F2': '成都', 'F3': 6  }
 									]
 								}
 							}
 						},
 						{
 							'legend': { 'legend-enabled': false },
-							'linechart': { 'padding-right': 40, 'label-size': 8 },
+							'linechart': { 'padding-right': 40, 'label-size': 8, 'area-enabled': true },
 							'tooltip': { 'hide-when': 'mouse-in', 'hide-after': 300 }
 						}
 					);
@@ -309,6 +340,7 @@
 								'horizontal-name-color': '#FFF' },
 							'tooltip': { 'border-color': '#DDD', 'background-color': '#333' },
 							'legend': { 'margin-top': 0, 'border-color': '#DDD', 'background-color': '#333' },
+							'linechart': { 'area-enabled': true },
 							'color': [
 								{ 'color': '#FFF', 'dark-alpha': 0.20, 'light-alpha': 0.45 },
 								{ 'color': '#FFF', 'dark-alpha': 0.30, 'light-alpha': 0.45 },

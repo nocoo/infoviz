@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, user-scalable=no, target-densitydpi=device-dpi" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="author" content="@zhengli" />
+		<link rel="shortcut icon" href="../images/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+		<title>BasicTree Test - InfoViz</title>
+		<!--[if lt IE 9]>
+			<script src="../js/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body class="p-demo p-test">
+		<header><h1><a href="http://infoviz.org"></a></h1></header>
+		<section class="container">
+			<ul class="menu">
+				<li><a href="../index.html" title="Controls">Controls</a></li>
+				<li><a href="https://github.com/nocoo/InfoViz" title="Documentation">Documentation</a></li>
+				<li><a class="active" href="./index.html" title="Test">Test</a></li>
+				<li><a href="../history.html" title="History">History</a></li>
+				<li><a href="../license.html" title="The MIT License">The MIT License</a></li>
+				<div class="clear"></div>
+			</ul>
+
+			<h1>BasicTree Test</h1>
+			<section>
+				<h2>Test1 <a href="#test1" name="test1">#</a></h2>
+				<div id="i_basictree1" class="infoviz i-basictree"></div>
+			</section>
+
+			<a class="fork" href="https://github.com/nocoo/InfoViz"></a>
+		</section>
+		<footer><p>InfoViz Dev, the MIT License, <a href="http://about.me/nocoo">@zhengli</a>, <a href="https://github.com/nocoo/InfoViz">Github</a></p></footer>
+
+		<script src="../js/raphael.min.js"></script>
+		<script src="../js/sea.min.js"></script>
+		<script>
+			(function () {
+				'use strict';
+				/*global seajs*/
+				seajs.use([ '../js/infoviz' ], function (InfoViz) {
+					var i, j, item;
+
+					//Logo is disabled by default.
+					InfoViz.enable_logo();
+
+					// Global option overwrite.
+					InfoViz.global_option({
+						'layout': { 'background-color': '#FFF', 'logo-url': '../images/infoviz_logo_tiny.png' },
+					});
+
+					// BasicTree
+					InfoViz.chart(
+						'i_basictree1',
+						'basictree',
+						{
+							'node_label_field': 'F1',
+							'node_value_field': 'F2',
+							'edge_value_field': 'F3',
+							'node_tooltip_title': 'Node #{F1}',
+							'node_tooltip_content': 'Value: {F1}.{F2}',
+							'edge_tooltip_title': 'Edge #{F1}',
+							'edge_tooltip_content': 'Value: {F2}.{F3}',
+							'data': {
+								'F1': 'Frankfurt', 'F2': 1, 'children': [
+									{
+										'F1': 'Mannheim', 'F2': 2, 'F3': 85, 'children': [
+											{
+												'F1': 'Karlsruhe', 'F2': 3, 'F3': 80, 'children': [
+													{ 'F1': 'Augsburg', 'F2': 1, 'F3': 250 },
+													{ 'F1': 'Augsburg', 'F2': 1, 'F3': 250 }
+												]
+											}
+										]
+									},
+									{
+										'F1': 'Würzburg', 'F2': 3, 'F3': 217, 'children': [
+											{ 'F1': 'Erfurt', 'F2': 4, 'F3': 186 },
+											{ 'F1': 'Nürnberg', 'F2': 2, 'F3': 103 },
+											{ 'F1': 'Erfurt', 'F2': 4, 'F3': 186, 'children': [
+													{ 'F1': 'München', 'F2': 5, 'F3': 167 }
+												]
+											}
+										]
+									},
+									{
+										'F1': 'Kassel', 'F2': 2, 'F3': 173, 'children': [
+											{ 'F1': 'Stuggart', 'F2': 3, 'F3': 99, 'children': [
+													{ 'F1': 'München', 'F2': 5, 'F3': 167 },
+													{ 'F1': 'Augsburg', 'F2': 1, 'F3': 250 }
+												]
+											}
+										]
+									}
+								]
+							}
+						}
+					);
+				});
+			}());
+		</script>
+	</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, user-scalable=no, target-densitydpi=device-dpi" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="author" content="@zhengli" />
+		<link rel="shortcut icon" href="../images/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+		<title>HeatMap Test - InfoViz</title>
+		<!--[if lt IE 9]>
+			<script src="../js/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body class="p-demo p-test">
+		<header><h1><a href="http://infoviz.org"></a></h1></header>
+		<section class="container">
+			<ul class="menu">
+				<li><a href="../index.html" title="Controls">Controls</a></li>
+				<li><a href="https://github.com/nocoo/InfoViz" title="Documentation">Documentation</a></li>
+				<li><a class="active" href="./index.html" title="Test">Test</a></li>
+				<li><a href="../history.html" title="History">History</a></li>
+				<li><a href="../license.html" title="The MIT License">The MIT License</a></li>
+				<div class="clear"></div>
+			</ul>
+
+			<h1>HeatMap Test</h1>
+			<section>
+				<h2>Test1 <a href="#test1" name="test1">#</a></h2>
+				<div id="i_heatmap1" class="infoviz i-heatmap"></div>
+			</section>
+
+			<a class="fork" href="https://github.com/nocoo/InfoViz"></a>
+		</section>
+		<footer><p>InfoViz Dev, the MIT License, <a href="http://about.me/nocoo">@zhengli</a>, <a href="https://github.com/nocoo/InfoViz">Github</a></p></footer>
+
+		<script src="../js/raphael.min.js"></script>
+		<script src="../js/sea.min.js"></script>
+		<script>
+			(function () {
+				'use strict';
+				/*global seajs*/
+				seajs.use([ '../js/infoviz' ], function (InfoViz) {
+					var i, j, item;
+
+					//Logo is disabled by default.
+					InfoViz.enable_logo();
+
+					// Global option overwrite.
+					InfoViz.global_option({
+						'layout': { 'background-color': '#FFF', 'logo-url': '../images/infoviz_logo_tiny.png' },
+					});
+
+					// HeatMap
+					var data = [];
+					for(i = 0; i < 1024; ++i) {
+						item = Math.floor(Math.random() * 100);
+						data.push({ 'F1': item, 'F2': i, 'F3': item });
+					}
+
+					InfoViz.chart(
+						'i_heatmap1',
+						'heatmap',
+						{
+							'value_field': 'F1',
+							'label_field': 'F3',
+							'tooltip_title': 'InfoViz {F2}, {F3}',
+							'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
+							'data': data
+						},
+						{ 'layout': { 'logo-enabled': false }, 'heatmap': { 'label-size': 12 } }
+					);
+				});
+			}());
+		</script>
+	</body>
+</html>

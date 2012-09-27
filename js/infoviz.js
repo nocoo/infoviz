@@ -25,7 +25,8 @@ define(function(require, exports, module) {
 
 			'logo-enabled': false,				// is InfoViz logo enabled
 			'logo-url': './images/infoviz_logo_tiny.png',
-												// logo url
+												// logo image url
+			'logo-link': 'http://infoviz.org',	// destination page link after user click the logo
 			'logo-width': 50,					// logo width
 			'logo-height': 17,					// logo height
 			'logo-position': 'top-right',		// logo position, top-right | top-left | bottom-right | bottom-left
@@ -664,7 +665,7 @@ define(function(require, exports, module) {
 					x, y,
 					options['layout']['logo-width'],
 					options['layout']['logo-height']).attr({ 'cursor': 'pointer' }).translate(0.5, 0.5);
-				logo.click(function() { window.location.href = 'https://github.com/nocoo/InfoViz'; });
+				logo.click(function() { window.location.href = options['layout']['logo-link']; });
 			}
 		});
 	};

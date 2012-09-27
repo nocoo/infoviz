@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, user-scalable=no, target-densitydpi=device-dpi" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="author" content="@zhengli" />
+		<link rel="shortcut icon" href="../images/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+		<title>WorldMap Test - InfoViz</title>
+		<!--[if lt IE 9]>
+			<script src="../js/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body class="p-demo p-test">
+		<header><h1><a href="http://infoviz.org"></a></h1></header>
+		<section class="container">
+			<ul class="menu">
+				<li><a href="../index.html" title="Controls">Controls</a></li>
+				<li><a href="https://github.com/nocoo/InfoViz" title="Documentation">Documentation</a></li>
+				<li><a class="active" href="./index.html" title="Test">Test</a></li>
+				<li><a href="../history.html" title="History">History</a></li>
+				<li><a href="../license.html" title="The MIT License">The MIT License</a></li>
+				<div class="clear"></div>
+			</ul>
+
+			<h1>WorldMap Test</h1>
+			<section>
+				<h2>Test1 <a href="#test1" name="test1">#</a></h2>
+				<div id="i_worldmap1" class="infoviz"></div>
+			</section>
+
+			<a class="fork" href="https://github.com/nocoo/InfoViz"></a>
+		</section>
+		<footer><p>InfoViz Dev, the MIT License, <a href="http://about.me/nocoo">@zhengli</a>, <a href="https://github.com/nocoo/InfoViz">Github</a></p></footer>
+
+		<script src="../js/raphael.min.js"></script>
+		<script src="../js/sea.min.js"></script>
+		<script>
+			(function () {
+				'use strict';
+				/*global seajs*/
+				seajs.use([ '../js/infoviz' ], function (InfoViz) {
+					var i, j, item;
+
+					//Logo is disabled by default.
+					InfoViz.enable_logo();
+
+					// Global option overwrite.
+					InfoViz.global_option({
+						'layout': { 'background-color': '#FFF', 'logo-url': '../images/infoviz_logo_tiny.png' },
+					});
+
+					// WorldMap
+					InfoViz.chart(
+						'i_worldmap1',
+						'worldmap',
+						{
+							'value_field': 'F1',
+							'tooltip_title': 'InfoViz: {area}',
+							'tooltip_content': '{area}: value = {F1}',
+							'data': [
+								{ 'area': 'BR', 'F1': 1 },
+								{ 'area': 'CH', 'F1': 2 },
+								{ 'area': 'CL', 'F1': 3 },
+								{ 'area': 'US', 'F1': 4 },
+								{ 'area': 'JP', 'F1': 7 },
+								{ 'area': 'MX', 'F1': 6 },
+								{ 'area': 'PE', 'F1': 7 },
+								{ 'area': 'ZA', 'F1': 8 },
+								{ 'area': 'ZW', 'F1': 9 },
+								{ 'area': 'RU', 'F1': 3 },
+								{ 'area': 'QA', 'F1': 2 },
+								{ 'area': 'NO', 'F1': 8 },
+								{ 'area': 'ML', 'F1': 4 },
+								{ 'area': 'KR', 'F1': 5 },
+								{ 'area': 'CN', 'F1': 8 },
+								{ 'area': 'TW', 'F1': 8 },
+								{ 'area': 'CU', 'F1': 7 },
+								{ 'area': 'ER', 'F1': 8 },
+								{ 'area': 'GH', 'F1': 9 },
+								{ 'area': 'HN', 'F1': 1 },
+								{ 'area': 'IN', 'F1': 2 },
+								{ 'area': 'AU', 'F1': 9 },
+								{ 'area': 'CA', 'F1': 7 },
+								{ 'area': 'IT', 'F1': 7 },
+								{ 'area': 'GB', 'F1': 5 },
+								{ 'area': 'FR', 'F1': 8 },
+								{ 'area': 'DE', 'F1': 6 },
+								{ 'area': 'PT', 'F1': 9 },
+								{ 'area': 'ES', 'F1': 5 },
+								{ 'area': 'SE', 'F1': 7 }
+							]
+						}
+					);
+				});
+			}());
+		</script>
+	</body>
+</html>

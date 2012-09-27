@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, user-scalable=no, target-densitydpi=device-dpi" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="author" content="@zhengli" />
+		<link rel="shortcut icon" href="../images/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+		<title>SmithGraph Test - InfoViz</title>
+		<!--[if lt IE 9]>
+			<script src="../js/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body class="p-demo p-test">
+		<header><h1><a href="http://infoviz.org"></a></h1></header>
+		<section class="container">
+			<ul class="menu">
+				<li><a href="../index.html" title="Controls">Controls</a></li>
+				<li><a href="https://github.com/nocoo/InfoViz" title="Documentation">Documentation</a></li>
+				<li><a class="active" href="./index.html" title="Test">Test</a></li>
+				<li><a href="../history.html" title="History">History</a></li>
+				<li><a href="../license.html" title="The MIT License">The MIT License</a></li>
+				<div class="clear"></div>
+			</ul>
+
+			<h1>SmithGraph Test</h1>
+			<section>
+				<h2>Test1 <a href="#test1" name="test1">#</a></h2>
+				<div id="i_smithgraph1" class="infoviz i-smithgraph"></div>
+			</section>
+
+			<div class="clear"></div>
+			<a class="fork" href="https://github.com/nocoo/InfoViz"></a>
+		</section>
+		<footer><p>InfoViz Dev, the MIT License, <a href="http://about.me/nocoo">@zhengli</a>, <a href="https://github.com/nocoo/InfoViz">Github</a></p></footer>
+
+		<script src="../js/raphael.min.js"></script>
+		<script src="../js/sea.min.js"></script>
+		<script>
+			(function () {
+				'use strict';
+				/*global seajs*/
+				seajs.use([ '../js/infoviz' ], function (InfoViz) {
+					var i, j, item;
+
+					//Logo is disabled by default.
+					InfoViz.enable_logo();
+
+					// Global option overwrite.
+					InfoViz.global_option({
+						'layout': { 'background-color': '#FFF', 'logo-url': '../images/infoviz_logo_tiny.png' },
+					});
+
+					// SmithGraph
+					var data = [];
+					var max_nodes = 256, max_edge = 6, max_value = 100;
+					for(i = 0; i < max_nodes; ++i) {
+						var edge_count = Math.floor(Math.random() * max_edge), edges = [];
+
+						for(j = 0; j < edge_count; ++j) {
+							edges.push({
+								'to': 'item' + Math.floor(Math.random() * max_nodes),
+								'F3': Math.floor(Math.random() * max_value)
+							});
+						}
+
+						data.push({
+							'F1': 'item' + i,
+							'F2': Math.floor(Math.random() * max_value),
+							'F4': edges.length,
+							'edges': edges
+						});
+					}
+
+					InfoViz.chart(
+						'i_smithgraph1',
+						'smithgraph',
+						{
+							'node_id_field': 'F1',
+							'node_label_field': 'F1',
+							'node_value_field': 'F2',
+							'edge_value_field': 'F3',
+							'node_tooltip_title': 'Node #{F1}',
+							'node_tooltip_content': 'Value: {F2}. Edges: {F4}.',
+							'data': data
+						},
+						{ 'legend': { 'legend-enabled': false } }
+					);
+				});
+			}());
+		</script>
+	</body>
+</html>
