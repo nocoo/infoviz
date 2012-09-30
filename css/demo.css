@@ -103,6 +103,24 @@ ul.boxes li p { font-size: 12px; padding: 0; margin: 0px 0 10px 0; text-align: c
 
 .p-history ul.boxes h1 { padding: 0; margin: 0; font-size: 1.5em; }
 .p-test ul.boxes h1 { padding: 0; margin: 0; font-size: 1em; }
+
+.p-test ul.boxes li { background: #FFF; width: 277px; height: 100px; border-radius: 4px; }
+.p-test ul.boxes li a { line-height: 100px; text-align: right; padding-right: 10px; color: #555; font-size: 1em; opacity: 0; }
+.p-test ul.boxes li a:hover { opacity: 1; }
+.p-test ul.boxes li.linechart { background: url('../images/test_linechart.png') center no-repeat; background-image: -webkit-image-set(url('../images/test_linechart.png') 1x, url('../images/test_linechart@2x.png') 2x); }
+.p-test ul.boxes li.barchart { background: url('../images/test_barchart.png') center no-repeat; background-image: -webkit-image-set(url('../images/test_barchart.png') 1x, url('../images/test_barchart@2x.png') 2x); }
+.p-test ul.boxes li.stackchart { background: url('../images/test_stackchart.png') center no-repeat; background-image: -webkit-image-set(url('../images/test_stackchart.png') 1x, url('../images/test_stackchart@2x.png') 2x); }
+.p-test ul.boxes li.bubblechart { background: url('../images/test_bubblechart.png') center no-repeat; background-image: -webkit-image-set(url('../images/test_bubblechart.png') 1x, url('../images/test_bubblechart@2x.png') 2x); }
+.p-test ul.boxes li.stockchart { background: url('../images/test_stockchart.png') center no-repeat; background-image: -webkit-image-set(url('../images/test_stockchart.png') 1x, url('../images/test_stockchart@2x.png') 2x); }
+.p-test ul.boxes li.piechart { background: url('../images/test_piechart.png') center no-repeat; background-image: -webkit-image-set(url('../images/test_piechart.png') 1x, url('../images/test_piechart@2x.png') 2x); }
+.p-test ul.boxes li.radarchart { background: url('../images/test_radarchart.png') center no-repeat; background-image: -webkit-image-set(url('../images/test_radarchart.png') 1x, url('../images/test_radarchart@2x.png') 2x); }
+.p-test ul.boxes li.radialchart { background: url('../images/test_radialchart.png') center no-repeat; background-image: -webkit-image-set(url('../images/test_radialchart.png') 1x, url('../images/test_radialchart@2x.png') 2x); }
+.p-test ul.boxes li.smithgraph { background: url('../images/test_smithgraph.png') center no-repeat; background-image: -webkit-image-set(url('../images/test_smithgraph.png') 1x, url('../images/test_smithgraph@2x.png') 2x); }
+.p-test ul.boxes li.heatmap { background: url('../images/test_heatmap.png') center no-repeat; background-image: -webkit-image-set(url('../images/test_heatmap.png') 1x, url('../images/test_heatmap@2x.png') 2x); }
+.p-test ul.boxes li.worldmap { background: url('../images/test_worldmap.png') center no-repeat; background-image: -webkit-image-set(url('../images/test_worldmap.png') 1x, url('../images/test_worldmap@2x.png') 2x); }
+.p-test ul.boxes li.basictree { background: url('../images/test_basictree.png') center no-repeat; background-image: -webkit-image-set(url('../images/test_basictree.png') 1x, url('../images/test_basictree@2x.png') 2x); }
+.p-test ul.boxes li.tagcloud { background: url('../images/test_tagcloud.png') center no-repeat; background-image: -webkit-image-set(url('../images/test_tagcloud.png') 1x, url('../images/test_tagcloud@2x.png') 2x); }
+
 .p-test .container .infoviz.i-smithgraph { width: 850px; height: 850px; }
 .p-test .container .infoviz.i-heatmap { width: 850px; height: 850px; }
 .p-test .container .infoviz.i-basictree { width: 850px; height: 450px; }
