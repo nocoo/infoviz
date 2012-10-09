@@ -217,10 +217,14 @@ define(function(require, exports, module) {
             for (i = 0; i < p_nodes.length; ++i) {
                 (function(target) {
                     target.mouseover(function() {
-                        target.stop().animate({ 'fill-opacity': options['color'][0]['dark-alpha'] }, options['layout']['speed'], '>');
+                        target.stop().animate({
+                            'fill-opacity': options['color'][0]['dark-alpha']
+                        }, options['layout']['speed'], '>');
                     });
                     target.mouseout(function() {
-                        target.stop().animate({ 'fill-opacity': options['color'][0]['light-alpha'] }, options['layout']['speed'], '<');
+                        target.stop().animate({
+                            'fill-opacity': options['color'][0]['light-alpha']
+                        }, options['layout']['speed'], '<');
                     });
                 })(p_nodes[i]);
             }
