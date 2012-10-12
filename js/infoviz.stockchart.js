@@ -17,6 +17,7 @@ define(function(require, exports, module) {
             var this_h, this_v_max, this_v_middle, this_v_min, h_min = Infinity, h_max = -Infinity, v_min = Infinity, v_max = -Infinity;
 
             // Scan horizontal and vertical fields.
+            var column_range = {};
             for (var line in lines) {
                 for (i = 0; i < lines[line]['data'].length; ++i) {
                     item = lines[line]['data'][i];
@@ -37,6 +38,7 @@ define(function(require, exports, module) {
 
                     if (core.in_array(this_h, h_fields) === -1) {
                         h_fields.push(this_h);
+                        column_range[this_h] = { 'min': Infinity, 'max': -Infinity };
                     }
 
                     // vertical field.
@@ -52,15 +54,25 @@ define(function(require, exports, module) {
                         continue;
                     }
 
-                    if (this_v_max > v_max) {
-                        v_max = this_v_max;
+                    if (this_v_max > column_range[this_h]['max']) {
+                        column_range[this_h]['max'] = this_v_max;
                     }
-                    if (this_v_min < v_min) {
-                        v_min = this_v_min;
+                    if (this_v_min < column_range[this_h]['min']) {
+                        column_range[this_h]['min'] = this_v_min;
                     }
                 }
 
                 ++line_count;
+            }
+
+            for (var column in column_range) {
+                if (column_range[column]['max'] > v_max) {
+                    v_max = column_range[column]['max'];
+                }
+
+                if (column_range[column]['min'] < v_min) {
+                    v_min = column_range[column]['min'];
+                }
             }
 
             v_min = Math.floor(v_min / 10) * 10;
@@ -68,11 +80,8 @@ define(function(require, exports, module) {
 
             // Mapping position.
             var h_start = chart_area['top-left'][0] + options['stockchart']['padding-left'];
-            //var h_unit = (chart_area['top-right'][0] - options['stockchart']['padding-right'] - h_start) / (h_fields.length - 1);
-
             var v_start = chart_area['bottom-left'][1] - options['stockchart']['padding-bottom'];
             var v_unit = (v_start - chart_area['top-left'][1] - options['stockchart']['padding-top']) / (v_max - v_min);
-
             var h_map = {};
 
             // Vertical labels.
@@ -92,7 +101,6 @@ define(function(require, exports, module) {
                     'stroke-opacity': options['grid']['axis-alpha'],
                     'stroke-width': options['grid']['axis-width']
                 }).translate(0.5, 0.5);
-
 
                 paper.text(x - options['stockchart']['vertical-bar-width'], y, v_value).attr({
                     'text-anchor': 'end',
@@ -152,9 +160,9 @@ define(function(require, exports, module) {
 
                     // bar
                     x = h_map[item[h_field_name]] + (index) * (bar_width + options['stockchart']['bar-margin']);
-                    max_y = v_start - item[v_field_name['max']] * v_unit;
-                    middle_y = v_start - item[v_field_name['middle']] * v_unit;
-                    min_y = v_start - item[v_field_name['min']] * v_unit;
+                    max_y = v_start - (item[v_field_name['max']] - v_min) * v_unit;
+                    middle_y = v_start - (item[v_field_name['middle']] - v_min) * v_unit;
+                    min_y = v_start - (item[v_field_name['min']] - v_min) * v_unit;
 
                     this_node = paper.rect(x, max_y, bar_width, (min_y - max_y));
                     this_node.attr({

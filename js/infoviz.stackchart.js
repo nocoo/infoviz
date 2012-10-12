@@ -19,7 +19,6 @@ define(function(require, exports, module) {
             // Scan horizontal and vertical fields.
             var column_sum = {};
             for (var line in lines) {
-
                 for (i = 0; i < lines[line]['data'].length; ++i) {
                     item = lines[line]['data'][i];
 
@@ -53,13 +52,13 @@ define(function(require, exports, module) {
             }
 
             for (var column in column_sum) {
-                if(column_sum[column] > v_sum_max) {
+                if (column_sum[column] > v_sum_max) {
                     v_sum_max = column_sum[column];
                 }
             }
 
             v_min = 0;
-            v_max = Math.ceil(v_sum_max / 10) * 10;;
+            v_max = Math.ceil(v_sum_max / 10) * 10;
 
             // Mapping position.
             var h_start = chart_area['top-left'][0] + options['stackchart']['padding-left'];
