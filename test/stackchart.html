@@ -31,6 +31,14 @@
 				<div id="i_stackchart1" class="infoviz"></div>
 			</section>
 			<section>
+				<h2>Test2 <a href="#test2" name="test2">#</a></h2>
+				<div id="i_stackchart2" class="infoviz"></div>
+			</section>
+			<section>
+				<h2>Test3 <a href="#test3" name="test3">#</a></h2>
+				<div id="i_stackchart3" class="infoviz"></div>
+			</section>
+			<section>
 				<h2>Test4 <a href="#test4" name="test4">#</a></h2>
 				<div id="i_stackchart4" class="infoviz"></div>
 			</section>
@@ -119,6 +127,130 @@
 						},
 						{ 'legend': { 'margin-top': 0 } },
 						function(info) { console.log(info); }
+					);
+
+					// Test2
+					InfoViz.chart(
+						'i_stackchart2',
+						'stackchart',
+						{
+							'vertical_axis_name': 'Vertical',
+							'horizontal_axis_name': 'Horizontal',
+							'horizontal_field': 'F2',
+							'vertical_field': 'F1',
+							'tooltip_title': 'InfoViz {F2}, {F3}',
+							'tooltip_content': 'Value: {F1}',
+							'data': {
+								'bar1': {
+									'name': 'China',
+									'data': [
+										{ 'F1': 10, 'F2': 'A', 'F3': 3  },
+										{ 'F1': 20, 'F2': 'B', 'F3': 6  },
+										{ 'F1': 30, 'F2': 'C', 'F3': 9  },
+										{ 'F1': 40, 'F2': 'D', 'F3': 12 }
+									]
+								},
+								'bar2': {
+									'name': 'Unite States',
+									'data': [
+										{ 'F1': 40, 'F2': 'A', 'F3': 15 },
+										{ 'F1': 30, 'F2': 'B', 'F3': 12 },
+										{ 'F1': 20, 'F2': 'C', 'F3': 9  },
+										{ 'F1': 10, 'F2': 'D', 'F3': 3  },
+										{ 'F1': 15, 'F2': 'E', 'F3': 6  }
+									]
+								},
+								'bar3': {
+									'name': 'Unite Kingdom',
+									'data': [
+										{ 'F1': 20, 'F2': 'A', 'F3': 15 },
+										{ 'F1': 30, 'F2': 'B', 'F3': 12 },
+										{ 'F1': 10, 'F2': 'D', 'F3': 3  },
+										{ 'F1': 40, 'F2': 'E', 'F3': 6  }
+									]
+								},
+								'bar4': {
+									'name': 'Italy',
+									'data': [
+										{ 'F1': 29, 'F2': 'A', 'F3': 15 },
+										{ 'F1': 70, 'F2': 'B', 'F3': 12 },
+										{ 'F1': 42, 'F2': 'C', 'F3': 9  },
+										{ 'F1': 51, 'F2': 'D', 'F3': 3  },
+										{ 'F1': 22, 'F2': 'E', 'F3': 6  }
+									]
+								},
+								'bar5': {
+									'name': 'Russia',
+									'data': [
+										{ 'F1': 29,  'F2': 'A', 'F3': 15 },
+										{ 'F1': 50, 'F2': 'B', 'F3': 12 },
+										{ 'F1': 52, 'F2': 'C', 'F3': 9  },
+										{ 'F1': 52, 'F2': 'E', 'F3': 6  }
+									]
+								},
+								'bar6': {
+									'name': 'Korea',
+									'data': [
+										{ 'F1': 29, 'F2': 'A', 'F3': 15 },
+										{ 'F1': 50, 'F2': 'B', 'F3': 12 },
+										{ 'F1': 52, 'F2': 'C', 'F3': 9  },
+										{ 'F1': 52, 'F2': 'E', 'F3': 6  }
+									]
+								},
+								'bar7': {
+									'name': 'Japan',
+									'data': [
+										{ 'F1': 29, 'F2': 'A', 'F3': 15 },
+										{ 'F1': 50, 'F2': 'B', 'F3': 12 },
+										{ 'F1': 52, 'F2': 'C', 'F3': 9  },
+										{ 'F1': 52, 'F2': 'E', 'F3': 6  }
+									]
+								}
+							}
+						},
+						{
+							'legend': { 'legend-position': 'bottom-right', 'margin-right': 0 },
+							'stackchart': { 'padding-right': 140 }
+						}
+					);
+
+					// Test3
+					var data = {};
+					var count_bars = Math.floor(Math.random() * 8) + 2;
+					var count_columns = Math.floor(Math.random() * 8) + 2;
+
+					for(i = 0; i < count_bars; ++i) {
+						item = [];
+
+						for(j = 0; j < count_columns; ++j) {
+							item.push({
+								'F1': Math.floor(Math.random() * 500) + 500,
+								'F2': 'Col.' + j
+							});
+						}
+
+						data['bar' + i] = {
+							'name': 'serie' + i,
+							'data': item
+						};
+					}
+
+					InfoViz.chart(
+						'i_stackchart3',
+						'stackchart',
+						{
+							'vertical_axis_name': 'Vertical',
+							'horizontal_axis_name': 'Horizontal',
+							'horizontal_field': 'F2',
+							'vertical_field': 'F1',
+							'tooltip_title': 'InfoViz {F2}',
+							'tooltip_content': 'Value: {F1}',
+							'data': data
+						},
+						{
+							'legend': { 'legend-position': 'bottom-right', 'margin-right': 0 },
+							'stackchart': { 'padding-right': 90 }
+						}
 					);
 
 					// Test4

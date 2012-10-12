@@ -14,11 +14,11 @@ define(function(require, exports, module) {
             var options = core.merge_options(overwrite_options), cache = [], x, y, line_count = 0;
             var lines = data['data'], h_fields = [], v_fields = [], i, j, k, item;
             var h_field_name = data['horizontal_field'], v_field_name = data['vertical_field'];
-            var this_h, this_v, h_min = Infinity, h_max = -Infinity, v_min = Infinity, v_max = -Infinity, v_sum_max = -Infinity;
+            var this_h, this_v, v_min = Infinity, v_max = -Infinity, v_sum_max = -Infinity;
 
             // Scan horizontal and vertical fields.
+            var column_sum = {};
             for (var line in lines) {
-                var v_sum = 0;
 
                 for (i = 0; i < lines[line]['data'].length; ++i) {
                     item = lines[line]['data'][i];
@@ -30,15 +30,9 @@ define(function(require, exports, module) {
                         this_h = 'N/A';
                     }
 
-                    if (this_h > h_max) {
-                        h_max = this_h;
-                    }
-                    if (this_h < h_min) {
-                        h_min = this_h;
-                    }
-
                     if (core.in_array(this_h, h_fields) === -1) {
                         h_fields.push(this_h);
+                        column_sum[this_h] = 0;
                     }
 
                     // vertical field.
@@ -48,27 +42,24 @@ define(function(require, exports, module) {
                         this_v = 'N/A';
                     }
 
-                    if (this_v > v_max) {
-                        v_max = this_v;
-                    }
-                    if (this_v < v_min) {
-                        v_min = this_v;
-                    }
-
                     if (core.in_array(this_v, v_fields) === -1) {
                         v_fields.push(this_v);
                     }
 
-                    v_sum += this_v;
+                    column_sum[this_h] += this_v;
                 }
-
-                if (v_sum > v_sum_max) v_sum_max = v_sum;
 
                 ++line_count;
             }
 
-            v_min = Math.floor(v_min / 10) * 10;
-            v_max = Math.ceil(v_max / 10) * 10;
+            for (var column in column_sum) {
+                if(column_sum[column] > v_sum_max) {
+                    v_sum_max = column_sum[column];
+                }
+            }
+
+            v_min = 0;
+            v_max = Math.ceil(v_sum_max / 10) * 10;;
 
             // Mapping position.
             var h_start = chart_area['top-left'][0] + options['stackchart']['padding-left'];
