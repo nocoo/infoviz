@@ -31,6 +31,14 @@
 				<div id="i_bubblechart1" class="infoviz"></div>
 			</section>
 			<section>
+				<h2>Test2 <a href="#test2" name="test2">#</a></h2>
+				<div id="i_bubblechart2" class="infoviz"></div>
+			</section>
+			<section>
+				<h2>Test3 <a href="#test3" name="test3">#</a></h2>
+				<div id="i_bubblechart3" class="infoviz"></div>
+			</section>
+			<section>
 				<h2>Test4 <a href="#test4" name="test4">#</a></h2>
 				<div id="i_bubblechart4" class="infoviz"></div>
 			</section>
@@ -90,6 +98,68 @@
 							'legend': { 'legend-position': 'top-right', 'margin-top': 40, 'margin-right': 0 }
 						},
 						function(info) { console.log(info); }
+					);
+
+					// Test2.
+					InfoViz.chart(
+						'i_bubblechart2',
+						'bubblechart',
+						{
+							'vertical_axis_name': 'Vertical',
+							'horizontal_axis_name': 'Horizontal',
+							'horizontal_field': 'F1',
+							'vertical_field': 'F2',
+							'size_field': 'F3',
+							'label_field': 'F4',
+							'tooltip_title': 'InfoViz {F2}, {F3}',
+							'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
+							'data': [
+								{ 'F1': 10,  'F2': 18, 'F3': 6, 'F4': 'China' },
+								{ 'F1': 42,  'F2': 30, 'F3': 9, 'F4': 'Unite States' },
+								{ 'F1': 30,  'F2': 35, 'F3': 9, 'F4': 'Russia' },
+								{ 'F1': 50,  'F2': 12, 'F3': 9, 'F4': 'Japan' },
+								{ 'F1': 50,  'F2': 25, 'F3': 8, 'F4': 'Botswana' },
+								{ 'F1': 29,  'F2': 22, 'F3': 4, 'F4': 'Finland' },
+								{ 'F1': 20,  'F2': 3,  'F3': 3, 'F4': 'France' }
+							]
+						},
+						{
+							'bubblechart': { 'padding-right': 200, 'circle-min-radius': 20, 'circle-max-radius': 50 },
+							'legend': { 'legend-position': 'bottom-right', 'margin-right': 0 }
+						}
+					);
+
+					// Test3.
+					var data = [];
+					var count_bubbles = Math.floor(Math.random() * 90) + 10;
+
+					for(i = 0; i < count_bubbles; ++i) {
+						data.push({
+							'F1': Math.floor(Math.random() * 500) + 500,
+							'F2': Math.floor(Math.random() * 1000) + 1000,
+							'F3': Math.floor(Math.random() * 500),
+							'F4': 'B' + i
+						});
+					}
+
+					InfoViz.chart(
+						'i_bubblechart3',
+						'bubblechart',
+						{
+							'vertical_axis_name': 'Vertical',
+							'horizontal_axis_name': 'Horizontal',
+							'horizontal_field': 'F1',
+							'vertical_field': 'F2',
+							'size_field': 'F3',
+							'label_field': 'F4',
+							'tooltip_title': 'InfoViz {F4}',
+							'tooltip_content': 'Tooltip: ({F1}, {F2}) | {F3}',
+							'data': data
+						},
+						{
+							'bubblechart': { 'padding-right': 50, 'circle-min-radius': 15, 'circle-max-radius': 50 },
+							'legend': { 'legend-enabled': false }
+						}
 					);
 
 					// Test4.
