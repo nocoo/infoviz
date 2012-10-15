@@ -27,7 +27,7 @@
 
 			<h1>HeatMap Test</h1>
 			<section>
-				<h2>Test1 <a href="#test1" name="test1">#</a></h2>
+				<h2>Test1 <a href="#test1" name="test1">#</a><a id="btn_refresh" class="button">Refresh</a></h2>
 				<div id="i_heatmap1" class="infoviz i-heatmap"></div>
 			</section>
 			<section>
@@ -57,38 +57,44 @@
 					});
 
 					// HeatMap data.
-					var data = [];
-					for(i = 0; i < 1024; ++i) {
-						item = Math.floor(Math.random() * 100);
-						data.push({ 'F1': item, 'F2': i, 'F3': item });
-					}
+					var random_chart = function (element, options) {
+						var data = [];
+						for(i = 0; i < 1024; ++i) {
+							item = Math.floor(Math.random() * 100);
+							data.push({ 'F1': item, 'F2': i, 'F3': item });
+						}
+
+						InfoViz.chart(
+							element,
+							'heatmap',
+							{
+								'value_field': 'F1',
+								'label_field': 'F3',
+								'tooltip_title': 'InfoViz {F2}, {F3}',
+								'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
+								'data': data
+							},
+							options,
+							function(info) { console.log(info); }
+						);
+					};
+
 
 					// Test1
-					InfoViz.chart(
-						'i_heatmap1',
-						'heatmap',
-						{
-							'value_field': 'F1',
-							'label_field': 'F3',
-							'tooltip_title': 'InfoViz {F2}, {F3}',
-							'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
-							'data': data
-						},
-						{ 'layout': { 'logo-enabled': false }, 'heatmap': { 'label-size': 12 } },
-						function(info) { console.log(info); }
-					);
+					random_chart('i_heatmap1', { 'layout': { 'logo-enabled': false }, 'heatmap': { 'label-size': 12 } });
+
+					var button = document.getElementById('btn_refresh');
+					var on_refresh = function() {
+						InfoViz.clear('i_heatmap1', true);
+
+						setTimeout(function() {
+							random_chart('i_heatmap1', { 'layout': { 'logo-enabled': false }, 'heatmap': { 'label-size': 12 } });
+						}, 500);
+					};
+					button.onclick = on_refresh;
 
 					// Test4
-					InfoViz.chart(
-						'i_heatmap4',
-						'heatmap',
-						{
-							'value_field': 'F1',
-							'label_field': 'F3',
-							'tooltip_title': 'InfoViz {F2}, {F3}',
-							'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
-							'data': data
-						},
+					random_chart('i_heatmap4',
 						{
 							'layout': { 'logo-enabled': false },
 							'grid': { 'background-color': '#333'},

@@ -35,6 +35,10 @@
 				<div id="i_radialchart2" class="infoviz"></div>
 			</section>
 			<section>
+				<h2>Test3 <a href="#test3" name="test3">#</a><a id="btn_refresh" class="button">Refresh</a></h2>
+				<div id="i_radialchart3" class="infoviz"></div>
+			</section>
+			<section>
 				<h2>Test4 <a href="#test4" name="test4">#</a></h2>
 				<div id="i_radialchart4" class="infoviz"></div>
 			</section>
@@ -130,6 +134,46 @@
 						}
 					);
 
+					// Test3
+					var random_chart = function (element) {
+						var data = [];
+						var count_records = Math.floor(Math.random() * 30) + 20;
+
+						for (i = 0; i < count_records; ++i) {
+							data.push({
+								'F1': Math.floor(Math.random() * 500) + 500,
+								'F2': 'Record No.' + i
+							});
+						}
+
+						InfoViz.chart(
+							element,
+							'radialchart',
+							{
+								'value_field': 'F1',
+								'label_field': 'F2',
+								'tooltip_title': 'Country: {F2}',
+								'tooltip_content': 'Tooltip: {F2}',
+								'data': data
+							},
+							{
+								'legend': { 'legend-enabled': false }
+							}
+						);
+					};
+
+					random_chart('i_radialchart3');
+
+					var button = document.getElementById('btn_refresh');
+					var on_refresh = function() {
+						InfoViz.clear('i_radialchart3', true);
+
+						setTimeout(function() {
+							random_chart('i_radialchart3');
+						}, 500);
+					};
+					button.onclick = on_refresh;
+
 					// Test4
 					InfoViz.chart(
 						'i_radialchart4',
@@ -161,7 +205,7 @@
 							'layout': { 'logo-url': '../images/infoviz_logo_tiny_white.png' },
 							'grid': { 'background-color': '#333' },
 							'tooltip': { 'border-color': '#DDD', 'background-color': '#333' },
-							'legend': { 'legend-position': 'top-right', 'margin-top': 40, 'margin-right': 0, 'border-color': '#DDD', 'background-color': '#333' },
+							'legend': { 'legend-position': 'top-left', 'margin-top': 4, 'margin-left': 0, 'border-color': '#DDD', 'background-color': '#333' },
 							'radialchart': { 'size-factor': 0.8, 'bar-min-height': 60, 'bar-width': 14, 'hole-radius': 36, 'label-bar-color': '#DDD' },
 							'color': [
 								{ 'color': '#FFF', 'dark-alpha': 0.20, 'light-alpha': 0.45 },

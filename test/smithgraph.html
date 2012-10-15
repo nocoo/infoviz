@@ -27,7 +27,7 @@
 
 			<h1>SmithGraph Test</h1>
 			<section>
-				<h2>Test1 <a href="#test1" name="test1">#</a></h2>
+				<h2>Test1 <a href="#test1" name="test1">#</a><a id="btn_refresh" class="button">Refresh</a></h2>
 				<div id="i_smithgraph1" class="infoviz i-smithgraph"></div>
 			</section>
 			<section>
@@ -58,56 +58,61 @@
 					});
 
 					// SmithGraph data
-					var data = [];
-					var max_nodes = 256, max_edge = 6, max_value = 100;
-					for(i = 0; i < max_nodes; ++i) {
-						var edge_count = Math.floor(Math.random() * max_edge), edges = [];
+					var random_chart = function (element, option) {
+						var data = [];
+						var max_nodes = 256, max_edge = 6, max_value = 100;
+						for(i = 0; i < max_nodes; ++i) {
+							var edge_count = Math.floor(Math.random() * max_edge), edges = [];
 
-						for(j = 0; j < edge_count; ++j) {
-							edges.push({
-								'to': 'item' + Math.floor(Math.random() * max_nodes),
-								'F3': Math.floor(Math.random() * max_value)
+							for(j = 0; j < edge_count; ++j) {
+								edges.push({
+									'to': 'item' + Math.floor(Math.random() * max_nodes),
+									'F3': Math.floor(Math.random() * max_value)
+								});
+							}
+
+							data.push({
+								'F1': 'item' + i,
+								'F2': Math.floor(Math.random() * max_value),
+								'F4': edges.length,
+								'edges': edges
 							});
 						}
 
-						data.push({
-							'F1': 'item' + i,
-							'F2': Math.floor(Math.random() * max_value),
-							'F4': edges.length,
-							'edges': edges
-						});
-					}
+						InfoViz.chart(
+							element,
+							'smithgraph',
+							{
+								'node_id_field': 'F1',
+								'node_label_field': 'F1',
+								'node_value_field': 'F2',
+								'edge_value_field': 'F3',
+								'node_tooltip_title': 'Node #{F1}',
+								'node_tooltip_content': 'Value: {F2}. Edges: {F4}.',
+								'data': data
+							},
+							option,
+							function(info) { console.log(info); }
+						);
+					};
+
+
 
 					// Test1
-					InfoViz.chart(
-						'i_smithgraph1',
-						'smithgraph',
-						{
-							'node_id_field': 'F1',
-							'node_label_field': 'F1',
-							'node_value_field': 'F2',
-							'edge_value_field': 'F3',
-							'node_tooltip_title': 'Node #{F1}',
-							'node_tooltip_content': 'Value: {F2}. Edges: {F4}.',
-							'data': data
-						},
-						{ 'legend': { 'legend-enabled': false } },
-						function(info) { console.log(info); }
-					);
+					random_chart('i_smithgraph1', { 'legend': { 'legend-enabled': false } });
+
+					var button = document.getElementById('btn_refresh');
+					var on_refresh = function() {
+						InfoViz.clear('i_smithgraph1', true);
+
+						setTimeout(function() {
+							random_chart('i_smithgraph1', { 'legend': { 'legend-enabled': false } });
+						}, 500);
+					};
+					button.onclick = on_refresh;
 
 					// Test4
-					InfoViz.chart(
-						'i_smithgraph4',
-						'smithgraph',
-						{
-							'node_id_field': 'F1',
-							'node_label_field': 'F1',
-							'node_value_field': 'F2',
-							'edge_value_field': 'F3',
-							'node_tooltip_title': 'Node #{F1}',
-							'node_tooltip_content': 'Value: {F2}. Edges: {F4}.',
-							'data': data
-						},
+					random_chart('i_smithgraph4',
 						{
 							'layout': { 'logo-url': '../images/infoviz_logo_tiny_white.png' },
 							'grid': { 'background-color': '#333'},

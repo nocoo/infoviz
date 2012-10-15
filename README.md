@@ -21,7 +21,7 @@ We hate to change client APIs, but there's some changes you may have to do in yo
 
 ### New Module System
 
-Since v0.3.x, InfoViz use [SeaJS](http://seajs.org/docs/) to seperate visualization controls into modules. Instead of load every control, it will load controls on demand.
+Since v0.3.x, InfoViz use [SeaJS](http://seajs.org/docs/) to seperate visualization controls into modules, you may use whatever you like, just make sure it supports CMD spec. Instead of load every control, it will load controls on demand.
 It's a tradeoff between HTTP connections and one big big JavaScript file. We hope our module system could work well in most cases.
 
 To use SeaJS module system:
@@ -1386,7 +1386,7 @@ When you using InfoViz.chart to create a chart, you may pass in your option obje
 ## 8.3 Dependencies
 
 * Raphaël: [http://raphaeljs.com/](http://raphaeljs.com/)
-* SeaJS: [http://seajs.org/docs/](http://seajs.org/docs/)
+* Any CMD loader, such as [SeaJS](http://seajs.org/docs/)
 
 ### License
 

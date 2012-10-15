@@ -91,7 +91,7 @@ define(function(require, exports, module) {
                 if (callback && typeof(callback) === 'function') {
                     this_box.data('info', {
                         'start': current_angle,
-                        'angle': options['radialchart']['bar-width'],
+                        'angle': bar_width,
                         'value': data['data'][i][data['value_field']],
                         'data': data['data'][i],
                         'callback': callback,
@@ -107,7 +107,7 @@ define(function(require, exports, module) {
                     'type': 'box'
                 });
 
-                var half_angle = current_angle + options['radialchart']['bar-width'] / 2;
+                var half_angle = current_angle + bar_width / 2;
                 if (options['radialchart']['label-enabled']) {
                     // Label bar
                     x = cx + (this_radius + options['radialchart']['label-distance']) * Math.cos(half_angle * rad);

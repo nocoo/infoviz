@@ -348,7 +348,7 @@ define(function(require, exports, module) {
         // 13. RadialChart
         'radialchart': {
             'size-factor': 0.9,                 // size factor, 0.9 means using 90% area to draw the chart
-            'bar-width': 15,                    // radial bar width, in angle. set to undefined to use auto value
+            'bar-width': undefined,             // radial bar width, in angle. set to undefined to use auto value
             'bar-border-width': 1,              // border thickness of radial bars
             'bar-min-height': 15,               // min bar height
             'hole-radius': 50,                  // hole radius
