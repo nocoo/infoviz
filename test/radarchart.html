@@ -35,7 +35,7 @@
 				<div id="i_radarchart2" class="infoviz"></div>
 			</section>
 			<section>
-				<h2>Test3 <a href="#test3" name="test3">#</a></h2>
+				<h2>Test3 <a href="#test3" name="test3">#</a><a id="btn_refresh" class="button">Refresh</a></h2>
 				<div id="i_radarchart3" class="infoviz"></div>
 			</section>
 			<section>
@@ -116,45 +116,59 @@
 					);
 
 					// Test3.
-					var data = [];
-					var count_fields = Math.floor(Math.random() * 10) + 5;
-					var count_circles = Math.floor(Math.random() * 40) + 10;
-					var v_min = 490;
-					var v_max = 1010;
-					var v_fields = [], v_maxs = [], v_mins = [];
+					var random_chart = function (element) {
+						var data = [];
+						var count_fields = Math.floor(Math.random() * 10) + 5;
+						var count_circles = Math.floor(Math.random() * 40) + 10;
+						var v_min = 490;
+						var v_max = 1010;
+						var v_fields = [], v_maxs = [], v_mins = [];
 
-					for (i = 0; i < count_fields; ++i) {
-						v_fields.push('F' + (i + 1));
-						v_maxs.push(v_max);
-						v_mins.push(v_min);
-					}
-
-					for (i = 0; i < count_circles; ++i) {
-						var item = { 'name': 'circle' + i };
-
-						for (j = 0; j < count_fields; ++j) {
-							item['F' + (j + 1)] = Math.floor(Math.random() * 500) + 500;
+						for (i = 0; i < count_fields; ++i) {
+							v_fields.push('F' + (i + 1));
+							v_maxs.push(v_max);
+							v_mins.push(v_min);
 						}
 
-						data.push(item);
-					}
+						for (i = 0; i < count_circles; ++i) {
+							var item = { 'name': 'circle' + i };
 
-					InfoViz.chart(
-						'i_radarchart3',
-						'radarchart',
-						{
-							'value_fields': v_fields,
-							'name_field': 'name',
-							'tooltip_title': 'InfoViz {name}',
-							'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
-							'value_maxs': v_maxs,
-							'value_mins': v_mins,
-							'data': data
-						},
-						{
-							'legend': { 'legend-enabled': false }
+							for (j = 0; j < count_fields; ++j) {
+								item['F' + (j + 1)] = Math.floor(Math.random() * 500) + 500;
+							}
+
+							data.push(item);
 						}
-					);
+
+						InfoViz.chart(
+							element,
+							'radarchart',
+							{
+								'value_fields': v_fields,
+								'name_field': 'name',
+								'tooltip_title': 'InfoViz {name}',
+								'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
+								'value_maxs': v_maxs,
+								'value_mins': v_mins,
+								'data': data
+							},
+							{
+								'legend': { 'legend-enabled': false }
+							}
+						);
+					};
+
+					random_chart('i_radarchart3');
+
+					var button = document.getElementById('btn_refresh');
+					var on_refresh = function() {
+						InfoViz.clear('i_radarchart3', true);
+
+						setTimeout(function() {
+							random_chart('i_radarchart3');
+						}, 500);
+					};
+					button.onclick = on_refresh;
 
 					// Test4.
 					InfoViz.chart(

@@ -35,7 +35,7 @@
 				<div id="i_stackchart2" class="infoviz"></div>
 			</section>
 			<section>
-				<h2>Test3 <a href="#test3" name="test3">#</a></h2>
+				<h2>Test3 <a href="#test3" name="test3">#</a><a id="btn_refresh" class="button">Refresh</a></h2>
 				<div id="i_stackchart3" class="infoviz"></div>
 			</section>
 			<section>
@@ -215,43 +215,57 @@
 					);
 
 					// Test3
-					var data = {};
-					var count_bars = Math.floor(Math.random() * 8) + 2;
-					var count_columns = Math.floor(Math.random() * 8) + 2;
+					var random_chart = function (element) {
+						var data = {};
+						var count_bars = Math.floor(Math.random() * 8) + 2;
+						var count_columns = Math.floor(Math.random() * 8) + 2;
 
-					for(i = 0; i < count_bars; ++i) {
-						item = [];
+						for(i = 0; i < count_bars; ++i) {
+							item = [];
 
-						for(j = 0; j < count_columns; ++j) {
-							item.push({
-								'F1': Math.floor(Math.random() * 500) + 500,
-								'F2': 'Col.' + j
-							});
+							for(j = 0; j < count_columns; ++j) {
+								item.push({
+									'F1': Math.floor(Math.random() * 500) + 500,
+									'F2': 'Col.' + j
+								});
+							}
+
+							data['bar' + i] = {
+								'name': 'serie' + i,
+								'data': item
+							};
 						}
 
-						data['bar' + i] = {
-							'name': 'serie' + i,
-							'data': item
-						};
-					}
+						InfoViz.chart(
+							element,
+							'stackchart',
+							{
+								'vertical_axis_name': 'Vertical',
+								'horizontal_axis_name': 'Horizontal',
+								'horizontal_field': 'F2',
+								'vertical_field': 'F1',
+								'tooltip_title': 'InfoViz {F2}',
+								'tooltip_content': 'Value: {F1}',
+								'data': data
+							},
+							{
+								'legend': { 'legend-position': 'bottom-right', 'margin-right': 0 },
+								'stackchart': { 'padding-right': 90 }
+							}
+						);
+					};
 
-					InfoViz.chart(
-						'i_stackchart3',
-						'stackchart',
-						{
-							'vertical_axis_name': 'Vertical',
-							'horizontal_axis_name': 'Horizontal',
-							'horizontal_field': 'F2',
-							'vertical_field': 'F1',
-							'tooltip_title': 'InfoViz {F2}',
-							'tooltip_content': 'Value: {F1}',
-							'data': data
-						},
-						{
-							'legend': { 'legend-position': 'bottom-right', 'margin-right': 0 },
-							'stackchart': { 'padding-right': 90 }
-						}
-					);
+					random_chart('i_stackchart3');
+
+					var button = document.getElementById('btn_refresh');
+					var on_refresh = function() {
+						InfoViz.clear('i_stackchart3', true);
+
+						setTimeout(function() {
+							random_chart('i_stackchart3');
+						}, 500);
+					};
+					button.onclick = on_refresh;
 
 					// Test4
 					InfoViz.chart(

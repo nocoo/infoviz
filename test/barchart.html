@@ -37,7 +37,7 @@
 			</section>
 
 			<section>
-				<h2>Test3 <a href="#test3" name="test3">#</a></h2>
+				<h2>Test3 <a href="#test3" name="test3">#</a><a id="btn_refresh" class="button">Refresh</a></h2>
 				<div id="i_barchart3" class="infoviz"></div>
 			</section>
 
@@ -184,40 +184,54 @@
 					);
 
 					// Test3.
-					var data = [];
-					var count_series = Math.floor(Math.random() * 4) + 1;
-					var count_bars = Math.floor(Math.random() * 6) + 2;
+					var random_chart = function (element) {
+						var data = [];
+						var count_series = Math.floor(Math.random() * 4) + 1;
+						var count_bars = Math.floor(Math.random() * 6) + 2;
 
-					for(i = 0; i < count_series; ++i) {
-						item = {
-							'name': 'Serie #' + i,
-							'data': []
-						};
+						for(i = 0; i < count_series; ++i) {
+							item = {
+								'name': 'Serie #' + i,
+								'data': []
+							};
 
-						for(j = 0; j < count_bars; ++j) {
-							item['data'].push({ 'F1': Math.floor(Math.random() * 100000), 'F2': 'Bar' + j });
+							for(j = 0; j < count_bars; ++j) {
+								item['data'].push({ 'F1': Math.floor(Math.random() * 100000), 'F2': 'Bar' + j });
+							}
+
+							data['serie' + i] = item;
 						}
 
-						data['serie' + i] = item;
-					}
+						InfoViz.chart(
+							element,
+							'barchart',
+							{
+								'vertical_axis_name': 'Vertical',
+								'horizontal_axis_name': 'Horizontal',
+								'horizontal_field': 'F2',
+								'vertical_field': 'F1',
+								'tooltip_title': 'InfoViz {F2}',
+								'tooltip_content': 'Tooltip: {F1}, {F2}',
+								'data': data
+							},
+							{
+								'legend': { 'legend-position': 'bottom-right', 'margin-right': 0 },
+								'barchart': { 'padding-right': 100 }
+							}
+						);
+					};
 
-					InfoViz.chart(
-						'i_barchart3',
-						'barchart',
-						{
-							'vertical_axis_name': 'Vertical',
-							'horizontal_axis_name': 'Horizontal',
-							'horizontal_field': 'F2',
-							'vertical_field': 'F1',
-							'tooltip_title': 'InfoViz {F2}',
-							'tooltip_content': 'Tooltip: {F1}, {F2}',
-							'data': data
-						},
-						{
-							'legend': { 'legend-position': 'bottom-right', 'margin-right': 0 },
-							'barchart': { 'padding-right': 100 }
-						}
-					);
+					random_chart('i_barchart3');
+
+					var button = document.getElementById('btn_refresh');
+					var on_refresh = function() {
+						InfoViz.clear('i_barchart3', true);
+
+						setTimeout(function() {
+							random_chart('i_barchart3');
+						}, 500);
+					};
+					button.onclick = on_refresh;
 
 					// Test4.
 					InfoViz.chart(

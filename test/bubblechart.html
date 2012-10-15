@@ -35,7 +35,7 @@
 				<div id="i_bubblechart2" class="infoviz"></div>
 			</section>
 			<section>
-				<h2>Test3 <a href="#test3" name="test3">#</a></h2>
+				<h2>Test3 <a href="#test3" name="test3">#</a><a id="btn_refresh" class="button">Refresh</a></h2>
 				<div id="i_bubblechart3" class="infoviz"></div>
 			</section>
 			<section>
@@ -130,37 +130,51 @@
 					);
 
 					// Test3.
-					var data = [];
-					var count_bubbles = Math.floor(Math.random() * 90) + 10;
+					var random_chart = function (element) {
+						var data = [];
+						var count_bubbles = Math.floor(Math.random() * 90) + 10;
 
-					for(i = 0; i < count_bubbles; ++i) {
-						data.push({
-							'F1': Math.floor(Math.random() * 500) + 500,
-							'F2': Math.floor(Math.random() * 1000) + 1000,
-							'F3': Math.floor(Math.random() * 500),
-							'F4': 'B' + i
-						});
-					}
-
-					InfoViz.chart(
-						'i_bubblechart3',
-						'bubblechart',
-						{
-							'vertical_axis_name': 'Vertical',
-							'horizontal_axis_name': 'Horizontal',
-							'horizontal_field': 'F1',
-							'vertical_field': 'F2',
-							'size_field': 'F3',
-							'label_field': 'F4',
-							'tooltip_title': 'InfoViz {F4}',
-							'tooltip_content': 'Tooltip: ({F1}, {F2}) | {F3}',
-							'data': data
-						},
-						{
-							'bubblechart': { 'padding-right': 50, 'circle-min-radius': 15, 'circle-max-radius': 50 },
-							'legend': { 'legend-enabled': false }
+						for(i = 0; i < count_bubbles; ++i) {
+							data.push({
+								'F1': Math.floor(Math.random() * 500) + 500,
+								'F2': Math.floor(Math.random() * 1000) + 1000,
+								'F3': Math.floor(Math.random() * 500),
+								'F4': 'B' + i
+							});
 						}
-					);
+
+						InfoViz.chart(
+							element,
+							'bubblechart',
+							{
+								'vertical_axis_name': 'Vertical',
+								'horizontal_axis_name': 'Horizontal',
+								'horizontal_field': 'F1',
+								'vertical_field': 'F2',
+								'size_field': 'F3',
+								'label_field': 'F4',
+								'tooltip_title': 'InfoViz {F4}',
+								'tooltip_content': 'Tooltip: ({F1}, {F2}) | {F3}',
+								'data': data
+							},
+							{
+								'bubblechart': { 'padding-right': 50, 'circle-min-radius': 15, 'circle-max-radius': 50 },
+								'legend': { 'legend-enabled': false }
+							}
+						);
+					};
+
+					random_chart('i_bubblechart3');
+
+					var button = document.getElementById('btn_refresh');
+					var on_refresh = function() {
+						InfoViz.clear('i_bubblechart3', true);
+
+						setTimeout(function() {
+							random_chart('i_bubblechart3');
+						}, 500);
+					};
+					button.onclick = on_refresh;
 
 					// Test4.
 					InfoViz.chart(

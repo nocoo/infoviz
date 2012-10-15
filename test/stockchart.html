@@ -35,7 +35,7 @@
 				<div id="i_stockchart2" class="infoviz"></div>
 			</section>
 			<section>
-				<h2>Test3 <a href="#test3" name="test3">#</a></h2>
+				<h2>Test3 <a href="#test3" name="test3">#</a><a id="btn_refresh" class="button">Refresh</a></h2>
 				<div id="i_stockchart3" class="infoviz"></div>
 			</section>
 			<section>
@@ -196,50 +196,64 @@
 						}
 					);
 
-					var data = {};
-					var count_bars = Math.floor(Math.random() * 8) + 2;
-					var count_columns = Math.floor(Math.random() * 4) + 2;
-
-					for (i = 0; i < count_bars; ++i) {
-						item = [];
-
-						for (j = 0; j < count_columns; ++j) {
-							var base = Math.floor(Math.random() * 500) + 500;
-							var step1 = base + Math.floor(Math.random() * 500) + 10;
-							var step2 = base + Math.floor(Math.random() * 500) + 10;
-
-							item.push({
-								'F1': 'Col.' + j,
-								'F2': base,
-								'F3': base + step1,
-								'F4': base + step1 + step2
-							});
-						}
-
-						data['bar' + i] = {
-							'name': 'bar' + i,
-							'data': item
-						};
-					}
-
 					// Test3
-					InfoViz.chart(
-						'i_stockchart3',
-						'stockchart',
-						{
-							'vertical_axis_name': 'Vertical',
-							'horizontal_axis_name': 'Horizontal',
-							'horizontal_field': 'F1',
-							'vertical_field': { 'min': 'F2', 'middle': 'F3', 'max': 'F4' },
-							'tooltip_title': 'InfoViz {F1}, {F3}',
-							'tooltip_content': 'Tooltip: max={F4}, middle={F3}, min={F2}',
-							'data': data
-						},
-						{
-							'legend': { 'legend-position': 'bottom-right','margin-right': 0 },
-							'stockchart': { 'padding-right': 90 }
+					var random_chart = function (element) {
+						var data = {};
+						var count_bars = Math.floor(Math.random() * 8) + 2;
+						var count_columns = Math.floor(Math.random() * 4) + 2;
+
+						for (i = 0; i < count_bars; ++i) {
+							item = [];
+
+							for (j = 0; j < count_columns; ++j) {
+								var base = Math.floor(Math.random() * 500) + 500;
+								var step1 = base + Math.floor(Math.random() * 500) + 10;
+								var step2 = base + Math.floor(Math.random() * 500) + 10;
+
+								item.push({
+									'F1': 'Col.' + j,
+									'F2': base,
+									'F3': base + step1,
+									'F4': base + step1 + step2
+								});
+							}
+
+							data['bar' + i] = {
+								'name': 'bar' + i,
+								'data': item
+							};
 						}
-					);
+
+						InfoViz.chart(
+							element,
+							'stockchart',
+							{
+								'vertical_axis_name': 'Vertical',
+								'horizontal_axis_name': 'Horizontal',
+								'horizontal_field': 'F1',
+								'vertical_field': { 'min': 'F2', 'middle': 'F3', 'max': 'F4' },
+								'tooltip_title': 'InfoViz {F1}, {F3}',
+								'tooltip_content': 'Tooltip: max={F4}, middle={F3}, min={F2}',
+								'data': data
+							},
+							{
+								'legend': { 'legend-position': 'bottom-right','margin-right': 0 },
+								'stockchart': { 'padding-right': 90 }
+							}
+						);
+					};
+
+					random_chart('i_stockchart3');
+
+					var button = document.getElementById('btn_refresh');
+					var on_refresh = function() {
+						InfoViz.clear('i_stockchart3', true);
+
+						setTimeout(function() {
+							random_chart('i_stockchart3');
+						}, 500);
+					};
+					button.onclick = on_refresh;
 
 					// Test4
 					InfoViz.chart(

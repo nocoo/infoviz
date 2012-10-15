@@ -11,7 +11,7 @@ define(function(require, exports, module) {
 
     if (InfoViz) { return; }
 
-    var InfoViz = {};
+    var InfoViz = {}, loading;
     InfoViz.charts = {};
 
     InfoViz.options = {
@@ -33,6 +33,17 @@ define(function(require, exports, module) {
             'logo-width': 50,                   // logo width
             'logo-height': 17,                  // logo height
             'logo-position': 'top-right',       // logo position, top-right | top-left | bottom-right | bottom-left
+
+            'loading-speed': 1000,              // loading icon rotation interval
+            'loading-width': 30,                // loading icon width
+            'loading-height': 30,               // loading icon height
+            'loading-border-width': 1,          // border thickness of the loading icon
+            'loading-border-alpha': 1,          // border opacity of the loading icon
+            'loading-border-color': '#FFF',     // border color of the loading icon
+            'loading-fill-alpha': 1,            // fill opacity of the loading icon
+            'loading-fill-color': '#CCC',       // fill color of the loading icon
+            'loading-background-alpha': 0.6,    // background opacity of the loading icon
+            'loading-background-color': '#000', // background color of the loading icon
 
             'speed': 300                        // animation speed
         },
@@ -482,7 +493,7 @@ define(function(require, exports, module) {
             // Register this chart in global variable.
             if (InfoViz.charts[element] && typeof (InfoViz.charts[element].clear) === 'function') {
                 paper = InfoViz.charts[element];
-
+                paper.clear();
             } else {
                 paper = Raphael(element);
                 InfoViz.charts[element] = paper;
@@ -687,9 +698,48 @@ define(function(require, exports, module) {
         });
     };
 
-    exports.clear = function(element) {
-        if (InfoViz.charts[element] && typeof (InfoViz.charts[element].clear) === 'function') {
-            InfoViz.charts[element].clear();
+    exports.clear = function(element, with_loading) {
+        var paper = InfoViz.charts[element];
+
+        if (paper && typeof (paper.clear) === 'function') {
+            var width = paper.width, height = paper.height;
+
+            if (with_loading) {
+                if (loading) {
+                    loading.stop();
+                }
+
+                var loading_icon = 'M24.083,15.5c-0.009,4.739-3.844,8.574-8.583,8.583c-4.741-0.009-8.577-3.844-8.585-8.583c0.008-4.741,3.844-8.577,8.585-8.585c1.913,0,3.665,0.629,5.09,1.686l-1.782,1.783l8.429,2.256l-2.26-8.427l-1.89,1.89c-2.072-1.677-4.717-2.688-7.587-2.688C8.826,3.418,3.418,8.826,3.416,15.5C3.418,22.175,8.826,27.583,15.5,27.583S27.583,22.175,27.583,15.5H24.083z';
+                var scale_h = InfoViz.options['layout']['loading-width'] / 25;
+                var scale_v = InfoViz.options['layout']['loading-height'] / 25;
+                var offset_x = (width - InfoViz.options['layout']['loading-width']) / 2;
+                var offset_y = (height - InfoViz.options['layout']['loading-height']) / 2;
+                var transform = 't' + offset_x + ',' + offset_y + 's' + scale_h + ',' + scale_v + ',0,0';
+
+                // Background
+                paper.rect(0, 0, width, height).attr({
+                    'fill': InfoViz.options['layout']['loading-background-color'],
+                    'fill-opacity': InfoViz.options['layout']['loading-background-alpha']
+                }).translate(0.5, 0.5);
+
+                // Loading indicator.
+                loading = paper.path(loading_icon).attr({
+                    'stroke': InfoViz.options['layout']['loading-border-color'],
+                    'stroke-opacity': InfoViz.options['layout']['loading-border-alpha'],
+                    'stroke-width': InfoViz.options['layout']['loading-border-width'],
+                    'fill': InfoViz.options['layout']['loading-fill-color'],
+                    'fill-opacity': InfoViz.options['layout']['loading-fill-alpha']
+                }).translate(0.5, 0.5);
+                loading.transform(transform);
+
+                var animation = Raphael.animation({
+                    'transform': transform + 'r360'
+                }, InfoViz.options['layout']['loading-speed']);
+
+                loading.animate(animation.repeat(Infinity));
+            } else {
+                paper.clear();
+            }
         }
     };
 

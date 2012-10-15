@@ -232,7 +232,7 @@
 					var random_chart = function(element) {
 						var data1 = [], data2 = [];
 						var base = Math.floor(Math.random() * 100000);
-						var count = Math.floor(Math.random() * 99) + 1;
+						var count = Math.floor(Math.random() * 99) + 2;
 
 						for(i = 0; i < count; ++i) {
 							data1.push({
@@ -277,10 +277,12 @@
 
 					var button = document.getElementById('btn_refresh');
 					var on_refresh = function() {
-						InfoViz.clear('i_linechart3');
-						random_chart('i_linechart3');
-					};
+						InfoViz.clear('i_linechart3', true);
 
+						setTimeout(function() {
+							random_chart('i_linechart3');
+						}, 500);
+					};
 					button.onclick = on_refresh;
 
 					// Test4
