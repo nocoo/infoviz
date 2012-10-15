@@ -6,7 +6,7 @@
 */
 
 define(function(require, exports, module) {
-    seajs.use(['infoviz.core'], function(core) {
+    require.async(['infoviz.core'], function(core) {
         var areas = [];
         var worldmap = {
             shapes: {

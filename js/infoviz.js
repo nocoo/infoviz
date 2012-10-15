@@ -5,7 +5,7 @@
     @license MIT
 */
 
-/*global seajs, define, Raphael*/
+/*global define, Raphael*/
 define(function(require, exports, module) {
     exports.version = function() { return '0.3.5'; };
 
@@ -486,7 +486,7 @@ define(function(require, exports, module) {
     };
 
     exports.chart = function(element, type, data, overwrite_options, callback) {
-        seajs.use(['infoviz.core'], function(core) {
+        require.async(['infoviz.core'], function(core) {
             var paper, options = core.merge_options(overwrite_options);
             var logo, logo_front = function() { if (logo) logo.toFront(); };
 
@@ -744,7 +744,7 @@ define(function(require, exports, module) {
     };
 
     exports.global_option = function(overwrite) {
-        seajs.use(['infoviz.core'], function(core) {
+        require.async(['infoviz.core'], function(core) {
             InfoViz.options = core.merge_options(overwrite);
         });
     };
