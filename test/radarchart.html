@@ -31,6 +31,14 @@
 				<div id="i_radarchart1" class="infoviz"></div>
 			</section>
 			<section>
+				<h2>Test2 <a href="#test2" name="test2">#</a></h2>
+				<div id="i_radarchart2" class="infoviz"></div>
+			</section>
+			<section>
+				<h2>Test3 <a href="#test3" name="test3">#</a></h2>
+				<div id="i_radarchart3" class="infoviz"></div>
+			</section>
+			<section>
 				<h2>Test4 <a href="#test4" name="test4">#</a></h2>
 				<div id="i_radarchart4" class="infoviz"></div>
 			</section>
@@ -79,10 +87,73 @@
 							]
 						},
 						{
-							'radarchart': { 'horizontal-offset': 60 },
 							'legend': { 'legend-position': 'bottom-left', 'margin-left': 0, 'margin-bottom': 0 }
 						},
 						function(info) { console.log(info); }
+					);
+
+					// Test2.
+					InfoViz.chart(
+						'i_radarchart2',
+						'radarchart',
+						{
+							'value_fields': [ 'Repulsion Power', 'Durability', 'Hitting Sound', 'Shock Absorption', 'Control' ],
+							'tooltip_title': 'Repulsion Power: {Repulsion Power}',
+							'tooltip_content': 'Durability: {Durability}',
+							'value_maxs': [ 6, 6, 6, 6, 6 ],
+							'value_mins': [ 1, 1, 1, 1, 1 ],
+							'data': [
+								{ 'Repulsion Power': 1, 'Durability': 2, 'Hitting Sound': 3, 'Shock Absorption': 4, 'Control': 5 },
+								{ 'Repulsion Power': 2, 'Durability': 3, 'Hitting Sound': 4, 'Shock Absorption': 5, 'Control': 1 },
+								{ 'Repulsion Power': 3, 'Durability': 4, 'Hitting Sound': 5, 'Shock Absorption': 1, 'Control': 2 },
+								{ 'Repulsion Power': 4, 'Durability': 5, 'Hitting Sound': 1, 'Shock Absorption': 2, 'Control': 3 },
+								{ 'Repulsion Power': 5, 'Durability': 1, 'Hitting Sound': 2, 'Shock Absorption': 3, 'Control': 4 }
+							]
+						},
+						{
+							'legend': { 'legend-enabled': false }
+						}
+					);
+
+					// Test3.
+					var data = [];
+					var count_fields = Math.floor(Math.random() * 10) + 5;
+					var count_circles = Math.floor(Math.random() * 40) + 10;
+					var v_min = 490;
+					var v_max = 1010;
+					var v_fields = [], v_maxs = [], v_mins = [];
+
+					for (i = 0; i < count_fields; ++i) {
+						v_fields.push('F' + (i + 1));
+						v_maxs.push(v_max);
+						v_mins.push(v_min);
+					}
+
+					for (i = 0; i < count_circles; ++i) {
+						var item = { 'name': 'circle' + i };
+
+						for (j = 0; j < count_fields; ++j) {
+							item['F' + (j + 1)] = Math.floor(Math.random() * 500) + 500;
+						}
+
+						data.push(item);
+					}
+
+					InfoViz.chart(
+						'i_radarchart3',
+						'radarchart',
+						{
+							'value_fields': v_fields,
+							'name_field': 'name',
+							'tooltip_title': 'InfoViz {name}',
+							'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
+							'value_maxs': v_maxs,
+							'value_mins': v_mins,
+							'data': data
+						},
+						{
+							'legend': { 'legend-enabled': false }
+						}
 					);
 
 					// Test4.

@@ -476,11 +476,17 @@ define(function(require, exports, module) {
 
     exports.chart = function(element, type, data, overwrite_options, callback) {
         seajs.use(['infoviz.core'], function(core) {
-            var paper = Raphael(element);
-            var options = core.merge_options(overwrite_options);
+            var paper, options = core.merge_options(overwrite_options);
+            var logo, logo_front = function() { if (logo) logo.toFront(); };
 
             // Register this chart in global variable.
-            InfoViz.charts[element] = paper;
+            if (InfoViz.charts[element] && typeof (InfoViz.charts[element].clear) === 'function') {
+                paper = InfoViz.charts[element];
+
+            } else {
+                paper = Raphael(element);
+                InfoViz.charts[element] = paper;
+            }
 
             // Default area.
             var area = {
@@ -644,7 +650,6 @@ define(function(require, exports, module) {
             }
 
             // Draw InfoViz logo.
-            var logo, logo_front = function() { if (logo) logo.toFront(); };
             if (options['layout']['logo-enabled']) {
                 var x, y;
 

@@ -35,7 +35,7 @@
 				<div id="i_linechart2" class="infoviz"></div>
 			</section>
 			<section>
-				<h2>Test3 <a href="#test3" name="test3">#</a></h2>
+				<h2>Test3 <a href="#test3" name="test3">#</a><a id="btn_refresh" class="button">Refresh</a></h2>
 				<div id="i_linechart3" class="infoviz"></div>
 			</section>
 			<section>
@@ -229,47 +229,59 @@
 					);
 
 					// Test3
-					var data1 = [], data2 = [];
-					var base = Math.floor(Math.random() * 100000);
-					var count = Math.floor(Math.random() * 99) + 1;
+					var random_chart = function(element) {
+						var data1 = [], data2 = [];
+						var base = Math.floor(Math.random() * 100000);
+						var count = Math.floor(Math.random() * 99) + 1;
 
-					for(i = 0; i < count; ++i) {
-						data1.push({
-							'F1': base + Math.floor(Math.random() * 100),
-							'F2': 'n' + i,
-							'F3': 'node-' + i
-						});
+						for(i = 0; i < count; ++i) {
+							data1.push({
+								'F1': base + Math.floor(Math.random() * 100),
+								'F2': 'n' + i,
+								'F3': 'node-' + i
+							});
 
-						data2.push({
-							'F1': base + Math.floor(Math.random() * 100),
-							'F2': 'n' + i,
-							'F3': 'node-' + i
-						});
-					}
+							data2.push({
+								'F1': base + Math.floor(Math.random() * 100),
+								'F2': 'n' + i,
+								'F3': 'node-' + i
+							});
+						}
 
-					InfoViz.chart(
-						'i_linechart3',
-						'linechart',
-						{
-							'vertical_axis_name': 'Vertical',
-							'horizontal_axis_name': 'Horizontal',
-							'horizontal_field': 'F2',
-							'vertical_field': 'F1',
-							'tooltip_title': 'InfoViz {F2}, {F3}',
-							'tooltip_content': 'Tooltip: {F2}, {F3} | {F1}',
-							'data': {
-								'line1': {
-									'name': 'China',
-									'data': data1
-								},
-								'line2': {
-									'name': 'Unite States',
-									'data': data2
+						InfoViz.chart(
+							element,
+							'linechart',
+							{
+								'vertical_axis_name': 'Vertical',
+								'horizontal_axis_name': 'Horizontal',
+								'horizontal_field': 'F2',
+								'vertical_field': 'F1',
+								'tooltip_title': 'InfoViz {F2}, {F3}',
+								'tooltip_content': 'Tooltip: {F2}, {F3} | {F1}',
+								'data': {
+									'line1': {
+										'name': 'China',
+										'data': data1
+									},
+									'line2': {
+										'name': 'Unite States',
+										'data': data2
+									}
 								}
-							}
-						},
-						{ 'legend': { 'margin-right': 0, 'legend-position': 'bottom-right' } }
-					);
+							},
+							{ 'legend': { 'margin-right': 0, 'legend-position': 'bottom-right' } }
+						);
+					};
+
+					random_chart('i_linechart3');
+
+					var button = document.getElementById('btn_refresh');
+					var on_refresh = function() {
+						InfoViz.clear('i_linechart3');
+						random_chart('i_linechart3');
+					};
+
+					button.onclick = on_refresh;
 
 					// Test4
 					InfoViz.chart(

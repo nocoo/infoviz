@@ -31,6 +31,14 @@
 				<div id="i_piechart1" class="infoviz"></div>
 			</section>
 			<section>
+				<h2>Test2 <a href="#test2" name="test2">#</a></h2>
+				<div id="i_piechart2" class="infoviz"></div>
+			</section>
+			<section>
+				<h2>Test3 <a href="#test3" name="test3">#</a></h2>
+				<div id="i_piechart3" class="infoviz"></div>
+			</section>
+			<section>
 				<h2>Test4 <a href="#test4" name="test4">#</a></h2>
 				<div id="i_piechart4" class="infoviz"></div>
 			</section>
@@ -78,6 +86,54 @@
 						},
 						{ 'legend': { 'legend-enabled': false } },
 						function(info) { console.log(info); }
+					);
+
+					// Test2
+					InfoViz.chart(
+						'i_piechart2',
+						'piechart',
+						{
+							'value_field': 'F2',
+							'label_field': 'F4',
+							'tooltip_title': 'InfoViz {F2}, {F3}',
+							'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
+							'data': [
+								{ 'F1': 1,   'F2': 9, 'F3': 9, 'F4': 'CHN' },
+								{ 'F1': 42,  'F2': 9, 'F3': 6, 'F4': 'USA' },
+								{ 'F1': 7,   'F2': 9, 'F3': 9, 'F4': 'RUS' },
+								{ 'F1': 110, 'F2': 8, 'F3': 9, 'F4': 'CAN' },
+								{ 'F1': 50,  'F2': 3, 'F3': 2, 'F4': 'FRA' },
+								{ 'F1': 29,  'F2': 1, 'F3': 4, 'F4': 'VET' },
+								{ 'F1': 2,   'F2': 1, 'F3': 1, 'F4': 'JPN' }
+							]
+						},
+						{
+							'legend': { 'legend-position': 'bottom-left' },
+							'piechart': { 'hole-radius': 50 }
+						}
+					);
+
+					// Test3
+					var data = [];
+					var count_data = Math.floor(Math.random() * 30) + 10;
+					for (i = 0; i < count_data; ++i) {
+						data.push({
+							'F1': Math.floor(Math.random() * 10000),
+							'F2': 'sector' + i
+						});
+					}
+
+					InfoViz.chart(
+						'i_piechart3',
+						'piechart',
+						{
+							'value_field': 'F1',
+							'label_field': 'F2',
+							'tooltip_title': 'InfoViz {F2}',
+							'tooltip_content': 'Tooltip: {F1}',
+							'data': data
+						},
+						{ 'legend': { 'legend-enabled': false }, 'piechart': { 'hole-radius': 50 } }
 					);
 
 					// Test4

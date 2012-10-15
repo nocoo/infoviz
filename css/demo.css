@@ -127,5 +127,7 @@ ul.boxes li p { font-size: 12px; padding: 0; margin: 0px 0 10px 0; text-align: c
 .p-test .container .infoviz.i-heatmap { width: 850px; height: 850px; }
 .p-test .container .infoviz.i-basictree { width: 850px; height: 450px; }
 
+.p-test a.button { width: 60px; height: 28px; line-height: 28px; color: #FFF; display: block; cursor: pointer; background: #eb540a; text-align: center; float: right; margin: 5px 10px; }
+
 .p-license .license h1 { margin-bottom: 20px; }
 .p-license .license p { margin-left: 10px; font-size: 14px; color: #333; line-height: 20px; margin-bottom: 20px; }
