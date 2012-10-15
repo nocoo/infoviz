@@ -12,6 +12,8 @@ define(function(require, exports, module) {
     if (InfoViz) { return; }
 
     var InfoViz = {};
+    InfoViz.charts = {};
+
     InfoViz.options = {
         // 1. Chart layout configuration.
         'layout': {
@@ -477,6 +479,9 @@ define(function(require, exports, module) {
             var paper = Raphael(element);
             var options = core.merge_options(overwrite_options);
 
+            // Register this chart in global variable.
+            InfoViz.charts[element] = paper;
+
             // Default area.
             var area = {
                 'top-left': [options['layout']['padding-left'], options['layout']['padding-top']],
@@ -675,6 +680,12 @@ define(function(require, exports, module) {
                 logo.click(function() { window.location.href = options['layout']['logo-link']; });
             }
         });
+    };
+
+    exports.clear = function(element) {
+        if (InfoViz.charts[element] && typeof (InfoViz.charts[element].clear) === 'function') {
+            InfoViz.charts[element].clear();
+        }
     };
 
     exports.global_option = function(overwrite) {
