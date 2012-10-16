@@ -21,8 +21,8 @@
 				<li><a href="./test/index.html" title="Test">Test</a></li>
 				<li><a href="./history.html" title="History">History</a></li>
 				<li><a href="./license.html" title="The MIT License">The MIT License</a></li>
-				<li class="right"><iframe src="http://ghbtns.com/github-btn.html?user=nocoo&repo=InfoViz&type=fork&count=true"></iframe></li>
-				<li class="right"><iframe src="http://ghbtns.com/github-btn.html?user=nocoo&repo=InfoViz&type=watch&count=true"></iframe></li>
+				<li class="right"><iframe src="http://ghbtns.com/github-btn.html?user=nocoo&repo=InfoViz&type=fork&count=true" frameborder="0"></iframe></li>
+				<li class="right"><iframe src="http://ghbtns.com/github-btn.html?user=nocoo&repo=InfoViz&type=watch&count=true" frameborder="0"></iframe></li>
 				<div class="clear"></div>
 			</ul>
 
@@ -99,6 +99,15 @@
 			<a class="fork" href="https://github.com/nocoo/InfoViz"></a>
 		</section>
 		<footer><p>InfoViz 0.3.6 Dev, the MIT License, <a href="http://about.me/nocoo">@zhengli</a>, <a href="https://github.com/nocoo/InfoViz">Github</a></p></footer>
+
+		<script>
+			(function () {
+				if (navigator.userAgent.indexOf("MSIE") > 0) {
+					alert('You are using IE browser. JavaScript performance in IE browser is very poor, loading this multiple control page will take a very long time. We will redirect you to our test cases index page.');
+					window.location.href = './test/index.html';
+				}
+			}());
+		</script>
 
 		<script src="./js/raphael.min.js"></script>
 		<script id="seajsnode" src="./js/sea.min.js"></script>

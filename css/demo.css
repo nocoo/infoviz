@@ -88,7 +88,7 @@ table {
 .p-index .container .infoviz#i_basictree { width: 850px; height: 450px; }
 
 ul.boxes { margin-left: 10px; }
-ul.boxes li { background-color: #CCC; }
+ul.boxes li { background-color: #EB540A; }
 ul.boxes li:nth-child(n) { background-color: #3A89C9; }
 ul.boxes li:nth-child(n+1) { background-color: #EB540A; }
 ul.boxes li:nth-child(n+2) { background-color: #5AAD34; }

@@ -191,7 +191,7 @@ define(function(require, exports, module) {
                             'title': title,
                             'content': content,
                             'color': color,
-                            'x': x,
+                            'x': x + bar_width / 2,
                             'y': y,
                             'element': this_node,
                             'options': options,
