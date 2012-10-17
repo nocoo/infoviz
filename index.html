@@ -48,6 +48,11 @@
 				<h2>StockChart <a href="./test/stockchart.html">examples</a> <a href="#top">top</a> <a href="#stockchart" name="stockchart">#link</a></h2>
 				<div id="i_stockchart" class="infoviz"></div>
 			</section>
+			<section>
+				<h2>StreamChart <a href="./test/streamchart.html">examples</a> <a href="#top">top</a> <a href="#streamchart" name="streamchart">#link</a></h2>
+				<!-- div id="i_streamchart" class="infoviz"></div -->
+				<a href="./test/streamchart.html"><img id="i_streamchart" class="infoviz" src="./images/examples/streamchart.png" /></a>
+			</section>
 
 			<h1>Round Stuff</h1>
 			<section>
@@ -70,17 +75,20 @@
 			</section>
 			<section>
 				<h2>SmithGraph <a href="./test/smithgraph.html">examples</a> <a href="#top">top</a> <a href="#smithgraph" name="smithgraph">#link</a></h2>
-				<div id="i_smithgraph" class="infoviz"></div>
+				<!-- <div id="i_smithgraph" class="infoviz"></div> -->
+				<a href="./test/smithgraph.html"><img id="i_smithgraph" class="infoviz" src="./images/examples/smithgraph.png" /></a>
 			</section>
 
 			<h1>Map</h1>
 			<section>
 				<h2>WorldMap <a href="./test/worldmap.html">examples</a> <a href="#worldmap" name="worldmap">#</a></h2>
-				<div id="i_worldmap" class="infoviz"></div>
+				<!-- <div id="i_worldmap" class="infoviz"></div> -->
+				<a href="./test/worldmap.html"><img id="i_worldmap" class="infoviz" src="./images/examples/worldmap.png" /></a>
 			</section>
 			<section>
 				<h2>HeatMap <a href="./test/heatmap.html">examples</a> <a href="#top">top</a> <a href="#heatmap" name="heatmap">#link</a></h2>
-				<div id="i_heatmap" class="infoviz"></div>
+				<!-- <div id="i_heatmap" class="infoviz"></div> -->
+				<a href="./test/heatmap.html"><img id="i_heatmap" class="infoviz" src="./images/examples/heatmap.png" /></a>
 			</section>
 
 			<h1>Tree</h1>
@@ -99,16 +107,6 @@
 			<a class="fork" href="https://github.com/nocoo/InfoViz"></a>
 		</section>
 		<footer><p>InfoViz 0.3.6 Dev, the MIT License, <a href="http://about.me/nocoo">@zhengli</a>, <a href="https://github.com/nocoo/InfoViz">Github</a></p></footer>
-
-		<script>
-			(function () {
-				if (navigator.userAgent.indexOf("MSIE") > 0) {
-					alert('You are using IE browser. JavaScript performance in IE browser is very poor, loading this multiple control page will take a very long time. We will redirect you to our test cases index page.');
-					window.location.href = './test/index.html';
-				}
-			}());
-		</script>
-
 		<script src="./js/raphael.min.js"></script>
 		<script id="seajsnode" src="./js/sea.min.js"></script>
 		<script>
@@ -643,103 +641,103 @@
 					);
 
 					// SmithGraph
-					data = [];
-					var max_nodes = 256, max_edge = 6, max_value = 100;
-					for(i = 0; i < max_nodes; ++i) {
-						var edge_count = Math.floor(Math.random() * max_edge), edges = [];
+					// data = [];
+					// var max_nodes = 256, max_edge = 6, max_value = 100;
+					// for(i = 0; i < max_nodes; ++i) {
+					// 	var edge_count = Math.floor(Math.random() * max_edge), edges = [];
 
-						for(j = 0; j < edge_count; ++j) {
-							edges.push({
-								'to': 'item' + Math.floor(Math.random() * max_nodes),
-								'F3': Math.floor(Math.random() * max_value)
-							});
-						}
+					// 	for(j = 0; j < edge_count; ++j) {
+					// 		edges.push({
+					// 			'to': 'item' + Math.floor(Math.random() * max_nodes),
+					// 			'F3': Math.floor(Math.random() * max_value)
+					// 		});
+					// 	}
 
-						data.push({
-							'F1': 'item' + i,
-							'F2': Math.floor(Math.random() * max_value),
-							'F4': edges.length,
-							'edges': edges
-						});
-					}
+					// 	data.push({
+					// 		'F1': 'item' + i,
+					// 		'F2': Math.floor(Math.random() * max_value),
+					// 		'F4': edges.length,
+					// 		'edges': edges
+					// 	});
+					// }
 
-					InfoViz.chart(
-						'i_smithgraph',
-						'smithgraph',
-						{
-							'node_id_field': 'F1',
-							'node_label_field': 'F1',
-							'node_value_field': 'F2',
-							'edge_value_field': 'F3',
-							'node_tooltip_title': 'Node #{F1}',
-							'node_tooltip_content': 'Value: {F2}. Edges: {F4}.',
-							'data': data
-						},
-						{ 'legend': { 'legend-enabled': false } }
-					);
+					// InfoViz.chart(
+					// 	'i_smithgraph',
+					// 	'smithgraph',
+					// 	{
+					// 		'node_id_field': 'F1',
+					// 		'node_label_field': 'F1',
+					// 		'node_value_field': 'F2',
+					// 		'edge_value_field': 'F3',
+					// 		'node_tooltip_title': 'Node #{F1}',
+					// 		'node_tooltip_content': 'Value: {F2}. Edges: {F4}.',
+					// 		'data': data
+					// 	},
+					// 	{ 'legend': { 'legend-enabled': false } }
+					// );
 
 					// WorldMap
-					InfoViz.chart(
-						'i_worldmap',
-						'worldmap',
-						{
-							'value_field': 'F1',
-							'tooltip_title': 'InfoViz: {area}',
-							'tooltip_content': '{area}: value = {F1}',
-							'data': [
-								{ 'area': 'BR', 'F1': 1 },
-								{ 'area': 'CH', 'F1': 2 },
-								{ 'area': 'CL', 'F1': 3 },
-								{ 'area': 'US', 'F1': 4 },
-								{ 'area': 'JP', 'F1': 7 },
-								{ 'area': 'MX', 'F1': 6 },
-								{ 'area': 'PE', 'F1': 7 },
-								{ 'area': 'ZA', 'F1': 8 },
-								{ 'area': 'ZW', 'F1': 9 },
-								{ 'area': 'RU', 'F1': 3 },
-								{ 'area': 'QA', 'F1': 2 },
-								{ 'area': 'NO', 'F1': 8 },
-								{ 'area': 'ML', 'F1': 4 },
-								{ 'area': 'KR', 'F1': 5 },
-								{ 'area': 'CN', 'F1': 8 },
-								{ 'area': 'TW', 'F1': 8 },
-								{ 'area': 'CU', 'F1': 7 },
-								{ 'area': 'ER', 'F1': 8 },
-								{ 'area': 'GH', 'F1': 9 },
-								{ 'area': 'HN', 'F1': 1 },
-								{ 'area': 'IN', 'F1': 2 },
-								{ 'area': 'AU', 'F1': 9 },
-								{ 'area': 'CA', 'F1': 7 },
-								{ 'area': 'IT', 'F1': 7 },
-								{ 'area': 'GB', 'F1': 5 },
-								{ 'area': 'FR', 'F1': 8 },
-								{ 'area': 'DE', 'F1': 6 },
-								{ 'area': 'PT', 'F1': 9 },
-								{ 'area': 'ES', 'F1': 5 },
-								{ 'area': 'SE', 'F1': 7 }
-							]
-						}
-					);
+					// InfoViz.chart(
+					// 	'i_worldmap',
+					// 	'worldmap',
+					// 	{
+					// 		'value_field': 'F1',
+					// 		'tooltip_title': 'InfoViz: {area}',
+					// 		'tooltip_content': '{area}: value = {F1}',
+					// 		'data': [
+					// 			{ 'area': 'BR', 'F1': 1 },
+					// 			{ 'area': 'CH', 'F1': 2 },
+					// 			{ 'area': 'CL', 'F1': 3 },
+					// 			{ 'area': 'US', 'F1': 4 },
+					// 			{ 'area': 'JP', 'F1': 7 },
+					// 			{ 'area': 'MX', 'F1': 6 },
+					// 			{ 'area': 'PE', 'F1': 7 },
+					// 			{ 'area': 'ZA', 'F1': 8 },
+					// 			{ 'area': 'ZW', 'F1': 9 },
+					// 			{ 'area': 'RU', 'F1': 3 },
+					// 			{ 'area': 'QA', 'F1': 2 },
+					// 			{ 'area': 'NO', 'F1': 8 },
+					// 			{ 'area': 'ML', 'F1': 4 },
+					// 			{ 'area': 'KR', 'F1': 5 },
+					// 			{ 'area': 'CN', 'F1': 8 },
+					// 			{ 'area': 'TW', 'F1': 8 },
+					// 			{ 'area': 'CU', 'F1': 7 },
+					// 			{ 'area': 'ER', 'F1': 8 },
+					// 			{ 'area': 'GH', 'F1': 9 },
+					// 			{ 'area': 'HN', 'F1': 1 },
+					// 			{ 'area': 'IN', 'F1': 2 },
+					// 			{ 'area': 'AU', 'F1': 9 },
+					// 			{ 'area': 'CA', 'F1': 7 },
+					// 			{ 'area': 'IT', 'F1': 7 },
+					// 			{ 'area': 'GB', 'F1': 5 },
+					// 			{ 'area': 'FR', 'F1': 8 },
+					// 			{ 'area': 'DE', 'F1': 6 },
+					// 			{ 'area': 'PT', 'F1': 9 },
+					// 			{ 'area': 'ES', 'F1': 5 },
+					// 			{ 'area': 'SE', 'F1': 7 }
+					// 		]
+					// 	}
+					// );
 
 					// HeatMap
-					data = [];
-					for(i = 0; i < 1024; ++i) {
-						item = Math.floor(Math.random() * 100);
-						data.push({ 'F1': item, 'F2': i, 'F3': item });
-					}
+					// data = [];
+					// for(i = 0; i < 1024; ++i) {
+					// 	item = Math.floor(Math.random() * 100);
+					// 	data.push({ 'F1': item, 'F2': i, 'F3': item });
+					// }
 
-					InfoViz.chart(
-						'i_heatmap',
-						'heatmap',
-						{
-							'value_field': 'F1',
-							'label_field': 'F3',
-							'tooltip_title': 'InfoViz {F2}, {F3}',
-							'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
-							'data': data
-						},
-						{ 'layout': { 'logo-enabled': false }, 'heatmap': { 'label-size': 12 } }
-					);
+					// InfoViz.chart(
+					// 	'i_heatmap',
+					// 	'heatmap',
+					// 	{
+					// 		'value_field': 'F1',
+					// 		'label_field': 'F3',
+					// 		'tooltip_title': 'InfoViz {F2}, {F3}',
+					// 		'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
+					// 		'data': data
+					// 	},
+					// 	{ 'layout': { 'logo-enabled': false }, 'heatmap': { 'label-size': 12 } }
+					// );
 
 					// BasicTree
 					InfoViz.chart(

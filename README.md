@@ -26,45 +26,45 @@ It's a tradeoff between HTTP connections and one big big JavaScript file. We hop
 
 To use SeaJS module system:
 
-	<script src="./js/raphael.min.js"></script>
-	<script src="./js/sea.min.js"></script>
-	<script>
-		;(function() {
-			seajs.use([ './js/infoviz' ], function(InfoViz) {
-				// Use InfoViz.chart here.
-			});
-		})();
-	</script>
+    <script src="./js/raphael.min.js"></script>
+    <script src="./js/sea.min.js"></script>
+    <script>
+        ;(function() {
+            seajs.use([ './js/infoviz' ], function(InfoViz) {
+                // Use InfoViz.chart here.
+            });
+        })();
+    </script>
 
 or:
 
-	<script src="./min/raphael.min.js"></script>
-	<script src="./min/sea.min.js"></script>
-	<script>
-		;(function() {
-			seajs.use([ './min/infoviz' ], function(InfoViz) {
-				// Use InfoViz.chart here.
-			});
-		})();
-	</script>
+    <script src="./min/raphael.min.js"></script>
+    <script src="./min/sea.min.js"></script>
+    <script>
+        ;(function() {
+            seajs.use([ './min/infoviz' ], function(InfoViz) {
+                // Use InfoViz.chart here.
+            });
+        })();
+    </script>
 
 After you run the make command.
 
 ### jQuery is no longer needed
 
-	InfoViz.chart(
-		'i_linechart', // Give DOM element an id, and change this line from jQuery selector to id string, without #
-		'linechart',
-		{
-			'vertical_axis_name': 'Vertical',
-			'horizontal_axis_name': 'Horizontal',
-			'horizontal_field': 'F2',
-			'vertical_field': 'F1',
-			'data': {
-				// some data
-			}
-		}
-	);
+    InfoViz.chart(
+        'i_linechart', // Give DOM element an id, and change this line from jQuery selector to id string, without #
+        'linechart',
+        {
+            'vertical_axis_name': 'Vertical',
+            'horizontal_axis_name': 'Horizontal',
+            'horizontal_field': 'F2',
+            'vertical_field': 'F1',
+            'data': {
+                // some data
+            }
+        }
+    );
 
 Sorry for the inconvenient, but we think it was worth it.
 
@@ -74,401 +74,455 @@ Sorry for the inconvenient, but we think it was worth it.
 
 ### LineChart
 
-![LineChart](http://infoviz.org/examples/linechart.png "LineChart")
+![LineChart](http://infoviz.org/images/examples/linechart.png "LineChart")
 
 A LineChart has a enumerable as horizontal field, and a value field as vertical field.
 
-Demo: [Click Here](http://infoviz.org/index.html#linechart)
+Demo: [Click Here](http://infoviz.org/test/linechart.html)
 
-	InfoViz.chart(
-		'i_linechart',
-		'linechart',
-		{
-			'vertical_axis_name': 'Vertical',
-			'horizontal_axis_name': 'Horizontal',
-			'horizontal_field': 'F2',
-			'vertical_field': 'F1',
-			'data': {
-				'line1': {
-					'name': 'China',
-					'data': [
-						{ 'F1': 1,   'F2': 'A', 'F3': 3  },
-						{ 'F1': 42,  'F2': 'B', 'F3': 6  },
-						{ 'F1': 7,   'F2': 'C', 'F3': 9  },
-						{ 'F1': 110, 'F2': 'D', 'F3': 12 }
-					]
-				},
-				'line2': {
-					'name': 'Unite States',
-					'data': [
-						{ 'F1': 13, 'F2': 'A', 'F3': 15 },
-						{ 'F1': 10, 'F2': 'B', 'F3': 12 },
-						{ 'F1': 72, 'F2': 'C', 'F3': 9  },
-						{ 'F1': 1,  'F2': 'D', 'F3': 3  },
-						{ 'F1': 4,  'F2': 'E', 'F3': 6  }
-					]
-				},
-				'line3': {
-					'name': 'Unite Kingdom',
-					'data': [
-						{ 'F1': 19, 'F2': 'A', 'F3': 15 },
-						{ 'F1': 20, 'F2': 'B', 'F3': 12 },
-						{ 'F1': 11, 'F2': 'D', 'F3': 3  },
-						{ 'F1': 42, 'F2': 'E', 'F3': 6  }
-					]
-				},
-				'line4': {
-					'name': 'Italy',
-					'data': [
-						{ 'F1': 29, 'F2': 'A', 'F3': 15 },
-						{ 'F1': 70, 'F2': 'B', 'F3': 12 },
-						{ 'F1': 42, 'F2': 'C', 'F3': 9  },
-						{ 'F1': 51, 'F2': 'D', 'F3': 3  },
-						{ 'F1': 22, 'F2': 'E', 'F3': 6  }
-					]
-				},
-				'line5': {
-					'name': 'Russia',
-					'data': [
-						{ 'F1': 9,  'F2': 'A', 'F3': 15 },
-						{ 'F1': 90, 'F2': 'B', 'F3': 12 },
-						{ 'F1': 92, 'F2': 'C', 'F3': 9  },
-						{ 'F1': 52, 'F2': 'E', 'F3': 6  }
-					]
-				}
-			}
-		},
-		{ 'legend': { 'margin-top': 0 } }
-	);
+    InfoViz.chart(
+        'i_linechart',
+        'linechart',
+        {
+            'vertical_axis_name': 'Vertical',
+            'horizontal_axis_name': 'Horizontal',
+            'horizontal_field': 'F2',
+            'vertical_field': 'F1',
+            'data': {
+                'line1': {
+                    'name': 'China',
+                    'data': [
+                        { 'F1': 1,   'F2': 'A', 'F3': 3  },
+                        { 'F1': 42,  'F2': 'B', 'F3': 6  },
+                        { 'F1': 7,   'F2': 'C', 'F3': 9  },
+                        { 'F1': 110, 'F2': 'D', 'F3': 12 }
+                    ]
+                },
+                'line2': {
+                    'name': 'Unite States',
+                    'data': [
+                        { 'F1': 13, 'F2': 'A', 'F3': 15 },
+                        { 'F1': 10, 'F2': 'B', 'F3': 12 },
+                        { 'F1': 72, 'F2': 'C', 'F3': 9  },
+                        { 'F1': 1,  'F2': 'D', 'F3': 3  },
+                        { 'F1': 4,  'F2': 'E', 'F3': 6  }
+                    ]
+                },
+                'line3': {
+                    'name': 'Unite Kingdom',
+                    'data': [
+                        { 'F1': 19, 'F2': 'A', 'F3': 15 },
+                        { 'F1': 20, 'F2': 'B', 'F3': 12 },
+                        { 'F1': 11, 'F2': 'D', 'F3': 3  },
+                        { 'F1': 42, 'F2': 'E', 'F3': 6  }
+                    ]
+                },
+                'line4': {
+                    'name': 'Italy',
+                    'data': [
+                        { 'F1': 29, 'F2': 'A', 'F3': 15 },
+                        { 'F1': 70, 'F2': 'B', 'F3': 12 },
+                        { 'F1': 42, 'F2': 'C', 'F3': 9  },
+                        { 'F1': 51, 'F2': 'D', 'F3': 3  },
+                        { 'F1': 22, 'F2': 'E', 'F3': 6  }
+                    ]
+                },
+                'line5': {
+                    'name': 'Russia',
+                    'data': [
+                        { 'F1': 9,  'F2': 'A', 'F3': 15 },
+                        { 'F1': 90, 'F2': 'B', 'F3': 12 },
+                        { 'F1': 92, 'F2': 'C', 'F3': 9  },
+                        { 'F1': 52, 'F2': 'E', 'F3': 6  }
+                    ]
+                }
+            }
+        },
+        { 'legend': { 'margin-top': 0 } }
+    );
 
 ### AreaChart
 
-![AreaChart](http://infoviz.org/examples/areachart.png "AreaChart")
+![AreaChart](http://infoviz.org/images/examples/areachart.png "AreaChart")
 
 Some people may want to use an AreaChart to visualize their LineChart data. You can turn on area-enabled option in linechart configuration to enable it.
 
-Demo: [Click Here](http://infoviz.org/index.html#linechart)
+Demo: [Click Here](http://infoviz.org/test/linechart.html)
 
-	InfoViz.chart(
-		'i_linechart',
-		'linechart',
-		{
-			'vertical_axis_name': 'Vertical',
-			'horizontal_axis_name': 'Horizontal',
-			'horizontal_field': 'F2',
-			'vertical_field': 'F1',
-			'data': {
-				// ... Same with Normal LineChart
-			}
-		},
-		{ 'legend': { 'margin-top': 0 }, 'linechart': { 'area-enabled': true } }
-	);
+    InfoViz.chart(
+        'i_linechart',
+        'linechart',
+        {
+            'vertical_axis_name': 'Vertical',
+            'horizontal_axis_name': 'Horizontal',
+            'horizontal_field': 'F2',
+            'vertical_field': 'F1',
+            'data': {
+                // ... Same with Normal LineChart
+            }
+        },
+        { 'legend': { 'margin-top': 0 }, 'linechart': { 'area-enabled': true } }
+    );
 
 ## 1.2 BarChart
 
-![BarChart](http://infoviz.org/examples/barchart.png "BarChart")
+![BarChart](http://infoviz.org/images/examples/barchart.png "BarChart")
 
 A BarChart has a enumerable as horizontal field, and a value field as vertical field.
 
-Demo: [Click Here](http://infoviz.org/index.html#barchart)
+Demo: [Click Here](http://infoviz.org/test/barchart.html)
 
-	InfoViz.chart(
-		'i_barchart',
-		'barchart',
-		{
-			'vertical_axis_name': 'Vertical',
-			'horizontal_axis_name': 'Horizontal',
-			'horizontal_field': 'F2',
-			'vertical_field': 'F1',
-			'data': {
-				'bar1': {
-					'name': 'China',
-					'data': [
-						{ 'F1': 1,   'F2': 'A', 'F3': 3  },
-						{ 'F1': 42,  'F2': 'B', 'F3': 6  },
-						{ 'F1': 7,   'F2': 'C', 'F3': 9  },
-						{ 'F1': 110, 'F2': 'D', 'F3': 12 }
-					]
-				},
-				'bar2': {
-					'name': 'Unite States',
-					'data': [
-						{ 'F1': 13, 'F2': 'A', 'F3': 15 },
-						{ 'F1': 10, 'F2': 'B', 'F3': 12 },
-						{ 'F1': 72, 'F2': 'C', 'F3': 9  },
-						{ 'F1': 1,  'F2': 'D', 'F3': 3  },
-						{ 'F1': 4,  'F2': 'E', 'F3': 6  }
-					]
-				},
-				'bar3': {
-					'name': 'Unite Kingdom',
-					'data': [
-						{ 'F1': 19, 'F2': 'A', 'F3': 15 },
-						{ 'F1': 20, 'F2': 'B', 'F3': 12 },
-						{ 'F1': 11, 'F2': 'D', 'F3': 3  },
-						{ 'F1': 42, 'F2': 'E', 'F3': 6  }
-					]
-				},
-				'bar4': {
-					'name': 'Italy',
-					'data': [
-						{ 'F1': 29, 'F2': 'A', 'F3': 15 },
-						{ 'F1': 70, 'F2': 'B', 'F3': 12 },
-						{ 'F1': 42, 'F2': 'C', 'F3': 9  },
-						{ 'F1': 51, 'F2': 'D', 'F3': 3  },
-						{ 'F1': 22, 'F2': 'E', 'F3': 6  }
-					]
-				},
-				'bar5': {
-					'name': 'Russia',
-					'data': [
-						{ 'F1': 9,  'F2': 'A', 'F3': 15 },
-						{ 'F1': 90, 'F2': 'B', 'F3': 12 },
-						{ 'F1': 92, 'F2': 'C', 'F3': 9  },
-						{ 'F1': 52, 'F2': 'E', 'F3': 6  }
-					]
-				}
-			}
-		},
-		{ 'legend': { 'margin-top': 0 } }
-	);
+    InfoViz.chart(
+        'i_barchart',
+        'barchart',
+        {
+            'vertical_axis_name': 'Vertical',
+            'horizontal_axis_name': 'Horizontal',
+            'horizontal_field': 'F2',
+            'vertical_field': 'F1',
+            'data': {
+                'bar1': {
+                    'name': 'China',
+                    'data': [
+                        { 'F1': 1,   'F2': 'A', 'F3': 3  },
+                        { 'F1': 42,  'F2': 'B', 'F3': 6  },
+                        { 'F1': 7,   'F2': 'C', 'F3': 9  },
+                        { 'F1': 110, 'F2': 'D', 'F3': 12 }
+                    ]
+                },
+                'bar2': {
+                    'name': 'Unite States',
+                    'data': [
+                        { 'F1': 13, 'F2': 'A', 'F3': 15 },
+                        { 'F1': 10, 'F2': 'B', 'F3': 12 },
+                        { 'F1': 72, 'F2': 'C', 'F3': 9  },
+                        { 'F1': 1,  'F2': 'D', 'F3': 3  },
+                        { 'F1': 4,  'F2': 'E', 'F3': 6  }
+                    ]
+                },
+                'bar3': {
+                    'name': 'Unite Kingdom',
+                    'data': [
+                        { 'F1': 19, 'F2': 'A', 'F3': 15 },
+                        { 'F1': 20, 'F2': 'B', 'F3': 12 },
+                        { 'F1': 11, 'F2': 'D', 'F3': 3  },
+                        { 'F1': 42, 'F2': 'E', 'F3': 6  }
+                    ]
+                },
+                'bar4': {
+                    'name': 'Italy',
+                    'data': [
+                        { 'F1': 29, 'F2': 'A', 'F3': 15 },
+                        { 'F1': 70, 'F2': 'B', 'F3': 12 },
+                        { 'F1': 42, 'F2': 'C', 'F3': 9  },
+                        { 'F1': 51, 'F2': 'D', 'F3': 3  },
+                        { 'F1': 22, 'F2': 'E', 'F3': 6  }
+                    ]
+                },
+                'bar5': {
+                    'name': 'Russia',
+                    'data': [
+                        { 'F1': 9,  'F2': 'A', 'F3': 15 },
+                        { 'F1': 90, 'F2': 'B', 'F3': 12 },
+                        { 'F1': 92, 'F2': 'C', 'F3': 9  },
+                        { 'F1': 52, 'F2': 'E', 'F3': 6  }
+                    ]
+                }
+            }
+        },
+        { 'legend': { 'margin-top': 0 } }
+    );
 
 ## 1.3 BubbleChart
 
 A BubbleChart has a value as horizontal field, and a value field as vertical field, also with a value field indicates its size.
 
-![BubbleChart](http://infoviz.org/examples/bubblechart.png "BubbleChart")
+![BubbleChart](http://infoviz.org/images/examples/bubblechart.png "BubbleChart")
 
-Demo: [Click Here](http://infoviz.org/index.html#bubblechart)
+Demo: [Click Here](http://infoviz.org/test/bubblechart.html)
 
-	InfoViz.chart(
-		'i_bubblechart',
-		'bubblechart',
-		{
-			'vertical_axis_name': 'Vertical',
-			'horizontal_axis_name': 'Horizontal',
-			'horizontal_field': 'F1',
-			'vertical_field': 'F2',
-			'size_field': 'F3',
-			'label_field': 'F4',
-			'data': [
-				{ 'F1': 1,   'F2': 18, 'F3': 9, 'F4': 'CHN' },
-				{ 'F1': 42,  'F2': 30, 'F3': 6, 'F4': 'USA' },
-				{ 'F1': 7,   'F2': 35, 'F3': 9, 'F4': 'RUS' },
-				{ 'F1': 110, 'F2': 12, 'F3': 9, 'F4': 'CAN' },
-				{ 'F1': 50,  'F2': 19, 'F3': 2, 'F4': 'FRA' },
-				{ 'F1': 29,  'F2': 22, 'F3': 4, 'F4': 'VET' },
-				{ 'F1': 2,   'F2': 3,  'F3': 1, 'F4': 'JPN' }
-			]
-		},
-		{
-			'bubblechart': { 'padding-right': 200 },
-			'legend': { 'legend-position': 'top-right', 'margin-top': 40, 'margin-right': 0 }
-		}
-	);
+    InfoViz.chart(
+        'i_bubblechart',
+        'bubblechart',
+        {
+            'vertical_axis_name': 'Vertical',
+            'horizontal_axis_name': 'Horizontal',
+            'horizontal_field': 'F1',
+            'vertical_field': 'F2',
+            'size_field': 'F3',
+            'label_field': 'F4',
+            'data': [
+                { 'F1': 1,   'F2': 18, 'F3': 9, 'F4': 'CHN' },
+                { 'F1': 42,  'F2': 30, 'F3': 6, 'F4': 'USA' },
+                { 'F1': 7,   'F2': 35, 'F3': 9, 'F4': 'RUS' },
+                { 'F1': 110, 'F2': 12, 'F3': 9, 'F4': 'CAN' },
+                { 'F1': 50,  'F2': 19, 'F3': 2, 'F4': 'FRA' },
+                { 'F1': 29,  'F2': 22, 'F3': 4, 'F4': 'VET' },
+                { 'F1': 2,   'F2': 3,  'F3': 1, 'F4': 'JPN' }
+            ]
+        },
+        {
+            'bubblechart': { 'padding-right': 200 },
+            'legend': { 'legend-position': 'top-right', 'margin-top': 40, 'margin-right': 0 }
+        }
+    );
 
 ## 1.4 StackChart
 
 A StackChart has a enumerable as horizontal field, and a value field as vertical field.
 
-![StackChart](http://infoviz.org/examples/stackchart.png "StackChart")
+![StackChart](http://infoviz.org/images/examples/stackchart.png "StackChart")
 
-Demo: [Click Here](http://infoviz.org/index.html#stackchart)
+Demo: [Click Here](http://infoviz.org/test/stackchart.html)
 
-	InfoViz.chart(
-		'i_stackchart',
-		'stackchart',
-		{
-			'vertical_axis_name': 'Vertical',
-			'horizontal_axis_name': 'Horizontal',
-			'horizontal_field': 'F2',
-			'vertical_field': 'F1',
-			'tooltip_title': 'InfoViz {F2}, {F3}',
-			'tooltip_content': 'Value: {F1}',
-			'data': {
-				'bar1': {
-					'name': 'China',
-					'data': [
-						{ 'F1': 10, 'F2': 'A', 'F3': 3  },
-						{ 'F1': 20, 'F2': 'B', 'F3': 6  },
-						{ 'F1': 30, 'F2': 'C', 'F3': 9  },
-						{ 'F1': 40, 'F2': 'D', 'F3': 12 }
-					]
-				},
-				'bar2': {
-					'name': 'Unite States',
-					'data': [
-						{ 'F1': 40, 'F2': 'A', 'F3': 15 },
-						{ 'F1': 30, 'F2': 'B', 'F3': 12 },
-						{ 'F1': 20, 'F2': 'C', 'F3': 9  },
-						{ 'F1': 10, 'F2': 'D', 'F3': 3  },
-						{ 'F1': 15, 'F2': 'E', 'F3': 6  }
-					]
-				},
-				'bar3': {
-					'name': 'Unite Kingdom',
-					'data': [
-						{ 'F1': 20, 'F2': 'A', 'F3': 15 },
-						{ 'F1': 30, 'F2': 'B', 'F3': 12 },
-						{ 'F1': 10, 'F2': 'D', 'F3': 3  },
-						{ 'F1': 40, 'F2': 'E', 'F3': 6  }
-					]
-				},
-				'bar4': {
-					'name': 'Italy',
-					'data': [
-						{ 'F1': 29, 'F2': 'A', 'F3': 15 },
-						{ 'F1': 70, 'F2': 'B', 'F3': 12 },
-						{ 'F1': 42, 'F2': 'C', 'F3': 9  },
-						{ 'F1': 51, 'F2': 'D', 'F3': 3  },
-						{ 'F1': 22, 'F2': 'E', 'F3': 6  }
-					]
-				},
-				'bar5': {
-					'name': 'Russia',
-					'data': [
-						{ 'F1': 29,  'F2': 'A', 'F3': 15 },
-						{ 'F1': 50, 'F2': 'B', 'F3': 12 },
-						{ 'F1': 52, 'F2': 'C', 'F3': 9  },
-						{ 'F1': 52, 'F2': 'E', 'F3': 6  }
-					]
-				}
-			}
-		},
-		{ 'legend': { 'margin-top': 0 } }
-	);
+    InfoViz.chart(
+        'i_stackchart',
+        'stackchart',
+        {
+            'vertical_axis_name': 'Vertical',
+            'horizontal_axis_name': 'Horizontal',
+            'horizontal_field': 'F2',
+            'vertical_field': 'F1',
+            'tooltip_title': 'InfoViz {F2}, {F3}',
+            'tooltip_content': 'Value: {F1}',
+            'data': {
+                'bar1': {
+                    'name': 'China',
+                    'data': [
+                        { 'F1': 10, 'F2': 'A', 'F3': 3  },
+                        { 'F1': 20, 'F2': 'B', 'F3': 6  },
+                        { 'F1': 30, 'F2': 'C', 'F3': 9  },
+                        { 'F1': 40, 'F2': 'D', 'F3': 12 }
+                    ]
+                },
+                'bar2': {
+                    'name': 'Unite States',
+                    'data': [
+                        { 'F1': 40, 'F2': 'A', 'F3': 15 },
+                        { 'F1': 30, 'F2': 'B', 'F3': 12 },
+                        { 'F1': 20, 'F2': 'C', 'F3': 9  },
+                        { 'F1': 10, 'F2': 'D', 'F3': 3  },
+                        { 'F1': 15, 'F2': 'E', 'F3': 6  }
+                    ]
+                },
+                'bar3': {
+                    'name': 'Unite Kingdom',
+                    'data': [
+                        { 'F1': 20, 'F2': 'A', 'F3': 15 },
+                        { 'F1': 30, 'F2': 'B', 'F3': 12 },
+                        { 'F1': 10, 'F2': 'D', 'F3': 3  },
+                        { 'F1': 40, 'F2': 'E', 'F3': 6  }
+                    ]
+                },
+                'bar4': {
+                    'name': 'Italy',
+                    'data': [
+                        { 'F1': 29, 'F2': 'A', 'F3': 15 },
+                        { 'F1': 70, 'F2': 'B', 'F3': 12 },
+                        { 'F1': 42, 'F2': 'C', 'F3': 9  },
+                        { 'F1': 51, 'F2': 'D', 'F3': 3  },
+                        { 'F1': 22, 'F2': 'E', 'F3': 6  }
+                    ]
+                },
+                'bar5': {
+                    'name': 'Russia',
+                    'data': [
+                        { 'F1': 29,  'F2': 'A', 'F3': 15 },
+                        { 'F1': 50, 'F2': 'B', 'F3': 12 },
+                        { 'F1': 52, 'F2': 'C', 'F3': 9  },
+                        { 'F1': 52, 'F2': 'E', 'F3': 6  }
+                    ]
+                }
+            }
+        },
+        { 'legend': { 'margin-top': 0 } }
+    );
 
 ## 1.5 StockChart
 
-A StockChart like BarChart. In BarChart, each bar has only one vertical value, but in StockChart, each bar has three: max, middle and min value.
+A StockChart is like a BarChart. In BarChart, each bar has only one vertical value, but in StockChart, each bar has three: max, middle and min value.
 
-![StockChart](http://infoviz.org/examples/stockchart.png "StockChart")
+![StockChart](http://infoviz.org/images/examples/stockchart.png "StockChart")
 
-Demo: [Click Here](http://infoviz.org/index.html#stockchart)
+Demo: [Click Here](http://infoviz.org/test/stockchart.html)
 
-	InfoViz.chart(
-		'i_stockchart',
-		'stockchart',
-		{
-			'vertical_axis_name': 'Vertical',
-			'horizontal_axis_name': 'Horizontal',
-			'horizontal_field': 'F2',
-			'vertical_field': { 'min': 'F4', 'middle': 'F5', 'max': 'F6' },
-			'tooltip_title': 'InfoViz {F2}, {F3}',
-			'tooltip_content': 'Tooltip: max={F6}, middle={F5}, min={F4}',
-			'data': {
-				'bar1': {
-					'name': 'China',
-					'data': [
-						{ 'F1': 1,   'F2': 'A', 'F3': 3,  'F4': 1, 'F5': 2, 'F6': 5 },
-						{ 'F1': 42,  'F2': 'B', 'F3': 6,  'F4': 3, 'F5': 4, 'F6': 4 },
-						{ 'F1': 7,   'F2': 'C', 'F3': 9,  'F4': 2, 'F5': 3, 'F6': 4 },
-						{ 'F1': 110, 'F2': 'D', 'F3': 12, 'F4': 4, 'F5': 5, 'F6': 6 }
-					]
-				},
-				'bar2': {
-					'name': 'Unite States',
-					'data': [
-						{ 'F1': 13, 'F2': 'A', 'F3': 15, 'F4': 4, 'F5': 7,  'F6': 8  },
-						{ 'F1': 10, 'F2': 'B', 'F3': 12, 'F4': 9, 'F5': 12, 'F6': 13 },
-						{ 'F1': 72, 'F2': 'C', 'F3': 9,  'F4': 4, 'F5': 10, 'F6': 15 },
-						{ 'F1': 1,  'F2': 'D', 'F3': 3,  'F4': 6, 'F5': 9,  'F6': 18 },
-						{ 'F1': 4,  'F2': 'E', 'F3': 6,  'F4': 5, 'F5': 7,  'F6': 10 }
-					]
-				},
-				'bar3': {
-					'name': 'Unite Kingdom',
-					'data': [
-						{ 'F1': 19, 'F2': 'A', 'F3': 15, 'F4': 1, 'F5': 7,  'F6': 12 },
-						{ 'F1': 20, 'F2': 'B', 'F3': 12, 'F4': 2, 'F5': 8,  'F6': 15 },
-						{ 'F1': 11, 'F2': 'D', 'F3': 3,  'F4': 3, 'F5': 9,  'F6': 17 },
-						{ 'F1': 42, 'F2': 'E', 'F3': 6,  'F4': 4, 'F5': 10, 'F6': 11 }
-					]
-				},
-				'bar4': {
-					'name': 'Italy',
-					'data': [
-						{ 'F1': 29, 'F2': 'A', 'F3': 15, 'F4': 5, 'F5': 8,  'F6': 10 },
-						{ 'F1': 70, 'F2': 'B', 'F3': 12, 'F4': 8, 'F5': 10, 'F6': 12 },
-						{ 'F1': 42, 'F2': 'C', 'F3': 9,  'F4': 2, 'F5': 11, 'F6': 15 },
-						{ 'F1': 51, 'F2': 'D', 'F3': 3,  'F4': 4, 'F5': 7,  'F6': 17 },
-						{ 'F1': 22, 'F2': 'E', 'F3': 6,  'F4': 3, 'F5': 7,  'F6': 19 }
-					]
-				},
-				'bar5': {
-					'name': 'Russia',
-					'data': [
-						{ 'F1': 9,  'F2': 'A', 'F3': 15, 'F4': 1, 'F5': 5,  'F6': 13 },
-						{ 'F1': 90, 'F2': 'B', 'F3': 12, 'F4': 3, 'F5': 13, 'F6': 16 },
-						{ 'F1': 92, 'F2': 'C', 'F3': 9,  'F4': 5, 'F5': 15, 'F6': 18 },
-						{ 'F1': 52, 'F2': 'E', 'F3': 6,  'F4': 9, 'F5': 10, 'F6': 15 }
-					]
-				}
-			}
-		},
-		{ 'legend': { 'margin-top': 0 } }
-	);
+    InfoViz.chart(
+        'i_stockchart',
+        'stockchart',
+        {
+            'vertical_axis_name': 'Vertical',
+            'horizontal_axis_name': 'Horizontal',
+            'horizontal_field': 'F2',
+            'vertical_field': { 'min': 'F4', 'middle': 'F5', 'max': 'F6' },
+            'tooltip_title': 'InfoViz {F2}, {F3}',
+            'tooltip_content': 'Tooltip: max={F6}, middle={F5}, min={F4}',
+            'data': {
+                'bar1': {
+                    'name': 'China',
+                    'data': [
+                        { 'F1': 1,   'F2': 'A', 'F3': 3,  'F4': 1, 'F5': 2, 'F6': 5 },
+                        { 'F1': 42,  'F2': 'B', 'F3': 6,  'F4': 3, 'F5': 4, 'F6': 4 },
+                        { 'F1': 7,   'F2': 'C', 'F3': 9,  'F4': 2, 'F5': 3, 'F6': 4 },
+                        { 'F1': 110, 'F2': 'D', 'F3': 12, 'F4': 4, 'F5': 5, 'F6': 6 }
+                    ]
+                },
+                'bar2': {
+                    'name': 'Unite States',
+                    'data': [
+                        { 'F1': 13, 'F2': 'A', 'F3': 15, 'F4': 4, 'F5': 7,  'F6': 8  },
+                        { 'F1': 10, 'F2': 'B', 'F3': 12, 'F4': 9, 'F5': 12, 'F6': 13 },
+                        { 'F1': 72, 'F2': 'C', 'F3': 9,  'F4': 4, 'F5': 10, 'F6': 15 },
+                        { 'F1': 1,  'F2': 'D', 'F3': 3,  'F4': 6, 'F5': 9,  'F6': 18 },
+                        { 'F1': 4,  'F2': 'E', 'F3': 6,  'F4': 5, 'F5': 7,  'F6': 10 }
+                    ]
+                },
+                'bar3': {
+                    'name': 'Unite Kingdom',
+                    'data': [
+                        { 'F1': 19, 'F2': 'A', 'F3': 15, 'F4': 1, 'F5': 7,  'F6': 12 },
+                        { 'F1': 20, 'F2': 'B', 'F3': 12, 'F4': 2, 'F5': 8,  'F6': 15 },
+                        { 'F1': 11, 'F2': 'D', 'F3': 3,  'F4': 3, 'F5': 9,  'F6': 17 },
+                        { 'F1': 42, 'F2': 'E', 'F3': 6,  'F4': 4, 'F5': 10, 'F6': 11 }
+                    ]
+                },
+                'bar4': {
+                    'name': 'Italy',
+                    'data': [
+                        { 'F1': 29, 'F2': 'A', 'F3': 15, 'F4': 5, 'F5': 8,  'F6': 10 },
+                        { 'F1': 70, 'F2': 'B', 'F3': 12, 'F4': 8, 'F5': 10, 'F6': 12 },
+                        { 'F1': 42, 'F2': 'C', 'F3': 9,  'F4': 2, 'F5': 11, 'F6': 15 },
+                        { 'F1': 51, 'F2': 'D', 'F3': 3,  'F4': 4, 'F5': 7,  'F6': 17 },
+                        { 'F1': 22, 'F2': 'E', 'F3': 6,  'F4': 3, 'F5': 7,  'F6': 19 }
+                    ]
+                },
+                'bar5': {
+                    'name': 'Russia',
+                    'data': [
+                        { 'F1': 9,  'F2': 'A', 'F3': 15, 'F4': 1, 'F5': 5,  'F6': 13 },
+                        { 'F1': 90, 'F2': 'B', 'F3': 12, 'F4': 3, 'F5': 13, 'F6': 16 },
+                        { 'F1': 92, 'F2': 'C', 'F3': 9,  'F4': 5, 'F5': 15, 'F6': 18 },
+                        { 'F1': 52, 'F2': 'E', 'F3': 6,  'F4': 9, 'F5': 10, 'F6': 15 }
+                    ]
+                }
+            }
+        },
+        { 'legend': { 'margin-top': 0 } }
+    );
+
+## 1.6 StreamChart
+
+A StreamChart is like an AreaChart. StreamChart shows percentage changes in different data fields.
+
+![StreamChart](http://infoviz.org/images/examples/streamchart.png "StreamChart")
+
+Demo: [Click Here](http://infoviz.org/test/streamchart.html)
+
+    InfoViz.chart(
+        'i_streamchart',
+        'streamchart',
+        {
+            'vertical_axis_name': 'Vertical',
+            'horizontal_axis_name': 'Horizontal',
+            'horizontal_field': 'F1',
+            'value_field': 'F2',
+            'stream_field': 'F3',
+            'tooltip_title': 'InfoViz {F3} {F1}',
+            'tooltip_content': 'Tooltip: {F2}',
+            'data': [
+                {
+                    'F3': 'stream1',
+                    'data': [
+                        { 'F1': 'No.1', 'F2': 1 },
+                        { 'F1': 'No.2', 'F2': 2 },
+                        { 'F1': 'No.3', 'F2': 3 },
+                        { 'F1': 'No.4', 'F2': 4 },
+                        { 'F1': 'No.5', 'F2': 5 }
+                    ]
+                },
+                {
+                    'F3': 'stream2',
+                    'data': [
+                        { 'F1': 'No.1', 'F2': 2 },
+                        { 'F1': 'No.2', 'F2': 3 },
+                        { 'F1': 'No.3', 'F2': 4 },
+                        { 'F1': 'No.4', 'F2': 5 },
+                        { 'F1': 'No.5', 'F2': 6 }
+                    ]
+                },
+                {
+                    'F3': 'stream3',
+                    'data': [
+                        { 'F1': 'No.1', 'F2': 7 },
+                        { 'F1': 'No.2', 'F2': 5 },
+                        { 'F1': 'No.3', 'F2': 2 },
+                        { 'F1': 'No.4', 'F2': 1 },
+                        { 'F1': 'No.5', 'F2': 2 }
+                    ]
+                }
+            ]
+        }
+    );
 
 # 2 Round Stuff
 
 ## 2.1 PieChart
 
-![PieChart](http://infoviz.org/examples/piechart.png "PieChart")
+![PieChart](http://infoviz.org/images/examples/piechart.png "PieChart")
 
 A PieChart has a value as horizontal field.
 
-Demo: [Click Here](http://infoviz.org/index.html#piechart)
+Demo: [Click Here](http://infoviz.org/test/piechart.html)
 
-	InfoViz.chart(
-		'i_piechart1',
-		'piechart',
-		{
-			'value_field': 'F2',
-			'label_field': 'F4',
-			'data': [
-				{ 'F1': 1,   'F2': 9, 'F3': 9, 'F4': 'CHN' },
-				{ 'F1': 42,  'F2': 9, 'F3': 6, 'F4': 'USA' },
-				{ 'F1': 7,   'F2': 9, 'F3': 9, 'F4': 'RUS' },
-				{ 'F1': 110, 'F2': 8, 'F3': 9, 'F4': 'CAN' },
-				{ 'F1': 50,  'F2': 3, 'F3': 2, 'F4': 'FRA' },
-				{ 'F1': 29,  'F2': 1, 'F3': 4, 'F4': 'VET' },
-				{ 'F1': 2,   'F2': 1, 'F3': 1, 'F4': 'JPN' }
-			]
-		},
-		{ 'legend': { 'legend-enabled': false } }
-	);
+    InfoViz.chart(
+        'i_piechart1',
+        'piechart',
+        {
+            'value_field': 'F2',
+            'label_field': 'F4',
+            'data': [
+                { 'F1': 1,   'F2': 9, 'F3': 9, 'F4': 'CHN' },
+                { 'F1': 42,  'F2': 9, 'F3': 6, 'F4': 'USA' },
+                { 'F1': 7,   'F2': 9, 'F3': 9, 'F4': 'RUS' },
+                { 'F1': 110, 'F2': 8, 'F3': 9, 'F4': 'CAN' },
+                { 'F1': 50,  'F2': 3, 'F3': 2, 'F4': 'FRA' },
+                { 'F1': 29,  'F2': 1, 'F3': 4, 'F4': 'VET' },
+                { 'F1': 2,   'F2': 1, 'F3': 1, 'F4': 'JPN' }
+            ]
+        },
+        { 'legend': { 'legend-enabled': false } }
+    );
 
 ## 2.2 RadarChart
 
-![RadarChart](http://infoviz.org/examples/radarchart.png "RadarChart")
+![RadarChart](http://infoviz.org/images/examples/radarchart.png "RadarChart")
 
 A RadarChart has a group of value fields.
 
-Demo: [Click Here](http://infoviz.org/index.html#radarchart)
+Demo: [Click Here](http://infoviz.org/test/radarchart.html)
 
-	InfoViz.chart(
-		'i_radarchart1',
-		'radarchart',
-		{
-			'value_fields': [ 'F1', 'F2', 'F3', 'F4', 'F5', 'F6' ],
-			'name_field': 'F7',
-			'value_maxs': [ 8, 8, 8, 8, 8, 8 ],
-			'value_mins': [ 1, 1, 1, 1, 1, 1 ],
-			'data': [
-				{ 'F1': 7, 'F2': 7, 'F3': 7, 'F4': 7, 'F5': 7, 'F6': 7, 'F7': 'China' },
-				{ 'F1': 6, 'F2': 6, 'F3': 6, 'F4': 6, 'F5': 6, 'F6': 6, 'F7': 'Unite States' },
-				{ 'F1': 5, 'F2': 5, 'F3': 5, 'F4': 5, 'F5': 5, 'F6': 5, 'F7': 'Unite Kingdom' },
-				{ 'F1': 4, 'F2': 4, 'F3': 4, 'F4': 4, 'F5': 4, 'F6': 4, 'F7': 'France' },
-				{ 'F1': 3, 'F2': 3, 'F3': 3, 'F4': 3, 'F5': 3, 'F6': 3, 'F7': 'Japan' },
-				{ 'F1': 2, 'F2': 2, 'F3': 2, 'F4': 2, 'F5': 2, 'F6': 2, 'F7': 'South Korea' },
-				{ 'F1': 1, 'F2': 1, 'F3': 1, 'F4': 1, 'F5': 1, 'F6': 1, 'F7': 'Russia' }
-			]
-		},
-		{
-			'radarchart': { 'horizontal-offset': 60 },
-			'legend': { 'legend-position': 'bottom-left', 'margin-left': 0, 'margin-bottom': 0 }
-		}
-	);
+    InfoViz.chart(
+        'i_radarchart1',
+        'radarchart',
+        {
+            'value_fields': [ 'F1', 'F2', 'F3', 'F4', 'F5', 'F6' ],
+            'name_field': 'F7',
+            'value_maxs': [ 8, 8, 8, 8, 8, 8 ],
+            'value_mins': [ 1, 1, 1, 1, 1, 1 ],
+            'data': [
+                { 'F1': 7, 'F2': 7, 'F3': 7, 'F4': 7, 'F5': 7, 'F6': 7, 'F7': 'China' },
+                { 'F1': 6, 'F2': 6, 'F3': 6, 'F4': 6, 'F5': 6, 'F6': 6, 'F7': 'Unite States' },
+                { 'F1': 5, 'F2': 5, 'F3': 5, 'F4': 5, 'F5': 5, 'F6': 5, 'F7': 'Unite Kingdom' },
+                { 'F1': 4, 'F2': 4, 'F3': 4, 'F4': 4, 'F5': 4, 'F6': 4, 'F7': 'France' },
+                { 'F1': 3, 'F2': 3, 'F3': 3, 'F4': 3, 'F5': 3, 'F6': 3, 'F7': 'Japan' },
+                { 'F1': 2, 'F2': 2, 'F3': 2, 'F4': 2, 'F5': 2, 'F6': 2, 'F7': 'South Korea' },
+                { 'F1': 1, 'F2': 1, 'F3': 1, 'F4': 1, 'F5': 1, 'F6': 1, 'F7': 'Russia' }
+            ]
+        },
+        {
+            'radarchart': { 'horizontal-offset': 60 },
+            'legend': { 'legend-position': 'bottom-left', 'margin-left': 0, 'margin-bottom': 0 }
+        }
+    );
 
 Update:
 
@@ -477,318 +531,317 @@ In v0.3.3, we fix a bug in RadarChart, when there's only one or two circles in R
 
 ## 2.3 RadialChart
 
-![RadialChart](http://infoviz.org/examples/radialchart.png "RadialChart")
+![RadialChart](http://infoviz.org/images/examples/radialchart.png "RadialChart")
 
 A RadialChart has a value field.
 
-Demo: [Click Here](http://infoviz.org/index.html#radialchart)
+Demo: [Click Here](http://infoviz.org/test/radialchart.html)
 
-	InfoViz.chart(
-		'i_radialchart2',
-		'radialchart',
-		{
-			'value_field': 'F1',
-			'label_field': 'F2',
-			'tooltip_title': 'Country: {F2}',
-			'tooltip_content': 'Tooltip: {F2}',
-			'data': [
-				{ 'F1': 6, 'F2': 'China' },
-				{ 'F1': 5, 'F2': 'Unite States' },
-				{ 'F1': 6, 'F2': 'Russia' },
-				{ 'F1': 5, 'F2': 'Japan' },
-				{ 'F1': 5, 'F2': 'Botswana' },
-				{ 'F1': 6, 'F2': 'Finland' },
-				{ 'F1': 5, 'F2': 'France' },
-				{ 'F1': 4, 'F2': 'Cape Verde' },
-				{ 'F1': 3, 'F2': 'Belize' },
-				{ 'F1': 4, 'F2': 'Georgia' },
-				{ 'F1': 5, 'F2': 'Haiti' },
-				{ 'F1': 6, 'F2': 'Hungary' },
-				{ 'F1': 3, 'F2': 'India' },
-				{ 'F1': 4, 'F2': 'Laos' },
-				{ 'F1': 5, 'F2': 'Kuwait' },
-				{ 'F1': 4, 'F2': 'Namibia' },
-				{ 'F1': 3, 'F2': 'Peru' }
-			]
-		},
-		{
-			'legend': { 'margin-left': 0, 'margin-top': 5 },
-			'radialchart': { 'horizontal-offset': 40, 'label-enabled': false }
-		}
-	);
+    InfoViz.chart(
+        'i_radialchart2',
+        'radialchart',
+        {
+            'value_field': 'F1',
+            'label_field': 'F2',
+            'tooltip_title': 'Country: {F2}',
+            'tooltip_content': 'Tooltip: {F2}',
+            'data': [
+                { 'F1': 6, 'F2': 'China' },
+                { 'F1': 5, 'F2': 'Unite States' },
+                { 'F1': 6, 'F2': 'Russia' },
+                { 'F1': 5, 'F2': 'Japan' },
+                { 'F1': 5, 'F2': 'Botswana' },
+                { 'F1': 6, 'F2': 'Finland' },
+                { 'F1': 5, 'F2': 'France' },
+                { 'F1': 4, 'F2': 'Cape Verde' },
+                { 'F1': 3, 'F2': 'Belize' },
+                { 'F1': 4, 'F2': 'Georgia' },
+                { 'F1': 5, 'F2': 'Haiti' },
+                { 'F1': 6, 'F2': 'Hungary' },
+                { 'F1': 3, 'F2': 'India' },
+                { 'F1': 4, 'F2': 'Laos' },
+                { 'F1': 5, 'F2': 'Kuwait' },
+                { 'F1': 4, 'F2': 'Namibia' },
+                { 'F1': 3, 'F2': 'Peru' }
+            ]
+        },
+        {
+            'legend': { 'margin-left': 0, 'margin-top': 5 },
+            'radialchart': { 'horizontal-offset': 40, 'label-enabled': false }
+        }
+    );
 
 ## 2.4 SmithGraph
 
-![SmithGraph](http://infoviz.org/examples/smithgraph.png "SmithGraph")
+![SmithGraph](http://infoviz.org/images/examples/smithgraph.png "SmithGraph")
 
 A SmithGraph is a complex visulization graph offten been uesd to visualize many nodes and edges between them.
 Each node has a value field, which will be visualized as bars with different height. Each node may also has one or more edges.
 Each edge has a value field, and a destination node. Its value field will be visualized as color of the edge.
 
-Demo: [Click Here](http://infoviz.org/index.html#smithgraph)
+Demo: [Click Here](http://infoviz.org/test/smithgraph.html)
 
-	InfoViz.chart(
-		'i_smithgraph',
-		'smithgraph',
-		{
-			'node_id_field': 'F1',
-			'node_label_field': 'F1',
-			'node_value_field': 'F2',
-			'edge_value_field': 'F3',
-			'node_tooltip_title': 'Node #{F1}',
-			'node_tooltip_content': 'Value: {F2}. Edges: {F4}.',
-			'data': [
-				{
-					'F1': 'item1',
-					'F2': 1,
-					'F4': 3,
-					'edges': [
-						{ 'to': 'item2', 'F3': 1 },
-						{ 'to': 'item3', 'F3': 2 },
-						{ 'to': 'item4', 'F3': 3 }
-					]
-				},
-				{
-					'F1': 'item2',
-					'F2': 2,
-					'F4': 2,
-					'edges': [
-						{ 'to': 'item1', 'F3': 1 },
-						{ 'to': 'item4', 'F3': 2 }
-					]
-				},
-				{
-					'F1': 'item3',
-					'F2': 3,
-					'F4': 1,
-					'edges': [
-						{ 'to': 'item1', 'F3': 1 }
-					]
-				},
-				{
-					'F1': 'item4',
-					'F2': 4,
-					'F4': 3,
-					'edges': [
-						{ 'to': 'item1', 'F3': 1 },
-						{ 'to': 'item2', 'F3': 2 },
-						{ 'to': 'item3', 'F3': 3 }
-					]
-				}
-			]
-		},
-		{ 'legend': { 'legend-enabled': false } }
-	);
+    InfoViz.chart(
+        'i_smithgraph',
+        'smithgraph',
+        {
+            'node_id_field': 'F1',
+            'node_label_field': 'F1',
+            'node_value_field': 'F2',
+            'edge_value_field': 'F3',
+            'node_tooltip_title': 'Node #{F1}',
+            'node_tooltip_content': 'Value: {F2}. Edges: {F4}.',
+            'data': [
+                {
+                    'F1': 'item1',
+                    'F2': 1,
+                    'F4': 3,
+                    'edges': [
+                        { 'to': 'item2', 'F3': 1 },
+                        { 'to': 'item3', 'F3': 2 },
+                        { 'to': 'item4', 'F3': 3 }
+                    ]
+                },
+                {
+                    'F1': 'item2',
+                    'F2': 2,
+                    'F4': 2,
+                    'edges': [
+                        { 'to': 'item1', 'F3': 1 },
+                        { 'to': 'item4', 'F3': 2 }
+                    ]
+                },
+                {
+                    'F1': 'item3',
+                    'F2': 3,
+                    'F4': 1,
+                    'edges': [
+                        { 'to': 'item1', 'F3': 1 }
+                    ]
+                },
+                {
+                    'F1': 'item4',
+                    'F2': 4,
+                    'F4': 3,
+                    'edges': [
+                        { 'to': 'item1', 'F3': 1 },
+                        { 'to': 'item2', 'F3': 2 },
+                        { 'to': 'item3', 'F3': 3 }
+                    ]
+                }
+            ]
+        },
+        { 'legend': { 'legend-enabled': false } }
+    );
 
 # 3 Map
 
 ## 3.1 WorldMap
 
-![WorldMap](http://infoviz.org/examples/worldmap.png "WorldMap")
+![WorldMap](http://infoviz.org/images/examples/worldmap.png "WorldMap")
 
 A WorldMap is a global map, each area can has a value field indicates counts or frequency.
 
-Demo: [Click Here](http://infoviz.org/index.html#worldmap)
+Demo: [Click Here](http://infoviz.org/test/worldmap.html)
 
-	InfoViz.chart(
-		'i_worldmap',
-		'worldmap',
-		{
-			'value_field': 'F1',
-			'tooltip_title': 'InfoViz: {area}',
-			'tooltip_content': '{area}: value = {F1}',
-			'data': [
-				{ 'area': 'BR', 'F1': 1 },
-				{ 'area': 'CH', 'F1': 2 },
-				{ 'area': 'CL', 'F1': 3 },
-				{ 'area': 'US', 'F1': 4 },
-				{ 'area': 'JP', 'F1': 7 },
-				{ 'area': 'MX', 'F1': 6 },
-				{ 'area': 'PE', 'F1': 7 },
-				{ 'area': 'ZA', 'F1': 8 },
-				{ 'area': 'ZW', 'F1': 9 },
-				{ 'area': 'RU', 'F1': 3 },
-				{ 'area': 'QA', 'F1': 2 },
-				{ 'area': 'NO', 'F1': 8 },
-				{ 'area': 'ML', 'F1': 4 },
-				{ 'area': 'KR', 'F1': 5 },
-				{ 'area': 'CN', 'F1': 8 },
-				{ 'area': 'TW', 'F1': 8 },
-				{ 'area': 'CU', 'F1': 7 },
-				{ 'area': 'ER', 'F1': 8 },
-				{ 'area': 'GH', 'F1': 9 },
-				{ 'area': 'HN', 'F1': 1 },
-				{ 'area': 'IN', 'F1': 2 },
-				{ 'area': 'AU', 'F1': 9 },
-				{ 'area': 'CA', 'F1': 7 },
-				{ 'area': 'IT', 'F1': 7 },
-				{ 'area': 'GB', 'F1': 5 },
-				{ 'area': 'FR', 'F1': 8 },
-				{ 'area': 'DE', 'F1': 6 },
-				{ 'area': 'PT', 'F1': 9 },
-				{ 'area': 'ES', 'F1': 5 },
-				{ 'area': 'SE', 'F1': 7 }
-			]
-		}
-	);
+    InfoViz.chart(
+        'i_worldmap',
+        'worldmap',
+        {
+            'value_field': 'F1',
+            'tooltip_title': 'InfoViz: {area}',
+            'tooltip_content': '{area}: value = {F1}',
+            'data': [
+                { 'area': 'BR', 'F1': 1 },
+                { 'area': 'CH', 'F1': 2 },
+                { 'area': 'CL', 'F1': 3 },
+                { 'area': 'US', 'F1': 4 },
+                { 'area': 'JP', 'F1': 7 },
+                { 'area': 'MX', 'F1': 6 },
+                { 'area': 'PE', 'F1': 7 },
+                { 'area': 'ZA', 'F1': 8 },
+                { 'area': 'ZW', 'F1': 9 },
+                { 'area': 'RU', 'F1': 3 },
+                { 'area': 'QA', 'F1': 2 },
+                { 'area': 'NO', 'F1': 8 },
+                { 'area': 'ML', 'F1': 4 },
+                { 'area': 'KR', 'F1': 5 },
+                { 'area': 'CN', 'F1': 8 },
+                { 'area': 'TW', 'F1': 8 },
+                { 'area': 'CU', 'F1': 7 },
+                { 'area': 'ER', 'F1': 8 },
+                { 'area': 'GH', 'F1': 9 },
+                { 'area': 'HN', 'F1': 1 },
+                { 'area': 'IN', 'F1': 2 },
+                { 'area': 'AU', 'F1': 9 },
+                { 'area': 'CA', 'F1': 7 },
+                { 'area': 'IT', 'F1': 7 },
+                { 'area': 'GB', 'F1': 5 },
+                { 'area': 'FR', 'F1': 8 },
+                { 'area': 'DE', 'F1': 6 },
+                { 'area': 'PT', 'F1': 9 },
+                { 'area': 'ES', 'F1': 5 },
+                { 'area': 'SE', 'F1': 7 }
+            ]
+        }
+    );
 
 In data of WorldMap, you must provide a two-letter short name to identify an area. A cheat sheet is available at global variable:
 
-	console.log(InfoViz.WorldMap.names);
+    console.log(InfoViz.WorldMap.names);
 
 or
 
-	console.log(InfoViz.WorldMap.areas);
+    console.log(InfoViz.WorldMap.areas);
 
 ## 3.2 HeatMap
 
-![HeatMap](http://infoviz.org/examples/heatmap.png "HeatMap")
+![HeatMap](http://infoviz.org/images/examples/heatmap.png "HeatMap")
 
 A HeatMap has a value field which indicator its load etc.
 
-Demo: [Click Here](http://infoviz.org/index.html#heatmap)
+Demo: [Click Here](http://infoviz.org/test/heatmap.html)
 
-	InfoViz.chart(
-		'i_heatmap2',
-		'heatmap',
-		{
-			'value_field': 'F1',
-			'label_field': 'F4',
-			'data': [
-				{ 'F1': 14, 'F2': 1,  'F3': 9, 'F4': 'M1'  },
-				{ 'F1': 42, 'F2': 1,  'F3': 6, 'F4': 'USA' },
-				{ 'F1': 7,  'F2': 1,  'F3': 9, 'F4': 'RUS' },
-				{ 'F1': 11, 'F2': 12, 'F3': 9, 'F4': 'CAN' },
-				{ 'F1': 50, 'F2': 19, 'F3': 2, 'F4': 'FRA' },
-				{ 'F1': 29, 'F2': 22, 'F3': 4, 'F4': 'VET' },
-				{ 'F1': 2,  'F2': 3,  'F3': 1, 'F4': 'JPN' },
-				{ 'F1': 1,  'F2': 1,  'F3': 9, 'F4': 'M1'  },
-				{ 'F1': 42, 'F2': 1,  'F3': 6, 'F4': 'USA' },
-				{ 'F1': 7,  'F2': 1,  'F3': 9, 'F4': 'RUS' },
-				{ 'F1': 11, 'F2': 12, 'F3': 9, 'F4': 'CAN' },
-				{ 'F1': 50, 'F2': 19, 'F3': 2, 'F4': 'FRA' },
-				{ 'F1': 29, 'F2': 22, 'F3': 4, 'F4': 'VET' },
-				{ 'F1': 2,  'F2': 3,  'F3': 1, 'F4': 'JPN' },
-				{ 'F1': 1,  'F2': 1,  'F3': 9, 'F4': 'M1'  },
-				{ 'F1': 42, 'F2': 1,  'F3': 6, 'F4': 'USA' },
-				{ 'F1': 7,  'F2': 1,  'F3': 9, 'F4': 'RUS' },
-				{ 'F1': 11, 'F2': 12, 'F3': 9, 'F4': 'CAN' },
-				{ 'F1': 50, 'F2': 19, 'F3': 2, 'F4': 'FRA' },
-				{ 'F1': 29, 'F2': 22, 'F3': 4, 'F4': 'VET' }
-			]
-		},
-		{
-			'layout': { 'logo-position': 'bottom-right' },
-			'heatmap': { 'label-size': 20 }
-		}
-	);
+    InfoViz.chart(
+        'i_heatmap2',
+        'heatmap',
+        {
+            'value_field': 'F1',
+            'label_field': 'F4',
+            'data': [
+                { 'F1': 14, 'F2': 1,  'F3': 9, 'F4': 'M1'  },
+                { 'F1': 42, 'F2': 1,  'F3': 6, 'F4': 'USA' },
+                { 'F1': 7,  'F2': 1,  'F3': 9, 'F4': 'RUS' },
+                { 'F1': 11, 'F2': 12, 'F3': 9, 'F4': 'CAN' },
+                { 'F1': 50, 'F2': 19, 'F3': 2, 'F4': 'FRA' },
+                { 'F1': 29, 'F2': 22, 'F3': 4, 'F4': 'VET' },
+                { 'F1': 2,  'F2': 3,  'F3': 1, 'F4': 'JPN' },
+                { 'F1': 1,  'F2': 1,  'F3': 9, 'F4': 'M1'  },
+                { 'F1': 42, 'F2': 1,  'F3': 6, 'F4': 'USA' },
+                { 'F1': 7,  'F2': 1,  'F3': 9, 'F4': 'RUS' },
+                { 'F1': 11, 'F2': 12, 'F3': 9, 'F4': 'CAN' },
+                { 'F1': 50, 'F2': 19, 'F3': 2, 'F4': 'FRA' },
+                { 'F1': 29, 'F2': 22, 'F3': 4, 'F4': 'VET' },
+                { 'F1': 2,  'F2': 3,  'F3': 1, 'F4': 'JPN' },
+                { 'F1': 1,  'F2': 1,  'F3': 9, 'F4': 'M1'  },
+                { 'F1': 42, 'F2': 1,  'F3': 6, 'F4': 'USA' },
+                { 'F1': 7,  'F2': 1,  'F3': 9, 'F4': 'RUS' },
+                { 'F1': 11, 'F2': 12, 'F3': 9, 'F4': 'CAN' },
+                { 'F1': 50, 'F2': 19, 'F3': 2, 'F4': 'FRA' },
+                { 'F1': 29, 'F2': 22, 'F3': 4, 'F4': 'VET' }
+            ]
+        },
+        {
+            'layout': { 'logo-position': 'bottom-right' },
+            'heatmap': { 'label-size': 20 }
+        }
+    );
 
 Note there's an option in heatmap section named sort-enabled. Turn this option to true, you will get this:
 
-![HeatMap](http://infoviz.org/examples/heatmap2.png "HeatMap")
+![HeatMap](http://infoviz.org/images/examples/heatmap2.png "HeatMap")
 
 # 4 Tree
 
 ## 4.1 BasicTree
 
-![BasicTree](http://infoviz.org/examples/basictree.png "BasicTree")
+![BasicTree](http://infoviz.org/images/examples/basictree.png "BasicTree")
 
 A BasicTree can visualize tree structure data. BasicTree has a top-down layout, root node is in the top.
 
-Demo: [Click Here](http://infoviz.org/index.html#basictree)
+Demo: [Click Here](http://infoviz.org/test/basictree.html)
 
-
-	InfoViz.chart(
-		'i_basictree',
-		'basictree',
-		{
-			'node_label_field': 'F1',
-			'node_value_field': 'F2',
-			'edge_value_field': 'F3',
-			'node_tooltip_title': 'Node #{F1}',
-			'node_tooltip_content': 'Value: {F1}.{F2}',
-			'edge_tooltip_title': 'Edge #{F1}',
-			'edge_tooltip_content': 'Value: {F2}.{F3}',
-			'data': {
-				'F1': 'Frankfurt', 'F2': 1, 'children': [
-					{
-						'F1': 'Mannheim', 'F2': 2, 'F3': 85, 'children': [
-							{
-								'F1': 'Karlsruhe', 'F2': 3, 'F3': 80, 'children': [
-									{ 'F1': 'Augsburg', 'F2': 1, 'F3': 250 },
-									{ 'F1': 'Augsburg', 'F2': 1, 'F3': 250 }
-								]
-							}
-						]
-					},
-					{
-						'F1': 'Würzburg', 'F2': 3, 'F3': 217, 'children': [
-							{ 'F1': 'Erfurt', 'F2': 4, 'F3': 186 },
-							{ 'F1': 'Nürnberg', 'F2': 2, 'F3': 103 },
-							{ 'F1': 'Erfurt', 'F2': 4, 'F3': 186, 'children': [
-									{ 'F1': 'München', 'F2': 5, 'F3': 167 }
-								]
-							}
-						]
-					},
-					{
-						'F1': 'Kassel', 'F2': 2, 'F3': 173, 'children': [
-							{ 'F1': 'Stuggart', 'F2': 3, 'F3': 99, 'children': [
-									{ 'F1': 'München', 'F2': 5, 'F3': 167 },
-									{ 'F1': 'Augsburg', 'F2': 1, 'F3': 250 }
-								]
-							}
-						]
-					}
-				]
-			}
-		}
-	);
+    InfoViz.chart(
+        'i_basictree',
+        'basictree',
+        {
+            'node_label_field': 'F1',
+            'node_value_field': 'F2',
+            'edge_value_field': 'F3',
+            'node_tooltip_title': 'Node #{F1}',
+            'node_tooltip_content': 'Value: {F1}.{F2}',
+            'edge_tooltip_title': 'Edge #{F1}',
+            'edge_tooltip_content': 'Value: {F2}.{F3}',
+            'data': {
+                'F1': 'Frankfurt', 'F2': 1, 'children': [
+                    {
+                        'F1': 'Mannheim', 'F2': 2, 'F3': 85, 'children': [
+                            {
+                                'F1': 'Karlsruhe', 'F2': 3, 'F3': 80, 'children': [
+                                    { 'F1': 'Augsburg', 'F2': 1, 'F3': 250 },
+                                    { 'F1': 'Augsburg', 'F2': 1, 'F3': 250 }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        'F1': 'Würzburg', 'F2': 3, 'F3': 217, 'children': [
+                            { 'F1': 'Erfurt', 'F2': 4, 'F3': 186 },
+                            { 'F1': 'Nürnberg', 'F2': 2, 'F3': 103 },
+                            { 'F1': 'Erfurt', 'F2': 4, 'F3': 186, 'children': [
+                                    { 'F1': 'München', 'F2': 5, 'F3': 167 }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        'F1': 'Kassel', 'F2': 2, 'F3': 173, 'children': [
+                            { 'F1': 'Stuggart', 'F2': 3, 'F3': 99, 'children': [
+                                    { 'F1': 'München', 'F2': 5, 'F3': 167 },
+                                    { 'F1': 'Augsburg', 'F2': 1, 'F3': 250 }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    );
 
 # 5 Cloud
 
 ## 5.1 TagCloud
 
-![TagCloud](http://infoviz.org/examples/tagcloud.png "TagCloud")
+![TagCloud](http://infoviz.org/images/examples/tagcloud.png "TagCloud")
 
 A TagCloud has a text string, and a value field to indicator its frequency.
 
-Demo: [Click Here](http://infoviz.org/index.html#tagcloud)
+Demo: [Click Here](http://infoviz.org/test/tagcloud.html)
 
-	InfoViz.chart(
-		'i_tagcloud1',
-		'tagcloud',
-		{
-			'value_field': 'F1',
-			'text_field': 'F2',
-			'data': [
-				{ 'F1': 24, 'F2': 'China' },
-				{ 'F1': 23, 'F2': 'Unite States' },
-				{ 'F1': 22, 'F2': 'Russia' },
-				{ 'F1': 21, 'F2': 'Japan' },
-				{ 'F1': 20, 'F2': 'Botswana' },
-				{ 'F1': 19, 'F2': 'Finland' },
-				{ 'F1': 18, 'F2': 'France' },
-				{ 'F1': 17, 'F2': 'Cape Verde' },
-				{ 'F1': 16, 'F2': 'Belize' },
-				{ 'F1': 15, 'F2': 'Georgia' },
-				{ 'F1': 14, 'F2': 'Haiti' },
-				{ 'F1': 13, 'F2': 'Hungary' },
-				{ 'F1': 12, 'F2': 'India' },
-				{ 'F1': 11, 'F2': 'Laos' },
-				{ 'F1': 10, 'F2': 'Kuwait' },
-				{ 'F1': 9,  'F2': 'Namibia' },
-				{ 'F1': 8,  'F2': 'Peru' },
-				{ 'F1': 7,  'F2': 'Qatar' },
-				{ 'F1': 6,  'F2': 'Spain' },
-				{ 'F1': 5,  'F2': 'Thailand' },
-				{ 'F1': 4,  'F2': 'Ukraine' },
-				{ 'F1': 3,  'F2': 'Vanuatu' },
-				{ 'F1': 2,  'F2': 'Zambia' },
-				{ 'F1': 1,  'F2': 'Palestine' }
-			]
-		}
-	);
+    InfoViz.chart(
+        'i_tagcloud1',
+        'tagcloud',
+        {
+            'value_field': 'F1',
+            'text_field': 'F2',
+            'data': [
+                { 'F1': 24, 'F2': 'China' },
+                { 'F1': 23, 'F2': 'Unite States' },
+                { 'F1': 22, 'F2': 'Russia' },
+                { 'F1': 21, 'F2': 'Japan' },
+                { 'F1': 20, 'F2': 'Botswana' },
+                { 'F1': 19, 'F2': 'Finland' },
+                { 'F1': 18, 'F2': 'France' },
+                { 'F1': 17, 'F2': 'Cape Verde' },
+                { 'F1': 16, 'F2': 'Belize' },
+                { 'F1': 15, 'F2': 'Georgia' },
+                { 'F1': 14, 'F2': 'Haiti' },
+                { 'F1': 13, 'F2': 'Hungary' },
+                { 'F1': 12, 'F2': 'India' },
+                { 'F1': 11, 'F2': 'Laos' },
+                { 'F1': 10, 'F2': 'Kuwait' },
+                { 'F1': 9,  'F2': 'Namibia' },
+                { 'F1': 8,  'F2': 'Peru' },
+                { 'F1': 7,  'F2': 'Qatar' },
+                { 'F1': 6,  'F2': 'Spain' },
+                { 'F1': 5,  'F2': 'Thailand' },
+                { 'F1': 4,  'F2': 'Ukraine' },
+                { 'F1': 3,  'F2': 'Vanuatu' },
+                { 'F1': 2,  'F2': 'Zambia' },
+                { 'F1': 1,  'F2': 'Palestine' }
+            ]
+        }
+    );
 
 # 6 Flow
 
@@ -803,73 +856,73 @@ Check out legend section in [Configurations](#8-configuration) to find out how t
 
 You may define a event handler as the 5 parametor of InfoViz.chart. This handler will be called when user click on a chart element.
 
-	InfoViz.chart(
-		element,
-		type,
-		data,
-		overwrite_option,
-		function(info) {
-			console.log(info);
-		}
-	);
+    InfoViz.chart(
+        element,
+        type,
+        data,
+        overwrite_option,
+        function(info) {
+            console.log(info);
+        }
+    );
 
 ## 7.3 Tooltip
 
 You may pass 'tooltip_title' and/or 'tooltip_content' into data to enable tooltip. Tooltip visual style can be customized in tooltip section.
 Check out tooltip section in [Configurations](#8-configuration) to find out how to customize a tooltip.
 
-	InfoViz.chart(
-		'i_bubblechart',
-		'bubblechart',
-		{
-			'vertical_axis_name': 'Vertical',
-			'horizontal_axis_name': 'Horizontal',
-			'horizontal_field': 'F1',
-			'vertical_field': 'F2',
-			'size_field': 'F3',
-			'label_field': 'F4',
+    InfoViz.chart(
+        'i_bubblechart',
+        'bubblechart',
+        {
+            'vertical_axis_name': 'Vertical',
+            'horizontal_axis_name': 'Horizontal',
+            'horizontal_field': 'F1',
+            'vertical_field': 'F2',
+            'size_field': 'F3',
+            'label_field': 'F4',
 
-			'tooltip_title': 'InfoViz {F2}, {F3}',
-			'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
+            'tooltip_title': 'InfoViz {F2}, {F3}',
+            'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
 
-			'data': [
-				{ 'F1': 1,   'F2': 18, 'F3': 9, 'F4': 'CHN' },
-				{ 'F1': 42,  'F2': 30, 'F3': 6, 'F4': 'USA' },
-				{ 'F1': 7,   'F2': 35, 'F3': 9, 'F4': 'RUS' },
-				{ 'F1': 110, 'F2': 12, 'F3': 9, 'F4': 'CAN' },
-				{ 'F1': 50,  'F2': 19, 'F3': 2, 'F4': 'FRA' },
-				{ 'F1': 29,  'F2': 22, 'F3': 4, 'F4': 'VET' },
-				{ 'F1': 2,   'F2': 3,  'F3': 1, 'F4': 'JPN' }
-			]
-		},
-		{
-			'tooltip': { 'speed': 300 }
-		}
-	);
+            'data': [
+                { 'F1': 1,   'F2': 18, 'F3': 9, 'F4': 'CHN' },
+                { 'F1': 42,  'F2': 30, 'F3': 6, 'F4': 'USA' },
+                { 'F1': 7,   'F2': 35, 'F3': 9, 'F4': 'RUS' },
+                { 'F1': 110, 'F2': 12, 'F3': 9, 'F4': 'CAN' },
+                { 'F1': 50,  'F2': 19, 'F3': 2, 'F4': 'FRA' },
+                { 'F1': 29,  'F2': 22, 'F3': 4, 'F4': 'VET' },
+                { 'F1': 2,   'F2': 3,  'F3': 1, 'F4': 'JPN' }
+            ]
+        },
+        {
+            'tooltip': { 'speed': 300 }
+        }
+    );
 
 ## 7.4 Refresh a InfoViz chart data
 
-![Loading](http://infoviz.org/examples/loading.png "Loading")
+![Loading](http://infoviz.org/images/examples/loading.png "Loading")
 
 When you what to visualize a different data set in a HTML element, you can call InfoViz.chart again with new data:
 
-	InfoViz.chart(
-		element,
-		type,
-		data,
-		overwrite_option,
-		function(info) {
-			console.log(info);
-		}
-	);
+    InfoViz.chart(
+        element,
+        type,
+        data,
+        overwrite_option,
+        function(info) {
+            console.log(info);
+        }
+    );
 
 If you want to empty target HTML element, you can call:
 
-	InfoViz.clear(element);
+    InfoViz.clear(element);
 
 There's also a parameter in clear, to enable loading animation:
 
-	InfoViz.clear(element, true);
+    InfoViz.clear(element, true);
 
 Check out layout section in [Configurations](#8-configuration) to find out how to customize loading effect.
 
@@ -881,34 +934,34 @@ Check out layout section in [Configurations](#8-configuration) to find out how t
 
 Call InfoViz.global_option, and pass in your option object to change options globally.
 
-	InfoViz.global_option({
-		'layout': { 'background-color': '#CDCDCD' }
-	});
+    InfoViz.global_option({
+        'layout': { 'background-color': '#CDCDCD' }
+    });
 
 ### Single
 
 When you using InfoViz.chart to create a chart, you may pass in your option object as the last parametor. This option will effect this chart only.
 
-	InfoViz.chart(
-		'i_piechart1',
-		'piechart',
-		{
-			'value_field': 'F2',
-			'label_field': 'F4',
-			'data': [
-				{ 'F1': 1,   'F2': 18, 'F3': 9, 'F4': 'CHN' },
-				{ 'F1': 42,  'F2': 30, 'F3': 6, 'F4': 'USA' },
-				{ 'F1': 7,   'F2': 35, 'F3': 9, 'F4': 'RUS' },
-				{ 'F1': 110, 'F2': 12, 'F3': 9, 'F4': 'CAN' },
-				{ 'F1': 50,  'F2': 19, 'F3': 2, 'F4': 'FRA' },
-				{ 'F1': 29,  'F2': 22, 'F3': 4, 'F4': 'VET' },
-				{ 'F1': 2,   'F2': 3,  'F3': 1, 'F4': 'JPN' }
-			]
-		},
-		{
-			'layout': { 'background-color': '#CDCDCD' }
-		}
-	);
+    InfoViz.chart(
+        'i_piechart1',
+        'piechart',
+        {
+            'value_field': 'F2',
+            'label_field': 'F4',
+            'data': [
+                { 'F1': 1,   'F2': 18, 'F3': 9, 'F4': 'CHN' },
+                { 'F1': 42,  'F2': 30, 'F3': 6, 'F4': 'USA' },
+                { 'F1': 7,   'F2': 35, 'F3': 9, 'F4': 'RUS' },
+                { 'F1': 110, 'F2': 12, 'F3': 9, 'F4': 'CAN' },
+                { 'F1': 50,  'F2': 19, 'F3': 2, 'F4': 'FRA' },
+                { 'F1': 29,  'F2': 22, 'F3': 4, 'F4': 'VET' },
+                { 'F1': 2,   'F2': 3,  'F3': 1, 'F4': 'JPN' }
+            ]
+        },
+        {
+            'layout': { 'background-color': '#CDCDCD' }
+        }
+    );
 
 ## 8.2 Options
 
@@ -1368,6 +1421,19 @@ When you using InfoViz.chart to create a chart, you may pass in your option obje
                 { 'color': '#FF3333', 'dark-alpha': 1, 'light-alpha': 0.45 },
                 { 'color': '#CC0066', 'dark-alpha': 1, 'light-alpha': 0.45 }
             ]
+        },
+
+        // 18. StreamChart configuration.
+        'streamchart': {
+            'padding-top': 30,                  // padding-top
+            'padding-right': 0,                 // padding-right
+            'padding-bottom': 1,                // padding-bottom
+            'padding-left': 1,                  // padding-left
+
+            'border-width': 0,                  // border thickness
+
+            'vertical-label-count': 10,         // label count in the vertical axis
+            'vertical-bar-width': 5             // period bar width of the vertical axis
         },
 
         // 0. Global color definition.

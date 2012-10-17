@@ -473,6 +473,19 @@ define(function(require, exports, module) {
             ]
         },
 
+        // 18. StreamChart configuration.
+        'streamchart': {
+            'padding-top': 30,                  // padding-top
+            'padding-right': 0,                 // padding-right
+            'padding-bottom': 1,                // padding-bottom
+            'padding-left': 1,                  // padding-left
+
+            'border-width': 0,                  // border thickness
+
+            'vertical-label-count': 10,         // label count in the vertical axis
+            'vertical-bar-width': 5             // period bar width of the vertical axis
+        },
+
         // 0. Global color definition.
         'color': [                              // color definition, from light to dark
             { 'color': '#3A89C9', 'dark-alpha': 1, 'light-alpha': 0.6 },
@@ -643,6 +656,16 @@ define(function(require, exports, module) {
 
                     require.async(['infoviz.worldmap'], function(barchart) {
                         barchart.draw_worldmap(paper, area, data, options, callback);
+                        logo_front();
+                    });
+
+                    break;
+                }
+                case 'streamchart': {
+                    area = core.draw_axis_background(paper, data, options);
+
+                    require.async(['infoviz.streamchart'], function(barchart) {
+                        barchart.draw_streamchart(paper, area, data, options, callback);
                         logo_front();
                     });
 

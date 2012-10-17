@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, user-scalable=no, target-densitydpi=device-dpi" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="author" content="@zhengli" />
+        <link rel="shortcut icon" href="../images/favicon.ico" />
+        <link rel="stylesheet" type="text/css" href="../css/demo.css" />
+        <title>StreamChart Test - InfoViz</title>
+        <!--[if lt IE 9]>
+            <script src="../js/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body class="p-demo p-test">
+        <header><h1><a href="http://infoviz.org"></a></h1></header>
+        <section class="container">
+            <ul class="menu">
+                <li><a href="../index.html" title="Controls">Controls</a></li>
+                <li><a href="https://github.com/nocoo/InfoViz" title="Documentation">Documentation</a></li>
+                <li><a class="active" href="./index.html" title="Test">Test</a></li>
+                <li><a href="../history.html" title="History">History</a></li>
+                <li><a href="../license.html" title="The MIT License">The MIT License</a></li>
+                <div class="clear"></div>
+            </ul>
+
+            <h1>StreamChart Test</h1>
+            <section>
+                <h2>Test1 <a href="#test1" name="test1">#</a><a id="btn_refresh" class="button">Refresh</a></h2>
+                <div id="i_streamchart1" class="infoviz i-streamchart"></div>
+            </section>
+            <section>
+                <h2>Test4 <a href="#test4" name="test4">#</a></h2>
+                <div id="i_streamchart4" class="infoviz i-streamchart"></div>
+            </section>
+
+            <a class="fork" href="https://github.com/nocoo/InfoViz"></a>
+        </section>
+        <footer><p>InfoViz Dev, the MIT License, <a href="http://about.me/nocoo">@zhengli</a>, <a href="https://github.com/nocoo/InfoViz">Github</a></p></footer>
+
+        <script src="../js/raphael.min.js"></script>
+        <script id="seajsnode" src="../js/sea.min.js"></script>
+        <script>
+            (function () {
+                'use strict';
+                /*global seajs*/
+                seajs.use([ '../js/infoviz' ], function (InfoViz) {
+                    var i, j, item;
+
+                    //Logo is disabled by default.
+                    InfoViz.enable_logo();
+
+                    // Global option overwrite.
+                    InfoViz.global_option({
+                        'layout': { 'background-color': '#FFF', 'logo-url': '../images/infoviz_logo_tiny.png' },
+                    });
+
+                    var random_chart = function(element, options) {
+                        var data = [];
+                        var count_fields = Math.floor(Math.random() * 10) + 30;
+                        var count_series = Math.floor(Math.random() * 8) + 4;
+
+                        for (i = 0; i < count_series; ++i) {
+                            item = { 'F3': 'Stream No.' + i, 'data': [] };
+
+                            for (j = 0; j < count_fields; ++j) {
+                                item['data'].push({
+                                    'F1': 'n' + j,
+                                    'F2': Math.floor(Math.random() * 100) * i + 100 * j
+                                });
+                            }
+
+                            data.push(item);
+                        }
+
+                        InfoViz.chart(
+                            element,
+                            'streamchart',
+                            {
+                                'vertical_axis_name': 'Vertical',
+                                'horizontal_axis_name': 'Horizontal',
+                                'horizontal_field': 'F1',
+                                'value_field': 'F2',
+                                'stream_field': 'F3',
+                                'tooltip_title': 'InfoViz {F3} {F1}',
+                                'tooltip_content': 'Tooltip: {F2}',
+                                'data': data
+                            },
+                            options,
+                            function(info) { console.log(info); }
+                        );
+                    };
+
+                    // Test1
+                    random_chart('i_streamchart1');
+
+                    var button = document.getElementById('btn_refresh');
+                    var on_refresh = function() {
+                        InfoViz.clear('i_streamchart1', true);
+
+                        setTimeout(function() {
+                            random_chart('i_streamchart1');
+                        }, 500);
+                    };
+                    button.onclick = on_refresh;
+
+                    // Test4
+                    random_chart('i_streamchart4',
+                        {
+                            'layout': { 'logo-url': '../images/infoviz_logo_tiny_white.png' },
+                            'grid': {
+                                'background-color': '#333',
+                                'vertical-label-color': '#DDD',
+                                'horizontal-label-color': '#DDD',
+                                'vertical-name-color': '#FFF',
+                                'horizontal-name-color': '#FFF' },
+                            'tooltip': { 'border-color': '#DDD', 'background-color': '#333' },
+                            'legend': { 'border-color': '#DDD', 'background-color': '#333' },
+                            'color': [
+                                { 'color': '#FFF', 'dark-alpha': 0.90, 'light-alpha': 0.1 },
+                                { 'color': '#FFF', 'dark-alpha': 0.90, 'light-alpha': 0.2 },
+                                { 'color': '#FFF', 'dark-alpha': 0.90, 'light-alpha': 0.3 },
+                                { 'color': '#FFF', 'dark-alpha': 0.90, 'light-alpha': 0.4 },
+                                { 'color': '#FFF', 'dark-alpha': 0.90, 'light-alpha': 0.5 },
+                                { 'color': '#FFF', 'dark-alpha': 0.90, 'light-alpha': 0.6 },
+                                { 'color': '#FFF', 'dark-alpha': 0.90, 'light-alpha': 0.7 },
+                                { 'color': '#FFF', 'dark-alpha': 0.90, 'light-alpha': 0.8 }
+                            ]
+                        }
+                    );
+                });
+            }());
+        </script>
+    </body>
+</html>

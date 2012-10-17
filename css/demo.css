@@ -3,52 +3,23 @@
 	@author  Zheng Li <lizheng@lizheng.me>
 	@github https://github.com/nocoo/InfoViz
 	@license MIT
-	@version 0.2.1
 */
 
 /* CSS Reset by Eric Meyer. */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, form,
+small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset,
+table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, legend,
+figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, label,
+time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
+
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after, q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+body { line-height: 1; }
+ol, ul { list-style: none; }
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+table { border-collapse: collapse; border-spacing: 0; }
 
 /* Styles */
 .clear { clear: both; width: 0; height: 0; }
@@ -81,11 +52,12 @@ table {
 .p-index .container .infoviz#i_radarchart2 { width: 340px; height: 350px; float: left; }
 .p-index .container .infoviz#i_radialchart1 { width: 410px; height: 350px; float: left; }
 .p-index .container .infoviz#i_radialchart2 { width: 420px; height: 350px; float: left; }
-.p-index .container .infoviz#i_heatmap { width: 850px; height: 850px; }
 .p-index .container .infoviz#i_tagcloud1 { height: 240px; }
 .p-index .container .infoviz#i_tagcloud2 { height: 240px; }
-.p-index .container .infoviz#i_smithgraph { width: 850px; height: 850px; }
 .p-index .container .infoviz#i_basictree { width: 850px; height: 450px; }
+.p-index .container .infoviz#i_smithgraph { width: 850px; height: 850px; }
+.p-index .container .infoviz#i_heatmap { width: 850px; height: 850px; }
+.p-index .container .infoviz#i_streamchart { width: 850px; height: 850px; }
 
 ul.boxes { margin-left: 10px; }
 ul.boxes li { background-color: #EB540A; }
@@ -114,6 +86,7 @@ ul.boxes li p { font-size: 12px; padding: 0; margin: 0px 0 10px 0; text-align: c
 .p-test ul.boxes li.stackchart { background: url('../images/test_stackchart.png') center no-repeat; background-image: -webkit-image-set(url('../images/test_stackchart.png') 1x, url('../images/test_stackchart@2x.png') 2x); }
 .p-test ul.boxes li.bubblechart { background: url('../images/test_bubblechart.png') center no-repeat; background-image: -webkit-image-set(url('../images/test_bubblechart.png') 1x, url('../images/test_bubblechart@2x.png') 2x); }
 .p-test ul.boxes li.stockchart { background: url('../images/test_stockchart.png') center no-repeat; background-image: -webkit-image-set(url('../images/test_stockchart.png') 1x, url('../images/test_stockchart@2x.png') 2x); }
+.p-test ul.boxes li.streamchart { background: url('../images/test_streamchart.png') center no-repeat; background-image: -webkit-image-set(url('../images/test_streamchart.png') 1x, url('../images/test_streamchart@2x.png') 2x); }
 .p-test ul.boxes li.piechart { background: url('../images/test_piechart.png') center no-repeat; background-image: -webkit-image-set(url('../images/test_piechart.png') 1x, url('../images/test_piechart@2x.png') 2x); }
 .p-test ul.boxes li.radarchart { background: url('../images/test_radarchart.png') center no-repeat; background-image: -webkit-image-set(url('../images/test_radarchart.png') 1x, url('../images/test_radarchart@2x.png') 2x); }
 .p-test ul.boxes li.radialchart { background: url('../images/test_radialchart.png') center no-repeat; background-image: -webkit-image-set(url('../images/test_radialchart.png') 1x, url('../images/test_radialchart@2x.png') 2x); }
@@ -126,6 +99,7 @@ ul.boxes li p { font-size: 12px; padding: 0; margin: 0px 0 10px 0; text-align: c
 .p-test .container .infoviz.i-smithgraph { width: 850px; height: 850px; }
 .p-test .container .infoviz.i-heatmap { width: 850px; height: 850px; }
 .p-test .container .infoviz.i-basictree { width: 850px; height: 450px; }
+.p-test .container .infoviz.i-streamchart { width: 850px; height: 850px; }
 
 .p-test a.button { padding: 0 10px; height: 28px; line-height: 28px; color: #FFF; display: block; cursor: pointer; background: #eb540a; text-align: center; float: right; margin-top: 4px; }
 
