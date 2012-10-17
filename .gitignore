@@ -17,9 +17,6 @@ npm-debug.log
 
 min/*.js
 
-examples/
-examples/*
-
 history/
 history/*
 
