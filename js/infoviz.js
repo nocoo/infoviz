@@ -8,7 +8,7 @@
 /*global define, Raphael*/
 define(function(require, exports, module) {
 
-    exports.version = function() { return '0.3.6 Dev'; };
+    exports.version = function() { return '0.3.6'; };
 
     if (InfoViz) { return; }
 

@@ -40,7 +40,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 .p-demo ul.menu { border-bottom: 1px solid #EEE; }
 .p-demo ul.menu li { float: left; margin: 0px 4px 0 0; }
 .p-demo ul.menu li.right { float: right; }
-.p-demo ul.menu li.right iframe { height: 20px; width: 100px; margin-top: 5px; overflow: hidden; }
+.p-demo ul.menu li.right iframe { height: 20px; width: 90px; margin-top: 5px; overflow: hidden; }
 .p-demo ul.menu a { text-decoration: none; color: #104386; text-align: center; display: block; font-size: 14px; line-height: 30px; padding: 0 12px; border: none; }
 .p-demo ul.menu a:hover { background: #EEE; text-decoration: underline; }
 .p-demo ul.menu a.active { background: #eb540a; color: #FFF; }

@@ -14,6 +14,9 @@ Transparent background? Sure! Reverse color? Sure! Black and white? Sure!
 
 See [Configurations](#8-configuration) to find out how.
 
+## Introducing v0.3.6
+
+New: [InfoViz Creator](http://my.infoviz.org)!
 
 ## Introducing v0.3.x
 

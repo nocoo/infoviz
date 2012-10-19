@@ -14,6 +14,7 @@ js_modules = 	${destdir}infoviz.barchart.js\
 				${destdir}infoviz.smithgraph.js\
 				${destdir}infoviz.stackchart.js\
 				${destdir}infoviz.stockchart.js\
+				${destdir}infoviz.streamchart.js\
 				${destdir}infoviz.tagcloud.js\
 				${destdir}infoviz.worldmap.js
 
@@ -65,6 +66,9 @@ ${destdir}infoviz.stackchart.js: ${srcdir}infoviz.stackchart.js
 	java -jar bin/yuicompressor-2.4.7.jar -o $@ $^
 
 ${destdir}infoviz.stockchart.js: ${srcdir}infoviz.stockchart.js
+	java -jar bin/yuicompressor-2.4.7.jar -o $@ $^
+
+${destdir}infoviz.streamchart.js: ${srcdir}infoviz.streamchart.js
 	java -jar bin/yuicompressor-2.4.7.jar -o $@ $^
 
 ${destdir}infoviz.tagcloud.js: ${srcdir}infoviz.tagcloud.js
