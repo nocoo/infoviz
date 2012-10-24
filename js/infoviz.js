@@ -500,7 +500,7 @@ define(function(require, exports, module) {
     };
 
     exports.chart = function(element, type, data, overwrite_options, callback) {
-        require.async(['infoviz.core'], function(core) {
+        require.async(['./infoviz.core'], function(core) {
             var paper, options = core.merge_options(overwrite_options);
             var logo, logo_front = function() { if (logo) logo.toFront(); };
 
@@ -534,7 +534,7 @@ define(function(require, exports, module) {
                 case 'linechart': {
                     area = core.draw_axis_background(paper, data, options);
 
-                    require.async(['infoviz.linechart'], function(linechart) {
+                    require.async(['./infoviz.linechart'], function(linechart) {
                         linechart.draw_linechart(paper, area, data, options, callback);
                         logo_front();
                     });
@@ -544,7 +544,7 @@ define(function(require, exports, module) {
                 case 'bubblechart': {
                     area = core.draw_axis_background(paper, data, options);
 
-                    require.async(['infoviz.bubblechart'], function(bubblechart) {
+                    require.async(['./infoviz.bubblechart'], function(bubblechart) {
                         bubblechart.draw_bubblechart(paper, area, data, options, callback);
                         logo_front();
                     });
@@ -554,7 +554,7 @@ define(function(require, exports, module) {
                 case 'barchart': {
                     area = core.draw_axis_background(paper, data, options);
 
-                    require.async(['infoviz.barchart'], function(barchart) {
+                    require.async(['./infoviz.barchart'], function(barchart) {
                         barchart.draw_barchart(paper, area, data, options, callback);
                         logo_front();
                     });
@@ -564,7 +564,7 @@ define(function(require, exports, module) {
                 case 'piechart': {
                     area = core.draw_empty_background(paper, data, options);
 
-                    require.async(['infoviz.piechart'], function(piechart) {
+                    require.async(['./infoviz.piechart'], function(piechart) {
                         piechart.draw_piechart(paper, area, data, options, callback);
                         logo_front();
                     });
@@ -574,7 +574,7 @@ define(function(require, exports, module) {
                 case 'radarchart': {
                     area = core.draw_empty_background(paper, data, options);
 
-                    require.async(['infoviz.radarchart'], function(radarchart) {
+                    require.async(['./infoviz.radarchart'], function(radarchart) {
                         radarchart.draw_radarchart(paper, area, data, options, callback);
                         logo_front();
                     });
@@ -584,7 +584,7 @@ define(function(require, exports, module) {
                 case 'heatmap': {
                     area = core.draw_empty_background(paper, data, options);
 
-                    require.async(['infoviz.heatmap'], function(heatmap) {
+                    require.async(['./infoviz.heatmap'], function(heatmap) {
                         heatmap.draw_heatmap(paper, area, data, options, callback);
                         logo_front();
                     });
@@ -594,7 +594,7 @@ define(function(require, exports, module) {
                 case 'tagcloud': {
                     area = core.draw_empty_background(paper, data, options);
 
-                    require.async(['infoviz.tagcloud'], function(tagcloud) {
+                    require.async(['./infoviz.tagcloud'], function(tagcloud) {
                         tagcloud.draw_tagcloud(paper, area, data, options, callback);
                         logo_front();
                     });
@@ -604,7 +604,7 @@ define(function(require, exports, module) {
                 case 'smithgraph': {
                     area = core.draw_empty_background(paper, data, options);
 
-                    require.async(['infoviz.smithgraph'], function(smithgraph) {
+                    require.async(['./infoviz.smithgraph'], function(smithgraph) {
                         smithgraph.draw_smithgraph(paper, area, data, options, callback);
                         logo_front();
                     });
@@ -614,7 +614,7 @@ define(function(require, exports, module) {
                 case 'radialchart': {
                     area = core.draw_empty_background(paper, data, options);
 
-                    require.async(['infoviz.radialchart'], function(radialchart) {
+                    require.async(['./infoviz.radialchart'], function(radialchart) {
                         radialchart.draw_radialchart(paper, area, data, options, callback);
                         logo_front();
                     });
@@ -624,7 +624,7 @@ define(function(require, exports, module) {
                 case 'stackchart': {
                     area = core.draw_axis_background(paper, data, options);
 
-                    require.async(['infoviz.stackchart'], function(stackchart) {
+                    require.async(['./infoviz.stackchart'], function(stackchart) {
                         stackchart.draw_stackchart(paper, area, data, options, callback);
                         logo_front();
                     });
@@ -634,7 +634,7 @@ define(function(require, exports, module) {
                 case 'basictree': {
                     area = core.draw_empty_background(paper, data, options);
 
-                    require.async(['infoviz.basictree'], function(basictree) {
+                    require.async(['./infoviz.basictree'], function(basictree) {
                         basictree.draw_basictree(paper, area, data, options, callback);
                         logo_front();
                     });
@@ -644,7 +644,7 @@ define(function(require, exports, module) {
                 case 'stockchart': {
                     area = core.draw_axis_background(paper, data, options);
 
-                    require.async(['infoviz.stockchart'], function(barchart) {
+                    require.async(['./infoviz.stockchart'], function(barchart) {
                         barchart.draw_stockchart(paper, area, data, options, callback);
                         logo_front();
                     });
@@ -654,7 +654,7 @@ define(function(require, exports, module) {
                 case 'worldmap': {
                     area = core.draw_empty_background(paper, data, options);
 
-                    require.async(['infoviz.worldmap'], function(barchart) {
+                    require.async(['./infoviz.worldmap'], function(barchart) {
                         barchart.draw_worldmap(paper, area, data, options, callback);
                         logo_front();
                     });
@@ -664,7 +664,7 @@ define(function(require, exports, module) {
                 case 'streamchart': {
                     area = core.draw_axis_background(paper, data, options);
 
-                    require.async(['infoviz.streamchart'], function(barchart) {
+                    require.async(['./infoviz.streamchart'], function(barchart) {
                         barchart.draw_streamchart(paper, area, data, options, callback);
                         logo_front();
                     });
@@ -768,7 +768,7 @@ define(function(require, exports, module) {
     };
 
     exports.global_option = function(overwrite) {
-        require.async(['infoviz.core'], function(core) {
+        require.async(['./infoviz.core'], function(core) {
             InfoViz.options = core.merge_options(overwrite);
         });
     };

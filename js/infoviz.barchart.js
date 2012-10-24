@@ -6,7 +6,7 @@
 */
 
 define(function(require, exports, module) {
-    require.async(['infoviz.core'], function(core) {
+    require.async(['./infoviz.core'], function(core) {
 
         exports.draw_barchart = function(paper, chart_area, data, overwrite_options, callback, that) {
             if (!paper || !data) return idb('Paper or Data is empty.');
