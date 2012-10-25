@@ -120,6 +120,79 @@ define(function(require, exports, module) {
             var p_node, p_nodes = [], p_label, p_labels = [], index = 0, p_edge;
             var this_node, this_color, this_parent, this_space, this_text;
 
+            var draw_node = function (paper, x, y, size, type, color, thickness) {
+                var node;
+                switch (type) {
+                    default:
+                    case 'circle': {
+                        node = paper.circle(x, y, size).attr({
+                            'fill': color['color'],
+                            'fill-opacity': color['light-alpha'],
+                            'stroke': color['color'],
+                            'stroke-opacity': color['dark-alpha'],
+                            'stroke-width': thickness
+                        }).translate(0.5, 0.5);
+
+                        break;
+                    }
+                    case 'box': {
+                        node = paper.rect(x - size, y - size, size * 2, size * 2).attr({
+                            'fill': color['color'],
+                            'fill-opacity': color['light-alpha'],
+                            'stroke': color['color'],
+                            'stroke-opacity': color['dark-alpha'],
+                            'stroke-width': thickness
+                        }).translate(0.5, 0.5);
+
+                        break;
+                    }
+                    case 'line': {
+                        cache = [];
+                        x -= size;
+                        y -= size;
+                        size = 2 * size;
+
+                        cache.push('M' + x + ',' + (y + size));
+                        cache.push('L' + (x + 2 * size / 5) + ',' + (y + 2 * size / 5));
+                        cache.push('L' + (x + 3 * size / 4) + ',' + (y + 5 * size / 7));
+                        cache.push('L' + (x + size) + ',' + y);
+
+                        node = paper.path(cache.join('')).attr({
+                            'stroke': color['color'],
+                            'stroke-opacity': color['dark-alpha'],
+                            'stroke-width': thickness
+                        }).translate(0.5, 0.5);
+
+                        break;
+                    }
+                    case 'area': {
+                        cache = [];
+                        x -= size;
+                        y -= size;
+                        size = 2 * size;
+
+                        cache.push('M' + x + ',' + (y + size));
+                        cache.push('L' + (x + 2 * size / 5) + ',' + (y + 2 * size / 5));
+                        cache.push('L' + (x + 3 * size / 4) + ',' + (y + 5 * size / 7));
+                        cache.push('L' + (x + size) + ',' + y);
+                        cache.push('L' + (x + size) + ',' + + (y + size));
+                        cache.push('Z');
+
+                        node = paper.path(cache.join('')).attr({
+                            'fill': color['color'],
+                            'fill-opacity': color['light-alpha'],
+                            'stroke': color['color'],
+                            'stroke-opacity': color['dark-alpha'],
+                            'stroke-width': thickness
+                        }).translate(0.5, 0.5);
+
+                        break;
+                    }
+                }
+
+                return node;
+            };
+
             for (i = 0; i < level_map.length; ++i) {
                 for (j = 0; j < level_map[i]['nodes'].length; ++j) {
                     this_node = dict[level_map[i]['nodes'][j]];
@@ -129,12 +202,7 @@ define(function(require, exports, module) {
                         x = zx + node_size / 2;
                         y = zy + node_size / 2;
 
-                        p_node = paper.circle(x, y, node_size).attr({
-                            'stroke-width': options['foldertree']['node-border-width'],
-                            'stroke': this_color['color'],
-                            'fill': this_color['color'],
-                            'fill-opacity': this_color['light-alpha']
-                        }).translate(0.5, 0.5);
+                        p_node = draw_node(paper, x, y, node_size, options['foldertree']['node-type'], this_color, options['foldertree']['node-border-width']);
                         p_nodes.push(p_node);
 
                         dict[set[0]['_id']]['_x'] = x;
@@ -148,12 +216,7 @@ define(function(require, exports, module) {
                         y = this_parent['_current'];
 
                         // node
-                        p_node = paper.circle(x, y, node_size).attr({
-                            'stroke-width': options['foldertree']['node-border-width'],
-                            'stroke': this_color['color'],
-                            'fill': this_color['color'],
-                            'fill-opacity': this_color['light-alpha']
-                        }).translate(0.5, 0.5);
+                        p_node = draw_node(paper, x, y, node_size, options['foldertree']['node-type'], this_color, options['foldertree']['node-border-width']);
                         p_nodes.push(p_node);
 
                         this_parent['_current'] += this_space + options['foldertree']['vertical-spacing'];

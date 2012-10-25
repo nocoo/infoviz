@@ -498,6 +498,7 @@ define(function(require, exports, module) {
 
             'node-border-width': 1,             // border thickness of tree nodes
             'node-type': 'circle',              // visual style of tree nodes
+                                                // [ 'circle', 'box', 'line', 'area' ]
             'node-size': 10,                    // radius of tree nodes
             'node-label-spacing': 4,            // tree node label margin
             'node-label-size': 12,              // tree node label font size
