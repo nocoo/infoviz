@@ -486,6 +486,30 @@ define(function(require, exports, module) {
             'vertical-bar-width': 5             // period bar width of the vertical axis
         },
 
+        // 19. FolderTreeTree configuration.
+        'foldertree': {
+            'padding-top': 20,                  // padding-top
+            'padding-right': 0,                 // padding-right
+            'padding-bottom': 0,                // padding-bottom
+            'padding-left': 20,                 // padding-left
+
+            'vertical-spacing': 10,             // vertical margin between nodes
+            'horizontal-spacing': 10,           // horizontal margin between levels
+
+            'node-border-width': 1,             // border thickness of tree nodes
+            'node-type': 'circle',              // visual style of tree nodes
+            'node-size': 10,                    // radius of tree nodes
+            'node-label-spacing': 4,            // tree node label margin
+            'node-label-size': 12,              // tree node label font size
+            'node-label-alpha': 1,              // tree node label font opacity
+
+            'edge-width': 1,                    // tree edge thickness
+            'edge-color': '#999',               // tree edge color
+            'edge-alpha': 1,                    // tree edge opacity
+            'edge-horizontal-spacing': 4,       // tree edge horizontal margin
+            'edge-vertical-spacing': 4          // tree edge vertical margin
+        },
+
         // 0. Global color definition.
         'color': [                              // color definition, from light to dark
             { 'color': '#3A89C9', 'dark-alpha': 1, 'light-alpha': 0.6 },
@@ -666,6 +690,16 @@ define(function(require, exports, module) {
 
                     require.async(['./infoviz.streamchart'], function(barchart) {
                         barchart.draw_streamchart(paper, area, data, options, callback);
+                        logo_front();
+                    });
+
+                    break;
+                }
+                case 'foldertree': {
+                    area = core.draw_empty_background(paper, data, options);
+
+                    require.async(['./infoviz.foldertree'], function(foldertree) {
+                        foldertree.draw_foldertree(paper, area, data, options, callback);
                         logo_front();
                     });
 

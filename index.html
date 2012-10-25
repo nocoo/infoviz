@@ -1,878 +1,988 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="author" content="@zhengli" />
-		<meta name="description" content="InfoViz is an information visualization library which uses pure JavaScript and SVG to visualize data on almost every major browsers and mobile devices. InfoViz supports Retina display. MIT license." />
-		<link rel="shortcut icon" href="./images/favicon.ico" />
-		<link rel="stylesheet" type="text/css" href="./css/demo.css" />
-		<title>InfoViz - Open Source JavaScript Information Visualization</title>
-		<!--[if lt IE 9]>
-			<script src="./js/html5.js"></script>
-		<![endif]-->
-	</head>
-	<body class="p-demo p-index">
-		<header><h1><a href="http://infoviz.org"></a></h1></header>
-		<section class="container">
-			<ul class="menu clearfix">
-				<li><a class="active" href="./index.html" title="Controls">Controls</a></li>
-				<li><a href="http://my.infoviz.org" title="Creator">Creator</a></li>
-				<li><a href="https://github.com/nocoo/InfoViz" title="Documentation">Documentation</a></li>
-				<li><a href="./test/index.html" title="Test">Test</a></li>
-				<li><a href="./history.html" title="History">History</a></li>
-				<li><a href="https://github.com/nocoo/InfoViz/tags" title="Downloads">Downloads</a></li>
-				<li><a href="./license.html" title="The MIT License">The MIT License</a></li>
-				<li class="right"><iframe src="http://ghbtns.com/github-btn.html?user=nocoo&repo=InfoViz&type=fork&count=true" frameborder="0"></iframe></li>
-				<li class="right"><iframe src="http://ghbtns.com/github-btn.html?user=nocoo&repo=InfoViz&type=watch&count=true" frameborder="0"></iframe></li>
-			</ul>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="author" content="@zhengli" />
+        <meta name="description" content="InfoViz is an information visualization library which uses pure JavaScript and SVG to visualize data on almost every major browsers and mobile devices. InfoViz supports Retina display. MIT license." />
+        <link rel="shortcut icon" href="./images/favicon.ico" />
+        <link rel="stylesheet" type="text/css" href="./css/demo.css" />
+        <title>InfoViz - Open Source JavaScript Information Visualization</title>
+        <!--[if lt IE 9]>
+            <script src="./js/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body class="p-demo p-index">
+        <header><h1><a href="http://infoviz.org"></a></h1></header>
+        <section class="container">
+            <ul class="menu clearfix">
+                <li><a class="active" href="./index.html" title="Controls">Controls</a></li>
+                <li><a href="http://my.infoviz.org" title="Creator">Creator</a></li>
+                <li><a href="https://github.com/nocoo/InfoViz" title="Documentation">Documentation</a></li>
+                <li><a href="./test/index.html" title="Test">Test</a></li>
+                <li><a href="./history.html" title="History">History</a></li>
+                <li><a href="https://github.com/nocoo/InfoViz/tags" title="Downloads">Downloads</a></li>
+                <li><a href="./license.html" title="The MIT License">The MIT License</a></li>
+                <li class="right"><iframe src="http://ghbtns.com/github-btn.html?user=nocoo&repo=InfoViz&type=fork&count=true" frameborder="0"></iframe></li>
+                <li class="right"><iframe src="http://ghbtns.com/github-btn.html?user=nocoo&repo=InfoViz&type=watch&count=true" frameborder="0"></iframe></li>
+            </ul>
 
-			<h1>Axis Chart</h1>
-			<section>
-				<h2>LineChart <a href="./test/linechart.html">examples</a> <a href="#top">top</a> <a href="#linechart" name="linechart">#link</a></h2>
-				<div id="i_linechart1" class="infoviz"></div>
-				<div id="i_linechart2" class="infoviz"></div>
-			</section>
-			<section>
-				<h2>BarChart <a href="./test/barchart.html">examples</a><a href="#top">top</a> <a href="#barchart" name="barchart">#link</a></h2>
-				<div id="i_barchart" class="infoviz"></div>
-			</section>
-			<section>
-				<h2>BubbleChart <a href="./test/bubblechart.html">examples</a> <a href="#top">top</a> <a href="#bubblechart" name="bubblechart">#link</a></h2>
-				<div id="i_bubblechart" class="infoviz"></div>
-			</section>
-			<section>
-				<h2>StackChart <a href="./test/stackchart.html">examples</a> <a href="#top">top</a> <a href="#stackchart" name="stackchart">#link</a></h2>
-				<div id="i_stackchart" class="infoviz"></div>
-			</section>
-			<section>
-				<h2>StockChart <a href="./test/stockchart.html">examples</a> <a href="#top">top</a> <a href="#stockchart" name="stockchart">#link</a></h2>
-				<div id="i_stockchart" class="infoviz"></div>
-			</section>
-			<section>
-				<h2>StreamChart <a href="./test/streamchart.html">examples</a> <a href="#top">top</a> <a href="#streamchart" name="streamchart">#link</a></h2>
-				<!-- div id="i_streamchart" class="infoviz"></div -->
-				<a href="./test/streamchart.html"><img id="i_streamchart" class="infoviz" src="./images/examples/streamchart.png" /></a>
-			</section>
+            <h1>Axis Chart</h1>
+            <section>
+                <h2>LineChart <a href="./test/linechart.html">examples</a> <a href="#top">top</a> <a href="#linechart" name="linechart">#link</a></h2>
+                <div id="i_linechart1" class="infoviz"></div>
+                <div id="i_linechart2" class="infoviz"></div>
+            </section>
+            <section>
+                <h2>BarChart <a href="./test/barchart.html">examples</a><a href="#top">top</a> <a href="#barchart" name="barchart">#link</a></h2>
+                <div id="i_barchart" class="infoviz"></div>
+            </section>
+            <section>
+                <h2>BubbleChart <a href="./test/bubblechart.html">examples</a> <a href="#top">top</a> <a href="#bubblechart" name="bubblechart">#link</a></h2>
+                <div id="i_bubblechart" class="infoviz"></div>
+            </section>
+            <section>
+                <h2>StackChart <a href="./test/stackchart.html">examples</a> <a href="#top">top</a> <a href="#stackchart" name="stackchart">#link</a></h2>
+                <div id="i_stackchart" class="infoviz"></div>
+            </section>
+            <section>
+                <h2>StockChart <a href="./test/stockchart.html">examples</a> <a href="#top">top</a> <a href="#stockchart" name="stockchart">#link</a></h2>
+                <div id="i_stockchart" class="infoviz"></div>
+            </section>
+            <section>
+                <h2>StreamChart <a href="./test/streamchart.html">examples</a> <a href="#top">top</a> <a href="#streamchart" name="streamchart">#link</a></h2>
+                <!-- div id="i_streamchart" class="infoviz"></div -->
+                <a href="./test/streamchart.html"><img id="i_streamchart" class="infoviz" src="./images/examples/streamchart.png" /></a>
+            </section>
 
-			<h1>Round Stuff</h1>
-			<section class="clearfix">
-				<h2>PieChart <a href="./test/piechart.html">examples</a> <a href="#top">top</a> <a href="#piechart" name="piechart">#link</a></h2>
-				<div id="i_piechart1" class="infoviz"></div>
-				<div id="i_piechart2" class="infoviz"></div>
-			</section>
-			<section class="clearfix">
-				<h2>RadarChart <a href="./test/radarchart.html">examples</a> <a href="#top">top</a> <a href="#radarchart" name="radarchart">#link</a></h2>
-				<div id="i_radarchart1" class="infoviz"></div>
-				<div id="i_radarchart2" class="infoviz"></div>
-			</section>
-			<section class="clearfix">
-				<h2>RadialChart <a href="./test/radialchart.html">examples</a> <a href="#top">top</a> <a href="#radialchart" name="radialchart">#link</a></h2>
-				<div id="i_radialchart1" class="infoviz"></div>
-				<div id="i_radialchart2" class="infoviz"></div>
-			</section>
-			<section>
-				<h2>SmithGraph <a href="./test/smithgraph.html">examples</a> <a href="#top">top</a> <a href="#smithgraph" name="smithgraph">#link</a></h2>
-				<!-- <div id="i_smithgraph" class="infoviz"></div> -->
-				<a href="./test/smithgraph.html"><img id="i_smithgraph" class="infoviz" src="./images/examples/smithgraph.png" /></a>
-			</section>
+            <h1>Round Stuff</h1>
+            <section class="clearfix">
+                <h2>PieChart <a href="./test/piechart.html">examples</a> <a href="#top">top</a> <a href="#piechart" name="piechart">#link</a></h2>
+                <div id="i_piechart1" class="infoviz"></div>
+                <div id="i_piechart2" class="infoviz"></div>
+            </section>
+            <section class="clearfix">
+                <h2>RadarChart <a href="./test/radarchart.html">examples</a> <a href="#top">top</a> <a href="#radarchart" name="radarchart">#link</a></h2>
+                <div id="i_radarchart1" class="infoviz"></div>
+                <div id="i_radarchart2" class="infoviz"></div>
+            </section>
+            <section class="clearfix">
+                <h2>RadialChart <a href="./test/radialchart.html">examples</a> <a href="#top">top</a> <a href="#radialchart" name="radialchart">#link</a></h2>
+                <div id="i_radialchart1" class="infoviz"></div>
+                <div id="i_radialchart2" class="infoviz"></div>
+            </section>
+            <section>
+                <h2>SmithGraph <a href="./test/smithgraph.html">examples</a> <a href="#top">top</a> <a href="#smithgraph" name="smithgraph">#link</a></h2>
+                <!-- <div id="i_smithgraph" class="infoviz"></div> -->
+                <a href="./test/smithgraph.html"><img id="i_smithgraph" class="infoviz" src="./images/examples/smithgraph.png" /></a>
+            </section>
 
-			<h1>Map</h1>
-			<section>
-				<h2>WorldMap <a href="./test/worldmap.html">examples</a> <a href="#worldmap" name="worldmap">#</a></h2>
-				<!-- <div id="i_worldmap" class="infoviz"></div> -->
-				<a href="./test/worldmap.html"><img id="i_worldmap" class="infoviz" src="./images/examples/worldmap.png" /></a>
-			</section>
-			<section>
-				<h2>HeatMap <a href="./test/heatmap.html">examples</a> <a href="#top">top</a> <a href="#heatmap" name="heatmap">#link</a></h2>
-				<!-- <div id="i_heatmap" class="infoviz"></div> -->
-				<a href="./test/heatmap.html"><img id="i_heatmap" class="infoviz" src="./images/examples/heatmap.png" /></a>
-			</section>
+            <h1>Map</h1>
+            <section>
+                <h2>WorldMap <a href="./test/worldmap.html">examples</a> <a href="#worldmap" name="worldmap">#</a></h2>
+                <!-- <div id="i_worldmap" class="infoviz"></div> -->
+                <a href="./test/worldmap.html"><img id="i_worldmap" class="infoviz" src="./images/examples/worldmap.png" /></a>
+            </section>
+            <section>
+                <h2>HeatMap <a href="./test/heatmap.html">examples</a> <a href="#top">top</a> <a href="#heatmap" name="heatmap">#link</a></h2>
+                <!-- <div id="i_heatmap" class="infoviz"></div> -->
+                <a href="./test/heatmap.html"><img id="i_heatmap" class="infoviz" src="./images/examples/heatmap.png" /></a>
+            </section>
 
-			<h1>Tree</h1>
-			<section>
-				<h2>BasicTree <a href="./test/basictree.html">examples</a> <a href="#top">top</a> <a href="#basictree" name="basictree">#link</a></h2>
-				<div id="i_basictree" class="infoviz"></div>
-			</section>
+            <h1>Tree</h1>
+            <section>
+                <h2>BasicTree <a href="./test/basictree.html">examples</a> <a href="#top">top</a> <a href="#basictree" name="basictree">#link</a></h2>
+                <div id="i_basictree" class="infoviz"></div>
+            </section>
+            <section class="clearfix">
+                <h2>FolderTree <a href="./test/foldertree.html">examples</a> <a href="#top">top</a> <a href="#foldertree" name="foldertree">#link</a></h2>
+                <div id="i_foldertree1" class="infoviz i-foldertree"></div>
+                <div id="i_foldertree2" class="infoviz i-foldertree"></div>
+            </section>
 
-			<h1>Cloud</h1>
-			<section>
-				<h2>TagCloud <a href="./test/tagcloud.html">examples</a> <a href="#top">top</a> <a href="#tagcloud" name="tagcloud">#link</a></h2>
-				<div id="i_tagcloud1" class="infoviz"></div>
-				<div id="i_tagcloud2" class="infoviz"></div>
-			</section>
+            <h1>Cloud</h1>
+            <section>
+                <h2>TagCloud <a href="./test/tagcloud.html">examples</a> <a href="#top">top</a> <a href="#tagcloud" name="tagcloud">#link</a></h2>
+                <div id="i_tagcloud1" class="infoviz"></div>
+                <div id="i_tagcloud2" class="infoviz"></div>
+            </section>
 
-			<a class="fork" href="https://github.com/nocoo/InfoViz"></a>
-		</section>
-		<footer><p>InfoViz 0.3.6, the MIT License, <a href="http://about.me/nocoo">@zhengli</a>, <a href="https://github.com/nocoo/InfoViz">Github</a></p></footer>
-		<script src="./js/raphael.min.js"></script>
-		<script id="seajsnode" src="./js/sea.min.js"></script>
-		<script>
-			(function () {
-				'use strict';
-				/*global seajs*/
-				seajs.use([ './js/infoviz' ], function (InfoViz) {
-					var data = [], i, j, item;
+            <a class="fork" href="https://github.com/nocoo/InfoViz"></a>
+        </section>
+        <footer><p>InfoViz 0.3.6, the MIT License, <a href="http://about.me/nocoo">@zhengli</a>, <a href="https://github.com/nocoo/InfoViz">Github</a></p></footer>
+        <script src="./js/raphael.min.js"></script>
+        <script id="seajsnode" src="./js/sea.min.js"></script>
+        <script>
+            (function () {
+                'use strict';
+                /*global seajs*/
+                seajs.use([ './js/infoviz' ], function (InfoViz) {
+                    var data = [], i, j, item;
 
-					//Logo is disabled by default.
-					InfoViz.enable_logo();
+                    //Logo is disabled by default.
+                    InfoViz.enable_logo();
 
-					// Global option overwrite.
-					InfoViz.global_option({
-						'layout': { 'background-color': '#FFF' }
-					});
+                    // Global option overwrite.
+                    InfoViz.global_option({
+                        'layout': { 'background-color': '#FFF' }
+                    });
 
-					// LineChart.
-					InfoViz.chart(
-						'i_linechart1',
-						'linechart',
-						{
-							'vertical_axis_name': 'Vertical',
-							'horizontal_axis_name': 'Horizontal',
-							'horizontal_field': 'F2',
-							'vertical_field': 'F1',
-							'tooltip_title': 'InfoViz {F2}, {F3}',
-							'tooltip_content': 'Tooltip: {F2}, {F3} | {F1}',
-							'data': {
-								'line1': {
-									'name': 'China',
-									'data': [
-										{ 'F1': 1,   'F2': 'A', 'F3': 3  },
-										{ 'F1': 42,  'F2': 'B', 'F3': 6  },
-										{ 'F1': 7,   'F2': 'C', 'F3': 9  },
-										{ 'F1': 110, 'F2': 'D', 'F3': 12 }
-									]
-								},
-								'line2': {
-									'name': 'Unite States',
-									'data': [
-										{ 'F1': 13, 'F2': 'A', 'F3': 15 },
-										{ 'F1': 10, 'F2': 'B', 'F3': 12 },
-										{ 'F1': 72, 'F2': 'C', 'F3': 9  },
-										{ 'F1': 1,  'F2': 'D', 'F3': 3  },
-										{ 'F1': 4,  'F2': 'E', 'F3': 6  }
-									]
-								},
-								'line3': {
-									'name': 'Unite Kingdom',
-									'data': [
-										{ 'F1': 19, 'F2': 'A', 'F3': 15 },
-										{ 'F1': 20, 'F2': 'B', 'F3': 12 },
-										{ 'F1': 11, 'F2': 'D', 'F3': 3  },
-										{ 'F1': 42, 'F2': 'E', 'F3': 6  }
-									]
-								},
-								'line4': {
-									'name': 'Italy',
-									'data': [
-										{ 'F1': 29, 'F2': 'A', 'F3': 15 },
-										{ 'F1': 70, 'F2': 'B', 'F3': 12 },
-										{ 'F1': 42, 'F2': 'C', 'F3': 9  },
-										{ 'F1': 51, 'F2': 'D', 'F3': 3  },
-										{ 'F1': 22, 'F2': 'E', 'F3': 6  }
-									]
-								},
-								'line5': {
-									'name': 'Russia',
-									'data': [
-										{ 'F1': 9,  'F2': 'A', 'F3': 15 },
-										{ 'F1': 90, 'F2': 'B', 'F3': 12 },
-										{ 'F1': 92, 'F2': 'C', 'F3': 9  },
-										{ 'F1': 52, 'F2': 'E', 'F3': 6  }
-									]
-								}
-							}
-						},
-						{ 'legend': { 'margin-top': 0 } }
-					);
+                    // LineChart.
+                    InfoViz.chart(
+                        'i_linechart1',
+                        'linechart',
+                        {
+                            'vertical_axis_name': 'Vertical',
+                            'horizontal_axis_name': 'Horizontal',
+                            'horizontal_field': 'F2',
+                            'vertical_field': 'F1',
+                            'tooltip_title': 'InfoViz {F2}, {F3}',
+                            'tooltip_content': 'Tooltip: {F2}, {F3} | {F1}',
+                            'data': {
+                                'line1': {
+                                    'name': 'China',
+                                    'data': [
+                                        { 'F1': 1,   'F2': 'A', 'F3': 3  },
+                                        { 'F1': 42,  'F2': 'B', 'F3': 6  },
+                                        { 'F1': 7,   'F2': 'C', 'F3': 9  },
+                                        { 'F1': 110, 'F2': 'D', 'F3': 12 }
+                                    ]
+                                },
+                                'line2': {
+                                    'name': 'Unite States',
+                                    'data': [
+                                        { 'F1': 13, 'F2': 'A', 'F3': 15 },
+                                        { 'F1': 10, 'F2': 'B', 'F3': 12 },
+                                        { 'F1': 72, 'F2': 'C', 'F3': 9  },
+                                        { 'F1': 1,  'F2': 'D', 'F3': 3  },
+                                        { 'F1': 4,  'F2': 'E', 'F3': 6  }
+                                    ]
+                                },
+                                'line3': {
+                                    'name': 'Unite Kingdom',
+                                    'data': [
+                                        { 'F1': 19, 'F2': 'A', 'F3': 15 },
+                                        { 'F1': 20, 'F2': 'B', 'F3': 12 },
+                                        { 'F1': 11, 'F2': 'D', 'F3': 3  },
+                                        { 'F1': 42, 'F2': 'E', 'F3': 6  }
+                                    ]
+                                },
+                                'line4': {
+                                    'name': 'Italy',
+                                    'data': [
+                                        { 'F1': 29, 'F2': 'A', 'F3': 15 },
+                                        { 'F1': 70, 'F2': 'B', 'F3': 12 },
+                                        { 'F1': 42, 'F2': 'C', 'F3': 9  },
+                                        { 'F1': 51, 'F2': 'D', 'F3': 3  },
+                                        { 'F1': 22, 'F2': 'E', 'F3': 6  }
+                                    ]
+                                },
+                                'line5': {
+                                    'name': 'Russia',
+                                    'data': [
+                                        { 'F1': 9,  'F2': 'A', 'F3': 15 },
+                                        { 'F1': 90, 'F2': 'B', 'F3': 12 },
+                                        { 'F1': 92, 'F2': 'C', 'F3': 9  },
+                                        { 'F1': 52, 'F2': 'E', 'F3': 6  }
+                                    ]
+                                }
+                            }
+                        },
+                        { 'legend': { 'margin-top': 0 } }
+                    );
 
-					InfoViz.chart(
-						'i_linechart2',
-						'linechart',
-						{
-							'vertical_axis_name': 'Vertical',
-							'horizontal_axis_name': 'Horizontal',
-							'horizontal_field': 'F2',
-							'vertical_field': 'F1',
-							'tooltip_title': 'InfoViz {F2}, {F3}',
-							'tooltip_content': 'Tooltip: {F2}, {F3} | {F1}',
-							'data': {
-								'line1': {
-									'name': 'China',
-									'data': [
-										{ 'F1': 1,   'F2': 'A', 'F3': 3  },
-										{ 'F1': 42,  'F2': 'B', 'F3': 6  },
-										{ 'F1': 7,   'F2': 'C', 'F3': 9  },
-										{ 'F1': 110, 'F2': 'D', 'F3': 12 }
-									]
-								},
-								'line2': {
-									'name': 'Unite States',
-									'data': [
-										{ 'F1': 13, 'F2': 'A', 'F3': 15 },
-										{ 'F1': 10, 'F2': 'B', 'F3': 12 },
-										{ 'F1': 72, 'F2': 'C', 'F3': 9  },
-										{ 'F1': 1,  'F2': 'D', 'F3': 3  },
-										{ 'F1': 4,  'F2': 'E', 'F3': 6  }
-									]
-								},
-								'line3': {
-									'name': 'Unite Kingdom',
-									'data': [
-										{ 'F1': 19, 'F2': 'A', 'F3': 15 },
-										{ 'F1': 20, 'F2': 'B', 'F3': 12 },
-										{ 'F1': 11, 'F2': 'D', 'F3': 3  },
-										{ 'F1': 42, 'F2': 'E', 'F3': 6  }
-									]
-								},
-								'line4': {
-									'name': 'Italy',
-									'data': [
-										{ 'F1': 29, 'F2': 'A', 'F3': 15 },
-										{ 'F1': 70, 'F2': 'B', 'F3': 12 },
-										{ 'F1': 42, 'F2': 'C', 'F3': 9  },
-										{ 'F1': 51, 'F2': 'D', 'F3': 3  },
-										{ 'F1': 22, 'F2': 'E', 'F3': 6  }
-									]
-								},
-								'line5': {
-									'name': 'Russia',
-									'data': [
-										{ 'F1': 9,  'F2': 'A', 'F3': 15 },
-										{ 'F1': 90, 'F2': 'B', 'F3': 12 },
-										{ 'F1': 92, 'F2': 'C', 'F3': 9  },
-										{ 'F1': 52, 'F2': 'E', 'F3': 6  }
-									]
-								}
-							}
-						},
-						{ 'legend': { 'margin-top': 0 }, 'linechart': { 'area-enabled': true } }
-					);
+                    InfoViz.chart(
+                        'i_linechart2',
+                        'linechart',
+                        {
+                            'vertical_axis_name': 'Vertical',
+                            'horizontal_axis_name': 'Horizontal',
+                            'horizontal_field': 'F2',
+                            'vertical_field': 'F1',
+                            'tooltip_title': 'InfoViz {F2}, {F3}',
+                            'tooltip_content': 'Tooltip: {F2}, {F3} | {F1}',
+                            'data': {
+                                'line1': {
+                                    'name': 'China',
+                                    'data': [
+                                        { 'F1': 1,   'F2': 'A', 'F3': 3  },
+                                        { 'F1': 42,  'F2': 'B', 'F3': 6  },
+                                        { 'F1': 7,   'F2': 'C', 'F3': 9  },
+                                        { 'F1': 110, 'F2': 'D', 'F3': 12 }
+                                    ]
+                                },
+                                'line2': {
+                                    'name': 'Unite States',
+                                    'data': [
+                                        { 'F1': 13, 'F2': 'A', 'F3': 15 },
+                                        { 'F1': 10, 'F2': 'B', 'F3': 12 },
+                                        { 'F1': 72, 'F2': 'C', 'F3': 9  },
+                                        { 'F1': 1,  'F2': 'D', 'F3': 3  },
+                                        { 'F1': 4,  'F2': 'E', 'F3': 6  }
+                                    ]
+                                },
+                                'line3': {
+                                    'name': 'Unite Kingdom',
+                                    'data': [
+                                        { 'F1': 19, 'F2': 'A', 'F3': 15 },
+                                        { 'F1': 20, 'F2': 'B', 'F3': 12 },
+                                        { 'F1': 11, 'F2': 'D', 'F3': 3  },
+                                        { 'F1': 42, 'F2': 'E', 'F3': 6  }
+                                    ]
+                                },
+                                'line4': {
+                                    'name': 'Italy',
+                                    'data': [
+                                        { 'F1': 29, 'F2': 'A', 'F3': 15 },
+                                        { 'F1': 70, 'F2': 'B', 'F3': 12 },
+                                        { 'F1': 42, 'F2': 'C', 'F3': 9  },
+                                        { 'F1': 51, 'F2': 'D', 'F3': 3  },
+                                        { 'F1': 22, 'F2': 'E', 'F3': 6  }
+                                    ]
+                                },
+                                'line5': {
+                                    'name': 'Russia',
+                                    'data': [
+                                        { 'F1': 9,  'F2': 'A', 'F3': 15 },
+                                        { 'F1': 90, 'F2': 'B', 'F3': 12 },
+                                        { 'F1': 92, 'F2': 'C', 'F3': 9  },
+                                        { 'F1': 52, 'F2': 'E', 'F3': 6  }
+                                    ]
+                                }
+                            }
+                        },
+                        { 'legend': { 'margin-top': 0 }, 'linechart': { 'area-enabled': true } }
+                    );
 
-					// BarChart.
-					InfoViz.chart(
-						'i_barchart',
-						'barchart',
-						{
-							'vertical_axis_name': 'Vertical',
-							'horizontal_axis_name': 'Horizontal',
-							'horizontal_field': 'F2',
-							'vertical_field': 'F1',
-							'tooltip_title': 'InfoViz {F2}, {F3}',
-							'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
-							'data': {
-								'bar1': {
-									'name': 'China',
-									'data': [
-										{ 'F1': 1,   'F2': 'A', 'F3': 3  },
-										{ 'F1': 42,  'F2': 'B', 'F3': 6  },
-										{ 'F1': 7,   'F2': 'C', 'F3': 9  },
-										{ 'F1': 110, 'F2': 'D', 'F3': 12 }
-									]
-								},
-								'bar2': {
-									'name': 'Unite States',
-									'data': [
-										{ 'F1': 13, 'F2': 'A', 'F3': 15 },
-										{ 'F1': 10, 'F2': 'B', 'F3': 12 },
-										{ 'F1': 72, 'F2': 'C', 'F3': 9  },
-										{ 'F1': 1,  'F2': 'D', 'F3': 3  },
-										{ 'F1': 4,  'F2': 'E', 'F3': 6  }
-									]
-								},
-								'bar3': {
-									'name': 'Unite Kingdom',
-									'data': [
-										{ 'F1': 19, 'F2': 'A', 'F3': 15 },
-										{ 'F1': 20, 'F2': 'B', 'F3': 12 },
-										{ 'F1': 11, 'F2': 'D', 'F3': 3  },
-										{ 'F1': 42, 'F2': 'E', 'F3': 6  }
-									]
-								},
-								'bar4': {
-									'name': 'Italy',
-									'data': [
-										{ 'F1': 29, 'F2': 'A', 'F3': 15 },
-										{ 'F1': 70, 'F2': 'B', 'F3': 12 },
-										{ 'F1': 42, 'F2': 'C', 'F3': 9  },
-										{ 'F1': 51, 'F2': 'D', 'F3': 3  },
-										{ 'F1': 22, 'F2': 'E', 'F3': 6  }
-									]
-								},
-								'bar5': {
-									'name': 'Russia',
-									'data': [
-										{ 'F1': 9,  'F2': 'A', 'F3': 15 },
-										{ 'F1': 90, 'F2': 'B', 'F3': 12 },
-										{ 'F1': 92, 'F2': 'C', 'F3': 9  },
-										{ 'F1': 52, 'F2': 'E', 'F3': 6  }
-									]
-								}
-							}
-						},
-						{ 'legend': { 'margin-top': 0 } }
-					);
+                    // BarChart.
+                    InfoViz.chart(
+                        'i_barchart',
+                        'barchart',
+                        {
+                            'vertical_axis_name': 'Vertical',
+                            'horizontal_axis_name': 'Horizontal',
+                            'horizontal_field': 'F2',
+                            'vertical_field': 'F1',
+                            'tooltip_title': 'InfoViz {F2}, {F3}',
+                            'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
+                            'data': {
+                                'bar1': {
+                                    'name': 'China',
+                                    'data': [
+                                        { 'F1': 1,   'F2': 'A', 'F3': 3  },
+                                        { 'F1': 42,  'F2': 'B', 'F3': 6  },
+                                        { 'F1': 7,   'F2': 'C', 'F3': 9  },
+                                        { 'F1': 110, 'F2': 'D', 'F3': 12 }
+                                    ]
+                                },
+                                'bar2': {
+                                    'name': 'Unite States',
+                                    'data': [
+                                        { 'F1': 13, 'F2': 'A', 'F3': 15 },
+                                        { 'F1': 10, 'F2': 'B', 'F3': 12 },
+                                        { 'F1': 72, 'F2': 'C', 'F3': 9  },
+                                        { 'F1': 1,  'F2': 'D', 'F3': 3  },
+                                        { 'F1': 4,  'F2': 'E', 'F3': 6  }
+                                    ]
+                                },
+                                'bar3': {
+                                    'name': 'Unite Kingdom',
+                                    'data': [
+                                        { 'F1': 19, 'F2': 'A', 'F3': 15 },
+                                        { 'F1': 20, 'F2': 'B', 'F3': 12 },
+                                        { 'F1': 11, 'F2': 'D', 'F3': 3  },
+                                        { 'F1': 42, 'F2': 'E', 'F3': 6  }
+                                    ]
+                                },
+                                'bar4': {
+                                    'name': 'Italy',
+                                    'data': [
+                                        { 'F1': 29, 'F2': 'A', 'F3': 15 },
+                                        { 'F1': 70, 'F2': 'B', 'F3': 12 },
+                                        { 'F1': 42, 'F2': 'C', 'F3': 9  },
+                                        { 'F1': 51, 'F2': 'D', 'F3': 3  },
+                                        { 'F1': 22, 'F2': 'E', 'F3': 6  }
+                                    ]
+                                },
+                                'bar5': {
+                                    'name': 'Russia',
+                                    'data': [
+                                        { 'F1': 9,  'F2': 'A', 'F3': 15 },
+                                        { 'F1': 90, 'F2': 'B', 'F3': 12 },
+                                        { 'F1': 92, 'F2': 'C', 'F3': 9  },
+                                        { 'F1': 52, 'F2': 'E', 'F3': 6  }
+                                    ]
+                                }
+                            }
+                        },
+                        { 'legend': { 'margin-top': 0 } }
+                    );
 
-					// BubbleChart.
-					InfoViz.chart(
-						'i_bubblechart',
-						'bubblechart',
-						{
-							'vertical_axis_name': 'Vertical',
-							'horizontal_axis_name': 'Horizontal',
-							'horizontal_field': 'F1',
-							'vertical_field': 'F2',
-							'size_field': 'F3',
-							'label_field': 'F4',
-							'tooltip_title': 'InfoViz {F2}, {F3}',
-							'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
-							'data': [
-								{ 'F1': 1,   'F2': 18, 'F3': 6, 'F4': 'China' },
-								{ 'F1': 42,  'F2': 30, 'F3': 9, 'F4': 'Unite States' },
-								{ 'F1': 3,   'F2': 38, 'F3': 9, 'F4': 'Russia' },
-								{ 'F1': 50,  'F2': 12, 'F3': 9, 'F4': 'Japan' },
-								{ 'F1': 50,  'F2': 25, 'F3': 8, 'F4': 'Botswana' },
-								{ 'F1': 29,  'F2': 22, 'F3': 4, 'F4': 'Finland' },
-								{ 'F1': 2,   'F2': 3,  'F3': 3, 'F4': 'France' },
-								{ 'F1': 38,  'F2': 10, 'F3': 6, 'F4': 'Cape Verde' },
-								{ 'F1': 24,  'F2': 10, 'F3': 6, 'F4': 'Belize' },
-								{ 'F1': 17,  'F2': 35, 'F3': 2, 'F4': 'Haiti' },
-								{ 'F1': 10,  'F2': 4,  'F3': 5, 'F4': 'Georgia' },
-								{ 'F1': 20,  'F2': 30, 'F3': 5, 'F4': 'Hungary' },
-								{ 'F1': 10,  'F2': 22, 'F3': 8, 'F4': 'Laos' }
-							]
-						},
-						{
-							'bubblechart': { 'padding-right': 200 },
-							'legend': { 'legend-position': 'top-right', 'margin-top': 40, 'margin-right': 0 }
-						}
-					);
+                    // BubbleChart.
+                    InfoViz.chart(
+                        'i_bubblechart',
+                        'bubblechart',
+                        {
+                            'vertical_axis_name': 'Vertical',
+                            'horizontal_axis_name': 'Horizontal',
+                            'horizontal_field': 'F1',
+                            'vertical_field': 'F2',
+                            'size_field': 'F3',
+                            'label_field': 'F4',
+                            'tooltip_title': 'InfoViz {F2}, {F3}',
+                            'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
+                            'data': [
+                                { 'F1': 1,   'F2': 18, 'F3': 6, 'F4': 'China' },
+                                { 'F1': 42,  'F2': 30, 'F3': 9, 'F4': 'Unite States' },
+                                { 'F1': 3,   'F2': 38, 'F3': 9, 'F4': 'Russia' },
+                                { 'F1': 50,  'F2': 12, 'F3': 9, 'F4': 'Japan' },
+                                { 'F1': 50,  'F2': 25, 'F3': 8, 'F4': 'Botswana' },
+                                { 'F1': 29,  'F2': 22, 'F3': 4, 'F4': 'Finland' },
+                                { 'F1': 2,   'F2': 3,  'F3': 3, 'F4': 'France' },
+                                { 'F1': 38,  'F2': 10, 'F3': 6, 'F4': 'Cape Verde' },
+                                { 'F1': 24,  'F2': 10, 'F3': 6, 'F4': 'Belize' },
+                                { 'F1': 17,  'F2': 35, 'F3': 2, 'F4': 'Haiti' },
+                                { 'F1': 10,  'F2': 4,  'F3': 5, 'F4': 'Georgia' },
+                                { 'F1': 20,  'F2': 30, 'F3': 5, 'F4': 'Hungary' },
+                                { 'F1': 10,  'F2': 22, 'F3': 8, 'F4': 'Laos' }
+                            ]
+                        },
+                        {
+                            'bubblechart': { 'padding-right': 200 },
+                            'legend': { 'legend-position': 'top-right', 'margin-top': 40, 'margin-right': 0 }
+                        }
+                    );
 
-					// StackChart
-					InfoViz.chart(
-						'i_stackchart',
-						'stackchart',
-						{
-							'vertical_axis_name': 'Vertical',
-							'horizontal_axis_name': 'Horizontal',
-							'horizontal_field': 'F2',
-							'vertical_field': 'F1',
-							'tooltip_title': 'InfoViz {F2}, {F3}',
-							'tooltip_content': 'Value: {F1}',
-							'data': {
-								'bar1': {
-									'name': 'China',
-									'data': [
-										{ 'F1': 10, 'F2': 'A', 'F3': 3  },
-										{ 'F1': 20, 'F2': 'B', 'F3': 6  },
-										{ 'F1': 30, 'F2': 'C', 'F3': 9  },
-										{ 'F1': 40, 'F2': 'D', 'F3': 12 }
-									]
-								},
-								'bar2': {
-									'name': 'Unite States',
-									'data': [
-										{ 'F1': 40, 'F2': 'A', 'F3': 15 },
-										{ 'F1': 30, 'F2': 'B', 'F3': 12 },
-										{ 'F1': 20, 'F2': 'C', 'F3': 9  },
-										{ 'F1': 10, 'F2': 'D', 'F3': 3  },
-										{ 'F1': 15, 'F2': 'E', 'F3': 6  }
-									]
-								},
-								'bar3': {
-									'name': 'Unite Kingdom',
-									'data': [
-										{ 'F1': 20, 'F2': 'A', 'F3': 15 },
-										{ 'F1': 30, 'F2': 'B', 'F3': 12 },
-										{ 'F1': 10, 'F2': 'D', 'F3': 3  },
-										{ 'F1': 40, 'F2': 'E', 'F3': 6  }
-									]
-								},
-								'bar4': {
-									'name': 'Italy',
-									'data': [
-										{ 'F1': 29, 'F2': 'A', 'F3': 15 },
-										{ 'F1': 70, 'F2': 'B', 'F3': 12 },
-										{ 'F1': 42, 'F2': 'C', 'F3': 9  },
-										{ 'F1': 51, 'F2': 'D', 'F3': 3  },
-										{ 'F1': 22, 'F2': 'E', 'F3': 6  }
-									]
-								},
-								'bar5': {
-									'name': 'Russia',
-									'data': [
-										{ 'F1': 29,  'F2': 'A', 'F3': 15 },
-										{ 'F1': 50, 'F2': 'B', 'F3': 12 },
-										{ 'F1': 52, 'F2': 'C', 'F3': 9  },
-										{ 'F1': 52, 'F2': 'E', 'F3': 6  }
-									]
-								}
-							}
-						},
-						{ 'legend': { 'margin-top': 0 } }
-					);
+                    // StackChart
+                    InfoViz.chart(
+                        'i_stackchart',
+                        'stackchart',
+                        {
+                            'vertical_axis_name': 'Vertical',
+                            'horizontal_axis_name': 'Horizontal',
+                            'horizontal_field': 'F2',
+                            'vertical_field': 'F1',
+                            'tooltip_title': 'InfoViz {F2}, {F3}',
+                            'tooltip_content': 'Value: {F1}',
+                            'data': {
+                                'bar1': {
+                                    'name': 'China',
+                                    'data': [
+                                        { 'F1': 10, 'F2': 'A', 'F3': 3  },
+                                        { 'F1': 20, 'F2': 'B', 'F3': 6  },
+                                        { 'F1': 30, 'F2': 'C', 'F3': 9  },
+                                        { 'F1': 40, 'F2': 'D', 'F3': 12 }
+                                    ]
+                                },
+                                'bar2': {
+                                    'name': 'Unite States',
+                                    'data': [
+                                        { 'F1': 40, 'F2': 'A', 'F3': 15 },
+                                        { 'F1': 30, 'F2': 'B', 'F3': 12 },
+                                        { 'F1': 20, 'F2': 'C', 'F3': 9  },
+                                        { 'F1': 10, 'F2': 'D', 'F3': 3  },
+                                        { 'F1': 15, 'F2': 'E', 'F3': 6  }
+                                    ]
+                                },
+                                'bar3': {
+                                    'name': 'Unite Kingdom',
+                                    'data': [
+                                        { 'F1': 20, 'F2': 'A', 'F3': 15 },
+                                        { 'F1': 30, 'F2': 'B', 'F3': 12 },
+                                        { 'F1': 10, 'F2': 'D', 'F3': 3  },
+                                        { 'F1': 40, 'F2': 'E', 'F3': 6  }
+                                    ]
+                                },
+                                'bar4': {
+                                    'name': 'Italy',
+                                    'data': [
+                                        { 'F1': 29, 'F2': 'A', 'F3': 15 },
+                                        { 'F1': 70, 'F2': 'B', 'F3': 12 },
+                                        { 'F1': 42, 'F2': 'C', 'F3': 9  },
+                                        { 'F1': 51, 'F2': 'D', 'F3': 3  },
+                                        { 'F1': 22, 'F2': 'E', 'F3': 6  }
+                                    ]
+                                },
+                                'bar5': {
+                                    'name': 'Russia',
+                                    'data': [
+                                        { 'F1': 29,  'F2': 'A', 'F3': 15 },
+                                        { 'F1': 50, 'F2': 'B', 'F3': 12 },
+                                        { 'F1': 52, 'F2': 'C', 'F3': 9  },
+                                        { 'F1': 52, 'F2': 'E', 'F3': 6  }
+                                    ]
+                                }
+                            }
+                        },
+                        { 'legend': { 'margin-top': 0 } }
+                    );
 
-					// StockChart.
-					InfoViz.chart(
-						'i_stockchart',
-						'stockchart',
-						{
-							'vertical_axis_name': 'Vertical',
-							'horizontal_axis_name': 'Horizontal',
-							'horizontal_field': 'F2',
-							'vertical_field': { 'min': 'F4', 'middle': 'F5', 'max': 'F6' },
-							'tooltip_title': 'InfoViz {F2}, {F3}',
-							'tooltip_content': 'Tooltip: max={F6}, middle={F5}, min={F4}',
-							'data': {
-								'bar1': {
-									'name': 'China',
-									'data': [
-										{ 'F1': 1,   'F2': 'A', 'F3': 3,  'F4': 1, 'F5': 2, 'F6': 5 },
-										{ 'F1': 42,  'F2': 'B', 'F3': 6,  'F4': 3, 'F5': 4, 'F6': 4 },
-										{ 'F1': 7,   'F2': 'C', 'F3': 9,  'F4': 2, 'F5': 3, 'F6': 4 },
-										{ 'F1': 110, 'F2': 'D', 'F3': 12, 'F4': 4, 'F5': 5, 'F6': 6 }
-									]
-								},
-								'bar2': {
-									'name': 'Unite States',
-									'data': [
-										{ 'F1': 13, 'F2': 'A', 'F3': 15, 'F4': 4, 'F5': 7,  'F6': 8  },
-										{ 'F1': 10, 'F2': 'B', 'F3': 12, 'F4': 9, 'F5': 12, 'F6': 13 },
-										{ 'F1': 72, 'F2': 'C', 'F3': 9,  'F4': 4, 'F5': 10, 'F6': 15 },
-										{ 'F1': 1,  'F2': 'D', 'F3': 3,  'F4': 6, 'F5': 9,  'F6': 18 },
-										{ 'F1': 4,  'F2': 'E', 'F3': 6,  'F4': 5, 'F5': 7,  'F6': 10 }
-									]
-								},
-								'bar3': {
-									'name': 'Unite Kingdom',
-									'data': [
-										{ 'F1': 19, 'F2': 'A', 'F3': 15, 'F4': 1, 'F5': 7,  'F6': 12 },
-										{ 'F1': 20, 'F2': 'B', 'F3': 12, 'F4': 2, 'F5': 8,  'F6': 15 },
-										{ 'F1': 11, 'F2': 'D', 'F3': 3,  'F4': 3, 'F5': 9,  'F6': 17 },
-										{ 'F1': 42, 'F2': 'E', 'F3': 6,  'F4': 4, 'F5': 10, 'F6': 11 }
-									]
-								},
-								'bar4': {
-									'name': 'Italy',
-									'data': [
-										{ 'F1': 29, 'F2': 'A', 'F3': 15, 'F4': 5, 'F5': 8,  'F6': 10 },
-										{ 'F1': 70, 'F2': 'B', 'F3': 12, 'F4': 8, 'F5': 10, 'F6': 12 },
-										{ 'F1': 42, 'F2': 'C', 'F3': 9,  'F4': 2, 'F5': 11, 'F6': 15 },
-										{ 'F1': 51, 'F2': 'D', 'F3': 3,  'F4': 4, 'F5': 7,  'F6': 17 },
-										{ 'F1': 22, 'F2': 'E', 'F3': 6,  'F4': 3, 'F5': 7,  'F6': 19 }
-									]
-								},
-								'bar5': {
-									'name': 'Russia',
-									'data': [
-										{ 'F1': 9,  'F2': 'A', 'F3': 15, 'F4': 1, 'F5': 5,  'F6': 13 },
-										{ 'F1': 90, 'F2': 'B', 'F3': 12, 'F4': 3, 'F5': 13, 'F6': 16 },
-										{ 'F1': 92, 'F2': 'C', 'F3': 9,  'F4': 5, 'F5': 15, 'F6': 18 },
-										{ 'F1': 52, 'F2': 'E', 'F3': 6,  'F4': 9, 'F5': 10, 'F6': 15 }
-									]
-								}
-							}
-						},
-						{ 'legend': { 'margin-top': 0 } }
-					);
+                    // StockChart.
+                    InfoViz.chart(
+                        'i_stockchart',
+                        'stockchart',
+                        {
+                            'vertical_axis_name': 'Vertical',
+                            'horizontal_axis_name': 'Horizontal',
+                            'horizontal_field': 'F2',
+                            'vertical_field': { 'min': 'F4', 'middle': 'F5', 'max': 'F6' },
+                            'tooltip_title': 'InfoViz {F2}, {F3}',
+                            'tooltip_content': 'Tooltip: max={F6}, middle={F5}, min={F4}',
+                            'data': {
+                                'bar1': {
+                                    'name': 'China',
+                                    'data': [
+                                        { 'F1': 1,   'F2': 'A', 'F3': 3,  'F4': 1, 'F5': 2, 'F6': 5 },
+                                        { 'F1': 42,  'F2': 'B', 'F3': 6,  'F4': 3, 'F5': 4, 'F6': 4 },
+                                        { 'F1': 7,   'F2': 'C', 'F3': 9,  'F4': 2, 'F5': 3, 'F6': 4 },
+                                        { 'F1': 110, 'F2': 'D', 'F3': 12, 'F4': 4, 'F5': 5, 'F6': 6 }
+                                    ]
+                                },
+                                'bar2': {
+                                    'name': 'Unite States',
+                                    'data': [
+                                        { 'F1': 13, 'F2': 'A', 'F3': 15, 'F4': 4, 'F5': 7,  'F6': 8  },
+                                        { 'F1': 10, 'F2': 'B', 'F3': 12, 'F4': 9, 'F5': 12, 'F6': 13 },
+                                        { 'F1': 72, 'F2': 'C', 'F3': 9,  'F4': 4, 'F5': 10, 'F6': 15 },
+                                        { 'F1': 1,  'F2': 'D', 'F3': 3,  'F4': 6, 'F5': 9,  'F6': 18 },
+                                        { 'F1': 4,  'F2': 'E', 'F3': 6,  'F4': 5, 'F5': 7,  'F6': 10 }
+                                    ]
+                                },
+                                'bar3': {
+                                    'name': 'Unite Kingdom',
+                                    'data': [
+                                        { 'F1': 19, 'F2': 'A', 'F3': 15, 'F4': 1, 'F5': 7,  'F6': 12 },
+                                        { 'F1': 20, 'F2': 'B', 'F3': 12, 'F4': 2, 'F5': 8,  'F6': 15 },
+                                        { 'F1': 11, 'F2': 'D', 'F3': 3,  'F4': 3, 'F5': 9,  'F6': 17 },
+                                        { 'F1': 42, 'F2': 'E', 'F3': 6,  'F4': 4, 'F5': 10, 'F6': 11 }
+                                    ]
+                                },
+                                'bar4': {
+                                    'name': 'Italy',
+                                    'data': [
+                                        { 'F1': 29, 'F2': 'A', 'F3': 15, 'F4': 5, 'F5': 8,  'F6': 10 },
+                                        { 'F1': 70, 'F2': 'B', 'F3': 12, 'F4': 8, 'F5': 10, 'F6': 12 },
+                                        { 'F1': 42, 'F2': 'C', 'F3': 9,  'F4': 2, 'F5': 11, 'F6': 15 },
+                                        { 'F1': 51, 'F2': 'D', 'F3': 3,  'F4': 4, 'F5': 7,  'F6': 17 },
+                                        { 'F1': 22, 'F2': 'E', 'F3': 6,  'F4': 3, 'F5': 7,  'F6': 19 }
+                                    ]
+                                },
+                                'bar5': {
+                                    'name': 'Russia',
+                                    'data': [
+                                        { 'F1': 9,  'F2': 'A', 'F3': 15, 'F4': 1, 'F5': 5,  'F6': 13 },
+                                        { 'F1': 90, 'F2': 'B', 'F3': 12, 'F4': 3, 'F5': 13, 'F6': 16 },
+                                        { 'F1': 92, 'F2': 'C', 'F3': 9,  'F4': 5, 'F5': 15, 'F6': 18 },
+                                        { 'F1': 52, 'F2': 'E', 'F3': 6,  'F4': 9, 'F5': 10, 'F6': 15 }
+                                    ]
+                                }
+                            }
+                        },
+                        { 'legend': { 'margin-top': 0 } }
+                    );
 
-					// PieChart.
-					InfoViz.chart(
-						'i_piechart1',
-						'piechart',
-						{
-							'value_field': 'F2',
-							'label_field': 'F4',
-							'tooltip_title': 'InfoViz {F2}, {F3}',
-							'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
-							'data': [
-								{ 'F1': 1,   'F2': 9, 'F3': 9, 'F4': 'CHN' },
-								{ 'F1': 42,  'F2': 9, 'F3': 6, 'F4': 'USA' },
-								{ 'F1': 7,   'F2': 9, 'F3': 9, 'F4': 'RUS' },
-								{ 'F1': 110, 'F2': 8, 'F3': 9, 'F4': 'CAN' },
-								{ 'F1': 50,  'F2': 3, 'F3': 2, 'F4': 'FRA' },
-								{ 'F1': 29,  'F2': 1, 'F3': 4, 'F4': 'VET' },
-								{ 'F1': 2,   'F2': 1, 'F3': 1, 'F4': 'JPN' }
-							]
-						},
-						{ 'legend': { 'legend-enabled': false } }
-					);
+                    // PieChart.
+                    InfoViz.chart(
+                        'i_piechart1',
+                        'piechart',
+                        {
+                            'value_field': 'F2',
+                            'label_field': 'F4',
+                            'tooltip_title': 'InfoViz {F2}, {F3}',
+                            'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
+                            'data': [
+                                { 'F1': 1,   'F2': 9, 'F3': 9, 'F4': 'CHN' },
+                                { 'F1': 42,  'F2': 9, 'F3': 6, 'F4': 'USA' },
+                                { 'F1': 7,   'F2': 9, 'F3': 9, 'F4': 'RUS' },
+                                { 'F1': 110, 'F2': 8, 'F3': 9, 'F4': 'CAN' },
+                                { 'F1': 50,  'F2': 3, 'F3': 2, 'F4': 'FRA' },
+                                { 'F1': 29,  'F2': 1, 'F3': 4, 'F4': 'VET' },
+                                { 'F1': 2,   'F2': 1, 'F3': 1, 'F4': 'JPN' }
+                            ]
+                        },
+                        { 'legend': { 'legend-enabled': false } }
+                    );
 
-					InfoViz.chart(
-						'i_piechart2',
-						'piechart',
-						{
-							'value_field': 'F2',
-							'label_field': 'F4',
-							'data': [
-								{ 'F1': 1,   'F2': 1,  'F3': 9, 'F4': 'CHN' },
-								{ 'F1': 42,  'F2': 1,  'F3': 6, 'F4': 'USA' },
-								{ 'F1': 7,   'F2': 1,  'F3': 9, 'F4': 'RUS' },
-								{ 'F1': 110, 'F2': 1,  'F3': 9, 'F4': 'CAN' },
-								{ 'F1': 50,  'F2': 1,  'F3': 2, 'F4': 'FRA' },
-								{ 'F1': 29,  'F2': 1,  'F3': 4, 'F4': 'VET' },
-								{ 'F1': 2,   'F2': 1,  'F3': 1, 'F4': 'JPN' },
-								{ 'F1': 2,   'F2': 1,  'F3': 1, 'F4': 'ITA' },
-								{ 'F1': 2,   'F2': 1,  'F3': 1, 'F4': 'KOR' },
-								{ 'F1': 2,   'F2': 1,  'F3': 1, 'F4': 'RMB' }
-							]
-						},
-						{
-							'piechart': { 'hole-radius': 40, 'horizontal-offset': -50 },
-							'legend': { 'legend-position': 'bottom-right', 'margin-right': 0, 'margin-bottom': 0 }
-						}
-					);
+                    InfoViz.chart(
+                        'i_piechart2',
+                        'piechart',
+                        {
+                            'value_field': 'F2',
+                            'label_field': 'F4',
+                            'data': [
+                                { 'F1': 1,   'F2': 1,  'F3': 9, 'F4': 'CHN' },
+                                { 'F1': 42,  'F2': 1,  'F3': 6, 'F4': 'USA' },
+                                { 'F1': 7,   'F2': 1,  'F3': 9, 'F4': 'RUS' },
+                                { 'F1': 110, 'F2': 1,  'F3': 9, 'F4': 'CAN' },
+                                { 'F1': 50,  'F2': 1,  'F3': 2, 'F4': 'FRA' },
+                                { 'F1': 29,  'F2': 1,  'F3': 4, 'F4': 'VET' },
+                                { 'F1': 2,   'F2': 1,  'F3': 1, 'F4': 'JPN' },
+                                { 'F1': 2,   'F2': 1,  'F3': 1, 'F4': 'ITA' },
+                                { 'F1': 2,   'F2': 1,  'F3': 1, 'F4': 'KOR' },
+                                { 'F1': 2,   'F2': 1,  'F3': 1, 'F4': 'RMB' }
+                            ]
+                        },
+                        {
+                            'piechart': { 'hole-radius': 40, 'horizontal-offset': -50 },
+                            'legend': { 'legend-position': 'bottom-right', 'margin-right': 0, 'margin-bottom': 0 }
+                        }
+                    );
 
-					// RadarChart.
-					InfoViz.chart(
-						'i_radarchart1',
-						'radarchart',
-						{
-							'value_fields': [ 'F1', 'F2', 'F3', 'F4', 'F5', 'F6' ],
-							'name_field': 'F7',
-							'tooltip_title': 'InfoViz {F2}, {F3}',
-							'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
-							'value_maxs': [ 8, 8, 8, 8, 8, 8 ],
-							'value_mins': [ 1, 1, 1, 1, 1, 1 ],
-							'data': [
-								{ 'F1': 7, 'F2': 7, 'F3': 7, 'F4': 7, 'F5': 7, 'F6': 7, 'F7': 'China' },
-								{ 'F1': 6, 'F2': 6, 'F3': 6, 'F4': 6, 'F5': 6, 'F6': 6, 'F7': 'Unite States' },
-								{ 'F1': 5, 'F2': 5, 'F3': 5, 'F4': 5, 'F5': 5, 'F6': 5, 'F7': 'Unite Kingdom' },
-								{ 'F1': 4, 'F2': 4, 'F3': 4, 'F4': 4, 'F5': 4, 'F6': 4, 'F7': 'France' },
-								{ 'F1': 3, 'F2': 3, 'F3': 3, 'F4': 3, 'F5': 3, 'F6': 3, 'F7': 'Japan' },
-								{ 'F1': 2, 'F2': 2, 'F3': 2, 'F4': 2, 'F5': 2, 'F6': 2, 'F7': 'South Korea' },
-								{ 'F1': 1, 'F2': 1, 'F3': 1, 'F4': 1, 'F5': 1, 'F6': 1, 'F7': 'Russia' }
-							]
-						},
-						{
-							'radarchart': { 'horizontal-offset': 60 },
-							'legend': { 'legend-position': 'bottom-left', 'margin-left': 0, 'margin-bottom': 0 }
-						}
-					);
+                    // RadarChart.
+                    InfoViz.chart(
+                        'i_radarchart1',
+                        'radarchart',
+                        {
+                            'value_fields': [ 'F1', 'F2', 'F3', 'F4', 'F5', 'F6' ],
+                            'name_field': 'F7',
+                            'tooltip_title': 'InfoViz {F2}, {F3}',
+                            'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
+                            'value_maxs': [ 8, 8, 8, 8, 8, 8 ],
+                            'value_mins': [ 1, 1, 1, 1, 1, 1 ],
+                            'data': [
+                                { 'F1': 7, 'F2': 7, 'F3': 7, 'F4': 7, 'F5': 7, 'F6': 7, 'F7': 'China' },
+                                { 'F1': 6, 'F2': 6, 'F3': 6, 'F4': 6, 'F5': 6, 'F6': 6, 'F7': 'Unite States' },
+                                { 'F1': 5, 'F2': 5, 'F3': 5, 'F4': 5, 'F5': 5, 'F6': 5, 'F7': 'Unite Kingdom' },
+                                { 'F1': 4, 'F2': 4, 'F3': 4, 'F4': 4, 'F5': 4, 'F6': 4, 'F7': 'France' },
+                                { 'F1': 3, 'F2': 3, 'F3': 3, 'F4': 3, 'F5': 3, 'F6': 3, 'F7': 'Japan' },
+                                { 'F1': 2, 'F2': 2, 'F3': 2, 'F4': 2, 'F5': 2, 'F6': 2, 'F7': 'South Korea' },
+                                { 'F1': 1, 'F2': 1, 'F3': 1, 'F4': 1, 'F5': 1, 'F6': 1, 'F7': 'Russia' }
+                            ]
+                        },
+                        {
+                            'radarchart': { 'horizontal-offset': 60 },
+                            'legend': { 'legend-position': 'bottom-left', 'margin-left': 0, 'margin-bottom': 0 }
+                        }
+                    );
 
-					InfoViz.chart(
-						'i_radarchart2',
-						'radarchart',
-						{
-							'value_fields': [ 'Repulsion Power', 'Durability', 'Hitting Sound', 'Shock Absorption', 'Control' ],
-							'value_maxs': [ 6, 6, 6, 6, 6 ],
-							'value_mins': [ 1, 1, 1, 1, 1 ],
-							'data': [
-								{ 'Repulsion Power': 1, 'Durability': 2, 'Hitting Sound': 3, 'Shock Absorption': 4, 'Control': 5 },
-								{ 'Repulsion Power': 2, 'Durability': 3, 'Hitting Sound': 4, 'Shock Absorption': 5, 'Control': 1 },
-								{ 'Repulsion Power': 3, 'Durability': 4, 'Hitting Sound': 5, 'Shock Absorption': 1, 'Control': 2 },
-								{ 'Repulsion Power': 4, 'Durability': 5, 'Hitting Sound': 1, 'Shock Absorption': 2, 'Control': 3 },
-								{ 'Repulsion Power': 5, 'Durability': 1, 'Hitting Sound': 2, 'Shock Absorption': 3, 'Control': 4 }
-							]
-						},
-						{
-							'radarchart': { 'label-distance': 8, 'label-rotation': true },
-							'legend': { 'legend-enabled': false }
-						}
-					);
+                    InfoViz.chart(
+                        'i_radarchart2',
+                        'radarchart',
+                        {
+                            'value_fields': [ 'Repulsion Power', 'Durability', 'Hitting Sound', 'Shock Absorption', 'Control' ],
+                            'value_maxs': [ 6, 6, 6, 6, 6 ],
+                            'value_mins': [ 1, 1, 1, 1, 1 ],
+                            'data': [
+                                { 'Repulsion Power': 1, 'Durability': 2, 'Hitting Sound': 3, 'Shock Absorption': 4, 'Control': 5 },
+                                { 'Repulsion Power': 2, 'Durability': 3, 'Hitting Sound': 4, 'Shock Absorption': 5, 'Control': 1 },
+                                { 'Repulsion Power': 3, 'Durability': 4, 'Hitting Sound': 5, 'Shock Absorption': 1, 'Control': 2 },
+                                { 'Repulsion Power': 4, 'Durability': 5, 'Hitting Sound': 1, 'Shock Absorption': 2, 'Control': 3 },
+                                { 'Repulsion Power': 5, 'Durability': 1, 'Hitting Sound': 2, 'Shock Absorption': 3, 'Control': 4 }
+                            ]
+                        },
+                        {
+                            'radarchart': { 'label-distance': 8, 'label-rotation': true },
+                            'legend': { 'legend-enabled': false }
+                        }
+                    );
 
-					// RadialChart
-					InfoViz.chart(
-						'i_radialchart1',
-						'radialchart',
-						{
-							'value_field': 'F1',
-							'label_field': 'F2',
-							'data': [
-								{ 'F1': 3, 'F2': 'China' },
-								{ 'F1': 6, 'F2': 'Unite States' },
-								{ 'F1': 2, 'F2': 'Russia' },
-								{ 'F1': 4, 'F2': 'Japan' },
-								{ 'F1': 5, 'F2': 'Botswana' },
-								{ 'F1': 3, 'F2': 'Finland' },
-								{ 'F1': 1, 'F2': 'France' },
-								{ 'F1': 2, 'F2': 'Cape Verde' },
-								{ 'F1': 6, 'F2': 'Belize' },
-								{ 'F1': 4, 'F2': 'Georgia' },
-								{ 'F1': 2, 'F2': 'Haiti' },
-								{ 'F1': 3, 'F2': 'Hungary' },
-								{ 'F1': 6, 'F2': 'India' },
-								{ 'F1': 4, 'F2': 'Laos' },
-								{ 'F1': 3, 'F2': 'Kuwait' },
-								{ 'F1': 6, 'F2': 'Namibia' },
-								{ 'F1': 1, 'F2': 'Peru' }
-							]
-						},
-						{
-							'legend': { 'legend-enabled': false },
-							'radialchart': { 'size-factor': 0.8, 'bar-min-height': 60, 'bar-width': 14, 'hole-radius': 36 }
-						}
-					);
+                    // RadialChart
+                    InfoViz.chart(
+                        'i_radialchart1',
+                        'radialchart',
+                        {
+                            'value_field': 'F1',
+                            'label_field': 'F2',
+                            'data': [
+                                { 'F1': 3, 'F2': 'China' },
+                                { 'F1': 6, 'F2': 'Unite States' },
+                                { 'F1': 2, 'F2': 'Russia' },
+                                { 'F1': 4, 'F2': 'Japan' },
+                                { 'F1': 5, 'F2': 'Botswana' },
+                                { 'F1': 3, 'F2': 'Finland' },
+                                { 'F1': 1, 'F2': 'France' },
+                                { 'F1': 2, 'F2': 'Cape Verde' },
+                                { 'F1': 6, 'F2': 'Belize' },
+                                { 'F1': 4, 'F2': 'Georgia' },
+                                { 'F1': 2, 'F2': 'Haiti' },
+                                { 'F1': 3, 'F2': 'Hungary' },
+                                { 'F1': 6, 'F2': 'India' },
+                                { 'F1': 4, 'F2': 'Laos' },
+                                { 'F1': 3, 'F2': 'Kuwait' },
+                                { 'F1': 6, 'F2': 'Namibia' },
+                                { 'F1': 1, 'F2': 'Peru' }
+                            ]
+                        },
+                        {
+                            'legend': { 'legend-enabled': false },
+                            'radialchart': { 'size-factor': 0.8, 'bar-min-height': 60, 'bar-width': 14, 'hole-radius': 36 }
+                        }
+                    );
 
-					InfoViz.chart(
-						'i_radialchart2',
-						'radialchart',
-						{
-							'value_field': 'F1',
-							'label_field': 'F2',
-							'tooltip_title': 'Country: {F2}',
-							'tooltip_content': 'Tooltip: {F2}',
-							'data': [
-								{ 'F1': 6, 'F2': 'China' },
-								{ 'F1': 5, 'F2': 'Unite States' },
-								{ 'F1': 6, 'F2': 'Russia' },
-								{ 'F1': 5, 'F2': 'Japan' },
-								{ 'F1': 5, 'F2': 'Botswana' },
-								{ 'F1': 6, 'F2': 'Finland' },
-								{ 'F1': 5, 'F2': 'France' },
-								{ 'F1': 4, 'F2': 'Cape Verde' },
-								{ 'F1': 3, 'F2': 'Belize' },
-								{ 'F1': 4, 'F2': 'Georgia' },
-								{ 'F1': 5, 'F2': 'Haiti' },
-								{ 'F1': 6, 'F2': 'Hungary' },
-								{ 'F1': 3, 'F2': 'India' },
-								{ 'F1': 4, 'F2': 'Laos' },
-								{ 'F1': 5, 'F2': 'Kuwait' },
-								{ 'F1': 4, 'F2': 'Namibia' },
-								{ 'F1': 3, 'F2': 'Peru' }
-							]
-						},
-						{
-							'legend': { 'margin-left': 0, 'margin-top': 5 },
-							'radialchart': { 'horizontal-offset': 40, 'label-enabled': false, 'bar-width': 18 }
-						}
-					);
+                    InfoViz.chart(
+                        'i_radialchart2',
+                        'radialchart',
+                        {
+                            'value_field': 'F1',
+                            'label_field': 'F2',
+                            'tooltip_title': 'Country: {F2}',
+                            'tooltip_content': 'Tooltip: {F2}',
+                            'data': [
+                                { 'F1': 6, 'F2': 'China' },
+                                { 'F1': 5, 'F2': 'Unite States' },
+                                { 'F1': 6, 'F2': 'Russia' },
+                                { 'F1': 5, 'F2': 'Japan' },
+                                { 'F1': 5, 'F2': 'Botswana' },
+                                { 'F1': 6, 'F2': 'Finland' },
+                                { 'F1': 5, 'F2': 'France' },
+                                { 'F1': 4, 'F2': 'Cape Verde' },
+                                { 'F1': 3, 'F2': 'Belize' },
+                                { 'F1': 4, 'F2': 'Georgia' },
+                                { 'F1': 5, 'F2': 'Haiti' },
+                                { 'F1': 6, 'F2': 'Hungary' },
+                                { 'F1': 3, 'F2': 'India' },
+                                { 'F1': 4, 'F2': 'Laos' },
+                                { 'F1': 5, 'F2': 'Kuwait' },
+                                { 'F1': 4, 'F2': 'Namibia' },
+                                { 'F1': 3, 'F2': 'Peru' }
+                            ]
+                        },
+                        {
+                            'legend': { 'margin-left': 0, 'margin-top': 5 },
+                            'radialchart': { 'horizontal-offset': 40, 'label-enabled': false, 'bar-width': 18 }
+                        }
+                    );
 
-					// SmithGraph
-					// data = [];
-					// var max_nodes = 256, max_edge = 6, max_value = 100;
-					// for(i = 0; i < max_nodes; ++i) {
-					// 	var edge_count = Math.floor(Math.random() * max_edge), edges = [];
+                    // SmithGraph
+                    // data = [];
+                    // var max_nodes = 256, max_edge = 6, max_value = 100;
+                    // for(i = 0; i < max_nodes; ++i) {
+                    //     var edge_count = Math.floor(Math.random() * max_edge), edges = [];
 
-					// 	for(j = 0; j < edge_count; ++j) {
-					// 		edges.push({
-					// 			'to': 'item' + Math.floor(Math.random() * max_nodes),
-					// 			'F3': Math.floor(Math.random() * max_value)
-					// 		});
-					// 	}
+                    //     for(j = 0; j < edge_count; ++j) {
+                    //         edges.push({
+                    //             'to': 'item' + Math.floor(Math.random() * max_nodes),
+                    //             'F3': Math.floor(Math.random() * max_value)
+                    //         });
+                    //     }
 
-					// 	data.push({
-					// 		'F1': 'item' + i,
-					// 		'F2': Math.floor(Math.random() * max_value),
-					// 		'F4': edges.length,
-					// 		'edges': edges
-					// 	});
-					// }
+                    //     data.push({
+                    //         'F1': 'item' + i,
+                    //         'F2': Math.floor(Math.random() * max_value),
+                    //         'F4': edges.length,
+                    //         'edges': edges
+                    //     });
+                    // }
 
-					// InfoViz.chart(
-					// 	'i_smithgraph',
-					// 	'smithgraph',
-					// 	{
-					// 		'node_id_field': 'F1',
-					// 		'node_label_field': 'F1',
-					// 		'node_value_field': 'F2',
-					// 		'edge_value_field': 'F3',
-					// 		'node_tooltip_title': 'Node #{F1}',
-					// 		'node_tooltip_content': 'Value: {F2}. Edges: {F4}.',
-					// 		'data': data
-					// 	},
-					// 	{ 'legend': { 'legend-enabled': false } }
-					// );
+                    // InfoViz.chart(
+                    //     'i_smithgraph',
+                    //     'smithgraph',
+                    //     {
+                    //         'node_id_field': 'F1',
+                    //         'node_label_field': 'F1',
+                    //         'node_value_field': 'F2',
+                    //         'edge_value_field': 'F3',
+                    //         'node_tooltip_title': 'Node #{F1}',
+                    //         'node_tooltip_content': 'Value: {F2}. Edges: {F4}.',
+                    //         'data': data
+                    //     },
+                    //     { 'legend': { 'legend-enabled': false } }
+                    // );
 
-					// WorldMap
-					// InfoViz.chart(
-					// 	'i_worldmap',
-					// 	'worldmap',
-					// 	{
-					// 		'value_field': 'F1',
-					// 		'tooltip_title': 'InfoViz: {area}',
-					// 		'tooltip_content': '{area}: value = {F1}',
-					// 		'data': [
-					// 			{ 'area': 'BR', 'F1': 1 },
-					// 			{ 'area': 'CH', 'F1': 2 },
-					// 			{ 'area': 'CL', 'F1': 3 },
-					// 			{ 'area': 'US', 'F1': 4 },
-					// 			{ 'area': 'JP', 'F1': 7 },
-					// 			{ 'area': 'MX', 'F1': 6 },
-					// 			{ 'area': 'PE', 'F1': 7 },
-					// 			{ 'area': 'ZA', 'F1': 8 },
-					// 			{ 'area': 'ZW', 'F1': 9 },
-					// 			{ 'area': 'RU', 'F1': 3 },
-					// 			{ 'area': 'QA', 'F1': 2 },
-					// 			{ 'area': 'NO', 'F1': 8 },
-					// 			{ 'area': 'ML', 'F1': 4 },
-					// 			{ 'area': 'KR', 'F1': 5 },
-					// 			{ 'area': 'CN', 'F1': 8 },
-					// 			{ 'area': 'TW', 'F1': 8 },
-					// 			{ 'area': 'CU', 'F1': 7 },
-					// 			{ 'area': 'ER', 'F1': 8 },
-					// 			{ 'area': 'GH', 'F1': 9 },
-					// 			{ 'area': 'HN', 'F1': 1 },
-					// 			{ 'area': 'IN', 'F1': 2 },
-					// 			{ 'area': 'AU', 'F1': 9 },
-					// 			{ 'area': 'CA', 'F1': 7 },
-					// 			{ 'area': 'IT', 'F1': 7 },
-					// 			{ 'area': 'GB', 'F1': 5 },
-					// 			{ 'area': 'FR', 'F1': 8 },
-					// 			{ 'area': 'DE', 'F1': 6 },
-					// 			{ 'area': 'PT', 'F1': 9 },
-					// 			{ 'area': 'ES', 'F1': 5 },
-					// 			{ 'area': 'SE', 'F1': 7 }
-					// 		]
-					// 	}
-					// );
+                    // WorldMap
+                    // InfoViz.chart(
+                    //     'i_worldmap',
+                    //     'worldmap',
+                    //     {
+                    //         'value_field': 'F1',
+                    //         'tooltip_title': 'InfoViz: {area}',
+                    //         'tooltip_content': '{area}: value = {F1}',
+                    //         'data': [
+                    //             { 'area': 'BR', 'F1': 1 },
+                    //             { 'area': 'CH', 'F1': 2 },
+                    //             { 'area': 'CL', 'F1': 3 },
+                    //             { 'area': 'US', 'F1': 4 },
+                    //             { 'area': 'JP', 'F1': 7 },
+                    //             { 'area': 'MX', 'F1': 6 },
+                    //             { 'area': 'PE', 'F1': 7 },
+                    //             { 'area': 'ZA', 'F1': 8 },
+                    //             { 'area': 'ZW', 'F1': 9 },
+                    //             { 'area': 'RU', 'F1': 3 },
+                    //             { 'area': 'QA', 'F1': 2 },
+                    //             { 'area': 'NO', 'F1': 8 },
+                    //             { 'area': 'ML', 'F1': 4 },
+                    //             { 'area': 'KR', 'F1': 5 },
+                    //             { 'area': 'CN', 'F1': 8 },
+                    //             { 'area': 'TW', 'F1': 8 },
+                    //             { 'area': 'CU', 'F1': 7 },
+                    //             { 'area': 'ER', 'F1': 8 },
+                    //             { 'area': 'GH', 'F1': 9 },
+                    //             { 'area': 'HN', 'F1': 1 },
+                    //             { 'area': 'IN', 'F1': 2 },
+                    //             { 'area': 'AU', 'F1': 9 },
+                    //             { 'area': 'CA', 'F1': 7 },
+                    //             { 'area': 'IT', 'F1': 7 },
+                    //             { 'area': 'GB', 'F1': 5 },
+                    //             { 'area': 'FR', 'F1': 8 },
+                    //             { 'area': 'DE', 'F1': 6 },
+                    //             { 'area': 'PT', 'F1': 9 },
+                    //             { 'area': 'ES', 'F1': 5 },
+                    //             { 'area': 'SE', 'F1': 7 }
+                    //         ]
+                    //     }
+                    // );
 
-					// HeatMap
-					// data = [];
-					// for(i = 0; i < 1024; ++i) {
-					// 	item = Math.floor(Math.random() * 100);
-					// 	data.push({ 'F1': item, 'F2': i, 'F3': item });
-					// }
+                    // HeatMap
+                    // data = [];
+                    // for(i = 0; i < 1024; ++i) {
+                    //     item = Math.floor(Math.random() * 100);
+                    //     data.push({ 'F1': item, 'F2': i, 'F3': item });
+                    // }
 
-					// InfoViz.chart(
-					// 	'i_heatmap',
-					// 	'heatmap',
-					// 	{
-					// 		'value_field': 'F1',
-					// 		'label_field': 'F3',
-					// 		'tooltip_title': 'InfoViz {F2}, {F3}',
-					// 		'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
-					// 		'data': data
-					// 	},
-					// 	{ 'layout': { 'logo-enabled': false }, 'heatmap': { 'label-size': 12 } }
-					// );
+                    // InfoViz.chart(
+                    //     'i_heatmap',
+                    //     'heatmap',
+                    //     {
+                    //         'value_field': 'F1',
+                    //         'label_field': 'F3',
+                    //         'tooltip_title': 'InfoViz {F2}, {F3}',
+                    //         'tooltip_content': 'Tooltip: {F1}, {F2} | {F3}',
+                    //         'data': data
+                    //     },
+                    //     { 'layout': { 'logo-enabled': false }, 'heatmap': { 'label-size': 12 } }
+                    // );
 
-					// BasicTree
-					InfoViz.chart(
-						'i_basictree',
-						'basictree',
-						{
-							'node_label_field': 'F1',
-							'node_value_field': 'F2',
-							'edge_value_field': 'F3',
-							'node_tooltip_title': 'Node #{F1}',
-							'node_tooltip_content': 'Value: {F1}.{F2}',
-							'edge_tooltip_title': 'Edge #{F1}',
-							'edge_tooltip_content': 'Value: {F2}.{F3}',
-							'data': {
-								'F1': 'Frankfurt', 'F2': 1, 'children': [
-									{
-										'F1': 'Mannheim', 'F2': 2, 'F3': 85, 'children': [
-											{
-												'F1': 'Karlsruhe', 'F2': 3, 'F3': 80, 'children': [
-													{ 'F1': 'Augsburg', 'F2': 1, 'F3': 250 },
-													{ 'F1': 'Augsburg', 'F2': 1, 'F3': 250 }
-												]
-											}
-										]
-									},
-									{
-										'F1': 'Würzburg', 'F2': 3, 'F3': 217, 'children': [
-											{ 'F1': 'Erfurt', 'F2': 4, 'F3': 186 },
-											{ 'F1': 'Nürnberg', 'F2': 2, 'F3': 103 },
-											{ 'F1': 'Erfurt', 'F2': 4, 'F3': 186, 'children': [
-													{ 'F1': 'München', 'F2': 5, 'F3': 167 }
-												]
-											}
-										]
-									},
-									{
-										'F1': 'Kassel', 'F2': 2, 'F3': 173, 'children': [
-											{ 'F1': 'Stuggart', 'F2': 3, 'F3': 99, 'children': [
-													{ 'F1': 'München', 'F2': 5, 'F3': 167 },
-													{ 'F1': 'Augsburg', 'F2': 1, 'F3': 250 }
-												]
-											}
-										]
-									}
-								]
-							}
-						}
-					);
+                    // BasicTree
+                    InfoViz.chart(
+                        'i_basictree',
+                        'basictree',
+                        {
+                            'node_label_field': 'F1',
+                            'node_value_field': 'F2',
+                            'edge_value_field': 'F3',
+                            'node_tooltip_title': 'Node #{F1}',
+                            'node_tooltip_content': 'Value: {F1}.{F2}',
+                            'edge_tooltip_title': 'Edge #{F1}',
+                            'edge_tooltip_content': 'Value: {F2}.{F3}',
+                            'data': {
+                                'F1': 'Frankfurt', 'F2': 1, 'children': [
+                                    {
+                                        'F1': 'Mannheim', 'F2': 2, 'F3': 85, 'children': [
+                                            {
+                                                'F1': 'Karlsruhe', 'F2': 3, 'F3': 80, 'children': [
+                                                    { 'F1': 'Augsburg', 'F2': 1, 'F3': 250 },
+                                                    { 'F1': 'Augsburg', 'F2': 1, 'F3': 250 }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        'F1': 'Würzburg', 'F2': 3, 'F3': 217, 'children': [
+                                            { 'F1': 'Erfurt', 'F2': 4, 'F3': 186 },
+                                            { 'F1': 'Nürnberg', 'F2': 2, 'F3': 103 },
+                                            { 'F1': 'Erfurt', 'F2': 4, 'F3': 186, 'children': [
+                                                    { 'F1': 'München', 'F2': 5, 'F3': 167 }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        'F1': 'Kassel', 'F2': 2, 'F3': 173, 'children': [
+                                            { 'F1': 'Stuggart', 'F2': 3, 'F3': 99, 'children': [
+                                                    { 'F1': 'München', 'F2': 5, 'F3': 167 },
+                                                    { 'F1': 'Augsburg', 'F2': 1, 'F3': 250 }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    );
 
-					// TagCloud.
-					InfoViz.chart(
-						'i_tagcloud1',
-						'tagcloud',
-						{
-							'value_field': 'F1',
-							'text_field': 'F2',
-							'data': [
-								{ 'F1': 24, 'F2': 'China' },
-								{ 'F1': 23, 'F2': 'Unite States' },
-								{ 'F1': 22, 'F2': 'Russia' },
-								{ 'F1': 21, 'F2': 'Japan' },
-								{ 'F1': 20, 'F2': 'Botswana' },
-								{ 'F1': 19, 'F2': 'Finland' },
-								{ 'F1': 18, 'F2': 'France' },
-								{ 'F1': 17, 'F2': 'Cape Verde' },
-								{ 'F1': 16, 'F2': 'Belize' },
-								{ 'F1': 15, 'F2': 'Georgia' },
-								{ 'F1': 14, 'F2': 'Haiti' },
-								{ 'F1': 13, 'F2': 'Hungary' },
-								{ 'F1': 12, 'F2': 'India' },
-								{ 'F1': 11, 'F2': 'Laos' },
-								{ 'F1': 10, 'F2': 'Kuwait' },
-								{ 'F1': 9,  'F2': 'Namibia' },
-								{ 'F1': 8,  'F2': 'Peru' },
-								{ 'F1': 7,  'F2': 'Qatar' },
-								{ 'F1': 6,  'F2': 'Spain' },
-								{ 'F1': 5,  'F2': 'Thailand' },
-								{ 'F1': 4,  'F2': 'Ukraine' },
-								{ 'F1': 3,  'F2': 'Vanuatu' },
-								{ 'F1': 2,  'F2': 'Zambia' },
-								{ 'F1': 1,  'F2': 'Palestine' }
-							]
-						}
-					);
+                    // FolderTree
+                    InfoViz.chart(
+                        'i_foldertree1',
+                        'foldertree',
+                        {
+                            'node_label_field': 'F1',
+                            'node_value_field': 'F2',
+                            'edge_value_field': 'F3',
+                            'node_tooltip_title': 'Node #{F1}',
+                            'node_tooltip_content': 'Value: {F1}.{F2}',
+                            'node_text': 'NodeText #{F1}',
+                            'data': {
+                                'F1': 'Frankfurt', 'F2': 1, 'children': [
+                                    {
+                                        'F1': 'Mannheim', 'F2': 2, 'F3': 85, 'children': [
+                                            {
+                                                'F1': 'Karlsruhe', 'F2': 3, 'F3': 80, 'children': [
+                                                    { 'F1': 'Augsburg', 'F2': 1, 'F3': 250 },
+                                                    { 'F1': 'Augsburg', 'F2': 1, 'F3': 250 }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        'F1': 'Würzburg', 'F2': 3, 'F3': 217, 'children': [
+                                            { 'F1': 'Erfurt', 'F2': 4, 'F3': 186 },
+                                            { 'F1': 'Nürnberg', 'F2': 2, 'F3': 103 },
+                                            { 'F1': 'Erfurt', 'F2': 4, 'F3': 186, 'children': [
+                                                    { 'F1': 'München', 'F2': 5, 'F3': 167 }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        'F1': 'Kassel', 'F2': 2, 'F3': 173, 'children': [
+                                            { 'F1': 'Stuggart', 'F2': 3, 'F3': 99, 'children': [
+                                                    { 'F1': 'München', 'F2': 5, 'F3': 167 },
+                                                    { 'F1': 'Augsburg', 'F2': 1, 'F3': 250 }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }, {},
+                        function(info) { console.log(info); }
+                    );
+                    InfoViz.chart(
+                        'i_foldertree2',
+                        'foldertree',
+                        {
+                            'node_label_field': 'F1',
+                            'node_value_field': 'F2',
+                            'edge_value_field': 'F3',
+                            'node_tooltip_title': 'Node #{F1}',
+                            'node_tooltip_content': 'Value: {F1}.{F2}',
+                            'node_text': 'NodeText #{F1}',
+                            'data': {
+                                'F1': 'Frankfurt', 'F2': 1, 'children': [
+                                    {
+                                        'F1': 'Mannheim', 'F2': 2, 'F3': 85, 'children': [
+                                            {
+                                                'F1': 'Karlsruhe', 'F2': 3, 'F3': 80, 'children': [
+                                                    { 'F1': 'Augsburg', 'F2': 1, 'F3': 250 },
+                                                    { 'F1': 'Augsburg', 'F2': 1, 'F3': 250 }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        'F1': 'Würzburg', 'F2': 3, 'F3': 217, 'children': [
+                                            { 'F1': 'Erfurt', 'F2': 4, 'F3': 186 },
+                                            { 'F1': 'Nürnberg', 'F2': 2, 'F3': 103 },
+                                            { 'F1': 'Erfurt', 'F2': 4, 'F3': 186, 'children': [
+                                                    { 'F1': 'München', 'F2': 5, 'F3': 167 }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        'F1': 'Kassel', 'F2': 2, 'F3': 173, 'children': [
+                                            { 'F1': 'Stuggart', 'F2': 3, 'F3': 99, 'children': [
+                                                    { 'F1': 'München', 'F2': 5, 'F3': 167 },
+                                                    { 'F1': 'Augsburg', 'F2': 1, 'F3': 250 }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                        	'color': [
+                                { 'color': '#3A89C9', 'dark-alpha': 1, 'light-alpha': 0.6 },
+                                { 'color': '#3A89C9', 'dark-alpha': 1, 'light-alpha': 0.6 },
+                                { 'color': '#3A89C9', 'dark-alpha': 1, 'light-alpha': 0.6 },
+                                { 'color': '#3A89C9', 'dark-alpha': 1, 'light-alpha': 0.6 },
+                                { 'color': '#3A89C9', 'dark-alpha': 1, 'light-alpha': 0.6 },
+                                { 'color': '#3A89C9', 'dark-alpha': 1, 'light-alpha': 0.6 },
+                                { 'color': '#3A89C9', 'dark-alpha': 1, 'light-alpha': 0.6 },
+                                { 'color': '#3A89C9', 'dark-alpha': 1, 'light-alpha': 0.6 }
+                            ]
+                        }
+                    );
 
-					InfoViz.chart(
-						'i_tagcloud2',
-						'tagcloud',
-						{
-							'value_field': 'F1',
-							'text_field': 'F2',
-							'tooltip_title': 'InfoViz {F1}',
-							'tooltip_content': '{F2}: {F1}.',
-							'data': [
-								{ 'F1': 24, 'F2': '中华人民共和国' },
-								{ 'F1': 23, 'F2': '美利坚合众国' },
-								{ 'F1': 22, 'F2': '俄罗斯联邦' },
-								{ 'F1': 21, 'F2': '日本' },
-								{ 'F1': 20, 'F2': '博茨瓦纳' },
-								{ 'F1': 19, 'F2': '芬兰' },
-								{ 'F1': 18, 'F2': '法兰西共和国' },
-								{ 'F1': 17, 'F2': '佛得角' },
-								{ 'F1': 16, 'F2': '伯利兹城' },
-								{ 'F1': 15, 'F2': '格鲁吉亚' },
-								{ 'F1': 14, 'F2': '海地' },
-								{ 'F1': 13, 'F2': '匈牙利' },
-								{ 'F1': 12, 'F2': '印度' },
-								{ 'F1': 11, 'F2': '老挝人民民主共和国' },
-								{ 'F1': 10, 'F2': '科威特' },
-								{ 'F1': 9,  'F2': '纳米比亚' },
-								{ 'F1': 8,  'F2': '秘鲁' },
-								{ 'F1': 7,  'F2': '卡塔尔' },
-								{ 'F1': 6,  'F2': '西班牙' },
-								{ 'F1': 5,  'F2': '泰国' },
-								{ 'F1': 4,  'F2': '乌克兰' },
-								{ 'F1': 3,  'F2': '瓦努阿图' },
-								{ 'F1': 2,  'F2': '赞比亚' },
-								{ 'F1': 1,  'F2': '巴勒斯坦' }
-							]
-						},
-						{ 'tagcloud': { 'color': [
-							{ 'color': '#000', 'dark-alpha': 0.20, 'light-alpha': 0.45 },
-							{ 'color': '#000', 'dark-alpha': 0.30, 'light-alpha': 0.45 },
-							{ 'color': '#000', 'dark-alpha': 0.40, 'light-alpha': 0.45 },
-							{ 'color': '#000', 'dark-alpha': 0.50, 'light-alpha': 0.45 },
-							{ 'color': '#000', 'dark-alpha': 0.60, 'light-alpha': 0.45 },
-							{ 'color': '#000', 'dark-alpha': 0.70, 'light-alpha': 0.45 },
-							{ 'color': '#000', 'dark-alpha': 0.80, 'light-alpha': 0.45 },
-							{ 'color': '#000', 'dark-alpha': 0.85, 'light-alpha': 0.45 }
-						] } }
-					);
-				});
-			}());
-		</script>
+                    // TagCloud.
+                    InfoViz.chart(
+                        'i_tagcloud1',
+                        'tagcloud',
+                        {
+                            'value_field': 'F1',
+                            'text_field': 'F2',
+                            'data': [
+                                { 'F1': 24, 'F2': 'China' },
+                                { 'F1': 23, 'F2': 'Unite States' },
+                                { 'F1': 22, 'F2': 'Russia' },
+                                { 'F1': 21, 'F2': 'Japan' },
+                                { 'F1': 20, 'F2': 'Botswana' },
+                                { 'F1': 19, 'F2': 'Finland' },
+                                { 'F1': 18, 'F2': 'France' },
+                                { 'F1': 17, 'F2': 'Cape Verde' },
+                                { 'F1': 16, 'F2': 'Belize' },
+                                { 'F1': 15, 'F2': 'Georgia' },
+                                { 'F1': 14, 'F2': 'Haiti' },
+                                { 'F1': 13, 'F2': 'Hungary' },
+                                { 'F1': 12, 'F2': 'India' },
+                                { 'F1': 11, 'F2': 'Laos' },
+                                { 'F1': 10, 'F2': 'Kuwait' },
+                                { 'F1': 9,  'F2': 'Namibia' },
+                                { 'F1': 8,  'F2': 'Peru' },
+                                { 'F1': 7,  'F2': 'Qatar' },
+                                { 'F1': 6,  'F2': 'Spain' },
+                                { 'F1': 5,  'F2': 'Thailand' },
+                                { 'F1': 4,  'F2': 'Ukraine' },
+                                { 'F1': 3,  'F2': 'Vanuatu' },
+                                { 'F1': 2,  'F2': 'Zambia' },
+                                { 'F1': 1,  'F2': 'Palestine' }
+                            ]
+                        }
+                    );
 
-		<!-- Please do remove following Google Analytics code, sorry for the inconvenient. -->
-		<script>
-			var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-34321415-1']); _gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();
-		</script>
-	</body>
+                    InfoViz.chart(
+                        'i_tagcloud2',
+                        'tagcloud',
+                        {
+                            'value_field': 'F1',
+                            'text_field': 'F2',
+                            'tooltip_title': 'InfoViz {F1}',
+                            'tooltip_content': '{F2}: {F1}.',
+                            'data': [
+                                { 'F1': 24, 'F2': '中华人民共和国' },
+                                { 'F1': 23, 'F2': '美利坚合众国' },
+                                { 'F1': 22, 'F2': '俄罗斯联邦' },
+                                { 'F1': 21, 'F2': '日本' },
+                                { 'F1': 20, 'F2': '博茨瓦纳' },
+                                { 'F1': 19, 'F2': '芬兰' },
+                                { 'F1': 18, 'F2': '法兰西共和国' },
+                                { 'F1': 17, 'F2': '佛得角' },
+                                { 'F1': 16, 'F2': '伯利兹城' },
+                                { 'F1': 15, 'F2': '格鲁吉亚' },
+                                { 'F1': 14, 'F2': '海地' },
+                                { 'F1': 13, 'F2': '匈牙利' },
+                                { 'F1': 12, 'F2': '印度' },
+                                { 'F1': 11, 'F2': '老挝人民民主共和国' },
+                                { 'F1': 10, 'F2': '科威特' },
+                                { 'F1': 9,  'F2': '纳米比亚' },
+                                { 'F1': 8,  'F2': '秘鲁' },
+                                { 'F1': 7,  'F2': '卡塔尔' },
+                                { 'F1': 6,  'F2': '西班牙' },
+                                { 'F1': 5,  'F2': '泰国' },
+                                { 'F1': 4,  'F2': '乌克兰' },
+                                { 'F1': 3,  'F2': '瓦努阿图' },
+                                { 'F1': 2,  'F2': '赞比亚' },
+                                { 'F1': 1,  'F2': '巴勒斯坦' }
+                            ]
+                        },
+                        { 'tagcloud': { 'color': [
+                            { 'color': '#000', 'dark-alpha': 0.20, 'light-alpha': 0.45 },
+                            { 'color': '#000', 'dark-alpha': 0.30, 'light-alpha': 0.45 },
+                            { 'color': '#000', 'dark-alpha': 0.40, 'light-alpha': 0.45 },
+                            { 'color': '#000', 'dark-alpha': 0.50, 'light-alpha': 0.45 },
+                            { 'color': '#000', 'dark-alpha': 0.60, 'light-alpha': 0.45 },
+                            { 'color': '#000', 'dark-alpha': 0.70, 'light-alpha': 0.45 },
+                            { 'color': '#000', 'dark-alpha': 0.80, 'light-alpha': 0.45 },
+                            { 'color': '#000', 'dark-alpha': 0.85, 'light-alpha': 0.45 }
+                        ] } }
+                    );
+                });
+            }());
+        </script>
+
+        <!-- Please do remove following Google Analytics code, sorry for the inconvenient. -->
+        <script>
+            var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-34321415-1']); _gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();
+        </script>
+    </body>
 </html>

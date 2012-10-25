@@ -801,6 +801,61 @@ Demo: [Click Here](http://infoviz.org/test/basictree.html)
         }
     );
 
+## 4.2 FolderTree
+
+![FolderTree](http://infoviz.org/images/examples/foldertree.png "FolderTree")
+
+A FolderTree can visualize tree structure data. FolderTree has a top-down layout, just like folder layout file system.
+
+Demo: [Click Here](http://infoviz.org/test/foldertree.html)
+
+    InfoViz.chart(
+        'i_foldertree1',
+        'foldertree',
+        {
+            'node_label_field': 'F1',
+            'node_value_field': 'F2',
+            'edge_value_field': 'F3',
+            'node_tooltip_title': 'Node #{F1}',
+            'node_tooltip_content': 'Value: {F1}.{F2}',
+            'node_text': 'NodeText #{F1}',
+            'data': {
+                'F1': 'Frankfurt', 'F2': 1, 'children': [
+                    {
+                        'F1': 'Mannheim', 'F2': 2, 'F3': 85, 'children': [
+                            {
+                                'F1': 'Karlsruhe', 'F2': 3, 'F3': 80, 'children': [
+                                    { 'F1': 'Augsburg', 'F2': 1, 'F3': 250 },
+                                    { 'F1': 'Augsburg', 'F2': 1, 'F3': 250 }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        'F1': 'Würzburg', 'F2': 3, 'F3': 217, 'children': [
+                            { 'F1': 'Erfurt', 'F2': 4, 'F3': 186 },
+                            { 'F1': 'Nürnberg', 'F2': 2, 'F3': 103 },
+                            { 'F1': 'Erfurt', 'F2': 4, 'F3': 186, 'children': [
+                                    { 'F1': 'München', 'F2': 5, 'F3': 167 }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        'F1': 'Kassel', 'F2': 2, 'F3': 173, 'children': [
+                            { 'F1': 'Stuggart', 'F2': 3, 'F3': 99, 'children': [
+                                    { 'F1': 'München', 'F2': 5, 'F3': 167 },
+                                    { 'F1': 'Augsburg', 'F2': 1, 'F3': 250 }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        }, {},
+        function(info) { console.log(info); }
+    );
+
 # 5 Cloud
 
 ## 5.1 TagCloud
@@ -1302,7 +1357,7 @@ When you using InfoViz.chart to create a chart, you may pass in your option obje
         // 13. RadialChart
         'radialchart': {
             'size-factor': 0.9,                 // size factor, 0.9 means using 90% area to draw the chart
-            'bar-width': 15,                    // radial bar width, in angle. set to undefined to use auto value
+            'bar-width': undefined,             // radial bar width, in angle. set to undefined to use auto value
             'bar-border-width': 1,              // border thickness of radial bars
             'bar-min-height': 15,               // min bar height
             'hole-radius': 50,                  // hole radius
@@ -1437,6 +1492,30 @@ When you using InfoViz.chart to create a chart, you may pass in your option obje
 
             'vertical-label-count': 10,         // label count in the vertical axis
             'vertical-bar-width': 5             // period bar width of the vertical axis
+        },
+
+        // 19. FolderTreeTree configuration.
+        'foldertree': {
+            'padding-top': 20,                  // padding-top
+            'padding-right': 0,                 // padding-right
+            'padding-bottom': 0,                // padding-bottom
+            'padding-left': 20,                 // padding-left
+
+            'vertical-spacing': 10,             // vertical margin between nodes
+            'horizontal-spacing': 10,           // horizontal margin between levels
+
+            'node-border-width': 1,             // border thickness of tree nodes
+            'node-type': 'circle',              // visual style of tree nodes
+            'node-size': 10,                    // radius of tree nodes
+            'node-label-spacing': 4,            // tree node label margin
+            'node-label-size': 12,              // tree node label font size
+            'node-label-alpha': 1,              // tree node label font opacity
+
+            'edge-width': 1,                    // tree edge thickness
+            'edge-color': '#999',               // tree edge color
+            'edge-alpha': 1,                    // tree edge opacity
+            'edge-horizontal-spacing': 4,       // tree edge horizontal margin
+            'edge-vertical-spacing': 4          // tree edge vertical margin
         },
 
         // 0. Global color definition.

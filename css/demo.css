@@ -60,6 +60,8 @@ table { border-collapse: collapse; border-spacing: 0; }
 .p-index .container .infoviz#i_smithgraph { width: 850px; height: 850px; }
 .p-index .container .infoviz#i_heatmap { width: 850px; height: 850px; }
 .p-index .container .infoviz#i_streamchart { width: 850px; height: 850px; }
+.p-index .container .infoviz#i_foldertree1 { width: 415px; height: 465px; float: left; }
+.p-index .container .infoviz#i_foldertree2 { width: 415px; height: 465px; float: left; }
 
 ul.boxes { margin-left: 10px; }
 ul.boxes li { background-color: #EB540A; }
@@ -79,7 +81,6 @@ ul.boxes li p { font-size: 12px; padding: 0; margin: 0px 0 10px 0; text-align: c
 
 .p-history ul.boxes h1 { padding: 0; margin: 0; font-size: 1.5em; }
 .p-test ul.boxes h1 { padding: 0; margin: 0; font-size: 1em; }
-
 .p-test ul.boxes li { background: #FFF; width: 277px; height: 100px; border-radius: 4px; }
 .p-test ul.boxes li a { line-height: 100px; text-align: right; padding-right: 10px; color: #555; font-size: 1em; opacity: 0; }
 .p-test ul.boxes li a:hover { opacity: 1; }
@@ -96,12 +97,16 @@ ul.boxes li p { font-size: 12px; padding: 0; margin: 0px 0 10px 0; text-align: c
 .p-test ul.boxes li.heatmap { background: url('../images/test_heatmap.png') center no-repeat; background-image: -webkit-image-set(url('../images/test_heatmap.png') 1x, url('../images/test_heatmap@2x.png') 2x); }
 .p-test ul.boxes li.worldmap { background: url('../images/test_worldmap.png') center no-repeat; background-image: -webkit-image-set(url('../images/test_worldmap.png') 1x, url('../images/test_worldmap@2x.png') 2x); }
 .p-test ul.boxes li.basictree { background: url('../images/test_basictree.png') center no-repeat; background-image: -webkit-image-set(url('../images/test_basictree.png') 1x, url('../images/test_basictree@2x.png') 2x); }
+.p-test ul.boxes li.foldertree { background: url('../images/test_foldertree.png') center no-repeat; background-image: -webkit-image-set(url('../images/test_foldertree.png') 1x, url('../images/test_foldertree@2x.png') 2x); }
 .p-test ul.boxes li.tagcloud { background: url('../images/test_tagcloud.png') center no-repeat; background-image: -webkit-image-set(url('../images/test_tagcloud.png') 1x, url('../images/test_tagcloud@2x.png') 2x); }
 
 .p-test .container .infoviz.i-smithgraph { width: 850px; height: 850px; }
 .p-test .container .infoviz.i-heatmap { width: 850px; height: 850px; }
 .p-test .container .infoviz.i-basictree { width: 850px; height: 450px; }
 .p-test .container .infoviz.i-streamchart { width: 850px; height: 850px; }
+.p-test .container .infoviz.i-foldertree { width: 405px; height: 465px; }
+
+.p-test.p-foldertree .container section { float: left; width: 425px; margin-right: 10px; }
 
 .p-test a.button { padding: 0 10px; height: 28px; line-height: 28px; color: #FFF; display: block; cursor: pointer; background: #eb540a; text-align: center; float: right; margin-top: 4px; }
 

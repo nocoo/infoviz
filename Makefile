@@ -5,6 +5,7 @@ js_modules = 	${destdir}infoviz.barchart.js\
 				${destdir}infoviz.basictree.js\
 				${destdir}infoviz.bubblechart.js\
 				${destdir}infoviz.core.js\
+				${destdir}infoviz.foldertree.js\
 				${destdir}infoviz.heatmap.js\
 				${destdir}infoviz.js\
 				${destdir}infoviz.linechart.js\
@@ -39,6 +40,9 @@ ${destdir}infoviz.bubblechart.js: ${srcdir}infoviz.bubblechart.js
 	java -jar bin/yuicompressor-2.4.7.jar -o $@ $^
 
 ${destdir}infoviz.core.js: ${srcdir}infoviz.core.js
+	java -jar bin/yuicompressor-2.4.7.jar -o $@ $^
+
+${destdir}infoviz.foldertree.js: ${srcdir}infoviz.foldertree.js
 	java -jar bin/yuicompressor-2.4.7.jar -o $@ $^
 
 ${destdir}infoviz.heatmap.js: ${srcdir}infoviz.heatmap.js

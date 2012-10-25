@@ -68,7 +68,7 @@ define(function(require, exports, module) {
                             }
                         }
 
-                        t = dict[t['parent_id']]
+                        t = dict[t['parent_id']];
                         ++level;
                     }
 
