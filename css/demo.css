@@ -22,7 +22,9 @@ blockquote:before, blockquote:after, q:before, q:after { content: ''; content: n
 table { border-collapse: collapse; border-spacing: 0; }
 
 /* Styles */
-.clear { clear: both; width: 0; height: 0; }
+.clearfix:before, .clearfix:after { content: " "; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { *zoom: 1; }
 
 .p-demo { background: #F0F0F0; font-family: 'Lucida Grande', Helvetica, Arial, sans-serif; }
 .p-demo a { color: #999; }
