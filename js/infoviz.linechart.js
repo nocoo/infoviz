@@ -99,7 +99,7 @@ define(function(require, exports, module) {
             }
 
             // grids.
-            var p_vertical_grids;
+            var p_vertical_grids, this_h_label;
             cache = [];
             x = h_start;
             y = chart_area['bottom-right'][1] + options['grid']['horizontal-name-size'] / 2 + options['grid']['horizontal-label-margin'] * 2;
@@ -111,11 +111,15 @@ define(function(require, exports, module) {
                 h_map[h_fields[i]] = x;
 
                 // Draw horizontal labels.
-                paper.text(x, y, h_fields[i]).attr({
+                this_h_label = paper.text(x, y, h_fields[i]).attr({
                     'text-anchor': 'middle',
                     'font-size': options['grid']['horizontal-label-size'],
                     'fill': options['grid']['horizontal-label-color']
                 }).translate(0.5, 0.5);
+
+                if (options['grid']['horizontal-label-rotate']) {
+                    this_h_label.transform('r' + options['grid']['horizontal-label-rotate']);
+                }
 
                 x += h_unit;
             }

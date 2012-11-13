@@ -116,7 +116,7 @@ define(function(require, exports, module) {
             var group_width = (chart_area['width'] - options['stockchart']['padding-left'] - options['stockchart']['padding-right'] - (h_fields.length - 1) * options['stockchart']['group-margin']) / h_fields.length;
             var bar_width = (group_width - (line_count - 1) * options['stockchart']['bar-margin']) / line_count;
 
-            var p_vertical_grids;
+            var p_vertical_grids, this_h_label;
             cache = [];
             x = h_start + group_width / 2;
             y = chart_area['bottom-right'][1] + options['grid']['horizontal-name-size'] / 2 + options['grid']['horizontal-label-margin'] * 2;
@@ -128,11 +128,15 @@ define(function(require, exports, module) {
                 h_map[h_fields[i]] = x - group_width / 2;
 
                 // Draw horizontal labels.
-                paper.text(x, y, h_fields[i]).attr({
+                this_h_label = paper.text(x, y, h_fields[i]).attr({
                     'text-anchor': 'middle',
                     'font-size': options['grid']['horizontal-label-size'],
                     'fill': options['grid']['horizontal-label-color']
                 }).translate(0.5, 0.5);
+
+                if (options['grid']['horizontal-label-rotate']) {
+                    this_h_label.transform('r' + options['grid']['horizontal-label-rotate']);
+                }
 
                 x += group_width + options['stockchart']['group-margin'];
             }

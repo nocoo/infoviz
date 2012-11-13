@@ -197,7 +197,7 @@ define(function(require, exports, module) {
             cache = [];
             x = h_start;
             y = chart_area['bottom-left'][1] + options['bubblechart']['horizontal-bar-width'];
-            var h_value = h_min;
+            var h_value = h_min, this_h_label;
 
             for (i = 0; i < options['bubblechart']['horizontal-label-count']; ++i) {
                 cache.push('M' + x + ',' + y + 'L' + x + ',' + chart_area['bottom-left'][1]);
@@ -208,10 +208,14 @@ define(function(require, exports, module) {
                     'stroke-width': options['grid']['axis-width']
                 }).translate(0.5, 0.5);
 
-                paper.text(x, y + options['bubblechart']['horizontal-bar-width'] * 2, h_value.toFixed(2)).attr({
+                this_h_label = paper.text(x, y + options['bubblechart']['horizontal-bar-width'] * 2, h_value.toFixed(2)).attr({
                     'fill': options['grid']['horizontal-label-color'],
                     'font-size': options['grid']['horizontal-label-size']
                 }).translate(0.5, 0.5);
+
+                if (options['grid']['horizontal-label-rotate']) {
+                    this_h_label.transform('r' + options['grid']['horizontal-label-rotate']);
+                }
 
                 x += h_label_unit;
                 h_value += h_label_value_unit;

@@ -106,14 +106,19 @@ define(function(require, exports, module) {
 
             // Horizontal labels.
             x = h_start;
+            var this_h_label;
             for (item in h_fields) {
                 y = Math.floor(chart_area['bottom-right'][1] + options['grid']['horizontal-name-size'] / 2 + options['grid']['horizontal-label-margin'] * 2);
-                paper.text(x, y, item).attr({
+                this_h_label = paper.text(x, y, item).attr({
                     'text-anchor': 'middle',
                     'text-weight': 'normal',
                     'font-size': options['grid']['horizontal-label-size'],
                     'fill': options['grid']['horizontal-label-color']
                 }).translate(0.5, 0.5);
+
+                if (options['grid']['horizontal-label-rotate']) {
+                    this_h_label.transform('r' + options['grid']['horizontal-label-rotate']);
+                }
 
                 x += h_unit;
             }

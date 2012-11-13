@@ -85,6 +85,7 @@ define(function(require, exports, module) {
             'horizontal-label-spacing': 10,     // horizontal label max height
             'horizontal-label-size': 12,        // horizontal label font size
             'horizontal-label-color': '#555',   // horizontal label font color
+            'horizontal-label-rotate': 0,       // horizontal label rotating, in degrees
             'horizontal-name-size': 12,         // horizontal axis name font size
             'horizontal-name-color': '#000'     // horizontal axis name font color
         },
