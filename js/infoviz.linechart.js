@@ -38,7 +38,6 @@ define(function(require, exports, module) {
             for (i = 0; i < lines[line]['data'].length; ++i) {
                 item = lines[line]['data'][i];
 
-
                 // horizontal field.
                 if (item[h_field_name] !== undefined) {
                     this_h = item[h_field_name];
@@ -129,7 +128,7 @@ define(function(require, exports, module) {
                 l_string = v_value.toString();
                 index = l_string.indexOf('.');
 
-                if (index !== 0) {
+                if (index !== -1) {
                     l_string = l_string.substr(0, index + round + 1);
                 }
             }
@@ -165,7 +164,7 @@ define(function(require, exports, module) {
                     l_string = v_value.toString();
                     index = l_string.indexOf('.');
 
-                    if (index !== 0) {
+                    if (index !== -1) {
                         l_string = l_string.substr(0, index + round + 1);
                     }
                 }
@@ -196,7 +195,7 @@ define(function(require, exports, module) {
 
             // Draw horizontal labels.
             if (options['grid']['horizontal-label-rotate']) {
-                // measure label size before render it.
+                // measure rotated label size before render it.
                 test_text = paper.text(-1000, -1000, h_fields[i]).attr({
                     'text-anchor': 'middle',
                     'font-size': options['grid']['horizontal-label-size'],

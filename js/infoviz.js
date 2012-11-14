@@ -226,7 +226,9 @@ define(function(require, exports, module) {
             'bar-margin': 4,                    // margin value between bars (in the same group)
 
             'vertical-label-count': 10,         // label count in the vertical axis
-            'vertical-bar-width': 5             // period bar width of the vertical axis
+            'vertical-bar-width': 5,            // period bar width of the vertical axis
+            'vertical-label-count-right': 10,   // label count in the right vertical axis
+            'vertical-bar-width-right': 5       // period bar width of the right vertical axis
         },
 
         // 8. PieChart configuration.
