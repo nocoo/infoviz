@@ -34,6 +34,8 @@ define(function(require, exports, module) {
             'logo-width': 50,                   // logo width
             'logo-height': 17,                  // logo height
             'logo-position': 'top-right',       // logo position, top-right | top-left | bottom-right | bottom-left
+            'logo-horizontal-margin': 10,       // logo margin in horizontal direction
+            'logo-vertical-margin': 0,          // logo margin in vertical direction
 
             'loading-speed': 1000,              // loading icon rotation interval
             'loading-width': 30,                // loading icon width
@@ -74,6 +76,7 @@ define(function(require, exports, module) {
             'background-color': '#FFF',         // chart area background-color
             'background-alpha': 1.0,            // chart area background opacity
 
+            'vertical-label-round': 2,          // keep n decimal places
             'vertical-label-margin': 5,         // distance from axis to vertical label
             'vertical-label-spacing': 40,       // vertical label max width
             'vertical-label-size': 12,          // vertical label font size
@@ -87,7 +90,8 @@ define(function(require, exports, module) {
             'horizontal-label-color': '#555',   // horizontal label font color
             'horizontal-label-rotate': 0,       // horizontal label rotating, in degrees
             'horizontal-name-size': 12,         // horizontal axis name font size
-            'horizontal-name-color': '#000'     // horizontal axis name font color
+            'horizontal-name-color': '#000',    // horizontal axis name font color
+            'enable-right-axis': false          // if right axis is enabled
         },
 
         // 3. Legend configuration.
@@ -172,7 +176,7 @@ define(function(require, exports, module) {
         // 5. LineChart configuration.
         'linechart': {
             'padding-top': 30,                  // padding-top
-            'padding-right': 90,                // padding-right
+            'padding-right': 100,               // padding-right
             'padding-bottom': 20,               // padding-bottom
             'padding-left': 30,                 // padding-left
 
@@ -181,8 +185,10 @@ define(function(require, exports, module) {
             'custom-circle': undefined,         // if you want to use a customized circle image, set this to image url
             'label-size': 12,                   // label font size
 
-            'vertical-label-count': 10,         // label count in the vertical axis
-            'vertical-bar-width': 5,            // period bar width of the vertical axis
+            'vertical-label-count': 10,         // label count in the left vertical axis
+            'vertical-bar-width': 5,            // period bar width of the left vertical axis
+            'vertical-label-count-right': 10,   // label count in the right vertical axis
+            'vertical-bar-width-right': 5,      // period bar width of the right vertical axis
 
             'area-enabled': false,              // if area is enabled, area under every line will be highlighted
             'area-alpha': 0.1                   // area fill opacity
@@ -723,27 +729,29 @@ define(function(require, exports, module) {
             // Draw InfoViz logo.
             if (options['layout']['logo-enabled']) {
                 var x, y;
+                var margin_h = options['layout']['logo-horizontal-margin'];
+                var margin_v = options['layout']['logo-vertical-margin'];
 
                 switch (options['layout']['logo-position']) {
                     default:
                     case 'top-right': {
-                        x = area['top-right'][0] - options['layout']['logo-width'];
-                        y = area['top-right'][1];
+                        x = area['top-right'][0] - options['layout']['logo-width'] - margin_h;
+                        y = area['top-right'][1] + margin_v;
                         break;
                     }
                     case 'top-left': {
-                        x = area['top-left'][0];
-                        y = area['top-right'][1];
+                        x = area['top-left'][0] + margin_h;
+                        y = area['top-right'][1] + margin_v;
                         break;
                     }
                     case 'bottom-left': {
-                        x = area['bottom-left'][0];
-                        y = area['bottom-left'][1] - options['layout']['logo-height'];
+                        x = area['bottom-left'][0] + margin_h;
+                        y = area['bottom-left'][1] - options['layout']['logo-height'] - margin_v;
                         break;
                     }
                     case 'bottom-right': {
-                        x = area['bottom-right'][0] - options['layout']['logo-width'];
-                        y = area['bottom-right'][1] - options['layout']['logo-height'];
+                        x = area['bottom-right'][0] - options['layout']['logo-width'] - margin_h;
+                        y = area['bottom-right'][1] - options['layout']['logo-height'] - margin_v;
                         break;
                     }
                 }

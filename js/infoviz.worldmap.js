@@ -399,7 +399,7 @@ define(function(require, exports, module) {
             for (i = 0; i < data['data'].length; ++i) {
                 item = data['data'][i][data['value_field']];
 
-                if (core.isNumber(item)) {
+                if (core.is_number(item)) {
                     if (item > v_max) {
                         v_max = item;
                     }
@@ -438,7 +438,7 @@ define(function(require, exports, module) {
                     item = undefined;
                 }
 
-                if (v_map[country] && core.isNumber(v_map[country]['_value'])) {
+                if (v_map[country] && core.is_number(v_map[country]['_value'])) {
                     this_level = Math.floor((levels - 1) * (v_map[country]['_value'] - v_min) / (v_max - v_min));
                     this_color = options['worldmap']['color'][Math.floor((options['worldmap']['color'].length - 1) * (this_level / (levels - 1)))];
                 }

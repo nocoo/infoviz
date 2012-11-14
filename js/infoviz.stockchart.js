@@ -42,13 +42,13 @@ define(function(require, exports, module) {
                     }
 
                     // vertical field.
-                    if (core.isNumber(item[v_field_name['max']])) {
+                    if (core.is_number(item[v_field_name['max']])) {
                         this_v_max = item[v_field_name['max']];
                     } else {
                         continue;
                     }
 
-                    if (core.isNumber(item[v_field_name['min']])) {
+                    if (core.is_number(item[v_field_name['min']])) {
                         this_v_min = item[v_field_name['min']];
                     } else {
                         continue;

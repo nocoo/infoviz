@@ -143,6 +143,12 @@ define(function(require, exports, module) {
             options['grid']['border-width'] -
             options['grid']['padding-right'];
 
+        if (options['grid']['enable-right-axis']) {
+            x -= options['grid']['vertical-label-margin'] +
+                 options['grid']['vertical-label-spacing'] +
+                 options['grid']['vertical-label-margin'];
+        }
+
         y = chart_area['top-left'][1];
 
         chart_area['top-right'] = [x, y];
@@ -155,7 +161,7 @@ define(function(require, exports, module) {
         chart_area['width'] = chart_area['top-right'][0] - chart_area['top-left'][0];
         chart_area['height'] = chart_area['bottom-right'][1] - chart_area['top-right'][1];
 
-        // Draw vertical axis.
+        // Draw left vertical axis.
         cache = [];
         cache.push('M' + chart_area['bottom-left'][0] + ',' + chart_area['bottom-left'][1]);
         cache.push('L' + chart_area['top-left'][0] + ',' + chart_area['top-left'][1]);
@@ -167,6 +173,21 @@ define(function(require, exports, module) {
             'stroke-opacity': options['grid']['axis-alpha']
         });
         p_vertical_axis.translate(0.5, 0.5);
+
+        // Draw right vertical axis.
+        if (options['grid']['enable-right-axis']) {
+            cache = [];
+            cache.push('M' + chart_area['bottom-right'][0] + ',' + chart_area['bottom-right'][1]);
+            cache.push('L' + chart_area['top-right'][0] + ',' + chart_area['top-right'][1]);
+
+            p_vertical_axis = paper.path(cache.join(''));
+            p_vertical_axis.attr({
+                'stroke': options['grid']['axis-color'],
+                'stroke-width': options['grid']['axis-width'],
+                'stroke-opacity': options['grid']['axis-alpha']
+            });
+            p_vertical_axis.translate(0.5, 0.5);
+        }
 
         // Draw horizontal axis.
                 cache = [];
@@ -197,6 +218,16 @@ define(function(require, exports, module) {
         });
         p_dot_top_left.translate(0.5, 0.5);
 
+        if (options['grid']['enable-right-axis']) {
+            var p_dot_top_right = paper.circle(chart_area['top-right'][0], chart_area['top-right'][1], options['grid']['axis-dot-size']);
+            p_dot_top_right.attr({
+                'stroke': 'none',
+                'fill': options['grid']['axis-color'],
+                'fill-opacity': options['grid']['axis-alpha']
+            });
+            p_dot_top_right.translate(0.5, 0.5);
+        }
+
         var p_dot_bottom_right = paper.circle(chart_area['bottom-right'][0], chart_area['bottom-right'][1], options['grid']['axis-dot-size']);
         p_dot_bottom_right.attr({
             'stroke': 'none',
@@ -210,8 +241,6 @@ define(function(require, exports, module) {
             x = chart_area['top-left'][0] - options['grid']['vertical-label-margin'] * 2;
             y = chart_area['top-left'][1] + options['grid']['vertical-name-size'] / 2;
 
-            //idb([x, y]);
-
             var vertical_axis_name = paper.text(x, y, data['vertical_axis_name']);
             vertical_axis_name.attr({
                 'text-anchor': 'end',
@@ -221,11 +250,23 @@ define(function(require, exports, module) {
             });
         }
 
+        // Right vertical axis name.
+        if (data['vertical_axis_name_right']) {
+            x = chart_area['top-right'][0] + options['grid']['vertical-label-margin'] * 2;
+            y = chart_area['top-right'][1] + options['grid']['vertical-name-size'] / 2;
+
+            var vertical_axis_name2 = paper.text(x, y, data['vertical_axis_name_right']);
+            vertical_axis_name2.attr({
+                'text-anchor': 'start',
+                'font-weight': 'bold',
+                'font-size': options['grid']['vertical-name-size'],
+                'fill': options['grid']['vertical-name-color']
+            });
+        }
+
         if (data['horizontal_axis_name']) {
             x = chart_area['bottom-right'][0];
             y = chart_area['bottom-right'][1] + options['grid']['horizontal-name-size'] / 2 + options['grid']['horizontal-label-margin'] * 2;
-
-            //idb([x, y]);
 
             var horizontal_axis_name = paper.text(x, y, data['horizontal_axis_name']);
             horizontal_axis_name.attr({
@@ -666,7 +707,11 @@ define(function(require, exports, module) {
         }
     };
 
-    exports.isNumber = function(n) {
+    exports.is_array = function (o) {
+        return Object.prototype.toString.call(o) === '[object Array]';
+    };
+
+    exports.is_number = function(n) {
         return !isNaN(parseFloat(n)) && isFinite(n);
     };
 });

@@ -40,7 +40,7 @@ define(function(require, exports, module) {
                     }
 
                     // vertical field.
-                    if (core.isNumber(item[v_field_name])) {
+                    if (core.is_number(item[v_field_name])) {
                         this_v = item[v_field_name];
                     } else {
                         this_v = 'N/A';
