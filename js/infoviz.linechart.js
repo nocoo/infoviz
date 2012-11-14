@@ -183,7 +183,7 @@ define(function(require, exports, module) {
         }
 
         // grids.
-        var p_vertical_grids, this_h_label;
+        var p_vertical_grids, this_h_label, test_text, this_box;
         cache = [];
         x = h_start;
         y = chart_area['bottom-right'][1] + options['grid']['horizontal-name-size'] / 2 + options['grid']['horizontal-label-margin'] * 2;
@@ -195,14 +195,27 @@ define(function(require, exports, module) {
             h_map[h_fields[i]] = x;
 
             // Draw horizontal labels.
-            this_h_label = paper.text(x, y, h_fields[i]).attr({
-                'text-anchor': 'middle',
-                'font-size': options['grid']['horizontal-label-size'],
-                'fill': options['grid']['horizontal-label-color']
-            }).translate(0.5, 0.5);
-
             if (options['grid']['horizontal-label-rotate']) {
-                this_h_label.transform('r' + options['grid']['horizontal-label-rotate']);
+                // measure label size before render it.
+                test_text = paper.text(-1000, -1000, h_fields[i]).attr({
+                    'text-anchor': 'middle',
+                    'font-size': options['grid']['horizontal-label-size'],
+                    'transform': 'r' + options['grid']['horizontal-label-rotate']
+                }).translate(0.5, 0.5);
+                this_box = test_text.getBBox();
+
+                this_h_label = paper.text(x, y - options['grid']['horizontal-label-margin'] * 2 + this_box.height / 2, h_fields[i]).attr({
+                    'text-anchor': 'middle',
+                    'font-size': options['grid']['horizontal-label-size'],
+                    'fill': options['grid']['horizontal-label-color'],
+                    'transform': 'r' + options['grid']['horizontal-label-rotate']
+                }).translate(0.5, 0.5);
+            } else {
+                this_h_label = paper.text(x, y, h_fields[i]).attr({
+                    'text-anchor': 'middle',
+                    'font-size': options['grid']['horizontal-label-size'],
+                    'fill': options['grid']['horizontal-label-color']
+                }).translate(0.5, 0.5);
             }
 
             x += h_unit;
