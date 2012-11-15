@@ -76,13 +76,17 @@ define(function(require, exports, module) {
             'background-color': '#FFF',         // chart area background-color
             'background-alpha': 1.0,            // chart area background opacity
 
-            'vertical-label-round': 2,          // keep n decimal places
+            'vertical-label-count': 10,         // label count on the left vertical axis
+            'vertical-label-count-right': 10,   // label count on the right vertical axis
+            'vertical-label-round': 1,          // keep n decimal places
             'vertical-label-margin': 5,         // distance from axis to vertical label
             'vertical-label-spacing': 40,       // vertical label max width
             'vertical-label-size': 12,          // vertical label font size
             'vertical-label-color': '#555',     // vertical label font color
             'vertical-name-size': 12,           // vertical axis name font size
             'vertical-name-color': '#000',      // vertical axis name font color
+            'vertical-bar-width': 5,            // period bar width of the left vertical axis
+            'vertical-bar-width-right': 5,      // period bar width of the right vertical axis
 
             'horizontal-label-margin': 5,       // distance from axis to horizontal label
             'horizontal-label-spacing': 10,     // horizontal label max height
@@ -91,6 +95,7 @@ define(function(require, exports, module) {
             'horizontal-label-rotate': 0,       // horizontal label rotating, in degrees
             'horizontal-name-size': 12,         // horizontal axis name font size
             'horizontal-name-color': '#000',    // horizontal axis name font color
+
             'enable-right-axis': false          // if right axis is enabled
         },
 
@@ -185,11 +190,6 @@ define(function(require, exports, module) {
             'custom-circle': undefined,         // if you want to use a customized circle image, set this to image url
             'label-size': 12,                   // label font size
 
-            'vertical-label-count': 10,         // label count in the left vertical axis
-            'vertical-bar-width': 5,            // period bar width of the left vertical axis
-            'vertical-label-count-right': 10,   // label count in the right vertical axis
-            'vertical-bar-width-right': 5,      // period bar width of the right vertical axis
-
             'area-enabled': false,              // if area is enabled, area under every line will be highlighted
             'area-alpha': 0.1                   // area fill opacity
         },
@@ -208,9 +208,7 @@ define(function(require, exports, module) {
             'label-color': '#FFF',              // bubble circle label text color
 
             'horizontal-label-count': 10,       // label count in the horizontal axis
-            'horizontal-bar-width': 5,          // period bar width of the horizontal axis
-            'vertical-label-count': 5,          // label count in the vertical axis
-            'vertical-bar-width': 5             // period bar width of the vertical axis
+            'horizontal-bar-width': 5           // period bar width of the horizontal axis
         },
 
         // 7. BarChart configuration.
@@ -223,12 +221,7 @@ define(function(require, exports, module) {
             'border-width': 1,                  // Bar border thickness
 
             'group-margin': 40,                 // margin value between bar groups
-            'bar-margin': 4,                    // margin value between bars (in the same group)
-
-            'vertical-label-count': 10,         // label count in the vertical axis
-            'vertical-bar-width': 5,            // period bar width of the vertical axis
-            'vertical-label-count-right': 10,   // label count in the right vertical axis
-            'vertical-bar-width-right': 5       // period bar width of the right vertical axis
+            'bar-margin': 4                     // margin value between bars (in the same group)
         },
 
         // 8. PieChart configuration.
@@ -387,10 +380,7 @@ define(function(require, exports, module) {
             'border-width': 1,                  // Bar border thickness
 
             'group-margin': 40,                 // margin value between bar groups
-            'bar-margin': 0,                    // margin value between bars (in the same group)
-
-            'vertical-label-count': 10,         // label count in the vertical axis
-            'vertical-bar-width': 5             // period bar width of the vertical axis
+            'bar-margin': 0                     // margin value between bars (in the same group)
         },
 
         // 15. BasicTree configuration.
@@ -440,10 +430,7 @@ define(function(require, exports, module) {
             'middle-line-alpha': 1,             // middle line opacity
 
             'group-margin': 40,                 // margin value between bar groups
-            'bar-margin': 4,                    // margin value between bars (in the same group)
-
-            'vertical-label-count': 10,         // label count in the vertical axis
-            'vertical-bar-width': 5             // period bar width of the vertical axis
+            'bar-margin': 4                     // margin value between bars (in the same group)
         },
 
         // 17. WorldMap configuration.
@@ -489,10 +476,7 @@ define(function(require, exports, module) {
             'padding-bottom': 1,                // padding-bottom
             'padding-left': 1,                  // padding-left
 
-            'border-width': 0,                  // border thickness
-
-            'vertical-label-count': 10,         // label count in the vertical axis
-            'vertical-bar-width': 5             // period bar width of the vertical axis
+            'border-width': 0                   // border thickness
         },
 
         // 19. FolderTreeTree configuration.

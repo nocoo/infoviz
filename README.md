@@ -173,6 +173,88 @@ InfoViz.chart(
 );
 ```
 
+### LineChart/AreaChart with right axis
+
+![LineChart2](http://infoviz.org/images/examples/linechart2.png "LineChart2")
+
+LineChart now supports right axis, which provides second vertical field. Lines using right axis will be visualized as dotted lines. To enable right axis in LineChart or AreaChart:
+
+```javascript
+InfoViz.chart(
+    'i_linechart5',
+    'linechart',
+    {
+        'vertical_axis_name': 'Left',
+        'vertical_axis_name_right': 'Right', // Set right axis name here
+        'horizontal_axis_name': 'Horizontal',
+        'horizontal_field': 'F2',
+        'vertical_field': [ 'F1', 'F3'], // Change single field name to array
+        'tooltip_title': 'InfoViz {F2}',
+        'tooltip_content': 'left: {F1}, right: {F3}',
+        'data': {
+            'line1': {
+                'name': 'China(left)',
+                'axis': 0, // Set axis index here
+                'data': [
+                    { 'F1': 1,   'F2': 'A', 'F3': 3  },
+                    { 'F1': 42,  'F2': 'B', 'F3': 6  },
+                    { 'F1': 7,   'F2': 'C', 'F3': 9  },
+                    { 'F1': 110, 'F2': 'D', 'F3': 12 }
+                ]
+            },
+            'line2': {
+                'name': 'U.S.(left)',
+                'axis': 0, // Set axis index here
+                'data': [
+                    { 'F1': 13, 'F2': 'A', 'F3': 15 },
+                    { 'F1': 10, 'F2': 'B', 'F3': 12 },
+                    { 'F1': 72, 'F2': 'C', 'F3': 9  },
+                    { 'F1': 1,  'F2': 'D', 'F3': 3  },
+                    { 'F1': 4,  'F2': 'E', 'F3': 6  }
+                ]
+            },
+            'line3': {
+                'name': 'U.K.(left)',
+                'axis': 0, // Set axis index here
+                'data': [
+                    { 'F1': 19, 'F2': 'A', 'F3': 15 },
+                    { 'F1': 20, 'F2': 'B', 'F3': 12 },
+                    { 'F1': 11, 'F2': 'D', 'F3': 3  },
+                    { 'F1': 42, 'F2': 'E', 'F3': 6  }
+                ]
+            },
+            'line4': {
+                'name': 'Italy(right)',
+                'axis': 1, // Set axis index here
+                'data': [
+                    { 'F1': 29, 'F2': 'A', 'F3': 6  },
+                    { 'F1': 70, 'F2': 'B', 'F3': 10 },
+                    { 'F1': 42, 'F2': 'C', 'F3': 16 },
+                    { 'F1': 51, 'F2': 'D', 'F3': 5  },
+                    { 'F1': 22, 'F2': 'E', 'F3': 12 }
+                ]
+            },
+            'line5': {
+                'name': 'Russia(right)',
+                'axis': 1, // Set axis index here
+                'data': [
+                    { 'F1': 9,  'F2': 'A', 'F3': 4  },
+                    { 'F1': 90, 'F2': 'B', 'F3': 6  },
+                    { 'F1': 92, 'F2': 'C', 'F3': 12 },
+                    { 'F1': 52, 'F2': 'E', 'F3': 4 }
+                ]
+            }
+        }
+    },
+    {
+        'linechart': { 'area-enabled': true },
+        'legend': { 'margin-top': 0 },
+        'grid': { 'enable-right-axis': true } // Turn this option on
+    },
+    function(info) { console.log(info); }
+);
+```
+
 ## 1.2 BarChart
 
 ![BarChart](http://infoviz.org/images/examples/barchart.png "BarChart")
@@ -241,6 +323,87 @@ InfoViz.chart(
         }
     },
     { 'legend': { 'margin-top': 0 } }
+);
+```
+
+### BarChart with right axis
+
+![BarChart2](http://infoviz.org/images/examples/barchart2.png "BarChart2")
+
+BarChart now supports right axis, which provides second vertical field. Bars using right axis will be visualized with dotted border. To enable right axis in BarChart:
+
+```javascript
+InfoViz.chart(
+    'i_barchart5',
+    'barchart',
+    {
+        'vertical_axis_name': 'Left',
+        'vertical_axis_name_right': 'Right', // Set right axis name here
+        'horizontal_axis_name': 'Horizontal',
+        'horizontal_field': 'F2',
+        'vertical_field': [ 'F1', 'F3' ], // Change single field name to array
+        'tooltip_title': 'InfoViz {F2}, {F3}',
+        'tooltip_content': 'left: {F1}, right: {F3}',
+        'data': {
+            'bar1': {
+                'name': 'China',
+                'axis': 0, // Set axis index here
+                'data': [
+                    { 'F1': 1,   'F2': 'A', 'F3': 3  },
+                    { 'F1': 42,  'F2': 'B', 'F3': 6  },
+                    { 'F1': 7,   'F2': 'C', 'F3': 9  },
+                    { 'F1': 110, 'F2': 'D', 'F3': 12 }
+                ]
+            },
+            'bar2': {
+                'name': 'Unite States',
+                'axis': 0, // Set axis index here
+                'data': [
+                    { 'F1': 13, 'F2': 'A', 'F3': 15 },
+                    { 'F1': 10, 'F2': 'B', 'F3': 12 },
+                    { 'F1': 72, 'F2': 'C', 'F3': 9  },
+                    { 'F1': 1,  'F2': 'D', 'F3': 3  },
+                    { 'F1': 4,  'F2': 'E', 'F3': 6  }
+                ]
+            },
+            'bar3': {
+                'name': 'Unite Kingdom',
+                'axis': 0, // Set axis index here
+                'data': [
+                    { 'F1': 19, 'F2': 'A', 'F3': 15 },
+                    { 'F1': 20, 'F2': 'B', 'F3': 12 },
+                    { 'F1': 11, 'F2': 'D', 'F3': 3  },
+                    { 'F1': 42, 'F2': 'E', 'F3': 6  }
+                ]
+            },
+            'bar4': {
+                'name': 'Italy',
+                'axis': 1, // Set axis index here
+                'data': [
+                    { 'F1': 29, 'F2': 'A', 'F3': 1 },
+                    { 'F1': 70, 'F2': 'B', 'F3': 2 },
+                    { 'F1': 42, 'F2': 'C', 'F3': 3 },
+                    { 'F1': 51, 'F2': 'D', 'F3': 4 },
+                    { 'F1': 22, 'F2': 'E', 'F3': 5 }
+                ]
+            },
+            'bar5': {
+                'name': 'Russia',
+                'axis': 1, // Set axis index here
+                'data': [
+                    { 'F1': 9,  'F2': 'A', 'F3': 5 },
+                    { 'F1': 90, 'F2': 'B', 'F3': 4 },
+                    { 'F1': 92, 'F2': 'C', 'F3': 3 },
+                    { 'F1': 52, 'F2': 'E', 'F3': 2 }
+                ]
+            }
+        }
+    },
+    {
+        'legend': { 'margin-top': 0 },
+        'grid': { 'enable-right-axis': true } // Turn this option on
+    },
+    function(info) { console.log(info); }
 );
 ```
 
@@ -1137,13 +1300,17 @@ InfoViz.options = {
         'background-color': '#FFF',         // chart area background-color
         'background-alpha': 1.0,            // chart area background opacity
 
-        'vertical-label-round': 2,          // keep n decimal places
+        'vertical-label-count': 10,         // label count on the left vertical axis
+        'vertical-label-count-right': 10,   // label count on the right vertical axis
+        'vertical-label-round': 1,          // keep n decimal places
         'vertical-label-margin': 5,         // distance from axis to vertical label
         'vertical-label-spacing': 40,       // vertical label max width
         'vertical-label-size': 12,          // vertical label font size
         'vertical-label-color': '#555',     // vertical label font color
         'vertical-name-size': 12,           // vertical axis name font size
         'vertical-name-color': '#000',      // vertical axis name font color
+        'vertical-bar-width': 5,            // period bar width of the left vertical axis
+        'vertical-bar-width-right': 5,      // period bar width of the right vertical axis
 
         'horizontal-label-margin': 5,       // distance from axis to horizontal label
         'horizontal-label-spacing': 10,     // horizontal label max height
@@ -1152,6 +1319,7 @@ InfoViz.options = {
         'horizontal-label-rotate': 0,       // horizontal label rotating, in degrees
         'horizontal-name-size': 12,         // horizontal axis name font size
         'horizontal-name-color': '#000',    // horizontal axis name font color
+
         'enable-right-axis': false          // if right axis is enabled
     },
 
@@ -1246,11 +1414,6 @@ InfoViz.options = {
         'custom-circle': undefined,         // if you want to use a customized circle image, set this to image url
         'label-size': 12,                   // label font size
 
-        'vertical-label-count': 10,         // label count in the left vertical axis
-        'vertical-bar-width': 5,            // period bar width of the left vertical axis
-        'vertical-label-count-right': 10,   // label count in the right vertical axis
-        'vertical-bar-width-right': 5,      // period bar width of the right vertical axis
-
         'area-enabled': false,              // if area is enabled, area under every line will be highlighted
         'area-alpha': 0.1                   // area fill opacity
     },
@@ -1269,9 +1432,7 @@ InfoViz.options = {
         'label-color': '#FFF',              // bubble circle label text color
 
         'horizontal-label-count': 10,       // label count in the horizontal axis
-        'horizontal-bar-width': 5,          // period bar width of the horizontal axis
-        'vertical-label-count': 5,          // label count in the vertical axis
-        'vertical-bar-width': 5             // period bar width of the vertical axis
+        'horizontal-bar-width': 5           // period bar width of the horizontal axis
     },
 
     // 7. BarChart configuration.
@@ -1284,12 +1445,7 @@ InfoViz.options = {
         'border-width': 1,                  // Bar border thickness
 
         'group-margin': 40,                 // margin value between bar groups
-        'bar-margin': 4,                    // margin value between bars (in the same group)
-
-        'vertical-label-count': 10,         // label count in the vertical axis
-        'vertical-bar-width': 5,            // period bar width of the vertical axis
-        'vertical-label-count-right': 10,   // label count in the right vertical axis
-        'vertical-bar-width-right': 5       // period bar width of the right vertical axis
+        'bar-margin': 4                     // margin value between bars (in the same group)
     },
 
     // 8. PieChart configuration.
@@ -1448,10 +1604,7 @@ InfoViz.options = {
         'border-width': 1,                  // Bar border thickness
 
         'group-margin': 40,                 // margin value between bar groups
-        'bar-margin': 0,                    // margin value between bars (in the same group)
-
-        'vertical-label-count': 10,         // label count in the vertical axis
-        'vertical-bar-width': 5             // period bar width of the vertical axis
+        'bar-margin': 0                     // margin value between bars (in the same group)
     },
 
     // 15. BasicTree configuration.
@@ -1501,10 +1654,7 @@ InfoViz.options = {
         'middle-line-alpha': 1,             // middle line opacity
 
         'group-margin': 40,                 // margin value between bar groups
-        'bar-margin': 4,                    // margin value between bars (in the same group)
-
-        'vertical-label-count': 10,         // label count in the vertical axis
-        'vertical-bar-width': 5             // period bar width of the vertical axis
+        'bar-margin': 4                     // margin value between bars (in the same group)
     },
 
     // 17. WorldMap configuration.
@@ -1550,10 +1700,7 @@ InfoViz.options = {
         'padding-bottom': 1,                // padding-bottom
         'padding-left': 1,                  // padding-left
 
-        'border-width': 0,                  // border thickness
-
-        'vertical-label-count': 10,         // label count in the vertical axis
-        'vertical-bar-width': 5             // period bar width of the vertical axis
+        'border-width': 0                   // border thickness
     },
 
     // 19. FolderTreeTree configuration.
@@ -1600,7 +1747,7 @@ InfoViz.options = {
 * Raphaël: [http://raphaeljs.com/](http://raphaeljs.com/)
 * Any CMD loader, such as [SeaJS](http://seajs.org/docs/)
 
-### License
+# 9 License
 
 (The MIT License)
 

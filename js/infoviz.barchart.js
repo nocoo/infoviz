@@ -14,7 +14,7 @@ define(function(require, exports, module) {
         var lines = data['data'], h_fields = [], i, j, k, item;
         var h_field_name = data['horizontal_field'], v_field_name = data['vertical_field'], v_field_name2;
         var this_h, this_v, h_min = Infinity, h_max = -Infinity, v_min = Infinity, v_max = -Infinity;
-        var this_v2, v_min2 = Infinity, v_max2 = -Infinity;
+        var v_min2 = Infinity, v_max2 = -Infinity;
 
         // Check if right axis is enabled.
         if (core.is_array(v_field_name)) {
@@ -104,18 +104,17 @@ define(function(require, exports, module) {
         var h_map = {};
 
         // Vertical labels.
-        var v_label_unit = (v_start - chart_area['top-left'][1] - options['barchart']['padding-top']) / (options['barchart']['vertical-label-count'] - 1);
-        var v_label_value_unit = (v_max - v_min) / (options['barchart']['vertical-label-count'] - 1); // May not be accurate.
-        var v_label_unit2 = (v_start - chart_area['top-left'][1] - options['barchart']['padding-top']) / (options['barchart']['vertical-label-count-right'] - 1);
-        var v_label_value_unit2 = (v_max2 - v_min2) / (options['barchart']['vertical-label-count-right'] - 1); // May not be accurate.
+        var v_label_unit = (v_start - chart_area['top-left'][1] - options['barchart']['padding-top']) / (options['grid']['vertical-label-count'] - 1);
+        var v_label_value_unit = (v_max - v_min) / (options['grid']['vertical-label-count'] - 1); // May not be accurate.
+        var v_label_unit2 = (v_start - chart_area['top-left'][1] - options['barchart']['padding-top']) / (options['grid']['vertical-label-count-right'] - 1);
+        var v_label_value_unit2 = (v_max2 - v_min2) / (options['grid']['vertical-label-count-right'] - 1); // May not be accurate.
 
         // Draw left vertical labels.
         cache = [];
-        x = chart_area['top-left'][0] - options['barchart']['vertical-bar-width'];
+        x = chart_area['top-left'][0] - options['grid']['vertical-bar-width'];
         y = v_start;
         var v_value = v_min;
-        var l_string, index, round = options['grid']['vertical-label-round'];
-        for (i = 0; i < options['barchart']['vertical-label-count']; ++i) {
+        for (i = 0; i < options['grid']['vertical-label-count']; ++i) {
             cache.push('M' + x + ',' + y + 'L' + chart_area['top-left'][0] + ',' + y);
 
             // vertical bar.
@@ -125,18 +124,8 @@ define(function(require, exports, module) {
                 'stroke-width': options['grid']['axis-width']
             }).translate(0.5, 0.5);
 
-            // round up.
-            if (core.is_number(round)) {
-                l_string = v_value.toString();
-                index = l_string.indexOf('.');
-
-                if (index !== -1) {
-                    l_string = l_string.substr(0, index + round + 1);
-                }
-            }
-
             // vertical label.
-            paper.text(x - options['barchart']['vertical-bar-width'], y, l_string).attr({
+            paper.text(x - options['grid']['vertical-bar-width'], y, v_value.toFixed(options['grid']['vertical-label-round'])).attr({
                 'text-anchor': 'end',
                 'fill': options['grid']['vertical-label-color'],
                 'font-size': options['grid']['vertical-label-size']
@@ -151,8 +140,8 @@ define(function(require, exports, module) {
             x = chart_area['top-right'][0];
             y = v_start;
             v_value = v_min2;
-            for (i = 0; i < options['barchart']['vertical-label-count-right']; ++i) {
-                cache.push('M' + x + ',' + y + 'L' + (chart_area['top-right'][0] + options['barchart']['vertical-bar-width-right']) + ',' + y);
+            for (i = 0; i < options['grid']['vertical-label-count-right']; ++i) {
+                cache.push('M' + x + ',' + y + 'L' + (chart_area['top-right'][0] + options['grid']['vertical-bar-width-right']) + ',' + y);
 
                 // vertical bar.
                 paper.path(cache.join('')).attr({
@@ -161,18 +150,8 @@ define(function(require, exports, module) {
                     'stroke-width': options['grid']['axis-width']
                 }).translate(0.5, 0.5);
 
-                // round up.
-                if (core.is_number(round)) {
-                    l_string = v_value.toString();
-                    index = l_string.indexOf('.');
-
-                    if (index !== -1) {
-                        l_string = l_string.substr(0, index + round + 1);
-                    }
-                }
-
                 // vertical label.
-                paper.text(x + 2 * options['barchart']['vertical-bar-width-right'], y, l_string).attr({
+                paper.text(x + 2 * options['grid']['vertical-bar-width-right'], y, v_value.toFixed(options['grid']['vertical-label-round'])).attr({
                     'text-anchor': 'start',
                     'fill': options['grid']['vertical-label-color'],
                     'font-size': options['grid']['vertical-label-size']
