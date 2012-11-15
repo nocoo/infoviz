@@ -175,9 +175,13 @@ InfoViz.chart(
 
 ### LineChart/AreaChart with right axis
 
+LineChart now supports right axis, which provides second vertical field. Lines using right axis will be visualized as dotted lines.
+
 ![LineChart2](http://infoviz.org/images/examples/linechart2.png "LineChart2")
 
-LineChart now supports right axis, which provides second vertical field. Lines using right axis will be visualized as dotted lines. To enable right axis in LineChart or AreaChart:
+Demo: [Click Here](http://infoviz.org/test/linechart.html#test5)
+
+To enable right axis in LineChart or AreaChart:
 
 ```javascript
 InfoViz.chart(
@@ -328,9 +332,11 @@ InfoViz.chart(
 
 ### BarChart with right axis
 
+BarChart now supports right axis, which provides second vertical field. Bars using right axis will be visualized with dotted border. To enable right axis in BarChart:
+
 ![BarChart2](http://infoviz.org/images/examples/barchart2.png "BarChart2")
 
-BarChart now supports right axis, which provides second vertical field. Bars using right axis will be visualized with dotted border. To enable right axis in BarChart:
+Demo: [Click Here](http://infoviz.org/test/barchart.html#test5)
 
 ```javascript
 InfoViz.chart(
