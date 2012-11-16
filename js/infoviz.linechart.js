@@ -254,6 +254,7 @@ define(function(require, exports, module) {
                 }
             }
 
+            // Draw this line.
             if (this_axis === 0) {
                 p_line = paper.path(cache.join('')).attr({
                     'stroke': color['color'],
@@ -268,6 +269,18 @@ define(function(require, exports, module) {
                     'stroke-opacity': color['light-alpha'],
                     'stroke-width': options['linechart']['line-width']
                 }).translate(0.5, 0.5);
+            }
+
+            // Draw line shadow.
+            if (options['layout']['shadow-enabled']) {
+                p_line.glow({
+                    'width': options['layout']['shadow-width'],
+                    'fill': false,
+                    'opacity': options['layout']['shadow-alpha'],
+                    'offsetx': options['layout']['shadow-offset-x'],
+                    'offsety': options['layout']['shadow-offset-y'],
+                    'color': options['layout']['shadow-color']
+                });
             }
 
             p_label = paper.text(x + options['linechart']['circle-radius'] * 2, y, lines[line]['name']).attr({
@@ -306,6 +319,17 @@ define(function(require, exports, module) {
                         'stroke-width': options['linechart']['line-width'],
                         'fill': color['color']
                     }).translate(0.5, 0.5);
+                }
+
+                if (options['layout']['shadow-enabled']) {
+                    p_node.glow({
+                        'width': options['layout']['shadow-width'],
+                        'fill': false,
+                        'opacity': options['layout']['shadow-alpha'],
+                        'offsetx': options['layout']['shadow-offset-x'],
+                        'offsety': options['layout']['shadow-offset-y'],
+                        'color': options['layout']['shadow-color']
+                    });
                 }
 
                 p_nodes.push(p_node);

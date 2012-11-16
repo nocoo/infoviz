@@ -244,7 +244,6 @@ define(function(require, exports, module) {
                         'fill': color['color'],
                         'fill-opacity': color['light-alpha']
                     }).translate(0.5, 0.5);
-                    p_nodes.push(this_node);
                 } else {
                     y = v_start - (item[v_field_name2] - v_min2) * v_unit2;
 
@@ -258,8 +257,21 @@ define(function(require, exports, module) {
                         'fill': color['color'],
                         'fill-opacity': color['light-alpha']
                     }).translate(0.5, 0.5);
-                    p_nodes.push(this_node);
                 }
+
+                // Draw bar shadow.
+                if (options['layout']['shadow-enabled']) {
+                    this_node.glow({
+                        'width': options['layout']['shadow-width'],
+                        'fill': false,
+                        'opacity': options['layout']['shadow-alpha'],
+                        'offsetx': options['layout']['shadow-offset-x'],
+                        'offsety': options['layout']['shadow-offset-y'],
+                        'color': options['layout']['shadow-color']
+                    });
+                }
+
+                p_nodes.push(this_node);
 
                 // Action.
                 if (callback && typeof(callback) === 'function') {

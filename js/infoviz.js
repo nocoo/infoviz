@@ -48,6 +48,13 @@ define(function(require, exports, module) {
             'loading-background-alpha': 0.6,    // background opacity of the loading icon
             'loading-background-color': '#000', // background color of the loading icon
 
+            'shadow-enabled': false,            // is shadow enabled
+            'shadow-width': 4,                  // shadow area width
+            'shadow-alpha': 0.6,                // shadow opacity
+            'shadow-offset-x': 0,               // shadow horizontal offset
+            'shadow-offset-y': 0,               // shadow vertical offset
+            'shadow-color': '#DDD',             // shadow color
+
             'speed': 300                        // animation speed
         },
 
@@ -69,7 +76,7 @@ define(function(require, exports, module) {
                                                 // There're 3 axis dot, at the end of each axis, and one at (0, 0)
 
             'border-width': 1,                  // chart border thichness
-            'border-color': '#AAA',             // chart border color
+            'border-color': '#DDD',             // chart border color
             'border-alpha': 1,                  // chart border opacity
             'border-radius': 4,                 // chart border corner radius
 

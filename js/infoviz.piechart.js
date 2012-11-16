@@ -77,6 +77,18 @@ define(function(require, exports, module) {
                     'stroke-width': options['piechart']['sector-border-width']
                 }).translate(0.5, 0.5);
 
+                // Draw sector shadow.
+                if (options['layout']['shadow-enabled']) {
+                    this_sector.glow({
+                        'width': options['layout']['shadow-width'],
+                        'fill': false,
+                        'opacity': options['layout']['shadow-alpha'],
+                        'offsetx': options['layout']['shadow-offset-x'],
+                        'offsety': options['layout']['shadow-offset-y'],
+                        'color': options['layout']['shadow-color']
+                    });
+                }
+
                 this_sector.data('color-alpha', this_color['light-alpha']);
                 this_sector.data('index', i);
                 p_sectors.push(this_sector);

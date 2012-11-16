@@ -82,6 +82,18 @@ define(function(require, exports, module) {
                 'text-anchor': 'middle'
             }).translate(0.5, 0.5);
 
+            // Draw bubble shadow.
+            if (options['layout']['shadow-enabled']) {
+                this_bubble.glow({
+                    'width': options['layout']['shadow-width'],
+                    'fill': false,
+                    'opacity': options['layout']['shadow-alpha'],
+                    'offsetx': options['layout']['shadow-offset-x'],
+                    'offsety': options['layout']['shadow-offset-y'],
+                    'color': options['layout']['shadow-color']
+                });
+            }
+
             this_bubble.data('data', item);
             this_text.data('data', item);
             p_bubbles.push(this_bubble);

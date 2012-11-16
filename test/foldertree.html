@@ -28,6 +28,12 @@
                 <h2>Test1 - Standard<a href="#test1" name="test1">#</a></h2>
                 <div id="i_foldertree1" class="infoviz i-foldertree"></div>
             </section>
+
+            <section>
+                <h2>Test2 - Standard<a href="#test1" name="test2">#</a></h2>
+                <div id="i_foldertree2" class="infoviz i-foldertree"></div>
+            </section>
+
             <section>
                 <h2>Test4 - Customized UI<a href="#test4" name="test4">#</a></h2>
                 <div id="i_foldertree4" class="infoviz i-foldertree"></div>
@@ -100,6 +106,55 @@
                             }
                         }, {},
                         function(info) { console.log(info); }
+                    );
+
+                    // Test2
+                    InfoViz.chart(
+                        'i_foldertree2',
+                        'foldertree',
+                        {
+                            'node_label_field': 'F1',
+                            'node_value_field': 'F2',
+                            'edge_value_field': 'F3',
+                            'node_tooltip_title': 'Node #{F1}',
+                            'node_tooltip_content': 'Value: {F1}.{F2}',
+                            'node_text': 'NodeText #{F1}',
+                            'data': {
+                                'F1': 'Frankfurt', 'F2': 1, 'children': [
+                                    {
+                                        'F1': 'Mannheim', 'F2': 2, 'F3': 85, 'children': [
+                                            {
+                                                'F1': 'Karlsruhe', 'F2': 3, 'F3': 80, 'children': [
+                                                    { 'F1': 'Augsburg', 'F2': 1, 'F3': 250 },
+                                                    { 'F1': 'Augsburg', 'F2': 1, 'F3': 250 }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        'F1': 'Würzburg', 'F2': 3, 'F3': 217, 'children': [
+                                            { 'F1': 'Erfurt', 'F2': 4, 'F3': 186 },
+                                            { 'F1': 'Nürnberg', 'F2': 2, 'F3': 103 },
+                                            { 'F1': 'Erfurt', 'F2': 4, 'F3': 186, 'children': [
+                                                    { 'F1': 'München', 'F2': 5, 'F3': 167 }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        'F1': 'Kassel', 'F2': 2, 'F3': 173, 'children': [
+                                            { 'F1': 'Stuggart', 'F2': 3, 'F3': 99, 'children': [
+                                                    { 'F1': 'München', 'F2': 5, 'F3': 167 },
+                                                    { 'F1': 'Augsburg', 'F2': 1, 'F3': 250 }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }, {
+                            'layout': { 'shadow-enabled': true }
+                        }
                     );
 
                     // Test4

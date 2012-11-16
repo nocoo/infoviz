@@ -153,6 +153,19 @@ define(function(require, exports, module) {
                     'fill': color['color'],
                     'fill-opacity': color['light-alpha']
                 }).translate(0.5, 0.5);
+
+                // Draw bar shadow.
+                if (options['layout']['shadow-enabled']) {
+                    this_node.glow({
+                        'width': options['layout']['shadow-width'],
+                        'fill': false,
+                        'opacity': options['layout']['shadow-alpha'],
+                        'offsetx': options['layout']['shadow-offset-x'],
+                        'offsety': options['layout']['shadow-offset-y'],
+                        'color': options['layout']['shadow-color']
+                    });
+                }
+
                 p_nodes.push(this_node);
 
                 // Action.

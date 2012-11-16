@@ -161,6 +161,18 @@ define(function(require, exports, module) {
                     'fill-opacity': options['radarchart']['circle-background-alpha']
                 }).translate(0.5, 0.5);
 
+                // Draw circle shadow.
+                if (options['layout']['shadow-enabled']) {
+                    this_circle.glow({
+                        'width': options['layout']['shadow-width'],
+                        'fill': false,
+                        'opacity': options['layout']['shadow-alpha'],
+                        'offsetx': options['layout']['shadow-offset-x'],
+                        'offsety': options['layout']['shadow-offset-y'],
+                        'color': options['layout']['shadow-color']
+                    });
+                }
+
                 this_circle.data('color-alpha', options['radarchart']['circle-background-alpha']);
                 p_circles.push(this_circle);
 

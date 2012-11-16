@@ -190,6 +190,18 @@ define(function(require, exports, module) {
                     }
                 }
 
+                // Draw node shadow.
+                if (options['layout']['shadow-enabled']) {
+                    node.glow({
+                        'width': options['layout']['shadow-width'],
+                        'fill': false,
+                        'opacity': options['layout']['shadow-alpha'],
+                        'offsetx': options['layout']['shadow-offset-x'],
+                        'offsety': options['layout']['shadow-offset-y'],
+                        'color': options['layout']['shadow-color']
+                    });
+                }
+
                 return node;
             };
 
@@ -234,6 +246,18 @@ define(function(require, exports, module) {
                             'stroke': options['foldertree']['edge-color'],
                             'stroke-opacity': options['foldertree']['edge-alpha']
                         }).translate(0.5, 0.5);
+
+                        // Draw edge shadow.
+                        if (options['layout']['shadow-enabled']) {
+                            p_edge.glow({
+                                'width': options['layout']['shadow-width'],
+                                'fill': false,
+                                'opacity': options['layout']['shadow-alpha'],
+                                'offsetx': options['layout']['shadow-offset-x'],
+                                'offsety': options['layout']['shadow-offset-y'],
+                                'color': options['layout']['shadow-color']
+                            });
+                        }
                     }
 
                     // label

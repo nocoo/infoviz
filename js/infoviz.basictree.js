@@ -187,6 +187,19 @@ define(function(require, exports, module) {
                             'fill': this_node['_color']['color'],
                             'fill-opacity': this_node['_color']['light-alpha']
                         }).translate(0.5, 0.5);
+
+                        // Draw node shadow.
+                        if (options['layout']['shadow-enabled']) {
+                            p_node.glow({
+                                'width': options['layout']['shadow-width'],
+                                'fill': false,
+                                'opacity': options['layout']['shadow-alpha'],
+                                'offsetx': options['layout']['shadow-offset-x'],
+                                'offsety': options['layout']['shadow-offset-y'],
+                                'color': options['layout']['shadow-color']
+                            });
+                        }
+
                         p_nodes.push(p_node);
 
                         this_parent['_current'] += this_space;
@@ -279,11 +292,23 @@ define(function(require, exports, module) {
                             py += parent_radius * Math.sin(angle);
                         }
 
-                        paper.path('M' + cx + ',' + cy + 'L' + px + ',' + py).attr({
+                        var p_edge = paper.path('M' + cx + ',' + cy + 'L' + px + ',' + py).attr({
                             'stroke-width': options['basictree']['edge-width'],
                             'stroke': options['basictree']['edge-color'],
                             'stroke-opacity': options['basictree']['edge-alpha']
                         }).translate(0.5, 0.5);
+
+                        // Draw node shadow.
+                        if (options['layout']['shadow-enabled']) {
+                            p_edge.glow({
+                                'width': options['layout']['shadow-width'],
+                                'fill': false,
+                                'opacity': options['layout']['shadow-alpha'],
+                                'offsetx': options['layout']['shadow-offset-x'],
+                                'offsety': options['layout']['shadow-offset-y'],
+                                'color': options['layout']['shadow-color']
+                            });
+                        }
 
                         if (this_e_value && options['basictree']['edge-label-size'] > 0) {
                             var lx = (cx + px) / 2;
