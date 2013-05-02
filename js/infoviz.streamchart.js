@@ -1,6 +1,6 @@
 /*
     InfoViz, StreamChart
-    @copyright 2012  Zheng Li <lizheng@lizheng.me>
+    @copyright 2012 - 2013  Zheng Li <lizheng@lizheng.me>
     @github https://github.com/nocoo/InfoViz
     @license MIT
 */
