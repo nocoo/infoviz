@@ -528,20 +528,17 @@ define(function(require, exports, module) {
         require.async(['./infoviz.core'], function(core) {
             var paper, options = core.merge_options(overwrite_options);
             var logo, logo_front = function() { if (logo) logo.toFront(); };
+            var dom_element = document.getElementById(element);
 
             // Register this chart in global variable.
-            if (InfoViz.charts[element] && InfoViz.charts[element].paper && typeof (InfoViz.charts[element].paper.clear) === 'function') {
-                paper = InfoViz.charts[element].paper;
-                paper.clear();
-            } else {
-                paper = Raphael(element);
-                InfoViz.charts[element] = {
-                    'paper':  paper,
-                    'type':   type,
-                    'data':   data,
-                    'option': overwrite_options
-                };
-            }
+            dom_element.innerHTML = '';
+            paper = Raphael(element);
+            InfoViz.charts[element] = {
+                'paper':  paper,
+                'type':   type,
+                'data':   data,
+                'option': overwrite_options
+            };
 
             // Default area.
             var area = {
