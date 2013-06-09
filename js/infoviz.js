@@ -530,12 +530,17 @@ define(function(require, exports, module) {
             var logo, logo_front = function() { if (logo) logo.toFront(); };
 
             // Register this chart in global variable.
-            if (InfoViz.charts[element] && typeof (InfoViz.charts[element].clear) === 'function') {
-                paper = InfoViz.charts[element];
+            if (InfoViz.charts[element] && InfoViz.charts[element].paper && typeof (InfoViz.charts[element].paper.clear) === 'function') {
+                paper = InfoViz.charts[element].paper;
                 paper.clear();
             } else {
                 paper = Raphael(element);
-                InfoViz.charts[element] = paper;
+                InfoViz.charts[element] = {
+                    'paper':  paper,
+                    'type':   type,
+                    'data':   data,
+                    'option': overwrite_options
+                };
             }
 
             // Default area.
@@ -760,7 +765,7 @@ define(function(require, exports, module) {
     };
 
     exports.clear = function(element, with_loading) {
-        var paper = InfoViz.charts[element];
+        var paper = InfoViz.charts[element].paper;
 
         if (paper && typeof (paper.clear) === 'function') {
             var width = paper.width, height = paper.height;
@@ -801,6 +806,27 @@ define(function(require, exports, module) {
             } else {
                 paper.clear();
             }
+        }
+    };
+
+    exports.redraw = function(element, callback) {
+        if (element) {
+            var paper = InfoViz.charts[element].paper;
+            var type = InfoViz.charts[element].type;
+            var data = InfoViz.charts[element].data;
+            var option = InfoViz.charts[element].option || {};
+
+            if (paper && type && data) {
+                exports.clear(element);
+                exports.chart(element, type, data, option, callback);
+            }
+        }
+    };
+
+    exports.redraw_all = function() {
+        var charts = InfoViz.charts, element;
+        for (var item in charts) {
+            exports.redraw(item);
         }
     };
 
