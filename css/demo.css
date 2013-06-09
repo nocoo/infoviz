@@ -46,8 +46,12 @@ table { border-collapse: collapse; border-spacing: 0; }
 .p-demo ul.menu a { text-decoration: none; color: #104386; text-align: center; display: block; font-size: 14px; line-height: 30px; padding: 0 12px; border: none; }
 .p-demo ul.menu a:hover { background: #EEE; text-decoration: underline; }
 .p-demo ul.menu a.active { background: #eb540a; color: #FFF; }
-.p-demo .container .infoviz { margin: 0px 10px 10px 10px; width: 850px; height: 350px; }
+.p-demo ul.menu li.travis a:hover { background: none; }
+.p-demo ul.menu li.travis a.active { background: none; }
+.p-demo ul.menu li.travis a { line-height: 19px; }
+.p-demo ul.menu li.travis a img { margin-top: 5px; }
 
+.p-demo .container .infoviz { margin: 0px 10px 10px 10px; width: 850px; height: 350px; }
 .p-index .container .infoviz#i_piechart1 { width: 340px; height: 280px; float: left; }
 .p-index .container .infoviz#i_piechart2 { width: 490px; height: 280px; float: left; }
 .p-index .container .infoviz#i_radarchart1 { width: 490px; height: 350px; float: left; }

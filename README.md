@@ -1,4 +1,5 @@
 ![InfoViz](http://infoviz.org/images/infoviz_logo.png)
+[![Build Status](https://travis-ci.org/nocoo/infoviz.png)](https://travis-ci.org/nocoo/infoviz)
 
 InfoViz is an information visualization library based on [Raphaël](http://raphaeljs.com/).
 
