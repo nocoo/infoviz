@@ -16,7 +16,7 @@ See [Configurations](#8-configuration) to find out how.
 
 ## Introducing v0.3.x
 
-We hate to change client APIs, but there's some changes you may have to do in your side to make it work with v0.3.x:
+We hate to change client APIs, but there're some changes you may have to do in your side to make it work with v0.3.x:
 
 ### New Module System
 
