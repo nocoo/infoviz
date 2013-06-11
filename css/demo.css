@@ -26,7 +26,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 .clearfix:after { clear: both; }
 .clearfix { *zoom: 1; }
 
-.p-demo { background: #F0F0F0; font-family: 'Lucida Grande', Helvetica, Arial, sans-serif; }
+.p-demo { background: #F0F0F0; font-family: 'Lucida Grande', 'Lucida Sans Unicode', wf_SegoeUI, 'Segoe UI', Segoe, 'Segoe WP', Helvetica, Arial, Verdana, sans-serif; }
 .p-demo a { color: #999; }
 .p-demo header { height: 60px; margin: 0 auto; width: 870px; background: #FDFDFD; border-top-left-radius: 10px; border-top-right-radius: 10px; }
 .p-demo header h1 { margin: 10px; }
@@ -40,7 +40,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 .p-demo footer p { color: #999; text-align: center; font-size: 12px; line-height: 30px; }
 .p-demo a.fork { position: absolute; top: 0; right: 0; border: 0; width: 140px; height: 140px; display: block; background: url('../images/forkme.png') center no-repeat; background-image: -webkit-image-set(url('../images/forkme.png') 1x, url('../images/forkme@2x.png') 2x); }
 .p-demo ul.menu { border-bottom: 1px solid #DDD; }
-.p-demo ul.menu li { float: left; margin: 0px 4px 0 0; }
+.p-demo ul.menu li { float: left; margin: 0; }
 .p-demo ul.menu li.right { float: right; }
 .p-demo ul.menu li.right iframe { height: 20px; width: 90px; margin-top: 5px; overflow: hidden; }
 .p-demo ul.menu a { text-decoration: none; color: #104386; text-align: center; display: block; font-size: 14px; line-height: 30px; padding: 0 12px; border: none; }
