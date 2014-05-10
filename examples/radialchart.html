@@ -5,7 +5,7 @@
 		<meta name="author" content="@zhengli" />
 		<link rel="shortcut icon" href="../images/favicon.ico" />
 		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
-		<title>RadialChart Test - InfoViz</title>
+		<title>RadialChart control - InfoViz</title>
 		<!--[if lt IE 9]>
 			<script src="../js/html5.js"></script>
 		<![endif]-->
@@ -17,30 +17,30 @@
 				<li><a href="../index.html" title="Controls">Controls</a></li>
 				<li><a href="http://builder.infoviz.org" title="Builder">Builder</a></li>
 				<li><a href="https://github.com/nocoo/infoviz" title="Documentation">Documentation</a></li>
-				<li><a class="active" href="./index.html" title="Test">Test</a></li>
+				<li><a class="active" href="./index.html" title="Examples">Examples</a></li>
 				<li><a href="../history.html" title="History">History</a></li>
 				<li><a href="https://github.com/nocoo/infoviz/tags" title="Downloads">Downloads</a></li>
 				<li><a href="../license.html" title="The MIT License">License</a></li>
 			</ul>
 
-			<h1>RadialChart Test</h1>
+			<h1>RadialChart Examples</h1>
 			<section>
-				<h2>Test1 - Standard<a href="#test1" name="test1">#</a></h2>
+				<h2>Scenario 1 - Standard<a href="#test1" name="test1">#</a></h2>
 				<div id="i_radialchart1" class="infoviz"></div>
 			</section>
 
 			<section>
-				<h2>Test2 - UI Options<a href="#test2" name="test2">#</a></h2>
+				<h2>Scenario 2 - UI Options<a href="#test2" name="test2">#</a></h2>
 				<div id="i_radialchart2" class="infoviz"></div>
 			</section>
 
 			<section>
-				<h2>Test3 - Random Data<a href="#test3" name="test3">#</a><a id="btn_refresh" class="button">Refresh</a></h2>
+				<h2>Scenario 3 - Random Data<a href="#test3" name="test3">#</a><a id="btn_refresh" class="button">Refresh</a></h2>
 				<div id="i_radialchart3" class="infoviz"></div>
 			</section>
 
 			<section>
-				<h2>Test4 - Customized UI<a href="#test4" name="test4">#</a></h2>
+				<h2>Scenario 4 - Customized UI<a href="#test4" name="test4">#</a></h2>
 				<div id="i_radialchart4" class="infoviz"></div>
 			</section>
 
@@ -204,19 +204,17 @@
 						},
 						{
 							'layout': { 'logo-url': '../images/infoviz_logo_tiny_white.png' },
-							'grid': { 'background-color': '#333' },
-							'tooltip': { 'border-color': '#DDD', 'background-color': '#333' },
-							'legend': { 'legend-position': 'top-left', 'margin-top': 4, 'margin-left': 0, 'border-color': '#DDD', 'background-color': '#333' },
-							'radialchart': { 'size-factor': 0.8, 'bar-min-height': 60, 'bar-width': 14, 'hole-radius': 36, 'label-bar-color': '#DDD' },
+							'grid': { 'background-color': '#5C6166' },
+							'tooltip': { 'border-color': '#999', 'background-color': '#5C6166' },
+							'legend': { 'legend-position': 'top-left', 'margin-top': 4, 'margin-left': 0, 'border-color': '#999', 'background-color': '#5C6166' },
+							'radialchart': { 'size-factor': 0.8, 'bar-min-height': 60, 'bar-width': 14, 'hole-radius': 36, 'label-bar-color': '#CCC' },
 							'color': [
-								{ 'color': '#FFF', 'dark-alpha': 0.20, 'light-alpha': 0.45 },
-								{ 'color': '#FFF', 'dark-alpha': 0.30, 'light-alpha': 0.45 },
-								{ 'color': '#FFF', 'dark-alpha': 0.40, 'light-alpha': 0.45 },
-								{ 'color': '#FFF', 'dark-alpha': 0.50, 'light-alpha': 0.45 },
-								{ 'color': '#FFF', 'dark-alpha': 0.60, 'light-alpha': 0.45 },
-								{ 'color': '#FFF', 'dark-alpha': 0.70, 'light-alpha': 0.45 },
-								{ 'color': '#FFF', 'dark-alpha': 0.80, 'light-alpha': 0.45 },
-								{ 'color': '#FFF', 'dark-alpha': 0.85, 'light-alpha': 0.45 }
+								{ 'color': '#58cb73', 'dark-alpha': 0.85, 'light-alpha': 0.45 },
+								{ 'color': '#D95C5C', 'dark-alpha': 0.85, 'light-alpha': 0.45 },
+								{ 'color': '#6ECFF5', 'dark-alpha': 0.85, 'light-alpha': 0.45 },
+								{ 'color': '#00B5AD', 'dark-alpha': 0.85, 'light-alpha': 0.45 },
+								{ 'color': '#E96633', 'dark-alpha': 0.85, 'light-alpha': 0.45 },
+								{ 'color': '#CCCCCC', 'dark-alpha': 0.85, 'light-alpha': 0.45 }
 							]
 						}
 					);
