@@ -136,7 +136,7 @@ define(function(require, exports, module) {
 
                 this_bar = paper.path(cache.join('')).attr({
                     'stroke': options['piechart']['label-bar-color'],
-                    'stroke-opacity': options['piechart']['label-bar-color'],
+                    'stroke-opacity': options['piechart']['label-bar-alpha'],
                     'stroke-width': options['piechart']['label-bar-width']
                 }).translate(0.5, 0.5);
                 p_bars.push(this_bar);
