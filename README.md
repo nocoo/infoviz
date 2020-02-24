@@ -1,11 +1,9 @@
-![InfoViz](http://infoviz.org/images/infoviz_logo.png)
+![InfoViz](https://infoviz.org/images/infoviz_logo.png)
 
 InfoViz is an information visualization library based on [Raphaël](http://raphaeljs.com/).
 Raphaël currently supports Firefox 3.0+, Safari 3.0+, Chrome 5.0+, Opera 9.5+ and Internet Explorer 6.0+.
 
 By the way, InfoViz supports iOS devices, include the new iPad with retina display.
-
-[![Build Status](https://travis-ci.org/nocoo/infoviz.png)](https://travis-ci.org/nocoo/infoviz)
 
 ## Everything can be customized
 
@@ -79,11 +77,11 @@ Sorry for the inconvenient, but we think it was worth it.
 
 ### LineChart
 
-![LineChart](http://infoviz.org/images/examples/linechart.png "LineChart")
+![LineChart](https://infoviz.org/images/examples/linechart.png "LineChart")
 
 A LineChart has a enumerable as horizontal field, and a value field as vertical field.
 
-Demo: [Click Here](http://infoviz.org/test/linechart.html)
+Demo: [Click Here](https://infoviz.org/test/linechart.html)
 
 ```javascript
 InfoViz.chart(
@@ -150,11 +148,11 @@ InfoViz.chart(
 
 ### AreaChart
 
-![AreaChart](http://infoviz.org/images/examples/areachart.png "AreaChart")
+![AreaChart](https://infoviz.org/images/examples/areachart.png "AreaChart")
 
 Some people may want to use an AreaChart to visualize their LineChart data. You can turn on area-enabled option in linechart configuration to enable it.
 
-Demo: [Click Here](http://infoviz.org/test/linechart.html)
+Demo: [Click Here](https://infoviz.org/test/linechart.html)
 
 ```javascript
 InfoViz.chart(
@@ -177,9 +175,9 @@ InfoViz.chart(
 
 LineChart now supports right axis, which provides second vertical field. Lines using right axis will be visualized as dotted lines.
 
-![LineChart2](http://infoviz.org/images/examples/linechart2.png "LineChart2")
+![LineChart2](https://infoviz.org/images/examples/linechart2.png "LineChart2")
 
-Demo: [Click Here](http://infoviz.org/test/linechart.html#test5)
+Demo: [Click Here](https://infoviz.org/test/linechart.html#test5)
 
 To enable right axis in LineChart or AreaChart:
 
@@ -261,11 +259,11 @@ InfoViz.chart(
 
 ## 1.2 BarChart
 
-![BarChart](http://infoviz.org/images/examples/barchart.png "BarChart")
+![BarChart](https://infoviz.org/images/examples/barchart.png "BarChart")
 
 A BarChart has a enumerable as horizontal field, and a value field as vertical field.
 
-Demo: [Click Here](http://infoviz.org/test/barchart.html)
+Demo: [Click Here](https://infoviz.org/test/barchart.html)
 
 ```javascript
 InfoViz.chart(
@@ -334,9 +332,9 @@ InfoViz.chart(
 
 BarChart now supports right axis, which provides second vertical field. Bars using right axis will be visualized with dotted border. To enable right axis in BarChart:
 
-![BarChart2](http://infoviz.org/images/examples/barchart2.png "BarChart2")
+![BarChart2](https://infoviz.org/images/examples/barchart2.png "BarChart2")
 
-Demo: [Click Here](http://infoviz.org/test/barchart.html#test5)
+Demo: [Click Here](https://infoviz.org/test/barchart.html#test5)
 
 ```javascript
 InfoViz.chart(
@@ -417,9 +415,9 @@ InfoViz.chart(
 
 A BubbleChart has a value as horizontal field, and a value field as vertical field, also with a value field indicates its size.
 
-![BubbleChart](http://infoviz.org/images/examples/bubblechart.png "BubbleChart")
+![BubbleChart](https://infoviz.org/images/examples/bubblechart.png "BubbleChart")
 
-Demo: [Click Here](http://infoviz.org/test/bubblechart.html)
+Demo: [Click Here](https://infoviz.org/test/bubblechart.html)
 
 ```javascript
 InfoViz.chart(
@@ -453,9 +451,9 @@ InfoViz.chart(
 
 A StackChart has a enumerable as horizontal field, and a value field as vertical field.
 
-![StackChart](http://infoviz.org/images/examples/stackchart.png "StackChart")
+![StackChart](https://infoviz.org/images/examples/stackchart.png "StackChart")
 
-Demo: [Click Here](http://infoviz.org/test/stackchart.html)
+Demo: [Click Here](https://infoviz.org/test/stackchart.html)
 
 ```javascript
 InfoViz.chart(
@@ -526,9 +524,9 @@ InfoViz.chart(
 
 A StockChart is like a BarChart. In BarChart, each bar has only one vertical value, but in StockChart, each bar has three: max, middle and min value.
 
-![StockChart](http://infoviz.org/images/examples/stockchart.png "StockChart")
+![StockChart](https://infoviz.org/images/examples/stockchart.png "StockChart")
 
-Demo: [Click Here](http://infoviz.org/test/stockchart.html)
+Demo: [Click Here](https://infoviz.org/test/stockchart.html)
 
 ```javascript
 InfoViz.chart(
@@ -599,9 +597,9 @@ InfoViz.chart(
 
 A StreamChart is like an AreaChart. StreamChart shows percentage changes in different data fields.
 
-![StreamChart](http://infoviz.org/images/examples/streamchart.png "StreamChart")
+![StreamChart](https://infoviz.org/images/examples/streamchart.png "StreamChart")
 
-Demo: [Click Here](http://infoviz.org/test/streamchart.html)
+Demo: [Click Here](https://infoviz.org/test/streamchart.html)
 
 ```javascript
 InfoViz.chart(
@@ -655,11 +653,11 @@ InfoViz.chart(
 
 ## 2.1 PieChart
 
-![PieChart](http://infoviz.org/images/examples/piechart.png "PieChart")
+![PieChart](https://infoviz.org/images/examples/piechart.png "PieChart")
 
 A PieChart has a value as horizontal field.
 
-Demo: [Click Here](http://infoviz.org/test/piechart.html)
+Demo: [Click Here](https://infoviz.org/test/piechart.html)
 
 ```javascript
 InfoViz.chart(
@@ -684,11 +682,11 @@ InfoViz.chart(
 
 ## 2.2 RadarChart
 
-![RadarChart](http://infoviz.org/images/examples/radarchart.png "RadarChart")
+![RadarChart](https://infoviz.org/images/examples/radarchart.png "RadarChart")
 
 A RadarChart has a group of value fields.
 
-Demo: [Click Here](http://infoviz.org/test/radarchart.html)
+Demo: [Click Here](https://infoviz.org/test/radarchart.html)
 
 ```javascript
 InfoViz.chart(
@@ -723,11 +721,11 @@ In v0.3.3, we fix a bug in RadarChart, when there's only one or two circles in R
 
 ## 2.3 RadialChart
 
-![RadialChart](http://infoviz.org/images/examples/radialchart.png "RadialChart")
+![RadialChart](https://infoviz.org/images/examples/radialchart.png "RadialChart")
 
 A RadialChart has a value field.
 
-Demo: [Click Here](http://infoviz.org/test/radialchart.html)
+Demo: [Click Here](https://infoviz.org/test/radialchart.html)
 
 ```javascript
 InfoViz.chart(
@@ -767,13 +765,13 @@ InfoViz.chart(
 
 ## 2.4 SmithGraph
 
-![SmithGraph](http://infoviz.org/images/examples/smithgraph.png "SmithGraph")
+![SmithGraph](https://infoviz.org/images/examples/smithgraph.png "SmithGraph")
 
 A SmithGraph is a complex visulization graph offten been uesd to visualize many nodes and edges between them.
 Each node has a value field, which will be visualized as bars with different height. Each node may also has one or more edges.
 Each edge has a value field, and a destination node. Its value field will be visualized as color of the edge.
 
-Demo: [Click Here](http://infoviz.org/test/smithgraph.html)
+Demo: [Click Here](https://infoviz.org/test/smithgraph.html)
 
 ```javascript
 InfoViz.chart(
@@ -834,11 +832,11 @@ InfoViz.chart(
 
 ## 3.1 WorldMap
 
-![WorldMap](http://infoviz.org/images/examples/worldmap.png "WorldMap")
+![WorldMap](https://infoviz.org/images/examples/worldmap.png "WorldMap")
 
 A WorldMap is a global map, each area can has a value field indicates counts or frequency.
 
-Demo: [Click Here](http://infoviz.org/test/worldmap.html)
+Demo: [Click Here](https://infoviz.org/test/worldmap.html)
 
 ```javascript
 InfoViz.chart(
@@ -898,11 +896,11 @@ console.log(InfoViz.WorldMap.areas);
 
 ## 3.2 HeatMap
 
-![HeatMap](http://infoviz.org/images/examples/heatmap.png "HeatMap")
+![HeatMap](https://infoviz.org/images/examples/heatmap.png "HeatMap")
 
 A HeatMap has a value field which indicator its load etc.
 
-Demo: [Click Here](http://infoviz.org/test/heatmap.html)
+Demo: [Click Here](https://infoviz.org/test/heatmap.html)
 
 ```javascript
 InfoViz.chart(
@@ -943,17 +941,17 @@ InfoViz.chart(
 
 Note there's an option in heatmap section named sort-enabled. Turn this option to true, you will get this:
 
-![HeatMap](http://infoviz.org/images/examples/heatmap2.png "HeatMap")
+![HeatMap](https://infoviz.org/images/examples/heatmap2.png "HeatMap")
 
 # 4 Tree
 
 ## 4.1 BasicTree
 
-![BasicTree](http://infoviz.org/images/examples/basictree.png "BasicTree")
+![BasicTree](https://infoviz.org/images/examples/basictree.png "BasicTree")
 
 A BasicTree can visualize tree structure data. BasicTree has a top-down layout, root node is in the top.
 
-Demo: [Click Here](http://infoviz.org/test/basictree.html)
+Demo: [Click Here](https://infoviz.org/test/basictree.html)
 
 ```javascript
 InfoViz.chart(
@@ -1006,11 +1004,11 @@ InfoViz.chart(
 
 ## 4.2 FolderTree
 
-![FolderTree](http://infoviz.org/images/examples/foldertree.png "FolderTree")
+![FolderTree](https://infoviz.org/images/examples/foldertree.png "FolderTree")
 
 A FolderTree can visualize tree structure data. FolderTree has a top-down layout, just like folder layout file system.
 
-Demo: [Click Here](http://infoviz.org/test/foldertree.html)
+Demo: [Click Here](https://infoviz.org/test/foldertree.html)
 
 ```javascript
 InfoViz.chart(
@@ -1065,11 +1063,11 @@ InfoViz.chart(
 
 ## 5.1 TagCloud
 
-![TagCloud](http://infoviz.org/images/examples/tagcloud.png "TagCloud")
+![TagCloud](https://infoviz.org/images/examples/tagcloud.png "TagCloud")
 
 A TagCloud has a text string, and a value field to indicator its frequency.
 
-Demo: [Click Here](http://infoviz.org/test/tagcloud.html)
+Demo: [Click Here](https://infoviz.org/test/tagcloud.html)
 
 ```javascript
 InfoViz.chart(
@@ -1171,7 +1169,7 @@ InfoViz.chart(
 
 ## 7.4 Refresh a InfoViz chart data
 
-![Loading](http://infoviz.org/images/examples/loading.png "Loading")
+![Loading](https://infoviz.org/images/examples/loading.png "Loading")
 
 When you what to visualize a different data set in a HTML element, you can call InfoViz.chart again with new data:
 
@@ -1260,7 +1258,7 @@ InfoViz.options = {
         'logo-enabled': false,              // is InfoViz logo enabled
         'logo-url': './images/infoviz_logo_tiny.png',
                                             // logo image url
-        'logo-link': 'http://infoviz.org',  // destination page link after user click the logo
+        'logo-link': 'https://infoviz.org',  // destination page link after user click the logo
         'logo-width': 50,                   // logo width
         'logo-height': 17,                  // logo height
         'logo-position': 'top-right',       // logo position, top-right | top-left | bottom-right | bottom-left
